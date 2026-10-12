@@ -1,0 +1,58 @@
+createOrReplace
+
+	relationship Options_SiteStatus
+		fromColumn: Options.site_code
+		toColumn: SiteStatus.site_code
+		fromCardinality: many
+		toCardinality: one
+		crossFilteringBehavior: oneDirection
+
+	relationship POStatus_SiteStatus
+		fromColumn: POStatus.site_code
+		toColumn: SiteStatus.site_code
+		fromCardinality: many
+		toCardinality: one
+		crossFilteringBehavior: oneDirection
+
+	relationship Certificates_SiteStatus
+		fromColumn: Certificates.site_code
+		toColumn: SiteStatus.site_code
+		fromCardinality: many
+		toCardinality: one
+		crossFilteringBehavior: oneDirection
+
+	ref table SiteStatus
+
+		measure 'Site Count' = DISTINCTCOUNT(SiteStatus[site_code])
+			formatString: 0
+
+		measure 'Risk Site Count' = COALESCE(CALCULATE([Site Count], SiteStatus[risk] <> "normal"), 0)
+			formatString: 0
+
+		measure 'Danger Site Count' = COALESCE(CALCULATE([Site Count], SiteStatus[risk] = "danger"), 0)
+			formatString: 0
+
+		measure 'Current SS %' = MAX(SiteStatus[selfsuff_pct])
+			formatString: 0.0
+
+		measure 'Current PE' = MAX(SiteStatus[primary_energy_kwh_m2y])
+			formatString: 0.0
+
+		measure 'Current Grade Rank' = MAX(SiteStatus[grade_rank])
+			formatString: 0
+
+	ref table Options
+
+		measure 'Energy Feasible Option Sets' = COALESCE(CALCULATE(COUNTROWS(Options), Options[energy_feasible] = TRUE()), 0)
+			formatString: 0
+
+		measure 'Minimum Energy Feasible Cost KRW' = MINX(FILTER(Options, Options[energy_feasible] = TRUE()), Options[cost_krw])
+			formatString: #,0
+
+		measure 'Decision Feasible Option Sets' = COALESCE(CALCULATE(COUNTROWS(Options), Options[decision_feasible] = TRUE()), 0)
+			formatString: 0
+
+	ref table POStatus
+
+		measure 'Installation Breach PO Count' = COALESCE(CALCULATE(COUNTROWS(POStatus), POStatus[deadline_breach] = TRUE()), 0)
+			formatString: 0

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1260" height="1020" viewBox="0 0 1260 1020">
+<rect width="1260" height="1020" fill="white"/>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0078D4"/></marker></defs>
+<text x="30" y="44" font-family="Segoe UI,Arial" font-size="24" fill="#000000">Construction ZEB workshop | offline-authored architecture illustration</text>
+<rect x="20" y="80" width="1220" height="600" rx="10" fill="none" stroke="#0078D4" stroke-width="2" />
+<text x="34" y="109" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Owned participant Fabric workspace p01..p12</text>
+<text x="34" y="137" font-family="Segoe UI,Arial" font-size="14" fill="#000000">One schema-enabled Lakehouse each; never write to read-only reference</text>
+<rect x="50" y="155" width="240" height="145" rx="10" fill="#CFE4FA" stroke="#0078D4" stroke-width="2" />
+<text x="64" y="184" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Files + Bronze</text>
+<text x="64" y="212" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Retained SYNTHETIC fixtures</text>
+<text x="64" y="235" font-family="Segoe UI,Arial" font-size="14" fill="#000000">REQUIRED genuine public ZEB</text>
+<text x="64" y="258" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Missing public = blocked stage</text>
+<rect x="350" y="155" width="240" height="145" rx="10" fill="#CFE4FA" stroke="#0078D4" stroke-width="2" />
+<text x="364" y="184" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Silver</text>
+<text x="364" y="212" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Typed identity mapping</text>
+<text x="364" y="235" font-family="Segoe UI,Arial" font-size="14" fill="#000000">ERP / PMS / BIM / WBS</text>
+<text x="364" y="258" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Keys + certificate version</text>
+<rect x="650" y="155" width="240" height="145" rx="10" fill="#CFE4FA" stroke="#0078D4" stroke-width="2" />
+<text x="664" y="184" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Gold</text>
+<text x="664" y="212" font-family="Segoe UI,Arial" font-size="14" fill="#000000">8 site baselines / 63 subsets</text>
+<text x="664" y="235" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Provisional OR / strict PE</text>
+<text x="664" y="258" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Engineering feasibility blocked</text>
+<rect x="940" y="155" width="260" height="145" rx="10" fill="#CFE4FA" stroke="#0078D4" stroke-width="2" />
+<text x="954" y="184" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Direct Lake / Power BI</text>
+<text x="954" y="212" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Manual status -&gt; Copilot page</text>
+<text x="954" y="235" font-family="Segoe UI,Arial" font-size="14" fill="#000000">REQUIRED questions + insights</text>
+<text x="954" y="258" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Inspect, save and reopen</text>
+<rect x="50" y="410" width="240" height="150" rx="10" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2" />
+<text x="64" y="439" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Ontology / native agent</text>
+<text x="64" y="467" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Learner-created ~10 entities</text>
+<text x="64" y="490" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Plan -&gt; evidence -&gt; reviewed Act</text>
+<text x="64" y="513" font-family="Segoe UI,Arial" font-size="14" fill="#000000">No physical action binding</text>
+<rect x="350" y="410" width="260" height="150" rx="10" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2" />
+<text x="364" y="439" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Eventhouse / Operations</text>
+<text x="364" y="467" font-family="Segoe UI,Arial" font-size="14" fill="#000000">EXPLICIT JSONL -&gt; proposal</text>
+<text x="364" y="490" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Bind RecordZEBDecision Notebook</text>
+<text x="364" y="513" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Explicit recorded sync; no stream</text>
+<rect x="700" y="410" width="480" height="150" rx="10" fill="#DFF6DD" stroke="#107C10" stroke-width="2" />
+<text x="714" y="439" font-family="Segoe UI,Arial" font-size="17" fill="#000000">05_decision_log -&gt; audit</text>
+<text x="714" y="467" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Teams Confirm -&gt; creator-delegated Notebook action</text>
+<text x="714" y="490" font-family="Segoe UI,Arial" font-size="14" fill="#000000">5 string identifiers; idempotent MERGE; no human flag</text>
+<text x="714" y="513" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Verify audit -&gt; explicit recorded status -&gt; agent Stop</text>
+<rect x="50" y="770" width="320" height="145" rx="10" fill="#FFF4CE" stroke="#F7630C" stroke-width="2" />
+<text x="64" y="799" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Teams (outside Fabric)</text>
+<text x="64" y="827" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Proposal -&gt; WAIT -&gt; human review</text>
+<text x="64" y="850" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Proceed -&gt; verify fields -&gt; Confirm</text>
+<text x="64" y="873" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Creator execution != human identity</text>
+<rect x="450" y="770" width="320" height="145" rx="10" fill="#FFF4CE" stroke="#F7630C" stroke-width="2" />
+<text x="464" y="799" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Foundry (OPTIONAL)</text>
+<text x="464" y="827" font-family="Segoe UI,Arial" font-size="14" fill="#000000">External Fabric IQ evidence review</text>
+<text x="464" y="850" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Separate consent / cost / region gate</text>
+<text x="464" y="873" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Never required for the core path</text>
+<rect x="850" y="770" width="340" height="145" rx="10" fill="#F3F2F1" stroke="#64748B" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="864" y="799" font-family="Segoe UI,Arial" font-size="17" fill="#000000">Future ERP / site work</text>
+<text x="864" y="827" font-family="Segoe UI,Arial" font-size="14" fill="#000000">NOT IMPLEMENTED</text>
+<text x="864" y="850" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Physical simulation / procurement</text>
+<text x="864" y="873" font-family="Segoe UI,Arial" font-size="14" fill="#000000">Engineering + legal review required</text>
+<line x1="290" y1="220" x2="350" y2="220" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" />
+<line x1="590" y1="220" x2="650" y2="220" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" />
+<line x1="890" y1="220" x2="940" y2="220" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" />
+<line x1="770" y1="300" x2="770" y2="355" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" />
+<line x1="770" y1="355" x2="170" y2="355" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" />
+<line x1="170" y1="355" x2="170" y2="410" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" />
+<line x1="680" y1="300" x2="480" y2="410" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" />
+<line x1="480" y1="560" x2="210" y2="770" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" />
+<line x1="370" y1="830" x2="450" y2="830" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 6"/>
+<line x1="450" y1="870" x2="370" y2="870" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 6"/>
+<line x1="260" y1="770" x2="740" y2="560" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" />
+<line x1="1060" y1="560" x2="1060" y2="770" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 6"/>
+<text x="30" y="966" font-family="Segoe UI,Arial" font-size="16" fill="#000000">Solid: core flow. Dashed: optional / future. Diagram is NOT a live screenshot.</text>
+<text x="30" y="989" font-family="Segoe UI,Arial" font-size="16" fill="#000000">Capacity remains paused. No cloud deployment, agent run or rehearsal has been performed.</text>
+</svg>

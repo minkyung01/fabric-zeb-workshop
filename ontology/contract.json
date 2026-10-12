@@ -1,0 +1,36 @@
+{
+  "status": "learner_created_native_ontology_contract_not_deployed",
+  "entities": [
+    {"name": "Project", "table": "gold.project", "key": "project_no"},
+    {"name": "Site", "table": "gold.site_status", "key": "site_code"},
+    {"name": "BIMModel", "table": "gold.mdm_site_xref", "key": "bim_model_id"},
+    {"name": "DesignVersion", "table": "gold.design_version", "key": "version_id"},
+    {"name": "SiteCertificate", "table": "gold.site_certificate", "key": "cert_no"},
+    {"name": "CertTarget", "table": "gold.cert_target", "key": "target_id"},
+    {"name": "Equipment", "table": "gold.equipment", "key": "wbs_code"},
+    {"name": "PurchaseOrder", "table": "gold.purchase_order", "key": "po_no"},
+    {"name": "Vendor", "table": "gold.vendor", "key": "vendor_code"},
+    {"name": "ImprovementOption", "table": "gold.improvement_option", "key": "option_id"}
+  ],
+  "relationships": [
+    ["Project.project_no", "Site.project_no"],
+    ["Site.site_code", "BIMModel.site_code"],
+    ["BIMModel.bim_model_id", "DesignVersion.bim_model_id"],
+    ["Site.site_code", "SiteCertificate.site_code"],
+    ["SiteCertificate.design_version_id", "DesignVersion.version_id"],
+    ["Site.site_code", "CertTarget.site_code"],
+    ["Site.site_code", "Equipment.site_code"],
+    ["Equipment.wbs_code", "PurchaseOrder.wbs_element"],
+    ["PurchaseOrder.vendor_code", "Vendor.vendor_code"],
+    ["Site.site_code", "ImprovementOption.site_code"]
+  ],
+  "business_rule_context": [
+    "All internal data is deterministic SYNTHETIC; as of 2026-09-30, not today.",
+    "Provisional training grade is better rank of SS >= minimum OR PE < limit; plus rank 0 and failure rank 6.",
+    "Certificate links submitted design; current design can differ. Never join certificate solely to current design.",
+    "Planned BEMS absence is a training risk flag. Remote metering is not automatically sufficient certification evidence.",
+    "Additive energy options are not engineering/exclusivity/schedule validated; no physical action is allowed.",
+    "Only a human-reviewed Teams Proceed/Confirm may submit the Operations Notebook action for record_for_engineering_review. No automatic approval, no physical action. Creator-delegated execution is not verified human identity."
+  ],
+  "note": "Use current native Fabric UI and inspect saved definition/bindings. This is NOT an old JSON Ontology deployment payload. Business rules are context, not executable calculations; ask_ontology may not consider them."
+}

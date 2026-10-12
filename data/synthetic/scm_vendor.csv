@@ -1,0 +1,10 @@
+vendor_code,vendor_name,category_code,standard_lead_time_days,on_time_rate,is_alternative_pool,note
+V-20118,Fabrikam 솔라,PV,60,0.94,False,태양광 모듈·인버터
+V-30452,Northwind 지열,GEO,90,0.78,False,지열 히트펌프
+V-11873,Litware 창호,ENV,75,0.91,False,고효율 창호·커튼월
+V-40219,Tailspin 환기,VENT,45,0.95,False,전열교환 환기장치
+V-50331,Proseware BEMS,BEMS,40,0.97,False,건물에너지관리시스템
+V-60127,Wingtip 에너지,EHP,70,0.9,False,전기 히트펌프·연료전지
+V-20564,Woodgrove 솔라,PV,50,0.92,True,태양광 모듈(대체 공급 가능)
+V-30977,Alpine 지열,GEO,55,0.9,True,"지열 히트펌프(대체 공급 가능, 재고 보유)"
+V-70045,Adatum 조명,LIGHT,30,0.96,False,LED 조명·조명 제어

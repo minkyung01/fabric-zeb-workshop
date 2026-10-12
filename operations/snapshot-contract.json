@@ -1,0 +1,10 @@
+{
+  "status": "explicit_snapshot_contract_not_deployed",
+  "fields": {"event_id": "string", "participant_id": "string", "scenario_id": "string", "site_code": "string", "baseline_hash": "string", "risk": "string", "progress_as_of": "string", "event_state": "string", "status_time": "datetime", "recommended_option_set_id": "string", "result_hash": "string"},
+  "source": "Files/workshop/operations_snapshot.jsonl",
+  "deduplication_key": ["participant_id", "scenario_id", "event_id"],
+  "expected_risk_rows": 4,
+  "actionable_site": "HS-D",
+  "guardrails": ["Teams human review and Proceed/Confirm before Notebook action", "Decision-only creator-delegated Notebook action", "One serialized audit writer", "Explicit recorded status after audit readback", "Stop after logging"],
+  "note": "status_time is ingestion/transition time, not progress_as_of. OneLake files are not continuous Gold sync. Eventhouse status and Delta audit are not one transaction."
+}

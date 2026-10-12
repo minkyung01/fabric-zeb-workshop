@@ -1,0 +1,2728 @@
+{
+  "ref_zeb_grade_criteria": {
+    "schema": [
+      [
+        "grade_code",
+        "string"
+      ],
+      [
+        "grade_name",
+        "string"
+      ],
+      [
+        "selfsuff_min_pct",
+        "double"
+      ],
+      [
+        "primary_energy_limit_residential",
+        "double"
+      ],
+      [
+        "primary_energy_limit_nonresidential",
+        "double"
+      ]
+    ],
+    "rows": [
+      {
+        "grade_code": "+",
+        "grade_name": "ZEB+",
+        "selfsuff_min_pct": 120.0,
+        "primary_energy_limit_residential": -10.0,
+        "primary_energy_limit_nonresidential": -70.0
+      },
+      {
+        "grade_code": "1",
+        "grade_name": "1등급",
+        "selfsuff_min_pct": 100.0,
+        "primary_energy_limit_residential": 10.0,
+        "primary_energy_limit_nonresidential": -30.0
+      },
+      {
+        "grade_code": "2",
+        "grade_name": "2등급",
+        "selfsuff_min_pct": 80.0,
+        "primary_energy_limit_residential": 30.0,
+        "primary_energy_limit_nonresidential": 10.0
+      },
+      {
+        "grade_code": "3",
+        "grade_name": "3등급",
+        "selfsuff_min_pct": 60.0,
+        "primary_energy_limit_residential": 50.0,
+        "primary_energy_limit_nonresidential": 50.0
+      },
+      {
+        "grade_code": "4",
+        "grade_name": "4등급",
+        "selfsuff_min_pct": 40.0,
+        "primary_energy_limit_residential": 70.0,
+        "primary_energy_limit_nonresidential": 90.0
+      },
+      {
+        "grade_code": "5",
+        "grade_name": "5등급",
+        "selfsuff_min_pct": 20.0,
+        "primary_energy_limit_residential": 90.0,
+        "primary_energy_limit_nonresidential": 130.0
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "ref_region": {
+    "schema": [
+      [
+        "sido",
+        "string"
+      ],
+      [
+        "sido_full",
+        "string"
+      ],
+      [
+        "aliases",
+        "string"
+      ],
+      [
+        "latitude",
+        "double"
+      ],
+      [
+        "longitude",
+        "double"
+      ],
+      [
+        "region_group",
+        "string"
+      ]
+    ],
+    "rows": [
+      {
+        "sido": "서울",
+        "sido_full": "서울특별시",
+        "aliases": "서울특별시|서울시|서울",
+        "latitude": 37.5665,
+        "longitude": 126.978,
+        "region_group": "수도권"
+      },
+      {
+        "sido": "인천",
+        "sido_full": "인천광역시",
+        "aliases": "인천광역시|인천시",
+        "latitude": 37.4563,
+        "longitude": 126.7052,
+        "region_group": "수도권"
+      },
+      {
+        "sido": "경기",
+        "sido_full": "경기도",
+        "aliases": "경기도|경기|김포|평택시|과천지식정보타운",
+        "latitude": 37.4138,
+        "longitude": 127.5183,
+        "region_group": "수도권"
+      },
+      {
+        "sido": "강원",
+        "sido_full": "강원특별자치도",
+        "aliases": "강원특별자치도|강원도|강원",
+        "latitude": 37.8228,
+        "longitude": 128.1555,
+        "region_group": "강원"
+      },
+      {
+        "sido": "대전",
+        "sido_full": "대전광역시",
+        "aliases": "대전광역시|대전시",
+        "latitude": 36.3504,
+        "longitude": 127.3845,
+        "region_group": "충청"
+      },
+      {
+        "sido": "세종",
+        "sido_full": "세종특별자치시",
+        "aliases": "세종특별자치시|세종시|세종",
+        "latitude": 36.48,
+        "longitude": 127.289,
+        "region_group": "충청"
+      },
+      {
+        "sido": "충북",
+        "sido_full": "충청북도",
+        "aliases": "충청북도|충북",
+        "latitude": 36.8,
+        "longitude": 127.7,
+        "region_group": "충청"
+      },
+      {
+        "sido": "충남",
+        "sido_full": "충청남도",
+        "aliases": "충청남도|충남",
+        "latitude": 36.5184,
+        "longitude": 126.8,
+        "region_group": "충청"
+      },
+      {
+        "sido": "광주",
+        "sido_full": "광주광역시",
+        "aliases": "광주광역시|광주시",
+        "latitude": 35.1595,
+        "longitude": 126.8526,
+        "region_group": "호남"
+      },
+      {
+        "sido": "전북",
+        "sido_full": "전북특별자치도",
+        "aliases": "전북특별자치도|전라북도|전북",
+        "latitude": 35.7175,
+        "longitude": 127.153,
+        "region_group": "호남"
+      },
+      {
+        "sido": "전남",
+        "sido_full": "전라남도",
+        "aliases": "전라남도|전남|남악신도시(오룡지구)",
+        "latitude": 34.8679,
+        "longitude": 126.991,
+        "region_group": "호남"
+      },
+      {
+        "sido": "대구",
+        "sido_full": "대구광역시",
+        "aliases": "대구광역시|대구시",
+        "latitude": 35.8714,
+        "longitude": 128.6014,
+        "region_group": "영남"
+      },
+      {
+        "sido": "부산",
+        "sido_full": "부산광역시",
+        "aliases": "부산광역시|부산시|부산",
+        "latitude": 35.1796,
+        "longitude": 129.0756,
+        "region_group": "영남"
+      },
+      {
+        "sido": "울산",
+        "sido_full": "울산광역시",
+        "aliases": "울산광역시|울산시",
+        "latitude": 35.5384,
+        "longitude": 129.3114,
+        "region_group": "영남"
+      },
+      {
+        "sido": "경북",
+        "sido_full": "경상북도",
+        "aliases": "경상북도|경북",
+        "latitude": 36.4919,
+        "longitude": 128.8889,
+        "region_group": "영남"
+      },
+      {
+        "sido": "경남",
+        "sido_full": "경상남도",
+        "aliases": "경상남도|경남",
+        "latitude": 35.4606,
+        "longitude": 128.2132,
+        "region_group": "영남"
+      },
+      {
+        "sido": "제주",
+        "sido_full": "제주특별자치도",
+        "aliases": "제주특별자치도|제주도|제주",
+        "latitude": 33.489,
+        "longitude": 126.4983,
+        "region_group": "제주"
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "ref_equipment_category": {
+    "schema": [
+      [
+        "category_code",
+        "string"
+      ],
+      [
+        "category_name",
+        "string"
+      ],
+      [
+        "zeb_role",
+        "string"
+      ],
+      [
+        "green_tech_classes",
+        "string"
+      ]
+    ],
+    "rows": [
+      {
+        "category_code": "PV",
+        "category_name": "태양광",
+        "zeb_role": "에너지 생산",
+        "green_tech_classes": "태양전지|태양 전지용 BOS(Balance Of system) 주변 기기"
+      },
+      {
+        "category_code": "GEO",
+        "category_name": "지열 히트펌프",
+        "zeb_role": "에너지 생산",
+        "green_tech_classes": "지열 냉난방 기술"
+      },
+      {
+        "category_code": "EHP",
+        "category_name": "전기 히트펌프",
+        "zeb_role": "에너지 절감",
+        "green_tech_classes": "전기구동 히트펌프(EHP,ElectricHeatPump)"
+      },
+      {
+        "category_code": "FC",
+        "category_name": "연료전지",
+        "zeb_role": "에너지 생산",
+        "green_tech_classes": "건물용 PEMFC (핵심부품)|건물용 PEMFC (시스템 양산제조기술)|건물용 SOFC (구성요소 및 스택)"
+      },
+      {
+        "category_code": "ENV",
+        "category_name": "고효율 창호·외피",
+        "zeb_role": "에너지 절감",
+        "green_tech_classes": "고효율 외피시스템"
+      },
+      {
+        "category_code": "VENT",
+        "category_name": "전열교환 환기",
+        "zeb_role": "에너지 절감",
+        "green_tech_classes": "에코 실내 환기설비"
+      },
+      {
+        "category_code": "LIGHT",
+        "category_name": "고효율 조명·제어",
+        "zeb_role": "에너지 절감",
+        "green_tech_classes": ""
+      },
+      {
+        "category_code": "BEMS",
+        "category_name": "건물에너지관리시스템(BEMS)",
+        "zeb_role": "에너지 관리",
+        "green_tech_classes": ""
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "erp_project": {
+    "schema": [
+      [
+        "project_no",
+        "string"
+      ],
+      [
+        "project_name",
+        "string"
+      ],
+      [
+        "sido_raw",
+        "string"
+      ],
+      [
+        "sigungu",
+        "string"
+      ],
+      [
+        "main_use",
+        "string"
+      ],
+      [
+        "households",
+        "int"
+      ],
+      [
+        "gross_floor_area_m2",
+        "double"
+      ],
+      [
+        "client_type",
+        "string"
+      ],
+      [
+        "start_date",
+        "date"
+      ],
+      [
+        "planned_completion_date",
+        "date"
+      ],
+      [
+        "pm_name",
+        "string"
+      ],
+      [
+        "zeb_incentive",
+        "string"
+      ]
+    ],
+    "rows": [
+      {
+        "project_no": "CT-24-0231",
+        "project_name": "에코시티 A단지",
+        "sido_raw": "경기도",
+        "sigungu": "화성시",
+        "main_use": "공동주택",
+        "households": 1120,
+        "gross_floor_area_m2": 128400.0,
+        "client_type": "민간",
+        "start_date": "2025-03-10",
+        "planned_completion_date": "2027-06-30",
+        "pm_name": "김도윤",
+        "zeb_incentive": "용적률 완화"
+      },
+      {
+        "project_no": "CT-25-0107",
+        "project_name": "리버뷰 B단지",
+        "sido_raw": "인천광역시",
+        "sigungu": "연수구",
+        "main_use": "공동주택",
+        "households": 860,
+        "gross_floor_area_m2": 97300.0,
+        "client_type": "민간",
+        "start_date": "2025-08-04",
+        "planned_completion_date": "2027-12-20",
+        "pm_name": "이서연",
+        "zeb_incentive": "용적률 완화"
+      },
+      {
+        "project_no": "CT-26-0044",
+        "project_name": "스마트오피스 C센터",
+        "sido_raw": "경기",
+        "sigungu": "성남시",
+        "main_use": "업무시설",
+        "households": null,
+        "gross_floor_area_m2": 42800.0,
+        "client_type": "민간",
+        "start_date": "2027-02-01",
+        "planned_completion_date": "2028-12-29",
+        "pm_name": "박지호",
+        "zeb_incentive": null
+      },
+      {
+        "project_no": "CT-24-0189",
+        "project_name": "에코시티 D단지",
+        "sido_raw": "경기 ",
+        "sigungu": "화성시",
+        "main_use": "공동주택",
+        "households": 1480,
+        "gross_floor_area_m2": 171900.0,
+        "client_type": "민간",
+        "start_date": "2024-11-18",
+        "planned_completion_date": "2027-03-31",
+        "pm_name": "최민준",
+        "zeb_incentive": "용적률 완화"
+      },
+      {
+        "project_no": "CT-26-0052",
+        "project_name": "세종 E학교",
+        "sido_raw": "세종특별자치시",
+        "sigungu": "세종시",
+        "main_use": "교육연구시설",
+        "households": null,
+        "gross_floor_area_m2": 18600.0,
+        "client_type": "공공",
+        "start_date": "2027-03-02",
+        "planned_completion_date": "2028-08-31",
+        "pm_name": "정하은",
+        "zeb_incentive": null
+      },
+      {
+        "project_no": "CT-25-0078",
+        "project_name": "해운대 F청사",
+        "sido_raw": "부산",
+        "sigungu": "해운대구",
+        "main_use": "업무시설",
+        "households": null,
+        "gross_floor_area_m2": 24300.0,
+        "client_type": "공공",
+        "start_date": "2025-05-12",
+        "planned_completion_date": "2027-04-30",
+        "pm_name": "강태윤",
+        "zeb_incentive": null
+      },
+      {
+        "project_no": "CT-25-0133",
+        "project_name": "전주 G도서관",
+        "sido_raw": "전북특별자치도",
+        "sigungu": "전주시",
+        "main_use": "문화 및 집회시설",
+        "households": null,
+        "gross_floor_area_m2": 9800.0,
+        "client_type": "공공",
+        "start_date": "2025-10-01",
+        "planned_completion_date": "2027-05-31",
+        "pm_name": "윤지아",
+        "zeb_incentive": null
+      },
+      {
+        "project_no": "CT-26-0091",
+        "project_name": "마포 H단지",
+        "sido_raw": "서울시",
+        "sigungu": "마포구",
+        "main_use": "공동주택",
+        "households": 540,
+        "gross_floor_area_m2": 61200.0,
+        "client_type": "민간",
+        "start_date": "2027-04-01",
+        "planned_completion_date": "2029-10-31",
+        "pm_name": "한도현",
+        "zeb_incentive": null
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "pms_site": {
+    "schema": [
+      [
+        "site_code",
+        "string"
+      ],
+      [
+        "site_name",
+        "string"
+      ],
+      [
+        "stage",
+        "string"
+      ],
+      [
+        "progress_pct",
+        "double"
+      ],
+      [
+        "progress_as_of",
+        "date"
+      ]
+    ],
+    "rows": [
+      {
+        "site_code": "HS-A",
+        "site_name": "에코시티 A단지 현장",
+        "stage": "시공",
+        "progress_pct": 58.0,
+        "progress_as_of": "2026-09-30"
+      },
+      {
+        "site_code": "IC-B",
+        "site_name": "리버뷰 B단지 현장",
+        "stage": "시공",
+        "progress_pct": 41.0,
+        "progress_as_of": "2026-09-30"
+      },
+      {
+        "site_code": "SN-C",
+        "site_name": "스마트오피스 C센터 현장",
+        "stage": "설계",
+        "progress_pct": 0.0,
+        "progress_as_of": "2026-09-30"
+      },
+      {
+        "site_code": "HS-D",
+        "site_name": "에코시티 D단지 현장",
+        "stage": "시공",
+        "progress_pct": 72.0,
+        "progress_as_of": "2026-09-30"
+      },
+      {
+        "site_code": "SJ-E",
+        "site_name": "세종 E학교 현장",
+        "stage": "설계",
+        "progress_pct": 0.0,
+        "progress_as_of": "2026-09-30"
+      },
+      {
+        "site_code": "BS-F",
+        "site_name": "해운대 F청사 현장",
+        "stage": "시공",
+        "progress_pct": 63.0,
+        "progress_as_of": "2026-09-30"
+      },
+      {
+        "site_code": "JJ-G",
+        "site_name": "전주 G도서관 현장",
+        "stage": "시공",
+        "progress_pct": 35.0,
+        "progress_as_of": "2026-09-30"
+      },
+      {
+        "site_code": "MP-H",
+        "site_name": "마포 H단지 현장",
+        "stage": "설계",
+        "progress_pct": 0.0,
+        "progress_as_of": "2026-09-30"
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "mdm_site_xref": {
+    "schema": [
+      [
+        "project_no",
+        "string"
+      ],
+      [
+        "site_code",
+        "string"
+      ],
+      [
+        "bim_model_id",
+        "string"
+      ],
+      [
+        "valid_from",
+        "date"
+      ]
+    ],
+    "rows": [
+      {
+        "project_no": "CT-24-0231",
+        "site_code": "HS-A",
+        "bim_model_id": "BIM-0412",
+        "valid_from": "2024-01-02"
+      },
+      {
+        "project_no": "CT-25-0107",
+        "site_code": "IC-B",
+        "bim_model_id": "BIM-0518",
+        "valid_from": "2024-01-02"
+      },
+      {
+        "project_no": "CT-26-0044",
+        "site_code": "SN-C",
+        "bim_model_id": "BIM-0633",
+        "valid_from": "2024-01-02"
+      },
+      {
+        "project_no": "CT-24-0189",
+        "site_code": "HS-D",
+        "bim_model_id": "BIM-0397",
+        "valid_from": "2024-01-02"
+      },
+      {
+        "project_no": "CT-26-0052",
+        "site_code": "SJ-E",
+        "bim_model_id": "BIM-0641",
+        "valid_from": "2024-01-02"
+      },
+      {
+        "project_no": "CT-25-0078",
+        "site_code": "BS-F",
+        "bim_model_id": "BIM-0455",
+        "valid_from": "2024-01-02"
+      },
+      {
+        "project_no": "CT-25-0133",
+        "site_code": "JJ-G",
+        "bim_model_id": "BIM-0529",
+        "valid_from": "2024-01-02"
+      },
+      {
+        "project_no": "CT-26-0091",
+        "site_code": "MP-H",
+        "bim_model_id": "BIM-0620",
+        "valid_from": "2024-01-02"
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "bim_design_version": {
+    "schema": [
+      [
+        "version_id",
+        "string"
+      ],
+      [
+        "bim_model_id",
+        "string"
+      ],
+      [
+        "version_code",
+        "string"
+      ],
+      [
+        "version_name",
+        "string"
+      ],
+      [
+        "version_date",
+        "date"
+      ],
+      [
+        "selfsuff_pct",
+        "double"
+      ],
+      [
+        "primary_energy_kwh_m2y",
+        "double"
+      ],
+      [
+        "pv_kw",
+        "double"
+      ],
+      [
+        "geothermal_kw",
+        "double"
+      ],
+      [
+        "change_note",
+        "string"
+      ],
+      [
+        "version_status",
+        "string"
+      ]
+    ],
+    "rows": [
+      {
+        "version_id": "BIM-0412-V1",
+        "bim_model_id": "BIM-0412",
+        "version_code": "V1",
+        "version_name": "기본설계",
+        "version_date": "2024-06-14",
+        "selfsuff_pct": 41.2,
+        "primary_energy_kwh_m2y": 72.0,
+        "pv_kw": 480.0,
+        "geothermal_kw": 700.0,
+        "change_note": "기본설계 에너지 시뮬레이션",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0412-V2",
+        "bim_model_id": "BIM-0412",
+        "version_code": "V2",
+        "version_name": "예비인증 제출안",
+        "version_date": "2024-11-22",
+        "selfsuff_pct": 44.0,
+        "primary_energy_kwh_m2y": 66.0,
+        "pv_kw": 520.0,
+        "geothermal_kw": 700.0,
+        "change_note": "태양광 +40kW, 창호 성능 상향",
+        "version_status": "현행"
+      },
+      {
+        "version_id": "BIM-0518-V1",
+        "bim_model_id": "BIM-0518",
+        "version_code": "V1",
+        "version_name": "기본설계",
+        "version_date": "2025-02-10",
+        "selfsuff_pct": 36.5,
+        "primary_energy_kwh_m2y": 71.0,
+        "pv_kw": 360.0,
+        "geothermal_kw": 0.0,
+        "change_note": "기본설계 에너지 시뮬레이션",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0518-V2",
+        "bim_model_id": "BIM-0518",
+        "version_code": "V2",
+        "version_name": "예비인증 제출안",
+        "version_date": "2025-05-20",
+        "selfsuff_pct": 39.0,
+        "primary_energy_kwh_m2y": 65.0,
+        "pv_kw": 400.0,
+        "geothermal_kw": 0.0,
+        "change_note": "태양광 +40kW, 외단열 강화로 1차에너지소요량 감소",
+        "version_status": "현행"
+      },
+      {
+        "version_id": "BIM-0633-V1",
+        "bim_model_id": "BIM-0633",
+        "version_code": "V1",
+        "version_name": "기본설계",
+        "version_date": "2026-05-08",
+        "selfsuff_pct": 58.0,
+        "primary_energy_kwh_m2y": 88.0,
+        "pv_kw": 260.0,
+        "geothermal_kw": 350.0,
+        "change_note": "기본설계 에너지 시뮬레이션",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0633-V2",
+        "bim_model_id": "BIM-0633",
+        "version_code": "V2",
+        "version_name": "계획설계",
+        "version_date": "2026-09-04",
+        "selfsuff_pct": 63.0,
+        "primary_energy_kwh_m2y": 82.0,
+        "pv_kw": 300.0,
+        "geothermal_kw": 350.0,
+        "change_note": "태양광 +40kW, 조명 제어 적용",
+        "version_status": "현행"
+      },
+      {
+        "version_id": "BIM-0397-V1",
+        "bim_model_id": "BIM-0397",
+        "version_code": "V1",
+        "version_name": "기본설계",
+        "version_date": "2024-05-17",
+        "selfsuff_pct": 41.0,
+        "primary_energy_kwh_m2y": 74.0,
+        "pv_kw": 500.0,
+        "geothermal_kw": 600.0,
+        "change_note": "기본설계 에너지 시뮬레이션",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0397-V2",
+        "bim_model_id": "BIM-0397",
+        "version_code": "V2",
+        "version_name": "예비인증 제출안",
+        "version_date": "2024-08-09",
+        "selfsuff_pct": 43.5,
+        "primary_energy_kwh_m2y": 69.0,
+        "pv_kw": 530.0,
+        "geothermal_kw": 600.0,
+        "change_note": "태양광 +30kW, 창호 성능 상향",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0397-V3",
+        "bim_model_id": "BIM-0397",
+        "version_code": "V3",
+        "version_name": "VE 반영안",
+        "version_date": "2026-07-15",
+        "selfsuff_pct": 38.2,
+        "primary_energy_kwh_m2y": 76.0,
+        "pv_kw": 380.0,
+        "geothermal_kw": 600.0,
+        "change_note": "원가 절감(VE)으로 옥상 태양광 530→380kW 축소",
+        "version_status": "현행"
+      },
+      {
+        "version_id": "BIM-0641-V1",
+        "bim_model_id": "BIM-0641",
+        "version_code": "V1",
+        "version_name": "기본설계",
+        "version_date": "2026-04-17",
+        "selfsuff_pct": 60.5,
+        "primary_energy_kwh_m2y": 58.0,
+        "pv_kw": 160.0,
+        "geothermal_kw": 200.0,
+        "change_note": "기본설계 에너지 시뮬레이션",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0641-V2",
+        "bim_model_id": "BIM-0641",
+        "version_code": "V2",
+        "version_name": "예비인증 제출안",
+        "version_date": "2026-07-10",
+        "selfsuff_pct": 64.2,
+        "primary_energy_kwh_m2y": 52.0,
+        "pv_kw": 180.0,
+        "geothermal_kw": 200.0,
+        "change_note": "태양광 +20kW, 외피 성능 상향",
+        "version_status": "현행"
+      },
+      {
+        "version_id": "BIM-0455-V1",
+        "bim_model_id": "BIM-0455",
+        "version_code": "V1",
+        "version_name": "기본설계",
+        "version_date": "2024-10-11",
+        "selfsuff_pct": 80.1,
+        "primary_energy_kwh_m2y": 12.0,
+        "pv_kw": 400.0,
+        "geothermal_kw": 0.0,
+        "change_note": "기본설계 에너지 시뮬레이션",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0455-V2",
+        "bim_model_id": "BIM-0455",
+        "version_code": "V2",
+        "version_name": "예비인증 제출안",
+        "version_date": "2025-01-24",
+        "selfsuff_pct": 82.5,
+        "primary_energy_kwh_m2y": 8.0,
+        "pv_kw": 420.0,
+        "geothermal_kw": 0.0,
+        "change_note": "태양광 +20kW, 조명 제어 적용",
+        "version_status": "현행"
+      },
+      {
+        "version_id": "BIM-0529-V1",
+        "bim_model_id": "BIM-0529",
+        "version_code": "V1",
+        "version_name": "기본설계",
+        "version_date": "2025-03-14",
+        "selfsuff_pct": 57.0,
+        "primary_energy_kwh_m2y": 60.0,
+        "pv_kw": 140.0,
+        "geothermal_kw": 120.0,
+        "change_note": "기본설계 에너지 시뮬레이션",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0529-V2",
+        "bim_model_id": "BIM-0529",
+        "version_code": "V2",
+        "version_name": "예비인증 제출안",
+        "version_date": "2025-06-20",
+        "selfsuff_pct": 61.0,
+        "primary_energy_kwh_m2y": 55.0,
+        "pv_kw": 150.0,
+        "geothermal_kw": 120.0,
+        "change_note": "태양광 +10kW, 조명 제어 적용",
+        "version_status": "현행"
+      },
+      {
+        "version_id": "BIM-0620-V1",
+        "bim_model_id": "BIM-0620",
+        "version_code": "V1",
+        "version_name": "기본설계",
+        "version_date": "2026-03-13",
+        "selfsuff_pct": 31.0,
+        "primary_energy_kwh_m2y": 88.0,
+        "pv_kw": 230.0,
+        "geothermal_kw": 0.0,
+        "change_note": "기본설계 에너지 시뮬레이션",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0620-V2",
+        "bim_model_id": "BIM-0620",
+        "version_code": "V2",
+        "version_name": "창호 성능 상향안",
+        "version_date": "2026-06-05",
+        "selfsuff_pct": 34.2,
+        "primary_energy_kwh_m2y": 84.0,
+        "pv_kw": 230.0,
+        "geothermal_kw": 0.0,
+        "change_note": "창호 로이 3중 유리 적용 (+3.2%p)",
+        "version_status": "이전"
+      },
+      {
+        "version_id": "BIM-0620-V3",
+        "bim_model_id": "BIM-0620",
+        "version_code": "V3",
+        "version_name": "태양광 증설안",
+        "version_date": "2026-09-11",
+        "selfsuff_pct": 36.0,
+        "primary_energy_kwh_m2y": 82.0,
+        "pv_kw": 260.0,
+        "geothermal_kw": 0.0,
+        "change_note": "옥상 태양광 +30kW (+1.8%p)",
+        "version_status": "현행"
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "pms_cert_target": {
+    "schema": [
+      [
+        "target_id",
+        "string"
+      ],
+      [
+        "site_code",
+        "string"
+      ],
+      [
+        "cert_type",
+        "string"
+      ],
+      [
+        "target_grade",
+        "string"
+      ],
+      [
+        "basis",
+        "string"
+      ]
+    ],
+    "rows": [
+      {
+        "target_id": "HS-A-ZEB",
+        "site_code": "HS-A",
+        "cert_type": "ZEB",
+        "target_grade": "4",
+        "basis": "예비인증 등급 유지"
+      },
+      {
+        "target_id": "IC-B-ZEB",
+        "site_code": "IC-B",
+        "cert_type": "ZEB",
+        "target_grade": "4",
+        "basis": "예비인증 등급 유지"
+      },
+      {
+        "target_id": "SN-C-ZEB",
+        "site_code": "SN-C",
+        "cert_type": "ZEB",
+        "target_grade": "3",
+        "basis": "사내 목표"
+      },
+      {
+        "target_id": "HS-D-ZEB",
+        "site_code": "HS-D",
+        "cert_type": "ZEB",
+        "target_grade": "4",
+        "basis": "예비인증 등급 유지"
+      },
+      {
+        "target_id": "SJ-E-ZEB",
+        "site_code": "SJ-E",
+        "cert_type": "ZEB",
+        "target_grade": "3",
+        "basis": "발주처 요구"
+      },
+      {
+        "target_id": "SJ-E-G-SEED",
+        "site_code": "SJ-E",
+        "cert_type": "G-SEED",
+        "target_grade": "우수",
+        "basis": "발주처 요구"
+      },
+      {
+        "target_id": "SJ-E-BF",
+        "site_code": "SJ-E",
+        "cert_type": "BF",
+        "target_grade": "최우수",
+        "basis": "발주처 요구"
+      },
+      {
+        "target_id": "BS-F-ZEB",
+        "site_code": "BS-F",
+        "cert_type": "ZEB",
+        "target_grade": "2",
+        "basis": "발주처 요구"
+      },
+      {
+        "target_id": "BS-F-BF",
+        "site_code": "BS-F",
+        "cert_type": "BF",
+        "target_grade": "우수",
+        "basis": "발주처 요구"
+      },
+      {
+        "target_id": "JJ-G-ZEB",
+        "site_code": "JJ-G",
+        "cert_type": "ZEB",
+        "target_grade": "3",
+        "basis": "발주처 요구"
+      },
+      {
+        "target_id": "JJ-G-BF",
+        "site_code": "JJ-G",
+        "cert_type": "BF",
+        "target_grade": "최우수",
+        "basis": "발주처 요구"
+      },
+      {
+        "target_id": "MP-H-ZEB",
+        "site_code": "MP-H",
+        "cert_type": "ZEB",
+        "target_grade": "4",
+        "basis": "사내 ESG 목표"
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "pms_certificate": {
+    "schema": [
+      [
+        "cert_no",
+        "string"
+      ],
+      [
+        "site_code",
+        "string"
+      ],
+      [
+        "cert_type",
+        "string"
+      ],
+      [
+        "cert_stage",
+        "string"
+      ],
+      [
+        "grade",
+        "string"
+      ],
+      [
+        "cert_date",
+        "date"
+      ],
+      [
+        "design_version_id",
+        "string"
+      ],
+      [
+        "issuer",
+        "string"
+      ]
+    ],
+    "rows": [
+      {
+        "cert_no": "ZEB-P-2024-1287",
+        "site_code": "HS-A",
+        "cert_type": "ZEB",
+        "cert_stage": "예비인증",
+        "grade": "4",
+        "cert_date": "2024-12-20",
+        "design_version_id": "BIM-0412-V2",
+        "issuer": "한국에너지공단"
+      },
+      {
+        "cert_no": "ZEB-P-2025-0642",
+        "site_code": "IC-B",
+        "cert_type": "ZEB",
+        "cert_stage": "예비인증",
+        "grade": "4",
+        "cert_date": "2025-06-12",
+        "design_version_id": "BIM-0518-V2",
+        "issuer": "한국에너지공단"
+      },
+      {
+        "cert_no": "ZEB-P-2024-0831",
+        "site_code": "HS-D",
+        "cert_type": "ZEB",
+        "cert_stage": "예비인증",
+        "grade": "4",
+        "cert_date": "2024-08-30",
+        "design_version_id": "BIM-0397-V2",
+        "issuer": "한국에너지공단"
+      },
+      {
+        "cert_no": "ZEB-P-2026-0915",
+        "site_code": "SJ-E",
+        "cert_type": "ZEB",
+        "cert_stage": "예비인증",
+        "grade": "3",
+        "cert_date": "2026-08-14",
+        "design_version_id": "BIM-0641-V2",
+        "issuer": "한국에너지공단"
+      },
+      {
+        "cert_no": "ZEB-P-2025-0233",
+        "site_code": "BS-F",
+        "cert_type": "ZEB",
+        "cert_stage": "예비인증",
+        "grade": "2",
+        "cert_date": "2025-02-27",
+        "design_version_id": "BIM-0455-V2",
+        "issuer": "한국에너지공단"
+      },
+      {
+        "cert_no": "ZEB-P-2025-0718",
+        "site_code": "JJ-G",
+        "cert_type": "ZEB",
+        "cert_stage": "예비인증",
+        "grade": "3",
+        "cert_date": "2025-07-03",
+        "design_version_id": "BIM-0529-V2",
+        "issuer": "한국에너지공단"
+      },
+      {
+        "cert_no": "GS-P-2026-1102",
+        "site_code": "SJ-E",
+        "cert_type": "G-SEED",
+        "cert_stage": "예비인증",
+        "grade": "우수",
+        "cert_date": "2026-09-18",
+        "design_version_id": "BIM-0641-V2",
+        "issuer": "한국부동산원"
+      },
+      {
+        "cert_no": "BF-P-2026-2210",
+        "site_code": "SJ-E",
+        "cert_type": "BF",
+        "cert_stage": "예비인증",
+        "grade": "우수",
+        "cert_date": "2026-09-25",
+        "design_version_id": "BIM-0641-V2",
+        "issuer": "한국장애인개발원"
+      },
+      {
+        "cert_no": "BF-P-2025-0391",
+        "site_code": "BS-F",
+        "cert_type": "BF",
+        "cert_stage": "예비인증",
+        "grade": "우수",
+        "cert_date": "2025-03-20",
+        "design_version_id": "BIM-0455-V2",
+        "issuer": "한국장애인개발원"
+      },
+      {
+        "cert_no": "BF-P-2025-0957",
+        "site_code": "JJ-G",
+        "cert_type": "BF",
+        "cert_stage": "예비인증",
+        "grade": "최우수",
+        "cert_date": "2025-08-11",
+        "design_version_id": "BIM-0529-V2",
+        "issuer": "한국장애인개발원"
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "pms_cert_milestone": {
+    "schema": [
+      [
+        "milestone_id",
+        "string"
+      ],
+      [
+        "site_code",
+        "string"
+      ],
+      [
+        "seq",
+        "int"
+      ],
+      [
+        "milestone_type",
+        "string"
+      ],
+      [
+        "planned_date",
+        "date"
+      ],
+      [
+        "actual_date",
+        "date"
+      ]
+    ],
+    "rows": [
+      {
+        "milestone_id": "HS-A-M1",
+        "site_code": "HS-A",
+        "seq": 1,
+        "milestone_type": "예비인증 취득",
+        "planned_date": "2024-12-20",
+        "actual_date": "2024-12-20"
+      },
+      {
+        "milestone_id": "HS-A-M2",
+        "site_code": "HS-A",
+        "seq": 2,
+        "milestone_type": "착공",
+        "planned_date": "2025-03-10",
+        "actual_date": "2025-03-10"
+      },
+      {
+        "milestone_id": "HS-A-M3",
+        "site_code": "HS-A",
+        "seq": 3,
+        "milestone_type": "설비 설치 완료",
+        "planned_date": "2027-03-01",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "HS-A-M4",
+        "site_code": "HS-A",
+        "seq": 4,
+        "milestone_type": "본인증 신청",
+        "planned_date": "2027-04-16",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "HS-A-M5",
+        "site_code": "HS-A",
+        "seq": 5,
+        "milestone_type": "본인증 취득",
+        "planned_date": "2027-05-31",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "HS-A-M6",
+        "site_code": "HS-A",
+        "seq": 6,
+        "milestone_type": "사용승인",
+        "planned_date": "2027-06-30",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "IC-B-M1",
+        "site_code": "IC-B",
+        "seq": 1,
+        "milestone_type": "예비인증 취득",
+        "planned_date": "2025-06-12",
+        "actual_date": "2025-06-12"
+      },
+      {
+        "milestone_id": "IC-B-M2",
+        "site_code": "IC-B",
+        "seq": 2,
+        "milestone_type": "착공",
+        "planned_date": "2025-08-04",
+        "actual_date": "2025-08-04"
+      },
+      {
+        "milestone_id": "IC-B-M3",
+        "site_code": "IC-B",
+        "seq": 3,
+        "milestone_type": "설비 설치 완료",
+        "planned_date": "2027-08-21",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "IC-B-M4",
+        "site_code": "IC-B",
+        "seq": 4,
+        "milestone_type": "본인증 신청",
+        "planned_date": "2027-10-06",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "IC-B-M5",
+        "site_code": "IC-B",
+        "seq": 5,
+        "milestone_type": "본인증 취득",
+        "planned_date": "2027-11-20",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "IC-B-M6",
+        "site_code": "IC-B",
+        "seq": 6,
+        "milestone_type": "사용승인",
+        "planned_date": "2027-12-20",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SN-C-M1",
+        "site_code": "SN-C",
+        "seq": 1,
+        "milestone_type": "예비인증 취득",
+        "planned_date": "2026-12-03",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SN-C-M2",
+        "site_code": "SN-C",
+        "seq": 2,
+        "milestone_type": "착공",
+        "planned_date": "2027-02-01",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SN-C-M3",
+        "site_code": "SN-C",
+        "seq": 3,
+        "milestone_type": "설비 설치 완료",
+        "planned_date": "2028-08-30",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SN-C-M4",
+        "site_code": "SN-C",
+        "seq": 4,
+        "milestone_type": "본인증 신청",
+        "planned_date": "2028-10-15",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SN-C-M5",
+        "site_code": "SN-C",
+        "seq": 5,
+        "milestone_type": "본인증 취득",
+        "planned_date": "2028-11-29",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SN-C-M6",
+        "site_code": "SN-C",
+        "seq": 6,
+        "milestone_type": "사용승인",
+        "planned_date": "2028-12-29",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "HS-D-M1",
+        "site_code": "HS-D",
+        "seq": 1,
+        "milestone_type": "예비인증 취득",
+        "planned_date": "2024-08-30",
+        "actual_date": "2024-08-30"
+      },
+      {
+        "milestone_id": "HS-D-M2",
+        "site_code": "HS-D",
+        "seq": 2,
+        "milestone_type": "착공",
+        "planned_date": "2024-11-18",
+        "actual_date": "2024-11-18"
+      },
+      {
+        "milestone_id": "HS-D-M3",
+        "site_code": "HS-D",
+        "seq": 3,
+        "milestone_type": "설비 설치 완료",
+        "planned_date": "2026-11-30",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "HS-D-M4",
+        "site_code": "HS-D",
+        "seq": 4,
+        "milestone_type": "본인증 신청",
+        "planned_date": "2027-01-15",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "HS-D-M5",
+        "site_code": "HS-D",
+        "seq": 5,
+        "milestone_type": "본인증 취득",
+        "planned_date": "2027-03-01",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "HS-D-M6",
+        "site_code": "HS-D",
+        "seq": 6,
+        "milestone_type": "사용승인",
+        "planned_date": "2027-03-31",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SJ-E-M1",
+        "site_code": "SJ-E",
+        "seq": 1,
+        "milestone_type": "예비인증 취득",
+        "planned_date": "2026-08-14",
+        "actual_date": "2026-08-14"
+      },
+      {
+        "milestone_id": "SJ-E-M2",
+        "site_code": "SJ-E",
+        "seq": 2,
+        "milestone_type": "착공",
+        "planned_date": "2027-03-02",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SJ-E-M3",
+        "site_code": "SJ-E",
+        "seq": 3,
+        "milestone_type": "설비 설치 완료",
+        "planned_date": "2028-05-02",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SJ-E-M4",
+        "site_code": "SJ-E",
+        "seq": 4,
+        "milestone_type": "본인증 신청",
+        "planned_date": "2028-06-17",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SJ-E-M5",
+        "site_code": "SJ-E",
+        "seq": 5,
+        "milestone_type": "본인증 취득",
+        "planned_date": "2028-08-01",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "SJ-E-M6",
+        "site_code": "SJ-E",
+        "seq": 6,
+        "milestone_type": "사용승인",
+        "planned_date": "2028-08-31",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "BS-F-M1",
+        "site_code": "BS-F",
+        "seq": 1,
+        "milestone_type": "예비인증 취득",
+        "planned_date": "2025-02-27",
+        "actual_date": "2025-02-27"
+      },
+      {
+        "milestone_id": "BS-F-M2",
+        "site_code": "BS-F",
+        "seq": 2,
+        "milestone_type": "착공",
+        "planned_date": "2025-05-12",
+        "actual_date": "2025-05-12"
+      },
+      {
+        "milestone_id": "BS-F-M3",
+        "site_code": "BS-F",
+        "seq": 3,
+        "milestone_type": "설비 설치 완료",
+        "planned_date": "2026-12-30",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "BS-F-M4",
+        "site_code": "BS-F",
+        "seq": 4,
+        "milestone_type": "본인증 신청",
+        "planned_date": "2027-02-14",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "BS-F-M5",
+        "site_code": "BS-F",
+        "seq": 5,
+        "milestone_type": "본인증 취득",
+        "planned_date": "2027-03-31",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "BS-F-M6",
+        "site_code": "BS-F",
+        "seq": 6,
+        "milestone_type": "사용승인",
+        "planned_date": "2027-04-30",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "JJ-G-M1",
+        "site_code": "JJ-G",
+        "seq": 1,
+        "milestone_type": "예비인증 취득",
+        "planned_date": "2025-07-03",
+        "actual_date": "2025-07-03"
+      },
+      {
+        "milestone_id": "JJ-G-M2",
+        "site_code": "JJ-G",
+        "seq": 2,
+        "milestone_type": "착공",
+        "planned_date": "2025-10-01",
+        "actual_date": "2025-10-01"
+      },
+      {
+        "milestone_id": "JJ-G-M3",
+        "site_code": "JJ-G",
+        "seq": 3,
+        "milestone_type": "설비 설치 완료",
+        "planned_date": "2027-01-30",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "JJ-G-M4",
+        "site_code": "JJ-G",
+        "seq": 4,
+        "milestone_type": "본인증 신청",
+        "planned_date": "2027-03-17",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "JJ-G-M5",
+        "site_code": "JJ-G",
+        "seq": 5,
+        "milestone_type": "본인증 취득",
+        "planned_date": "2027-05-01",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "JJ-G-M6",
+        "site_code": "JJ-G",
+        "seq": 6,
+        "milestone_type": "사용승인",
+        "planned_date": "2027-05-31",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "MP-H-M1",
+        "site_code": "MP-H",
+        "seq": 1,
+        "milestone_type": "예비인증 취득",
+        "planned_date": "2027-01-31",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "MP-H-M2",
+        "site_code": "MP-H",
+        "seq": 2,
+        "milestone_type": "착공",
+        "planned_date": "2027-04-01",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "MP-H-M3",
+        "site_code": "MP-H",
+        "seq": 3,
+        "milestone_type": "설비 설치 완료",
+        "planned_date": "2029-07-02",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "MP-H-M4",
+        "site_code": "MP-H",
+        "seq": 4,
+        "milestone_type": "본인증 신청",
+        "planned_date": "2029-08-17",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "MP-H-M5",
+        "site_code": "MP-H",
+        "seq": 5,
+        "milestone_type": "본인증 취득",
+        "planned_date": "2029-10-01",
+        "actual_date": null
+      },
+      {
+        "milestone_id": "MP-H-M6",
+        "site_code": "MP-H",
+        "seq": 6,
+        "milestone_type": "사용승인",
+        "planned_date": "2029-10-31",
+        "actual_date": null
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "pms_equipment_plan": {
+    "schema": [
+      [
+        "wbs_code",
+        "string"
+      ],
+      [
+        "site_code",
+        "string"
+      ],
+      [
+        "design_version_id",
+        "string"
+      ],
+      [
+        "category_code",
+        "string"
+      ],
+      [
+        "equipment_name",
+        "string"
+      ],
+      [
+        "capacity",
+        "double"
+      ],
+      [
+        "capacity_unit",
+        "string"
+      ],
+      [
+        "selfsuff_contribution_pp",
+        "double"
+      ],
+      [
+        "planned_cost_krw",
+        "long"
+      ]
+    ],
+    "rows": [
+      {
+        "wbs_code": "HS-A-PV",
+        "site_code": "HS-A",
+        "design_version_id": "BIM-0412-V2",
+        "category_code": "PV",
+        "equipment_name": "옥상 태양광",
+        "capacity": 520.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 24.0,
+        "planned_cost_krw": 1560000000
+      },
+      {
+        "wbs_code": "HS-A-GEO",
+        "site_code": "HS-A",
+        "design_version_id": "BIM-0412-V2",
+        "category_code": "GEO",
+        "equipment_name": "지열 히트펌프",
+        "capacity": 700.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 15.0,
+        "planned_cost_krw": 2450000000
+      },
+      {
+        "wbs_code": "HS-A-ENV",
+        "site_code": "HS-A",
+        "design_version_id": "BIM-0412-V2",
+        "category_code": "ENV",
+        "equipment_name": "고효율 창호",
+        "capacity": null,
+        "capacity_unit": null,
+        "selfsuff_contribution_pp": 3.2,
+        "planned_cost_krw": 3900000000
+      },
+      {
+        "wbs_code": "HS-A-VENT",
+        "site_code": "HS-A",
+        "design_version_id": "BIM-0412-V2",
+        "category_code": "VENT",
+        "equipment_name": "전열교환 환기",
+        "capacity": 1120.0,
+        "capacity_unit": "세대",
+        "selfsuff_contribution_pp": 1.8,
+        "planned_cost_krw": 1680000000
+      },
+      {
+        "wbs_code": "HS-A-BEMS",
+        "site_code": "HS-A",
+        "design_version_id": "BIM-0412-V2",
+        "category_code": "BEMS",
+        "equipment_name": "BEMS",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 0.0,
+        "planned_cost_krw": 180000000
+      },
+      {
+        "wbs_code": "IC-B-PV",
+        "site_code": "IC-B",
+        "design_version_id": "BIM-0518-V2",
+        "category_code": "PV",
+        "equipment_name": "옥상 태양광",
+        "capacity": 400.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 21.5,
+        "planned_cost_krw": 1200000000
+      },
+      {
+        "wbs_code": "IC-B-EHP",
+        "site_code": "IC-B",
+        "design_version_id": "BIM-0518-V2",
+        "category_code": "EHP",
+        "equipment_name": "전기 히트펌프",
+        "capacity": 900.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 10.0,
+        "planned_cost_krw": 1350000000
+      },
+      {
+        "wbs_code": "IC-B-ENV",
+        "site_code": "IC-B",
+        "design_version_id": "BIM-0518-V2",
+        "category_code": "ENV",
+        "equipment_name": "고효율 창호·외단열",
+        "capacity": null,
+        "capacity_unit": null,
+        "selfsuff_contribution_pp": 5.0,
+        "planned_cost_krw": 3100000000
+      },
+      {
+        "wbs_code": "IC-B-VENT",
+        "site_code": "IC-B",
+        "design_version_id": "BIM-0518-V2",
+        "category_code": "VENT",
+        "equipment_name": "전열교환 환기",
+        "capacity": 860.0,
+        "capacity_unit": "세대",
+        "selfsuff_contribution_pp": 2.5,
+        "planned_cost_krw": 1290000000
+      },
+      {
+        "wbs_code": "IC-B-BEMS",
+        "site_code": "IC-B",
+        "design_version_id": "BIM-0518-V2",
+        "category_code": "BEMS",
+        "equipment_name": "BEMS",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 0.0,
+        "planned_cost_krw": 150000000
+      },
+      {
+        "wbs_code": "SN-C-PV",
+        "site_code": "SN-C",
+        "design_version_id": "BIM-0633-V2",
+        "category_code": "PV",
+        "equipment_name": "옥상·외벽 태양광",
+        "capacity": 300.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 30.0,
+        "planned_cost_krw": 900000000
+      },
+      {
+        "wbs_code": "SN-C-GEO",
+        "site_code": "SN-C",
+        "design_version_id": "BIM-0633-V2",
+        "category_code": "GEO",
+        "equipment_name": "지열 히트펌프",
+        "capacity": 350.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 25.0,
+        "planned_cost_krw": 1230000000
+      },
+      {
+        "wbs_code": "SN-C-ENV",
+        "site_code": "SN-C",
+        "design_version_id": "BIM-0633-V2",
+        "category_code": "ENV",
+        "equipment_name": "고효율 커튼월",
+        "capacity": null,
+        "capacity_unit": null,
+        "selfsuff_contribution_pp": 5.0,
+        "planned_cost_krw": 2400000000
+      },
+      {
+        "wbs_code": "SN-C-LIGHT",
+        "site_code": "SN-C",
+        "design_version_id": "BIM-0633-V2",
+        "category_code": "LIGHT",
+        "equipment_name": "LED 조명·조명 제어",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 3.0,
+        "planned_cost_krw": 320000000
+      },
+      {
+        "wbs_code": "HS-D-PV",
+        "site_code": "HS-D",
+        "design_version_id": "BIM-0397-V3",
+        "category_code": "PV",
+        "equipment_name": "옥상 태양광",
+        "capacity": 380.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 22.4,
+        "planned_cost_krw": 1140000000
+      },
+      {
+        "wbs_code": "HS-D-GEO",
+        "site_code": "HS-D",
+        "design_version_id": "BIM-0397-V3",
+        "category_code": "GEO",
+        "equipment_name": "지열 히트펌프",
+        "capacity": 600.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 12.6,
+        "planned_cost_krw": 2100000000
+      },
+      {
+        "wbs_code": "HS-D-ENV",
+        "site_code": "HS-D",
+        "design_version_id": "BIM-0397-V3",
+        "category_code": "ENV",
+        "equipment_name": "고효율 창호",
+        "capacity": null,
+        "capacity_unit": null,
+        "selfsuff_contribution_pp": 2.1,
+        "planned_cost_krw": 4800000000
+      },
+      {
+        "wbs_code": "HS-D-VENT",
+        "site_code": "HS-D",
+        "design_version_id": "BIM-0397-V3",
+        "category_code": "VENT",
+        "equipment_name": "전열교환 환기",
+        "capacity": 1480.0,
+        "capacity_unit": "세대",
+        "selfsuff_contribution_pp": 1.1,
+        "planned_cost_krw": 2220000000
+      },
+      {
+        "wbs_code": "HS-D-BEMS",
+        "site_code": "HS-D",
+        "design_version_id": "BIM-0397-V3",
+        "category_code": "BEMS",
+        "equipment_name": "BEMS",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 0.0,
+        "planned_cost_krw": 200000000
+      },
+      {
+        "wbs_code": "SJ-E-PV",
+        "site_code": "SJ-E",
+        "design_version_id": "BIM-0641-V2",
+        "category_code": "PV",
+        "equipment_name": "옥상 태양광",
+        "capacity": 180.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 34.0,
+        "planned_cost_krw": 540000000
+      },
+      {
+        "wbs_code": "SJ-E-GEO",
+        "site_code": "SJ-E",
+        "design_version_id": "BIM-0641-V2",
+        "category_code": "GEO",
+        "equipment_name": "지열 히트펌프",
+        "capacity": 200.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 24.0,
+        "planned_cost_krw": 700000000
+      },
+      {
+        "wbs_code": "SJ-E-ENV",
+        "site_code": "SJ-E",
+        "design_version_id": "BIM-0641-V2",
+        "category_code": "ENV",
+        "equipment_name": "고효율 창호",
+        "capacity": null,
+        "capacity_unit": null,
+        "selfsuff_contribution_pp": 4.2,
+        "planned_cost_krw": 900000000
+      },
+      {
+        "wbs_code": "SJ-E-VENT",
+        "site_code": "SJ-E",
+        "design_version_id": "BIM-0641-V2",
+        "category_code": "VENT",
+        "equipment_name": "전열교환 환기",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 2.0,
+        "planned_cost_krw": 260000000
+      },
+      {
+        "wbs_code": "SJ-E-BEMS",
+        "site_code": "SJ-E",
+        "design_version_id": "BIM-0641-V2",
+        "category_code": "BEMS",
+        "equipment_name": "BEMS",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 0.0,
+        "planned_cost_krw": 120000000
+      },
+      {
+        "wbs_code": "BS-F-PV",
+        "site_code": "BS-F",
+        "design_version_id": "BIM-0455-V2",
+        "category_code": "PV",
+        "equipment_name": "옥상·주차장 태양광",
+        "capacity": 420.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 46.0,
+        "planned_cost_krw": 1260000000
+      },
+      {
+        "wbs_code": "BS-F-FC",
+        "site_code": "BS-F",
+        "design_version_id": "BIM-0455-V2",
+        "category_code": "FC",
+        "equipment_name": "연료전지",
+        "capacity": 100.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 28.0,
+        "planned_cost_krw": 1900000000
+      },
+      {
+        "wbs_code": "BS-F-ENV",
+        "site_code": "BS-F",
+        "design_version_id": "BIM-0455-V2",
+        "category_code": "ENV",
+        "equipment_name": "고효율 커튼월",
+        "capacity": null,
+        "capacity_unit": null,
+        "selfsuff_contribution_pp": 5.5,
+        "planned_cost_krw": 1600000000
+      },
+      {
+        "wbs_code": "BS-F-LIGHT",
+        "site_code": "BS-F",
+        "design_version_id": "BIM-0455-V2",
+        "category_code": "LIGHT",
+        "equipment_name": "LED 조명·조명 제어",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 3.0,
+        "planned_cost_krw": 210000000
+      },
+      {
+        "wbs_code": "BS-F-BEMS",
+        "site_code": "BS-F",
+        "design_version_id": "BIM-0455-V2",
+        "category_code": "BEMS",
+        "equipment_name": "BEMS",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 0.0,
+        "planned_cost_krw": 140000000
+      },
+      {
+        "wbs_code": "JJ-G-PV",
+        "site_code": "JJ-G",
+        "design_version_id": "BIM-0529-V2",
+        "category_code": "PV",
+        "equipment_name": "옥상 태양광",
+        "capacity": 150.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 33.0,
+        "planned_cost_krw": 450000000
+      },
+      {
+        "wbs_code": "JJ-G-GEO",
+        "site_code": "JJ-G",
+        "design_version_id": "BIM-0529-V2",
+        "category_code": "GEO",
+        "equipment_name": "지열 히트펌프",
+        "capacity": 120.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 22.0,
+        "planned_cost_krw": 420000000
+      },
+      {
+        "wbs_code": "JJ-G-ENV",
+        "site_code": "JJ-G",
+        "design_version_id": "BIM-0529-V2",
+        "category_code": "ENV",
+        "equipment_name": "고효율 창호",
+        "capacity": null,
+        "capacity_unit": null,
+        "selfsuff_contribution_pp": 4.0,
+        "planned_cost_krw": 520000000
+      },
+      {
+        "wbs_code": "JJ-G-LIGHT",
+        "site_code": "JJ-G",
+        "design_version_id": "BIM-0529-V2",
+        "category_code": "LIGHT",
+        "equipment_name": "LED 조명·조명 제어",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 2.0,
+        "planned_cost_krw": 90000000
+      },
+      {
+        "wbs_code": "JJ-G-BEMS",
+        "site_code": "JJ-G",
+        "design_version_id": "BIM-0529-V2",
+        "category_code": "BEMS",
+        "equipment_name": "BEMS",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 0.0,
+        "planned_cost_krw": 80000000
+      },
+      {
+        "wbs_code": "MP-H-PV",
+        "site_code": "MP-H",
+        "design_version_id": "BIM-0620-V3",
+        "category_code": "PV",
+        "equipment_name": "옥상 태양광",
+        "capacity": 260.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 20.0,
+        "planned_cost_krw": 780000000
+      },
+      {
+        "wbs_code": "MP-H-EHP",
+        "site_code": "MP-H",
+        "design_version_id": "BIM-0620-V3",
+        "category_code": "EHP",
+        "equipment_name": "전기 히트펌프",
+        "capacity": 560.0,
+        "capacity_unit": "kW",
+        "selfsuff_contribution_pp": 9.8,
+        "planned_cost_krw": 840000000
+      },
+      {
+        "wbs_code": "MP-H-ENV",
+        "site_code": "MP-H",
+        "design_version_id": "BIM-0620-V3",
+        "category_code": "ENV",
+        "equipment_name": "고효율 창호(로이 3중)",
+        "capacity": null,
+        "capacity_unit": null,
+        "selfsuff_contribution_pp": 4.2,
+        "planned_cost_krw": 1900000000
+      },
+      {
+        "wbs_code": "MP-H-VENT",
+        "site_code": "MP-H",
+        "design_version_id": "BIM-0620-V3",
+        "category_code": "VENT",
+        "equipment_name": "전열교환 환기",
+        "capacity": 540.0,
+        "capacity_unit": "세대",
+        "selfsuff_contribution_pp": 2.0,
+        "planned_cost_krw": 810000000
+      },
+      {
+        "wbs_code": "MP-H-BEMS",
+        "site_code": "MP-H",
+        "design_version_id": "BIM-0620-V3",
+        "category_code": "BEMS",
+        "equipment_name": "BEMS",
+        "capacity": 1.0,
+        "capacity_unit": "식",
+        "selfsuff_contribution_pp": 0.0,
+        "planned_cost_krw": 110000000
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "scm_vendor": {
+    "schema": [
+      [
+        "vendor_code",
+        "string"
+      ],
+      [
+        "vendor_name",
+        "string"
+      ],
+      [
+        "category_code",
+        "string"
+      ],
+      [
+        "standard_lead_time_days",
+        "int"
+      ],
+      [
+        "on_time_rate",
+        "double"
+      ],
+      [
+        "is_alternative_pool",
+        "boolean"
+      ],
+      [
+        "note",
+        "string"
+      ]
+    ],
+    "rows": [
+      {
+        "vendor_code": "V-20118",
+        "vendor_name": "Fabrikam 솔라",
+        "category_code": "PV",
+        "standard_lead_time_days": 60,
+        "on_time_rate": 0.94,
+        "is_alternative_pool": false,
+        "note": "태양광 모듈·인버터"
+      },
+      {
+        "vendor_code": "V-30452",
+        "vendor_name": "Northwind 지열",
+        "category_code": "GEO",
+        "standard_lead_time_days": 90,
+        "on_time_rate": 0.78,
+        "is_alternative_pool": false,
+        "note": "지열 히트펌프"
+      },
+      {
+        "vendor_code": "V-11873",
+        "vendor_name": "Litware 창호",
+        "category_code": "ENV",
+        "standard_lead_time_days": 75,
+        "on_time_rate": 0.91,
+        "is_alternative_pool": false,
+        "note": "고효율 창호·커튼월"
+      },
+      {
+        "vendor_code": "V-40219",
+        "vendor_name": "Tailspin 환기",
+        "category_code": "VENT",
+        "standard_lead_time_days": 45,
+        "on_time_rate": 0.95,
+        "is_alternative_pool": false,
+        "note": "전열교환 환기장치"
+      },
+      {
+        "vendor_code": "V-50331",
+        "vendor_name": "Proseware BEMS",
+        "category_code": "BEMS",
+        "standard_lead_time_days": 40,
+        "on_time_rate": 0.97,
+        "is_alternative_pool": false,
+        "note": "건물에너지관리시스템"
+      },
+      {
+        "vendor_code": "V-60127",
+        "vendor_name": "Wingtip 에너지",
+        "category_code": "EHP",
+        "standard_lead_time_days": 70,
+        "on_time_rate": 0.9,
+        "is_alternative_pool": false,
+        "note": "전기 히트펌프·연료전지"
+      },
+      {
+        "vendor_code": "V-20564",
+        "vendor_name": "Woodgrove 솔라",
+        "category_code": "PV",
+        "standard_lead_time_days": 50,
+        "on_time_rate": 0.92,
+        "is_alternative_pool": true,
+        "note": "태양광 모듈(대체 공급 가능)"
+      },
+      {
+        "vendor_code": "V-30977",
+        "vendor_name": "Alpine 지열",
+        "category_code": "GEO",
+        "standard_lead_time_days": 55,
+        "on_time_rate": 0.9,
+        "is_alternative_pool": true,
+        "note": "지열 히트펌프(대체 공급 가능, 재고 보유)"
+      },
+      {
+        "vendor_code": "V-70045",
+        "vendor_name": "Adatum 조명",
+        "category_code": "LIGHT",
+        "standard_lead_time_days": 30,
+        "on_time_rate": 0.96,
+        "is_alternative_pool": false,
+        "note": "LED 조명·조명 제어"
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "scm_purchase_order": {
+    "schema": [
+      [
+        "po_no",
+        "string"
+      ],
+      [
+        "wbs_element",
+        "string"
+      ],
+      [
+        "vendor_code",
+        "string"
+      ],
+      [
+        "order_date",
+        "date"
+      ],
+      [
+        "promised_date",
+        "date"
+      ],
+      [
+        "expected_date",
+        "date"
+      ],
+      [
+        "delivered_date",
+        "date"
+      ],
+      [
+        "status",
+        "string"
+      ],
+      [
+        "amount_krw",
+        "long"
+      ]
+    ],
+    "rows": [
+      {
+        "po_no": "4500031201",
+        "wbs_element": "HS-D-PV",
+        "vendor_code": "V-20118",
+        "order_date": "2026-06-02",
+        "promised_date": "2026-10-20",
+        "expected_date": "2026-10-22",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 1140000000
+      },
+      {
+        "po_no": "4500031202",
+        "wbs_element": "HS-D-GEO",
+        "vendor_code": "V-30452",
+        "order_date": "2026-05-18",
+        "promised_date": "2026-11-10",
+        "expected_date": "2026-11-12",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 2100000000
+      },
+      {
+        "po_no": "4500031203",
+        "wbs_element": "HS-D-ENV",
+        "vendor_code": "V-11873",
+        "order_date": "2025-11-03",
+        "promised_date": "2026-06-15",
+        "expected_date": "2026-06-15",
+        "delivered_date": "2026-06-15",
+        "status": "입고완료",
+        "amount_krw": 4800000000
+      },
+      {
+        "po_no": "4500031204",
+        "wbs_element": "HS-D-VENT",
+        "vendor_code": "V-40219",
+        "order_date": "2026-06-20",
+        "promised_date": "2026-10-05",
+        "expected_date": "2026-10-05",
+        "delivered_date": null,
+        "status": "출하준비",
+        "amount_krw": 2220000000
+      },
+      {
+        "po_no": "4500031205",
+        "wbs_element": "HS-D-BEMS",
+        "vendor_code": "V-50331",
+        "order_date": "2026-08-01",
+        "promised_date": "2026-11-02",
+        "expected_date": "2026-11-02",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 200000000
+      },
+      {
+        "po_no": "4500031206",
+        "wbs_element": "HS-A-PV",
+        "vendor_code": "V-20118",
+        "order_date": "2026-08-10",
+        "promised_date": "2026-12-01",
+        "expected_date": "2026-12-01",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 1560000000
+      },
+      {
+        "po_no": "4500031207",
+        "wbs_element": "HS-A-GEO",
+        "vendor_code": "V-30452",
+        "order_date": "2026-07-06",
+        "promised_date": "2026-12-15",
+        "expected_date": "2026-12-18",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 2450000000
+      },
+      {
+        "po_no": "4500031208",
+        "wbs_element": "HS-A-ENV",
+        "vendor_code": "V-11873",
+        "order_date": "2026-06-15",
+        "promised_date": "2026-11-20",
+        "expected_date": "2026-11-20",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 3900000000
+      },
+      {
+        "po_no": "4500031209",
+        "wbs_element": "HS-A-VENT",
+        "vendor_code": "V-40219",
+        "order_date": "2026-09-07",
+        "promised_date": "2027-01-10",
+        "expected_date": "2027-01-10",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 1680000000
+      },
+      {
+        "po_no": "4500031210",
+        "wbs_element": "HS-A-BEMS",
+        "vendor_code": "V-50331",
+        "order_date": "2026-09-21",
+        "promised_date": "2027-01-20",
+        "expected_date": "2027-01-20",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 180000000
+      },
+      {
+        "po_no": "4500031211",
+        "wbs_element": "IC-B-PV",
+        "vendor_code": "V-20564",
+        "order_date": "2026-09-14",
+        "promised_date": "2027-05-10",
+        "expected_date": "2027-05-10",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 1200000000
+      },
+      {
+        "po_no": "4500031212",
+        "wbs_element": "IC-B-EHP",
+        "vendor_code": "V-60127",
+        "order_date": "2026-09-14",
+        "promised_date": "2027-06-01",
+        "expected_date": "2027-06-01",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 1350000000
+      },
+      {
+        "po_no": "4500031213",
+        "wbs_element": "IC-B-ENV",
+        "vendor_code": "V-11873",
+        "order_date": "2026-08-24",
+        "promised_date": "2027-04-15",
+        "expected_date": "2027-04-15",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 3100000000
+      },
+      {
+        "po_no": "4500031214",
+        "wbs_element": "IC-B-VENT",
+        "vendor_code": "V-40219",
+        "order_date": "2026-09-28",
+        "promised_date": "2027-06-20",
+        "expected_date": "2027-06-20",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 1290000000
+      },
+      {
+        "po_no": "4500031215",
+        "wbs_element": "IC-B-BEMS",
+        "vendor_code": "V-50331",
+        "order_date": "2026-09-28",
+        "promised_date": "2027-07-01",
+        "expected_date": "2027-07-01",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 150000000
+      },
+      {
+        "po_no": "4500031216",
+        "wbs_element": "BS-F-PV",
+        "vendor_code": "V-20118",
+        "order_date": "2026-04-06",
+        "promised_date": "2026-08-28",
+        "expected_date": "2026-08-28",
+        "delivered_date": "2026-08-28",
+        "status": "입고완료",
+        "amount_krw": 1260000000
+      },
+      {
+        "po_no": "4500031217",
+        "wbs_element": "BS-F-FC",
+        "vendor_code": "V-60127",
+        "order_date": "2026-06-08",
+        "promised_date": "2026-11-16",
+        "expected_date": "2026-11-20",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 1900000000
+      },
+      {
+        "po_no": "4500031218",
+        "wbs_element": "BS-F-ENV",
+        "vendor_code": "V-11873",
+        "order_date": "2025-12-01",
+        "promised_date": "2026-07-10",
+        "expected_date": "2026-07-10",
+        "delivered_date": "2026-07-10",
+        "status": "입고완료",
+        "amount_krw": 1600000000
+      },
+      {
+        "po_no": "4500031219",
+        "wbs_element": "BS-F-LIGHT",
+        "vendor_code": "V-70045",
+        "order_date": "2026-08-17",
+        "promised_date": "2026-10-30",
+        "expected_date": "2026-10-30",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 210000000
+      },
+      {
+        "po_no": "4500031220",
+        "wbs_element": "BS-F-BEMS",
+        "vendor_code": "V-50331",
+        "order_date": "2026-09-01",
+        "promised_date": "2026-11-25",
+        "expected_date": "2026-11-25",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 140000000
+      },
+      {
+        "po_no": "4500031221",
+        "wbs_element": "JJ-G-PV",
+        "vendor_code": "V-20564",
+        "order_date": "2026-08-03",
+        "promised_date": "2026-11-25",
+        "expected_date": "2026-11-25",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 450000000
+      },
+      {
+        "po_no": "4500031222",
+        "wbs_element": "JJ-G-GEO",
+        "vendor_code": "V-30977",
+        "order_date": "2026-07-20",
+        "promised_date": "2026-12-10",
+        "expected_date": "2026-12-10",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 420000000
+      },
+      {
+        "po_no": "4500031223",
+        "wbs_element": "JJ-G-ENV",
+        "vendor_code": "V-11873",
+        "order_date": "2026-06-29",
+        "promised_date": "2026-10-30",
+        "expected_date": "2026-10-30",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 520000000
+      },
+      {
+        "po_no": "4500031224",
+        "wbs_element": "JJ-G-LIGHT",
+        "vendor_code": "V-70045",
+        "order_date": "2026-09-14",
+        "promised_date": "2026-12-01",
+        "expected_date": "2026-12-01",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 90000000
+      },
+      {
+        "po_no": "4500031225",
+        "wbs_element": "JJ-G-BEMS",
+        "vendor_code": "V-50331",
+        "order_date": "2026-09-14",
+        "promised_date": "2026-12-15",
+        "expected_date": "2026-12-15",
+        "delivered_date": null,
+        "status": "생산중",
+        "amount_krw": 80000000
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "scm_po_event": {
+    "schema": [
+      [
+        "event_id",
+        "string"
+      ],
+      [
+        "po_no",
+        "string"
+      ],
+      [
+        "event_type",
+        "string"
+      ],
+      [
+        "new_expected_date",
+        "date"
+      ],
+      [
+        "new_vendor_code",
+        "string"
+      ],
+      [
+        "reason",
+        "string"
+      ],
+      [
+        "event_time",
+        "string"
+      ],
+      [
+        "source_system",
+        "string"
+      ]
+    ],
+    "rows": [
+      {
+        "event_id": "EV-0001",
+        "po_no": "4500031213",
+        "event_type": "납기변경",
+        "new_expected_date": "2027-04-20",
+        "new_vendor_code": null,
+        "reason": "창호 유리 사양 확정 지연(+5일)",
+        "event_time": "2026-09-10 09:30:00",
+        "source_system": "SCM"
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "sim_improvement_option": {
+    "schema": [
+      [
+        "option_id",
+        "string"
+      ],
+      [
+        "site_code",
+        "string"
+      ],
+      [
+        "option_name",
+        "string"
+      ],
+      [
+        "category_code",
+        "string"
+      ],
+      [
+        "selfsuff_gain_pp",
+        "double"
+      ],
+      [
+        "primary_energy_delta",
+        "double"
+      ],
+      [
+        "cost_krw",
+        "long"
+      ],
+      [
+        "lead_time_days",
+        "int"
+      ]
+    ],
+    "rows": [
+      {
+        "option_id": "OPT-D1",
+        "site_code": "HS-D",
+        "option_name": "옥상 태양광 원설계 복원(+150kW)",
+        "category_code": "PV",
+        "selfsuff_gain_pp": 5.3,
+        "primary_energy_delta": -6.0,
+        "cost_krw": 420000000,
+        "lead_time_days": 60
+      },
+      {
+        "option_id": "OPT-D2",
+        "site_code": "HS-D",
+        "option_name": "주차장 캐노피 태양광(+90kW)",
+        "category_code": "PV",
+        "selfsuff_gain_pp": 3.2,
+        "primary_energy_delta": -3.5,
+        "cost_krw": 230000000,
+        "lead_time_days": 45
+      },
+      {
+        "option_id": "OPT-D3",
+        "site_code": "HS-D",
+        "option_name": "발코니 BIPV(+40kW)",
+        "category_code": "PV",
+        "selfsuff_gain_pp": 1.4,
+        "primary_energy_delta": -1.5,
+        "cost_krw": 280000000,
+        "lead_time_days": 75
+      },
+      {
+        "option_id": "OPT-D4",
+        "site_code": "HS-D",
+        "option_name": "창호 성능 상향(로이 3중)",
+        "category_code": "ENV",
+        "selfsuff_gain_pp": 2.1,
+        "primary_energy_delta": -4.0,
+        "cost_krw": 340000000,
+        "lead_time_days": 50
+      },
+      {
+        "option_id": "OPT-D5",
+        "site_code": "HS-D",
+        "option_name": "전열교환 환기 효율 상향",
+        "category_code": "VENT",
+        "selfsuff_gain_pp": 1.0,
+        "primary_energy_delta": -2.0,
+        "cost_krw": 60000000,
+        "lead_time_days": 30
+      },
+      {
+        "option_id": "OPT-D6",
+        "site_code": "HS-D",
+        "option_name": "공용부 LED·조명 제어",
+        "category_code": "LIGHT",
+        "selfsuff_gain_pp": 0.9,
+        "primary_energy_delta": -1.8,
+        "cost_krw": 50000000,
+        "lead_time_days": 20
+      },
+      {
+        "option_id": "OPT-H1",
+        "site_code": "MP-H",
+        "option_name": "옥상 태양광 증설(+60kW)",
+        "category_code": "PV",
+        "selfsuff_gain_pp": 2.2,
+        "primary_energy_delta": -2.5,
+        "cost_krw": 160000000,
+        "lead_time_days": 40
+      },
+      {
+        "option_id": "OPT-H2",
+        "site_code": "MP-H",
+        "option_name": "창호 추가 상향",
+        "category_code": "ENV",
+        "selfsuff_gain_pp": 1.5,
+        "primary_energy_delta": -3.0,
+        "cost_krw": 190000000,
+        "lead_time_days": 50
+      },
+      {
+        "option_id": "OPT-H3",
+        "site_code": "MP-H",
+        "option_name": "지열 히트펌프 도입",
+        "category_code": "GEO",
+        "selfsuff_gain_pp": 4.6,
+        "primary_energy_delta": -8.0,
+        "cost_krw": 650000000,
+        "lead_time_days": 90
+      },
+      {
+        "option_id": "OPT-H4",
+        "site_code": "MP-H",
+        "option_name": "발코니 BIPV(+50kW)",
+        "category_code": "PV",
+        "selfsuff_gain_pp": 1.9,
+        "primary_energy_delta": -2.0,
+        "cost_krw": 220000000,
+        "lead_time_days": 70
+      },
+      {
+        "option_id": "OPT-H5",
+        "site_code": "MP-H",
+        "option_name": "전열교환 환기 효율 상향",
+        "category_code": "VENT",
+        "selfsuff_gain_pp": 0.8,
+        "primary_energy_delta": -1.5,
+        "cost_krw": 40000000,
+        "lead_time_days": 30
+      },
+      {
+        "option_id": "OPT-C1",
+        "site_code": "SN-C",
+        "option_name": "BEMS 도입",
+        "category_code": "BEMS",
+        "selfsuff_gain_pp": 0.0,
+        "primary_energy_delta": 0.0,
+        "cost_krw": 180000000,
+        "lead_time_days": 40
+      }
+    ],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  },
+  "pms_action_log": {
+    "schema": [
+      [
+        "action_id",
+        "string"
+      ],
+      [
+        "action_time",
+        "string"
+      ],
+      [
+        "site_code",
+        "string"
+      ],
+      [
+        "action_type",
+        "string"
+      ],
+      [
+        "detail_json",
+        "string"
+      ],
+      [
+        "approved_by",
+        "string"
+      ],
+      [
+        "source_system",
+        "string"
+      ]
+    ],
+    "rows": [],
+    "provenance": "SYNTHETIC: original Notebook02 deterministic fixtures; not ERP/PMS exports"
+  }
+}

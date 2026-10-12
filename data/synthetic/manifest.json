@@ -1,0 +1,592 @@
+{
+  "as_of_date": "2026-09-30",
+  "source": "Original Notebook02 literal deterministic generator",
+  "not_customer_exports": true,
+  "files": [
+    {
+      "path": "synthetic/bim_design_version.csv",
+      "rows": 18,
+      "sha256": "22ff70a43cdeca92553a9d7e9fff4b93efcfb35bf5f1a4acc67a6c0c4eea54c5",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "version_id",
+          "string"
+        ],
+        [
+          "bim_model_id",
+          "string"
+        ],
+        [
+          "version_code",
+          "string"
+        ],
+        [
+          "version_name",
+          "string"
+        ],
+        [
+          "version_date",
+          "date"
+        ],
+        [
+          "selfsuff_pct",
+          "double"
+        ],
+        [
+          "primary_energy_kwh_m2y",
+          "double"
+        ],
+        [
+          "pv_kw",
+          "double"
+        ],
+        [
+          "geothermal_kw",
+          "double"
+        ],
+        [
+          "change_note",
+          "string"
+        ],
+        [
+          "version_status",
+          "string"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/erp_project.csv",
+      "rows": 8,
+      "sha256": "0af55e5cdae8d8474989946cfc648befd89f13c98c0d0e939c0eba98ddb7c346",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "project_no",
+          "string"
+        ],
+        [
+          "project_name",
+          "string"
+        ],
+        [
+          "sido_raw",
+          "string"
+        ],
+        [
+          "sigungu",
+          "string"
+        ],
+        [
+          "main_use",
+          "string"
+        ],
+        [
+          "households",
+          "int"
+        ],
+        [
+          "gross_floor_area_m2",
+          "double"
+        ],
+        [
+          "client_type",
+          "string"
+        ],
+        [
+          "start_date",
+          "date"
+        ],
+        [
+          "planned_completion_date",
+          "date"
+        ],
+        [
+          "pm_name",
+          "string"
+        ],
+        [
+          "zeb_incentive",
+          "string"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/mdm_site_xref.csv",
+      "rows": 8,
+      "sha256": "f7b3ec77c17e0af0148ab44338b5f10bdb1b1c9ba9dced6c9e3e6ec9d6cf89e9",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "project_no",
+          "string"
+        ],
+        [
+          "site_code",
+          "string"
+        ],
+        [
+          "bim_model_id",
+          "string"
+        ],
+        [
+          "valid_from",
+          "date"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/pms_action_log.csv",
+      "rows": 0,
+      "sha256": "51819059e7c9050bc537014eed06e109e44374847af6a875ebf330b3f232c604",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "action_id",
+          "string"
+        ],
+        [
+          "action_time",
+          "string"
+        ],
+        [
+          "site_code",
+          "string"
+        ],
+        [
+          "action_type",
+          "string"
+        ],
+        [
+          "detail_json",
+          "string"
+        ],
+        [
+          "approved_by",
+          "string"
+        ],
+        [
+          "source_system",
+          "string"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/pms_cert_milestone.csv",
+      "rows": 48,
+      "sha256": "33c5704ac49466254609eac06f2ea2080e08529073e88ff107ea35ca55ff399f",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "milestone_id",
+          "string"
+        ],
+        [
+          "site_code",
+          "string"
+        ],
+        [
+          "seq",
+          "int"
+        ],
+        [
+          "milestone_type",
+          "string"
+        ],
+        [
+          "planned_date",
+          "date"
+        ],
+        [
+          "actual_date",
+          "date"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/pms_cert_target.csv",
+      "rows": 12,
+      "sha256": "8cfbacafa1c61504e48a83a55ff83727a137cdb7a4ba0e575fcfab7c63432ef6",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "target_id",
+          "string"
+        ],
+        [
+          "site_code",
+          "string"
+        ],
+        [
+          "cert_type",
+          "string"
+        ],
+        [
+          "target_grade",
+          "string"
+        ],
+        [
+          "basis",
+          "string"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/pms_certificate.csv",
+      "rows": 10,
+      "sha256": "c6421e6c756cf9be6f9a10a3fb0deb361ec52a35100bce0b76873805fb0fc3de",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "cert_no",
+          "string"
+        ],
+        [
+          "site_code",
+          "string"
+        ],
+        [
+          "cert_type",
+          "string"
+        ],
+        [
+          "cert_stage",
+          "string"
+        ],
+        [
+          "grade",
+          "string"
+        ],
+        [
+          "cert_date",
+          "date"
+        ],
+        [
+          "design_version_id",
+          "string"
+        ],
+        [
+          "issuer",
+          "string"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/pms_equipment_plan.csv",
+      "rows": 39,
+      "sha256": "e8a367f3d79f799644e7d8b32f9c606458e9e45a884626ddf40e6c8fb4b1616b",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "wbs_code",
+          "string"
+        ],
+        [
+          "site_code",
+          "string"
+        ],
+        [
+          "design_version_id",
+          "string"
+        ],
+        [
+          "category_code",
+          "string"
+        ],
+        [
+          "equipment_name",
+          "string"
+        ],
+        [
+          "capacity",
+          "double"
+        ],
+        [
+          "capacity_unit",
+          "string"
+        ],
+        [
+          "selfsuff_contribution_pp",
+          "double"
+        ],
+        [
+          "planned_cost_krw",
+          "long"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/pms_site.csv",
+      "rows": 8,
+      "sha256": "b8840b4e59ee5506db408f8c938ba3d46e2bf8127cdeabde327050de5e2c0f63",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "site_code",
+          "string"
+        ],
+        [
+          "site_name",
+          "string"
+        ],
+        [
+          "stage",
+          "string"
+        ],
+        [
+          "progress_pct",
+          "double"
+        ],
+        [
+          "progress_as_of",
+          "date"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/ref_equipment_category.csv",
+      "rows": 8,
+      "sha256": "376a4ab62a30529ca6c18fdf2883b081042470a61e8d40d35cef6ffffbfce473",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "category_code",
+          "string"
+        ],
+        [
+          "category_name",
+          "string"
+        ],
+        [
+          "zeb_role",
+          "string"
+        ],
+        [
+          "green_tech_classes",
+          "string"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/ref_region.csv",
+      "rows": 17,
+      "sha256": "57b1bf625fdd8b681d05d107ae2a879c8ce09d480084d5c027d1de6af45491e6",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "sido",
+          "string"
+        ],
+        [
+          "sido_full",
+          "string"
+        ],
+        [
+          "aliases",
+          "string"
+        ],
+        [
+          "latitude",
+          "double"
+        ],
+        [
+          "longitude",
+          "double"
+        ],
+        [
+          "region_group",
+          "string"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/ref_zeb_grade_criteria.csv",
+      "rows": 6,
+      "sha256": "41fab8a3751d11a533436d77183a00cf608fbdbd2d84cf74703c6fb74fafcd1a",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "grade_code",
+          "string"
+        ],
+        [
+          "grade_name",
+          "string"
+        ],
+        [
+          "selfsuff_min_pct",
+          "double"
+        ],
+        [
+          "primary_energy_limit_residential",
+          "double"
+        ],
+        [
+          "primary_energy_limit_nonresidential",
+          "double"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/scm_po_event.csv",
+      "rows": 1,
+      "sha256": "db7f18bb00092a8fbbc0d5a263c6b178c32a4e9654611420c12753ec5954e6a1",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "event_id",
+          "string"
+        ],
+        [
+          "po_no",
+          "string"
+        ],
+        [
+          "event_type",
+          "string"
+        ],
+        [
+          "new_expected_date",
+          "date"
+        ],
+        [
+          "new_vendor_code",
+          "string"
+        ],
+        [
+          "reason",
+          "string"
+        ],
+        [
+          "event_time",
+          "string"
+        ],
+        [
+          "source_system",
+          "string"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/scm_purchase_order.csv",
+      "rows": 25,
+      "sha256": "fc347a65236feeb41a10d895ceae4745c66b0cac686f3075b1722fdb54775e52",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "po_no",
+          "string"
+        ],
+        [
+          "wbs_element",
+          "string"
+        ],
+        [
+          "vendor_code",
+          "string"
+        ],
+        [
+          "order_date",
+          "date"
+        ],
+        [
+          "promised_date",
+          "date"
+        ],
+        [
+          "expected_date",
+          "date"
+        ],
+        [
+          "delivered_date",
+          "date"
+        ],
+        [
+          "status",
+          "string"
+        ],
+        [
+          "amount_krw",
+          "long"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/scm_vendor.csv",
+      "rows": 9,
+      "sha256": "060fec8310ed2909f13061470e07076584cd49a2aa4ac0badd7a7c78c33f61d5",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "vendor_code",
+          "string"
+        ],
+        [
+          "vendor_name",
+          "string"
+        ],
+        [
+          "category_code",
+          "string"
+        ],
+        [
+          "standard_lead_time_days",
+          "int"
+        ],
+        [
+          "on_time_rate",
+          "double"
+        ],
+        [
+          "is_alternative_pool",
+          "boolean"
+        ],
+        [
+          "note",
+          "string"
+        ]
+      ]
+    },
+    {
+      "path": "synthetic/sim_improvement_option.csv",
+      "rows": 12,
+      "sha256": "607ec4c77895d949788cd025ab1cd37a55cbd3201e8ef593daa22770d5be3c35",
+      "source_kind": "SYNTHETIC",
+      "schema": [
+        [
+          "option_id",
+          "string"
+        ],
+        [
+          "site_code",
+          "string"
+        ],
+        [
+          "option_name",
+          "string"
+        ],
+        [
+          "category_code",
+          "string"
+        ],
+        [
+          "selfsuff_gain_pp",
+          "double"
+        ],
+        [
+          "primary_energy_delta",
+          "double"
+        ],
+        [
+          "cost_krw",
+          "long"
+        ],
+        [
+          "lead_time_days",
+          "int"
+        ]
+      ]
+    }
+  ],
+  "fixtures_sha256": "d6ea3f4b0f87db4dd99e91f06810ec19d0c4916abd0fe2fa3895393da7e06821"
+}

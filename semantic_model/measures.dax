@@ -1,0 +1,18 @@
+// Create explicit measures in the owned Direct Lake model; do not run as a DAX query.
+// Physical table display names: SiteStatus, Options, POStatus, Certificates.
+Site Count = DISTINCTCOUNT(SiteStatus[site_code])
+Risk Site Count =
+    COALESCE(CALCULATE([Site Count], SiteStatus[risk] <> "normal"), 0)
+Danger Site Count =
+    COALESCE(CALCULATE([Site Count], SiteStatus[risk] = "danger"), 0)
+Current SS % = MAX(SiteStatus[selfsuff_pct])
+Current PE = MAX(SiteStatus[primary_energy_kwh_m2y])
+Current Grade Rank = MAX(SiteStatus[grade_rank])
+Energy Feasible Option Sets =
+    COALESCE(CALCULATE(COUNTROWS(Options), Options[energy_feasible] = TRUE()), 0)
+Minimum Energy Feasible Cost KRW =
+    MINX(FILTER(Options, Options[energy_feasible] = TRUE()), Options[cost_krw])
+Decision Feasible Option Sets =
+    COALESCE(CALCULATE(COUNTROWS(Options), Options[decision_feasible] = TRUE()), 0)
+Installation Breach PO Count =
+    COALESCE(CALCULATE(COUNTROWS(POStatus), POStatus[deadline_breach] = TRUE()), 0)

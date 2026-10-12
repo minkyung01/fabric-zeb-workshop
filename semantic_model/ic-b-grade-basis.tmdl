@@ -1,0 +1,27 @@
+createOrReplace
+
+	ref table SiteStatus
+
+		/// IC-B only: retained synthetic housing criteria at 2026-09-30, not live regulatory certification. Gold SS/PE/grade are read from SiteStatus; thresholds/class are the independently checked fixture provenance, not a dynamically bound criterion table.
+		measure 'IC-B Grade Basis (Training)' = ```
+				VAR _site = SELECTEDVALUE('SiteStatus'[site_code])
+				VAR _ss = SELECTEDVALUE('SiteStatus'[selfsuff_pct])
+				VAR _pe = SELECTEDVALUE('SiteStatus'[primary_energy_kwh_m2y])
+				VAR _grade = SELECTEDVALUE('SiteStatus'[grade_rank])
+				RETURN
+					IF(
+						_site <> "IC-B" || ISBLANK(_ss) || ISBLANK(_pe),
+						BLANK(),
+						"교육 기준 2026-09-30, IC-B 공동주택. 3등급 SS >= 60 OR PE < 50: "
+							& IF(_ss >= 60 || _pe < 50, "충족", "미충족")
+							& ". 4등급 SS " & FORMAT(_ss, "0.0") & "% >= 40: "
+							& IF(_ss >= 40, "충족", "미충족")
+							& "; PE " & FORMAT(_pe, "0.0") & " < 70: "
+							& IF(_pe < 70, "충족", "미충족")
+							& "; OR: " & IF(_ss >= 40 || _pe < 70, "충족", "미충족")
+							& ". Gold grade_rank=" & FORMAT(_grade, "0")
+							& ". 근거: retained synthetic ref_zeb_grade_criteria + erp_project.main_use. 실제 법적 인증 미검증."
+					)
+				```
+			formatString: @
+			displayFolder: 교육 근거

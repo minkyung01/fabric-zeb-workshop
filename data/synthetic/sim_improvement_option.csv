@@ -1,0 +1,13 @@
+option_id,site_code,option_name,category_code,selfsuff_gain_pp,primary_energy_delta,cost_krw,lead_time_days
+OPT-D1,HS-D,옥상 태양광 원설계 복원(+150kW),PV,5.3,-6.0,420000000,60
+OPT-D2,HS-D,주차장 캐노피 태양광(+90kW),PV,3.2,-3.5,230000000,45
+OPT-D3,HS-D,발코니 BIPV(+40kW),PV,1.4,-1.5,280000000,75
+OPT-D4,HS-D,창호 성능 상향(로이 3중),ENV,2.1,-4.0,340000000,50
+OPT-D5,HS-D,전열교환 환기 효율 상향,VENT,1.0,-2.0,60000000,30
+OPT-D6,HS-D,공용부 LED·조명 제어,LIGHT,0.9,-1.8,50000000,20
+OPT-H1,MP-H,옥상 태양광 증설(+60kW),PV,2.2,-2.5,160000000,40
+OPT-H2,MP-H,창호 추가 상향,ENV,1.5,-3.0,190000000,50
+OPT-H3,MP-H,지열 히트펌프 도입,GEO,4.6,-8.0,650000000,90
+OPT-H4,MP-H,발코니 BIPV(+50kW),PV,1.9,-2.0,220000000,70
+OPT-H5,MP-H,전열교환 환기 효율 상향,VENT,0.8,-1.5,40000000,30
+OPT-C1,SN-C,BEMS 도입,BEMS,0.0,0.0,180000000,40

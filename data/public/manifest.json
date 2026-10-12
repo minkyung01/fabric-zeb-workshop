@@ -1,0 +1,23 @@
+{
+  "status": "required_zeb_fetched_live_validated_other_datasets_unfetched",
+  "snapshots_packaged": false,
+  "student_required_dataset_id": "15085042",
+  "required_segment_status": "completed_in_approved_p01",
+  "required_retained_snapshot": {
+    "dataset_id": "15085042",
+    "snapshot_label": "20251231",
+    "rows": 9760,
+    "live_bronze_rows": 9760,
+    "live_silver_rows": 9760,
+    "evidence_ref": "../../validation/rehearsal-summary.json",
+    "distribution_scope": "Approved p01 OneLake Files only; staged raw excluded from public Git distribution"
+  },
+  "other_datasets_scope": "administrator_reference",
+  "live_reference_only": [
+    {"dataset_id": "15085042", "name": "ZEB", "snapshot_label": "20251231", "rows": 9760, "date_min": "2017-06-16", "date_max": "2025-12-31"},
+    {"dataset_id": "15003214", "name": "GSEED", "snapshot_label": "20251231", "rows": 5104, "date_min": "2015-01-08", "date_max": "2025-12-30"},
+    {"dataset_id": "15014781", "name": "BF", "snapshot_label": "20260630", "rows": 22185, "date_min": "2008-10-30", "date_max": "2026-06-30"},
+    {"dataset_id": "15054156", "name": "GreenTech", "snapshot_label": "20260626", "rows": 1905, "date_min": "2016-11-03", "date_max": "2025-12-18"}
+  ],
+  "note": "Only the genuine ZEB snapshot was obtained and live-validated in one approved participant. Other three entries remain historical reference observations, not fetched participant inputs. Detailed download identifiers and hashes remain in the unchanged private staged retrieval manifest; public live facts are redacted."
+}

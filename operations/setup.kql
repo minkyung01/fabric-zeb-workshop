@@ -1,0 +1,10 @@
+// Run only in the separately approved participant-owned KQL database.
+.create-merge table WorkshopRiskSnapshot (
+    event_id:string, participant_id:string, scenario_id:string, site_code:string,
+    baseline_hash:string, risk:string, progress_as_of:string, event_state:string,
+    status_time:datetime, recommended_option_set_id:string, result_hash:string
+)
+
+// Select and Run the command below separately, after the table exists.
+.create-or-alter table WorkshopRiskSnapshot ingestion json mapping 'WorkshopRiskSnapshotJson'
+'[{"column":"event_id","path":"$.event_id"},{"column":"participant_id","path":"$.participant_id"},{"column":"scenario_id","path":"$.scenario_id"},{"column":"site_code","path":"$.site_code"},{"column":"baseline_hash","path":"$.baseline_hash"},{"column":"risk","path":"$.risk"},{"column":"progress_as_of","path":"$.progress_as_of"},{"column":"event_state","path":"$.event_state"},{"column":"status_time","path":"$.status_time"},{"column":"recommended_option_set_id","path":"$.recommended_option_set_id"},{"column":"result_hash","path":"$.result_hash"}]'

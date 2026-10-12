@@ -1,0 +1,30 @@
+{
+  "status": "offline_native_action_contract_not_deployed",
+  "action_name": "RecordZEBDecision",
+  "select_action_type": "Fabric item",
+  "action_type": "Notebook",
+  "notebook_template": "05_decision_log",
+  "run_principal": "Operations agent creator delegated permissions",
+  "approval_flow": ["Teams proposal", "native/SQL evidence review", "optional Foundry review", "Proceed", "Confirm details for RecordZEBDecision", "Confirm", "Action submitted", "Fabric Monitor Succeeded", "audit readback", "explicit Eventhouse recorded marker", "agent Stop"],
+  "parameters": [
+    {"name": "event_id", "type": "string", "description": "WorkshopRiskSnapshot.event_id for the reviewed HS-D event; never create a new ID"},
+    {"name": "option_set_id", "type": "string", "description": "WorkshopRiskSnapshot.recommended_option_set_id, exactly OPT-D5+OPT-D6 for this workshop"},
+    {"name": "baseline_hash", "type": "string", "description": "WorkshopRiskSnapshot.baseline_hash; compare to Gold and Silver before confirmation"},
+    {"name": "result_hash", "type": "string", "description": "WorkshopRiskSnapshot.result_hash; must match independently computed option evidence"},
+    {"name": "approval_evidence_ref", "type": "string", "description": "If the human has a real Teams approval/message evidence reference, enter it here; otherwise leave empty. This string is not identity verification."}
+  ],
+  "identity_contract": {
+    "no_client_approval_flag": true,
+    "no_verified_human_identity_claim": true,
+    "approval_boundary": "Platform Proceed/Confirm and verified action binding, not a Python boolean",
+    "notebook_limitation": "Notebook cannot independently distinguish a creator's direct invocation from a Teams-approved action invocation. Creator execute permissions and platform activity evidence must be reviewed.",
+    "external_evidence": "Persist provided reference verbatim as externally_supplied_not_verified; empty is not_supplied_by_platform",
+    "configured_creator": "Administrator verified Entra object ID of agent creator; notebook records it as configured identity, not runtime proof",
+    "invocation_route_verification": "notebook_cannot_verify_platform_origin",
+    "empty_evidence_parameter": "If tenant UI does not accept the documented empty-string default and no actual reference is available, report blocked; never fabricate approval evidence."
+  },
+  "writes": ["audit.decision_log only"],
+  "forbidden": ["apply_options", "purchase_order mutation", "design mutation", "automatic human approval", "graph refresh"],
+  "concurrency": "One serialized action invocation per participant audit; MERGE is not a unique constraint",
+  "recovery": "Audit and Eventhouse are separate stores. After audit readback, explicitly append recorded status; on sync failure preserve audit, Stop, and retry status only."
+}
