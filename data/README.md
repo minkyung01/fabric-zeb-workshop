@@ -3,7 +3,7 @@
 ## 세 종류를 분리
 
 1. **기본 내부 fixture**: 기존 Notebook02의 literal record와 결정적 생성 로직을 읽기 전용으로 추출한 SYNTHETIC 데이터입니다. 가상 ERP/PMS/MDM/BIM/SCM 구조를 표현하지만 실제 고객 시스템/export가 아닙니다.
-2. **공공 데이터**: data.go.kr 4종 원본 workspace에서 읽기 검증한 count/date만 manifest에 기록했습니다. 원본 Notebook01은 메모리로 내려받았으며 Files 원본 snapshot은 없었습니다. 이 kit에 실제 공공 CSV bytes는 아직 없습니다.
+2. **공공 데이터**: 실제 ZEB `15085042` snapshot `20251231`은 별도 보존·검토되어 p01 Bronze/Silver 각각 9,760행을 확인했습니다. raw CSV는 **공개 GitHub kit에 포함하지 않으며** 관리자가 각 참가자에게 승인된 bytes/manifest를 공급합니다. 다른 3종은 원본 workspace의 읽기 관찰 count/date reference일 뿐 이 실습에서 취득·처리했다고 주장하지 않습니다.
 3. **파생 정답**: fixture를 표준 Python Decimal/itertools로 독립 계산한 reference_answers.json입니다. Gold 원천으로 거꾸로 제공하는 것이 아니라 오프라인 검산용입니다.
 
 기준일 `2026-09-30`. 공공 source snapshot label, 실제 record cert date, 내부 progress date, BIM version date는 서로 다른 의미입니다.
@@ -38,10 +38,12 @@ CSV는 UTF-8, 빈 칸은 nullable 원천값입니다. schema와 원천 literal �
 - Bronze 16개: 문자열 그대로, `_source_kind`, `_source_sha256`; Files fixture bytes를 보존합니다.
 - Silver 16개: 명시 schema cast/trim, null/key/MDM/current/certificate model 검증.
 - Gold 15개: project/site/mdm/design/target/certificate/milestone/equipment/vendor/PO/option/criteria 12개 + site_status 8행 + option_eval 63행 + po_status 25행.
-- audit.decision_log: 기본적으로 없음; 사람이 검토한 첫 manual decision 시 생성, original pms_action_log와 분리.
+- audit.decision_log: 기본적으로 없음; Teams Proceed/Confirm 후 creator-delegated Operations action에서 생성, original pms_action_log와 분리. 네 번째 메달리온 계층이 아닙니다.
 - **필수 public ZEB segment** 실행 시 Bronze/Silver 각각 1개가 추가되어 총17/17개입니다. 내부16개만으로 계산 검산은 재현되지만 공공 원천 실습 완료는 아닙니다.
 
 원본의 **21 Bronze / 21 Silver / 22 Gold / 3 Ops**와 kit의 범위는 다릅니다. 원본 full model/evaluation/benchmark를 실습에 무조건 복사하지 않습니다.
+
+세 schema의 Delta와 원본 Files는 모두 **OneLake 안**에 있습니다. 원본 Files → Bronze Delta → Silver → Gold는 표현·품질이 높아지는 흐름이지, Gold 이후 OneLake로 이동하는 흐름이 아닙니다. [설계 계약·전체 source→Gold 매핑](../admin/medallion-architecture.md)을 함께 읽습니다.
 
 ## 키와 품질
 

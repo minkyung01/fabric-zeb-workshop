@@ -1,83 +1,106 @@
 {
   "width": 1900,
-  "height": 1460,
+  "height": 1960,
   "cards": [
     {
       "id": "files",
       "x": 70,
-      "y": 365,
-      "width": 350,
-      "height": 155
+      "y": 350,
+      "width": 405,
+      "height": 130
     },
     {
-      "id": "spark",
+      "id": "bronze",
       "x": 70,
-      "y": 555,
-      "width": 350,
-      "height": 155
+      "y": 535,
+      "width": 405,
+      "height": 345,
+      "role": "medallion",
+      "schema": "bronze",
+      "notebook": "01_bronze"
+    },
+    {
+      "id": "silver",
+      "x": 535,
+      "y": 535,
+      "width": 405,
+      "height": 345,
+      "role": "medallion",
+      "schema": "silver",
+      "notebook": "02_silver"
     },
     {
       "id": "gold",
-      "x": 70,
-      "y": 740,
-      "width": 350,
-      "height": 230
+      "x": 1000,
+      "y": 535,
+      "width": 405,
+      "height": 345,
+      "role": "medallion",
+      "schema": "gold",
+      "notebook": "03_gold"
     },
     {
       "id": "ontology",
-      "x": 495,
-      "y": 365,
+      "x": 70,
+      "y": 1040,
       "width": 405,
-      "height": 270
+      "height": 250
     },
     {
       "id": "model",
-      "x": 1040,
-      "y": 365,
-      "width": 365,
+      "x": 535,
+      "y": 1040,
+      "width": 405,
       "height": 155
     },
     {
       "id": "powerbi",
-      "x": 1040,
-      "y": 560,
-      "width": 365,
+      "x": 535,
+      "y": 1235,
+      "width": 405,
       "height": 155
     },
     {
       "id": "eventhouse",
-      "x": 495,
-      "y": 775,
+      "x": 1000,
+      "y": 1040,
+      "width": 405,
+      "height": 155
+    },
+    {
+      "id": "operations",
+      "x": 1000,
+      "y": 1235,
+      "width": 405,
+      "height": 155
+    },
+    {
+      "id": "audit-store",
+      "x": 70,
+      "y": 1500,
       "width": 405,
       "height": 160
     },
     {
-      "id": "operations",
-      "x": 1040,
-      "y": 775,
-      "width": 365,
-      "height": 160
-    },
-    {
       "id": "audit",
-      "x": 1040,
-      "y": 985,
-      "width": 365,
-      "height": 155
+      "x": 1000,
+      "y": 1500,
+      "width": 405,
+      "height": 160
     },
     {
       "id": "foundry",
       "x": 1510,
-      "y": 365,
+      "y": 1050,
       "width": 330,
-      "height": 195
+      "height": 185
     },
     {
       "id": "teams",
       "x": 1510,
-      "y": 760,
+      "y": 1360,
       "width": 330,
-      "height": 350
+      "height": 325
     }
   ],
   "routes": [
@@ -124,29 +147,43 @@
       "optional": false
     },
     {
-      "id": "files-to-spark",
+      "id": "files-to-bronze",
       "points": [
         [
-          245,
-          520
+          270,
+          480
         ],
         [
-          245,
-          555
+          270,
+          535
         ]
       ],
       "optional": false
     },
     {
-      "id": "spark-to-gold",
+      "id": "bronze-to-silver",
       "points": [
         [
-          245,
-          710
+          475,
+          750
         ],
         [
-          245,
-          740
+          535,
+          750
+        ]
+      ],
+      "optional": false
+    },
+    {
+      "id": "silver-to-gold",
+      "points": [
+        [
+          940,
+          750
+        ],
+        [
+          1000,
+          750
         ]
       ],
       "optional": false
@@ -155,20 +192,24 @@
       "id": "gold-to-ontology",
       "points": [
         [
-          420,
-          800
+          1405,
+          820
         ],
         [
-          460,
-          800
+          1430,
+          820
         ],
         [
-          460,
-          585
+          1430,
+          990
         ],
         [
-          495,
-          585
+          270,
+          990
+        ],
+        [
+          270,
+          1040
         ]
       ],
       "optional": false
@@ -177,38 +218,24 @@
       "id": "gold-to-directlake",
       "points": [
         [
-          460,
-          585
+          1405,
+          820
         ],
         [
-          460,
-          342
+          1430,
+          820
         ],
         [
-          1015,
-          342
+          1430,
+          990
         ],
         [
-          1015,
-          420
+          735,
+          990
         ],
         [
-          1040,
-          420
-        ]
-      ],
-      "optional": false
-    },
-    {
-      "id": "model-to-powerbi",
-      "points": [
-        [
-          1220,
-          520
-        ],
-        [
-          1220,
-          560
+          735,
+          1040
         ]
       ],
       "optional": false
@@ -217,12 +244,38 @@
       "id": "gold-to-snapshot",
       "points": [
         [
-          420,
-          855
+          1405,
+          820
         ],
         [
-          495,
-          855
+          1430,
+          820
+        ],
+        [
+          1430,
+          990
+        ],
+        [
+          1200,
+          990
+        ],
+        [
+          1200,
+          1040
+        ]
+      ],
+      "optional": false
+    },
+    {
+      "id": "model-to-powerbi",
+      "points": [
+        [
+          735,
+          1195
+        ],
+        [
+          735,
+          1235
         ]
       ],
       "optional": false
@@ -231,12 +284,12 @@
       "id": "snapshot-to-operations",
       "points": [
         [
-          900,
-          845
+          1200,
+          1195
         ],
         [
-          1040,
-          845
+          1200,
+          1235
         ]
       ],
       "optional": false
@@ -246,11 +299,19 @@
       "points": [
         [
           1405,
-          845
+          1315
+        ],
+        [
+          1460,
+          1315
+        ],
+        [
+          1460,
+          1450
         ],
         [
           1510,
-          845
+          1450
         ]
       ],
       "optional": false
@@ -260,11 +321,11 @@
       "points": [
         [
           1510,
-          1055
+          1620
         ],
         [
           1405,
-          1055
+          1620
         ]
       ],
       "optional": false
@@ -273,24 +334,24 @@
       "id": "audit-to-snapshot",
       "points": [
         [
-          1040,
-          1055
+          1200,
+          1500
+        ],
+        [
+          1200,
+          1460
         ],
         [
           965,
-          1055
+          1460
         ],
         [
           965,
-          965
+          1170
         ],
         [
-          705,
-          965
-        ],
-        [
-          705,
-          935
+          1000,
+          1170
         ]
       ],
       "optional": false
@@ -299,20 +360,12 @@
       "id": "audit-to-onelake",
       "points": [
         [
-          1220,
-          1140
+          1000,
+          1580
         ],
         [
-          1220,
-          1157
-        ],
-        [
-          245,
-          1157
-        ],
-        [
-          245,
-          970
+          475,
+          1580
         ]
       ],
       "optional": false
@@ -322,27 +375,27 @@
       "points": [
         [
           1510,
-          465
+          1135
         ],
         [
-          1462,
-          465
+          1480,
+          1135
         ],
         [
-          1462,
-          740
+          1480,
+          1415
         ],
         [
-          930,
-          740
+          495,
+          1415
         ],
         [
-          930,
-          610
+          495,
+          1240
         ],
         [
-          900,
-          610
+          475,
+          1240
         ]
       ],
       "optional": true
@@ -352,11 +405,11 @@
       "points": [
         [
           1710,
-          560
+          1235
         ],
         [
           1710,
-          760
+          1360
         ]
       ],
       "optional": true
@@ -366,11 +419,11 @@
       "points": [
         [
           60,
-          1420
+          1930
         ],
         [
           120,
-          1420
+          1930
         ]
       ],
       "optional": false
@@ -380,11 +433,11 @@
       "points": [
         [
           525,
-          1420
+          1930
         ],
         [
           585,
-          1420
+          1930
         ]
       ],
       "optional": true
@@ -1026,7 +1079,7 @@
       "x": 40,
       "y": 245,
       "width": 1400,
-      "height": 935,
+      "height": 1470,
       "angle": 0,
       "strokeColor": "#788AA3",
       "backgroundColor": "transparent",
@@ -1168,9 +1221,9 @@
       "id": "zeb-21",
       "type": "rectangle",
       "x": 70,
-      "y": 365,
-      "width": 350,
-      "height": 155,
+      "y": 350,
+      "width": 405,
+      "height": 130,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "#ffffff",
@@ -1197,7 +1250,7 @@
       "id": "zeb-22",
       "type": "image",
       "x": 88.0,
-      "y": 381.0,
+      "y": 366.0,
       "width": 40.0,
       "height": 40.0,
       "angle": 0,
@@ -1234,8 +1287,8 @@
       "id": "zeb-23",
       "type": "text",
       "x": 142,
-      "y": 389,
-      "width": 264,
+      "y": 374,
+      "width": 319,
       "height": 29.4,
       "angle": 0,
       "strokeColor": "#000000",
@@ -1256,8 +1309,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Files | 원천 데이터",
-      "originalText": "Files | 원천 데이터",
+      "text": "Files | 보존한 원천 bytes",
+      "originalText": "Files | 보존한 원천 bytes",
       "fontSize": 21,
       "fontFamily": 2,
       "textAlign": "left",
@@ -1273,9 +1326,9 @@
       "id": "zeb-24",
       "type": "text",
       "x": 90,
-      "y": 439,
-      "width": 310,
-      "height": 75.6,
+      "y": 424,
+      "width": 365,
+      "height": 50.4,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -1295,8 +1348,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "02·06  실제 공공 ZEB 원천\n가상 ERP · PMS · BIM · SCM\n실제 고객 시스템 연동 아님",
-      "originalText": "02·06  실제 공공 ZEB 원천\n가상 ERP · PMS · BIM · SCM\n실제 고객 시스템 연동 아님",
+      "text": "가상 fixture JSON + 실제 공공 ZEB CSV\n원본 파일 보존 ≠ Bronze Delta table",
+      "originalText": "가상 fixture JSON + 실제 공공 ZEB CSV\n원본 파일 보존 ≠ Bronze Delta table",
       "fontSize": 18,
       "fontFamily": 2,
       "textAlign": "left",
@@ -1310,14 +1363,14 @@
     },
     {
       "id": "zeb-25",
-      "type": "rectangle",
-      "x": 70,
-      "y": 555,
-      "width": 350,
-      "height": 155,
+      "type": "image",
+      "x": 535.0,
+      "y": 363.0,
+      "width": 44.0,
+      "height": 44.0,
       "angle": 0,
       "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
       "strokeStyle": "solid",
@@ -1325,181 +1378,8 @@
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": {
-        "type": 3
-      },
+      "roundness": null,
       "seed": 26,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-26",
-      "type": "image",
-      "x": 88.0,
-      "y": 571.0,
-      "width": 40.0,
-      "height": 40.0,
-      "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 27,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false,
-      "fileId": "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null,
-      "customData": {
-        "productIcon": "notebook"
-      }
-    },
-    {
-      "id": "zeb-27",
-      "type": "text",
-      "x": 142,
-      "y": 579,
-      "width": 264,
-      "height": 29.4,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 28,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false,
-      "text": "Notebook | Spark 정제",
-      "originalText": "Notebook | Spark 정제",
-      "fontSize": 21,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": true
-      }
-    },
-    {
-      "id": "zeb-28",
-      "type": "text",
-      "x": 90,
-      "y": 629,
-      "width": 310,
-      "height": 75.6,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 29,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false,
-      "text": "02–04  Bronze → Silver → Gold\n타입·코드·설계 버전 연결\n키·단위 확인 후 지표 계산",
-      "originalText": "02–04  Bronze → Silver → Gold\n타입·코드·설계 버전 연결\n키·단위 확인 후 지표 계산",
-      "fontSize": 18,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": false
-      }
-    },
-    {
-      "id": "zeb-29",
-      "type": "rectangle",
-      "x": 70,
-      "y": 740,
-      "width": 350,
-      "height": 230,
-      "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 30,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-30",
-      "type": "image",
-      "x": 88.0,
-      "y": 756.0,
-      "width": 40.0,
-      "height": 40.0,
-      "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 31,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1519,17 +1399,192 @@
       }
     },
     {
-      "id": "zeb-31",
+      "id": "zeb-26",
       "type": "text",
-      "x": 142,
-      "y": 764,
-      "width": 264,
-      "height": 29.4,
+      "x": 595,
+      "y": 368,
+      "width": 795,
+      "height": 35.0,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 27,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "OneLake | 세 계층을 담는 공통 저장소",
+      "originalText": "OneLake | 세 계층을 담는 공통 저장소",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
+    },
+    {
+      "id": "zeb-27",
+      "type": "text",
+      "x": 535,
+      "y": 414,
+      "width": 840,
+      "height": 53.199999999999996,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 28,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "한 참가자 · 한 schema-enabled Lakehouse\nFiles와 Bronze / Silver / Gold 모두 OneLake 안에 저장",
+      "originalText": "한 참가자 · 한 schema-enabled Lakehouse\nFiles와 Bronze / Silver / Gold 모두 OneLake 안에 저장",
+      "fontSize": 19,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-28",
+      "type": "rectangle",
+      "x": 55,
+      "y": 500,
+      "width": 1370,
+      "height": 430,
+      "angle": 0,
+      "strokeColor": "#788AA3",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 29,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-29",
+      "type": "text",
+      "x": 535,
+      "y": 502,
+      "width": 870,
+      "height": 30.799999999999997,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 30,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "MEDALLION | 원천 보존 → 품질 검증 → 업무 판단 근거",
+      "originalText": "MEDALLION | 원천 보존 → 품질 검증 → 업무 판단 근거",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
+    },
+    {
+      "id": "zeb-30",
+      "type": "rectangle",
+      "x": 70,
+      "y": 535,
+      "width": 405,
+      "height": 345,
+      "angle": 0,
+      "strokeColor": "#9B6A43",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 31,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-31",
+      "type": "rectangle",
+      "x": 90,
+      "y": 553,
+      "width": 7,
+      "height": 45,
+      "angle": 0,
+      "strokeColor": "#9B6A43",
+      "backgroundColor": "#9B6A43",
+      "fillStyle": "solid",
+      "strokeWidth": 0,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -1543,27 +1598,15 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false,
-      "text": "OneLake | Lakehouse",
-      "originalText": "OneLake | Lakehouse",
-      "fontSize": 21,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": true
-      }
+      "locked": false
     },
     {
       "id": "zeb-32",
       "type": "text",
-      "x": 90,
-      "y": 814,
-      "width": 310,
-      "height": 151.2,
+      "x": 112,
+      "y": 555,
+      "width": 345,
+      "height": 42.0,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -1583,9 +1626,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "bronze / silver / gold / audit\n04–05 Gold: 8개 현장 · 63개 조합\nHS-D 제출 V2 ↔ 변경 V3\n자립률 SS · 1차 에너지 PE\n비용·기간·근거로 보완안 비교\n교육 기준 · 공학 검증은 별도",
-      "originalText": "bronze / silver / gold / audit\n04–05 Gold: 8개 현장 · 63개 조합\nHS-D 제출 V2 ↔ 변경 V3\n자립률 SS · 1차 에너지 PE\n비용·기간·근거로 보완안 비교\n교육 기준 · 공학 검증은 별도",
-      "fontSize": 18,
+      "text": "Bronze | Raw",
+      "originalText": "Bronze | Raw",
+      "fontSize": 30,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1593,19 +1636,19 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": true
       }
     },
     {
       "id": "zeb-33",
-      "type": "rectangle",
-      "x": 495,
-      "y": 365,
-      "width": 405,
-      "height": 270,
+      "type": "text",
+      "x": 90,
+      "y": 610,
+      "width": 370,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
       "strokeStyle": "solid",
@@ -1613,9 +1656,7 @@
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": {
-        "type": 3
-      },
+      "roundness": null,
       "seed": 34,
       "version": 1,
       "versionNonce": 1,
@@ -1623,15 +1664,27 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "text": "원천 값·출처를 보존",
+      "originalText": "원천 값·출처를 보존",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
     },
     {
       "id": "zeb-34",
       "type": "image",
-      "x": 513.0,
-      "y": 381.0,
-      "width": 40.0,
-      "height": 40.0,
+      "x": 90.0,
+      "y": 649.0,
+      "width": 26.0,
+      "height": 26.0,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -1651,6 +1704,726 @@
       "updated": 0,
       "link": null,
       "locked": false,
+      "fileId": "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
+      "customData": {
+        "productIcon": "notebook"
+      }
+    },
+    {
+      "id": "zeb-35",
+      "type": "text",
+      "x": 128,
+      "y": 650,
+      "width": 325,
+      "height": 25.2,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 36,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "01_bronze | Spark",
+      "originalText": "01_bronze | Spark",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-36",
+      "type": "text",
+      "x": 90,
+      "y": 695,
+      "width": 370,
+      "height": 126.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 37,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "bronze.erp_project · 8행\nbronze.bim_design_version · 18행\n원천 값 string + source hash\nSYNTHETIC 16 + 공공 ZEB 1\n완료: bytes hash·행 수 대조",
+      "originalText": "bronze.erp_project · 8행\nbronze.bim_design_version · 18행\n원천 값 string + source hash\nSYNTHETIC 16 + 공공 ZEB 1\n완료: bytes hash·행 수 대조",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-37",
+      "type": "rectangle",
+      "x": 535,
+      "y": 535,
+      "width": 405,
+      "height": 345,
+      "angle": 0,
+      "strokeColor": "#788AA3",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 38,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-38",
+      "type": "rectangle",
+      "x": 555,
+      "y": 553,
+      "width": 7,
+      "height": 45,
+      "angle": 0,
+      "strokeColor": "#788AA3",
+      "backgroundColor": "#788AA3",
+      "fillStyle": "solid",
+      "strokeWidth": 0,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 39,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-39",
+      "type": "text",
+      "x": 577,
+      "y": 555,
+      "width": 345,
+      "height": 42.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 40,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "Silver | Enriched",
+      "originalText": "Silver | Enriched",
+      "fontSize": 30,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
+    },
+    {
+      "id": "zeb-40",
+      "type": "text",
+      "x": 555,
+      "y": 610,
+      "width": 370,
+      "height": 28.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 41,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "타입·정체성·관계를 검증",
+      "originalText": "타입·정체성·관계를 검증",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
+    },
+    {
+      "id": "zeb-41",
+      "type": "image",
+      "x": 555.0,
+      "y": 649.0,
+      "width": 26.0,
+      "height": 26.0,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 42,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "fileId": "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
+      "customData": {
+        "productIcon": "notebook"
+      }
+    },
+    {
+      "id": "zeb-42",
+      "type": "text",
+      "x": 593,
+      "y": 650,
+      "width": 325,
+      "height": 25.2,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 43,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "02_silver | Spark",
+      "originalText": "02_silver | Spark",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-43",
+      "type": "text",
+      "x": 555,
+      "y": 695,
+      "width": 370,
+      "height": 126.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 44,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "silver.mdm_site_xref · 8행\nsilver.bim_design_version · 18행\ntrim·명시 타입·현행/제출 키 검증\n잘못된 cast·중복/고아 → 중단\n완료: 원천 행 수·metadata 유지",
+      "originalText": "silver.mdm_site_xref · 8행\nsilver.bim_design_version · 18행\ntrim·명시 타입·현행/제출 키 검증\n잘못된 cast·중복/고아 → 중단\n완료: 원천 행 수·metadata 유지",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-44",
+      "type": "rectangle",
+      "x": 1000,
+      "y": 535,
+      "width": 405,
+      "height": 345,
+      "angle": 0,
+      "strokeColor": "#A47B19",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 45,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-45",
+      "type": "rectangle",
+      "x": 1020,
+      "y": 553,
+      "width": 7,
+      "height": 45,
+      "angle": 0,
+      "strokeColor": "#A47B19",
+      "backgroundColor": "#A47B19",
+      "fillStyle": "solid",
+      "strokeWidth": 0,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 46,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-46",
+      "type": "text",
+      "x": 1042,
+      "y": 555,
+      "width": 345,
+      "height": 42.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 47,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "Gold | Curated",
+      "originalText": "Gold | Curated",
+      "fontSize": 30,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
+    },
+    {
+      "id": "zeb-47",
+      "type": "text",
+      "x": 1020,
+      "y": 610,
+      "width": 370,
+      "height": 28.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 48,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "업무 entity + 계산 결과",
+      "originalText": "업무 entity + 계산 결과",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
+    },
+    {
+      "id": "zeb-48",
+      "type": "image",
+      "x": 1020.0,
+      "y": 649.0,
+      "width": 26.0,
+      "height": 26.0,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 49,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "fileId": "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
+      "customData": {
+        "productIcon": "notebook"
+      }
+    },
+    {
+      "id": "zeb-49",
+      "type": "text",
+      "x": 1058,
+      "y": 650,
+      "width": 325,
+      "height": 25.2,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 50,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "03_gold | Spark",
+      "originalText": "03_gold | Spark",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-50",
+      "type": "text",
+      "x": 1020,
+      "y": 695,
+      "width": 370,
+      "height": 126.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 51,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "gold.site_status · 8행\ngold.option_eval · 63행\ngold.po_status · 25행 / 초과 0\n업무 entity 12 + 계산 결과 3\n완료: 독립 SQL·Decimal 검산",
+      "originalText": "gold.site_status · 8행\ngold.option_eval · 63행\ngold.po_status · 25행 / 초과 0\n업무 entity 12 + 계산 결과 3\n완료: 독립 SQL·Decimal 검산",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-51",
+      "type": "text",
+      "x": 75,
+      "y": 894,
+      "width": 1320,
+      "height": 25.2,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 52,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "06_public_zeb: 필수 공공 경로가 Bronze → Silver 각 9,760행(p01) 생성 · 가상 현장과 이름 join 금지",
+      "originalText": "06_public_zeb: 필수 공공 경로가 Bronze → Silver 각 9,760행(p01) 생성 · 가상 현장과 이름 join 금지",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-52",
+      "type": "text",
+      "x": 70,
+      "y": 944,
+      "width": 1340,
+      "height": 25.2,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 53,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "SQL analytics endpoint = Delta 읽기·독립 검산 | 쓰기는 Spark · Gold만 아래 업무 소비 경로의 공통 근거",
+      "originalText": "SQL analytics endpoint = Delta 읽기·독립 검산 | 쓰기는 Spark · Gold만 아래 업무 소비 경로의 공통 근거",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-53",
+      "type": "rectangle",
+      "x": 70,
+      "y": 1040,
+      "width": 405,
+      "height": 250,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 54,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-54",
+      "type": "image",
+      "x": 88.0,
+      "y": 1056.0,
+      "width": 40.0,
+      "height": 40.0,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 55,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
       "fileId": "4a796479fc554eb2c9ad0aab22daccd6038d9cbaf36e0a63e76dac173a9a7d89",
       "status": "saved",
       "scale": [
@@ -1663,10 +2436,10 @@
       }
     },
     {
-      "id": "zeb-35",
+      "id": "zeb-55",
       "type": "text",
-      "x": 567,
-      "y": 389,
+      "x": 142,
+      "y": 1064,
       "width": 319,
       "height": 29.4,
       "angle": 0,
@@ -1680,7 +2453,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 36,
+      "seed": 56,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1702,10 +2475,10 @@
       }
     },
     {
-      "id": "zeb-36",
+      "id": "zeb-56",
       "type": "text",
-      "x": 515,
-      "y": 439,
+      "x": 90,
+      "y": 1114,
       "width": 365,
       "height": 151.2,
       "angle": 0,
@@ -1719,7 +2492,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 37,
+      "seed": 57,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1741,12 +2514,12 @@
       }
     },
     {
-      "id": "zeb-37",
+      "id": "zeb-57",
       "type": "text",
-      "x": 495,
-      "y": 661,
-      "width": 500,
-      "height": 50.4,
+      "x": 70,
+      "y": 1320,
+      "width": 420,
+      "height": 75.6,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -1758,7 +2531,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 38,
+      "seed": 58,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1766,8 +2539,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "판단 기준 | 주거 4등급: SS ≥ 40 또는 PE < 70\n에너지 기준 충족 ≠ 발주·시공 가능",
-      "originalText": "판단 기준 | 주거 4등급: SS ≥ 40 또는 PE < 70\n에너지 기준 충족 ≠ 발주·시공 가능",
+      "text": "HS-D: 제출 V2 ↔ 현행 V3\n주거 4등급: SS ≥ 40 또는 PE < 70\n에너지 기준 충족 ≠ 발주·시공 가능",
+      "originalText": "HS-D: 제출 V2 ↔ 현행 V3\n주거 4등급: SS ≥ 40 또는 PE < 70\n에너지 기준 충족 ≠ 발주·시공 가능",
       "fontSize": 18,
       "fontFamily": 2,
       "textAlign": "left",
@@ -1780,11 +2553,11 @@
       }
     },
     {
-      "id": "zeb-38",
+      "id": "zeb-58",
       "type": "rectangle",
-      "x": 1040,
-      "y": 365,
-      "width": 365,
+      "x": 535,
+      "y": 1040,
+      "width": 405,
       "height": 155,
       "angle": 0,
       "strokeColor": "#0078D4",
@@ -1799,7 +2572,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 39,
+      "seed": 59,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1809,10 +2582,10 @@
       "locked": false
     },
     {
-      "id": "zeb-39",
+      "id": "zeb-59",
       "type": "image",
-      "x": 1058.0,
-      "y": 381.0,
+      "x": 553.0,
+      "y": 1056.0,
       "width": 40.0,
       "height": 40.0,
       "angle": 0,
@@ -1826,7 +2599,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 40,
+      "seed": 60,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1846,11 +2619,11 @@
       }
     },
     {
-      "id": "zeb-40",
+      "id": "zeb-60",
       "type": "text",
-      "x": 1112,
-      "y": 389,
-      "width": 279,
+      "x": 607,
+      "y": 1064,
+      "width": 319,
       "height": 29.4,
       "angle": 0,
       "strokeColor": "#000000",
@@ -1863,7 +2636,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 41,
+      "seed": 61,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1885,11 +2658,11 @@
       }
     },
     {
-      "id": "zeb-41",
+      "id": "zeb-61",
       "type": "text",
-      "x": 1060,
-      "y": 439,
-      "width": 325,
+      "x": 555,
+      "y": 1114,
+      "width": 365,
       "height": 75.6,
       "angle": 0,
       "strokeColor": "#000000",
@@ -1902,7 +2675,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 42,
+      "seed": 62,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1924,11 +2697,11 @@
       }
     },
     {
-      "id": "zeb-42",
+      "id": "zeb-62",
       "type": "rectangle",
-      "x": 1040,
-      "y": 560,
-      "width": 365,
+      "x": 535,
+      "y": 1235,
+      "width": 405,
       "height": 155,
       "angle": 0,
       "strokeColor": "#0078D4",
@@ -1943,7 +2716,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 43,
+      "seed": 63,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1953,10 +2726,10 @@
       "locked": false
     },
     {
-      "id": "zeb-43",
+      "id": "zeb-63",
       "type": "image",
-      "x": 1058.0,
-      "y": 576.0,
+      "x": 553.0,
+      "y": 1251.0,
       "width": 40.0,
       "height": 40.0,
       "angle": 0,
@@ -1970,7 +2743,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 44,
+      "seed": 64,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -1990,11 +2763,11 @@
       }
     },
     {
-      "id": "zeb-44",
+      "id": "zeb-64",
       "type": "text",
-      "x": 1112,
-      "y": 584,
-      "width": 279,
+      "x": 607,
+      "y": 1259,
+      "width": 319,
       "height": 29.4,
       "angle": 0,
       "strokeColor": "#000000",
@@ -2007,7 +2780,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 45,
+      "seed": 65,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2029,11 +2802,11 @@
       }
     },
     {
-      "id": "zeb-45",
+      "id": "zeb-65",
       "type": "text",
-      "x": 1060,
-      "y": 634,
-      "width": 325,
+      "x": 555,
+      "y": 1309,
+      "width": 365,
       "height": 75.6,
       "angle": 0,
       "strokeColor": "#000000",
@@ -2046,7 +2819,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 46,
+      "seed": 66,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2068,12 +2841,12 @@
       }
     },
     {
-      "id": "zeb-46",
+      "id": "zeb-66",
       "type": "rectangle",
-      "x": 495,
-      "y": 775,
+      "x": 1000,
+      "y": 1040,
       "width": 405,
-      "height": 160,
+      "height": 155,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "#ffffff",
@@ -2087,7 +2860,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 47,
+      "seed": 67,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2097,10 +2870,10 @@
       "locked": false
     },
     {
-      "id": "zeb-47",
+      "id": "zeb-67",
       "type": "image",
-      "x": 513.0,
-      "y": 791.0,
+      "x": 1018.0,
+      "y": 1056.0,
       "width": 40.0,
       "height": 40.0,
       "angle": 0,
@@ -2114,7 +2887,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 48,
+      "seed": 68,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2134,10 +2907,10 @@
       }
     },
     {
-      "id": "zeb-48",
+      "id": "zeb-68",
       "type": "text",
-      "x": 567,
-      "y": 799,
+      "x": 1072,
+      "y": 1064,
       "width": 319,
       "height": 29.4,
       "angle": 0,
@@ -2151,7 +2924,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 49,
+      "seed": 69,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2173,10 +2946,10 @@
       }
     },
     {
-      "id": "zeb-49",
+      "id": "zeb-69",
       "type": "text",
-      "x": 515,
-      "y": 849,
+      "x": 1020,
+      "y": 1114,
       "width": 365,
       "height": 75.6,
       "angle": 0,
@@ -2190,7 +2963,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 50,
+      "seed": 70,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2212,12 +2985,12 @@
       }
     },
     {
-      "id": "zeb-50",
+      "id": "zeb-70",
       "type": "rectangle",
-      "x": 1040,
-      "y": 775,
-      "width": 365,
-      "height": 160,
+      "x": 1000,
+      "y": 1235,
+      "width": 405,
+      "height": 155,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "#ffffff",
@@ -2231,7 +3004,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 51,
+      "seed": 71,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2241,10 +3014,10 @@
       "locked": false
     },
     {
-      "id": "zeb-51",
+      "id": "zeb-71",
       "type": "image",
-      "x": 1058.0,
-      "y": 791.0,
+      "x": 1018.0,
+      "y": 1251.0,
       "width": 40.0,
       "height": 40.0,
       "angle": 0,
@@ -2258,7 +3031,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 52,
+      "seed": 72,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2278,11 +3051,11 @@
       }
     },
     {
-      "id": "zeb-52",
+      "id": "zeb-72",
       "type": "text",
-      "x": 1112,
-      "y": 799,
-      "width": 279,
+      "x": 1072,
+      "y": 1259,
+      "width": 319,
       "height": 29.4,
       "angle": 0,
       "strokeColor": "#000000",
@@ -2295,7 +3068,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 53,
+      "seed": 73,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2317,11 +3090,11 @@
       }
     },
     {
-      "id": "zeb-53",
+      "id": "zeb-73",
       "type": "text",
-      "x": 1060,
-      "y": 849,
-      "width": 325,
+      "x": 1020,
+      "y": 1309,
+      "width": 365,
       "height": 75.6,
       "angle": 0,
       "strokeColor": "#000000",
@@ -2334,7 +3107,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 54,
+      "seed": 74,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2356,12 +3129,51 @@
       }
     },
     {
-      "id": "zeb-54",
+      "id": "zeb-74",
+      "type": "text",
+      "x": 70,
+      "y": 1450,
+      "width": 900,
+      "height": 29.4,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 75,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "승인 기록 | audit는 네 번째 medallion 계층이 아닌 별도 통제·증적 경로",
+      "originalText": "승인 기록 | audit는 네 번째 medallion 계층이 아닌 별도 통제·증적 경로",
+      "fontSize": 21,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
+    },
+    {
+      "id": "zeb-75",
       "type": "rectangle",
-      "x": 1040,
-      "y": 985,
-      "width": 365,
-      "height": 155,
+      "x": 70,
+      "y": 1500,
+      "width": 405,
+      "height": 160,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "#ffffff",
@@ -2375,7 +3187,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 55,
+      "seed": 76,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2385,10 +3197,10 @@
       "locked": false
     },
     {
-      "id": "zeb-55",
+      "id": "zeb-76",
       "type": "image",
-      "x": 1058.0,
-      "y": 1001.0,
+      "x": 88.0,
+      "y": 1516.0,
       "width": 40.0,
       "height": 40.0,
       "angle": 0,
@@ -2402,7 +3214,151 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 56,
+      "seed": 77,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "fileId": "fbf6da87a91ac447b251d283a9a01b9e8987d53cf1acf6aa64692155ac6508ca",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
+      "customData": {
+        "productIcon": "lakehouse"
+      }
+    },
+    {
+      "id": "zeb-77",
+      "type": "text",
+      "x": 142,
+      "y": 1524,
+      "width": 319,
+      "height": 29.4,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 78,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "audit.decision_log",
+      "originalText": "audit.decision_log",
+      "fontSize": 21,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
+    },
+    {
+      "id": "zeb-78",
+      "type": "text",
+      "x": 90,
+      "y": 1574,
+      "width": 365,
+      "height": 75.6,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 79,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "OneLake의 별도 audit schema\n승인 후 검토 결정·근거 hash 기록\nBronze / Silver / Gold 변경 없음",
+      "originalText": "OneLake의 별도 audit schema\n승인 후 검토 결정·근거 hash 기록\nBronze / Silver / Gold 변경 없음",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-79",
+      "type": "rectangle",
+      "x": 1000,
+      "y": 1500,
+      "width": 405,
+      "height": 160,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 80,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-80",
+      "type": "image",
+      "x": 1018.0,
+      "y": 1516.0,
+      "width": 40.0,
+      "height": 40.0,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 81,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2422,11 +3378,11 @@
       }
     },
     {
-      "id": "zeb-56",
+      "id": "zeb-81",
       "type": "text",
-      "x": 1112,
-      "y": 1009,
-      "width": 279,
+      "x": 1072,
+      "y": 1524,
+      "width": 319,
       "height": 29.4,
       "angle": 0,
       "strokeColor": "#000000",
@@ -2439,7 +3395,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 57,
+      "seed": 82,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2461,11 +3417,11 @@
       }
     },
     {
-      "id": "zeb-57",
+      "id": "zeb-82",
       "type": "text",
-      "x": 1060,
-      "y": 1059,
-      "width": 325,
+      "x": 1020,
+      "y": 1574,
+      "width": 365,
       "height": 75.6,
       "angle": 0,
       "strokeColor": "#000000",
@@ -2478,7 +3434,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 58,
+      "seed": 83,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2500,12 +3456,12 @@
       }
     },
     {
-      "id": "zeb-58",
+      "id": "zeb-83",
       "type": "text",
-      "x": 495,
-      "y": 1000,
-      "width": 440,
-      "height": 75.6,
+      "x": 535,
+      "y": 1618,
+      "width": 430,
+      "height": 47.599999999999994,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -2517,7 +3473,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 59,
+      "seed": 84,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2525,9 +3481,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "실제 설계·발주·시공은 바꾸지 않습니다.\n승인은 검토 결정의 기록입니다.\n실제 실행·미완료 단계는 별도 확인합니다.",
-      "originalText": "실제 설계·발주·시공은 바꾸지 않습니다.\n승인은 검토 결정의 기록입니다.\n실제 실행·미완료 단계는 별도 확인합니다.",
-      "fontSize": 18,
+      "text": "실제 설계·발주·시공은 바꾸지 않습니다.\n실행 여부·미완료 단계는 별도 확인합니다.",
+      "originalText": "실제 설계·발주·시공은 바꾸지 않습니다.\n실행 여부·미완료 단계는 별도 확인합니다.",
+      "fontSize": 17,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2539,12 +3495,12 @@
       }
     },
     {
-      "id": "zeb-59",
+      "id": "zeb-84",
       "type": "rectangle",
       "x": 1490,
-      "y": 245,
+      "y": 350,
       "width": 370,
-      "height": 410,
+      "height": 530,
       "angle": 0,
       "strokeColor": "#788AA3",
       "backgroundColor": "transparent",
@@ -2558,7 +3514,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 60,
+      "seed": 85,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2568,10 +3524,117 @@
       "locked": false
     },
     {
-      "id": "zeb-60",
+      "id": "zeb-85",
+      "type": "text",
+      "x": 1510,
+      "y": 372,
+      "width": 330,
+      "height": 35.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 86,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "메달리온을 읽는 법",
+      "originalText": "메달리온을 읽는 법",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true
+      }
+    },
+    {
+      "id": "zeb-86",
+      "type": "text",
+      "x": 1510,
+      "y": 430,
+      "width": 330,
+      "height": 319.2,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 87,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "원천에서 판단 근거까지\n계층마다 품질과 책임이 달라집니다.\n\nBronze: 무엇을 받았는가?\nSilver: 어떤 현장·설계인가?\nGold: 어떤 위험·대안인가?\n\nOneLake는 다음 ETL 단계가 아니라\n세 계층 전체의 저장 기반입니다.\n\n실습은 schema로 논리 분리합니다.\n운영의 권한·격리는 별도 설계합니다.",
+      "originalText": "원천에서 판단 근거까지\n계층마다 품질과 책임이 달라집니다.\n\nBronze: 무엇을 받았는가?\nSilver: 어떤 현장·설계인가?\nGold: 어떤 위험·대안인가?\n\nOneLake는 다음 ETL 단계가 아니라\n세 계층 전체의 저장 기반입니다.\n\n실습은 schema로 논리 분리합니다.\n운영의 권한·격리는 별도 설계합니다.",
+      "fontSize": 19,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-87",
+      "type": "rectangle",
+      "x": 1490,
+      "y": 940,
+      "width": 370,
+      "height": 350,
+      "angle": 0,
+      "strokeColor": "#788AA3",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 88,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-88",
       "type": "image",
       "x": 1510.0,
-      "y": 264.0,
+      "y": 957.0,
       "width": 44.0,
       "height": 44.0,
       "angle": 0,
@@ -2585,7 +3648,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 61,
+      "seed": 89,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2605,10 +3668,10 @@
       }
     },
     {
-      "id": "zeb-61",
+      "id": "zeb-89",
       "type": "text",
       "x": 1570,
-      "y": 272,
+      "y": 965,
       "width": 280,
       "height": 32.199999999999996,
       "angle": 0,
@@ -2622,7 +3685,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 62,
+      "seed": 90,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2644,10 +3707,10 @@
       }
     },
     {
-      "id": "zeb-62",
+      "id": "zeb-90",
       "type": "text",
       "x": 1510,
-      "y": 319,
+      "y": 1006,
       "width": 330,
       "height": 25.2,
       "angle": 0,
@@ -2661,7 +3724,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 63,
+      "seed": 91,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2683,12 +3746,12 @@
       }
     },
     {
-      "id": "zeb-63",
+      "id": "zeb-91",
       "type": "rectangle",
       "x": 1510,
-      "y": 365,
+      "y": 1050,
       "width": 330,
-      "height": 195,
+      "height": 185,
       "angle": 0,
       "strokeColor": "#788AA3",
       "backgroundColor": "#ffffff",
@@ -2702,7 +3765,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 64,
+      "seed": 92,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2712,10 +3775,10 @@
       "locked": false
     },
     {
-      "id": "zeb-64",
+      "id": "zeb-92",
       "type": "image",
       "x": 1528.0,
-      "y": 381.0,
+      "y": 1066.0,
       "width": 40.0,
       "height": 40.0,
       "angle": 0,
@@ -2729,7 +3792,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 65,
+      "seed": 93,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2749,10 +3812,10 @@
       }
     },
     {
-      "id": "zeb-65",
+      "id": "zeb-93",
       "type": "text",
       "x": 1582,
-      "y": 389,
+      "y": 1074,
       "width": 244,
       "height": 29.4,
       "angle": 0,
@@ -2766,7 +3829,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 66,
+      "seed": 94,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2788,10 +3851,10 @@
       }
     },
     {
-      "id": "zeb-66",
+      "id": "zeb-94",
       "type": "text",
       "x": 1530,
-      "y": 439,
+      "y": 1124,
       "width": 290,
       "height": 100.8,
       "angle": 0,
@@ -2805,7 +3868,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 67,
+      "seed": 95,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2827,10 +3890,10 @@
       }
     },
     {
-      "id": "zeb-67",
+      "id": "zeb-95",
       "type": "text",
       "x": 1510,
-      "y": 596,
+      "y": 1245,
       "width": 330,
       "height": 25.2,
       "angle": 0,
@@ -2844,7 +3907,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 68,
+      "seed": 96,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2866,12 +3929,12 @@
       }
     },
     {
-      "id": "zeb-68",
+      "id": "zeb-96",
       "type": "rectangle",
       "x": 1490,
-      "y": 740,
+      "y": 1340,
       "width": 370,
-      "height": 395,
+      "height": 365,
       "angle": 0,
       "strokeColor": "#788AA3",
       "backgroundColor": "transparent",
@@ -2885,7 +3948,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 69,
+      "seed": 97,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2895,12 +3958,12 @@
       "locked": false
     },
     {
-      "id": "zeb-69",
+      "id": "zeb-97",
       "type": "rectangle",
       "x": 1510,
-      "y": 760,
+      "y": 1360,
       "width": 330,
-      "height": 350,
+      "height": 325,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "#ffffff",
@@ -2914,7 +3977,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 70,
+      "seed": 98,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2924,10 +3987,10 @@
       "locked": false
     },
     {
-      "id": "zeb-70",
+      "id": "zeb-98",
       "type": "image",
       "x": 1528.0,
-      "y": 776.0,
+      "y": 1376.0,
       "width": 40.0,
       "height": 40.0,
       "angle": 0,
@@ -2941,7 +4004,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 71,
+      "seed": 99,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -2961,10 +4024,10 @@
       }
     },
     {
-      "id": "zeb-71",
+      "id": "zeb-99",
       "type": "text",
       "x": 1582,
-      "y": 784,
+      "y": 1384,
       "width": 244,
       "height": 29.4,
       "angle": 0,
@@ -2978,7 +4041,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 72,
+      "seed": 100,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3000,10 +4063,10 @@
       }
     },
     {
-      "id": "zeb-72",
+      "id": "zeb-100",
       "type": "text",
       "x": 1530,
-      "y": 834,
+      "y": 1434,
       "width": 290,
       "height": 201.6,
       "angle": 0,
@@ -3017,7 +4080,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 73,
+      "seed": 101,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3039,12 +4102,12 @@
       }
     },
     {
-      "id": "zeb-73",
+      "id": "zeb-101",
       "type": "arrow",
-      "x": 245,
-      "y": 520,
+      "x": 270,
+      "y": 480,
       "width": 0,
-      "height": 35,
+      "height": 55,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -3056,7 +4119,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 74,
+      "seed": 102,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3071,7 +4134,7 @@
         ],
         [
           0,
-          35
+          55
         ]
       ],
       "startArrowhead": null,
@@ -3080,11 +4143,11 @@
       "endBinding": null
     },
     {
-      "id": "zeb-74",
+      "id": "zeb-102",
       "type": "rectangle",
-      "x": 260,
-      "y": 524,
-      "width": 50,
+      "x": 285,
+      "y": 478,
+      "width": 120,
       "height": 27,
       "angle": 0,
       "strokeColor": "transparent",
@@ -3097,7 +4160,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 75,
+      "seed": 103,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3107,11 +4170,11 @@
       "locked": false
     },
     {
-      "id": "zeb-75",
+      "id": "zeb-103",
       "type": "text",
-      "x": 265,
-      "y": 526,
-      "width": 40,
+      "x": 290,
+      "y": 480,
+      "width": 110,
       "height": 23.799999999999997,
       "angle": 0,
       "strokeColor": "#000000",
@@ -3124,7 +4187,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 76,
+      "seed": 104,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3132,8 +4195,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "정제",
-      "originalText": "정제",
+      "text": "01·06 수집",
+      "originalText": "01·06 수집",
       "fontSize": 17,
       "fontFamily": 2,
       "textAlign": "left",
@@ -3146,12 +4209,12 @@
       }
     },
     {
-      "id": "zeb-76",
+      "id": "zeb-104",
       "type": "arrow",
-      "x": 245,
-      "y": 710,
-      "width": 0,
-      "height": 30,
+      "x": 475,
+      "y": 750,
+      "width": 60,
+      "height": 0,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -3163,7 +4226,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 77,
+      "seed": 105,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3177,8 +4240,8 @@
           0
         ],
         [
-          0,
-          30
+          60,
+          0
         ]
       ],
       "startArrowhead": null,
@@ -3187,9 +4250,9 @@
       "endBinding": null
     },
     {
-      "id": "zeb-77",
+      "id": "zeb-105",
       "type": "rectangle",
-      "x": 260,
+      "x": 476,
       "y": 712,
       "width": 50,
       "height": 27,
@@ -3204,7 +4267,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 78,
+      "seed": 106,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3214,9 +4277,9 @@
       "locked": false
     },
     {
-      "id": "zeb-78",
+      "id": "zeb-106",
       "type": "text",
-      "x": 265,
+      "x": 481,
       "y": 714,
       "width": 40,
       "height": 23.799999999999997,
@@ -3231,7 +4294,114 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 79,
+      "seed": 107,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "검증",
+      "originalText": "검증",
+      "fontSize": 17,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-107",
+      "type": "arrow",
+      "x": 940,
+      "y": 750,
+      "width": 60,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 108,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          60,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-108",
+      "type": "rectangle",
+      "x": 941,
+      "y": 712,
+      "width": 50,
+      "height": 27,
+      "angle": 0,
+      "strokeColor": "transparent",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 0,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 109,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-109",
+      "type": "text",
+      "x": 946,
+      "y": 714,
+      "width": 40,
+      "height": 23.799999999999997,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 110,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3253,12 +4423,12 @@
       }
     },
     {
-      "id": "zeb-79",
+      "id": "zeb-110",
       "type": "arrow",
-      "x": 420,
-      "y": 800,
-      "width": 75,
-      "height": 215,
+      "x": 1405,
+      "y": 820,
+      "width": 1160,
+      "height": 220,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -3270,7 +4440,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 80,
+      "seed": 111,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3284,16 +4454,20 @@
           0
         ],
         [
-          40,
+          25,
           0
         ],
         [
-          40,
-          -215
+          25,
+          170
         ],
         [
-          75,
-          -215
+          -1135,
+          170
+        ],
+        [
+          -1135,
+          220
         ]
       ],
       "startArrowhead": null,
@@ -3302,78 +4476,12 @@
       "endBinding": null
     },
     {
-      "id": "zeb-80",
-      "type": "rectangle",
-      "x": 426,
-      "y": 711,
-      "width": 48,
-      "height": 27,
-      "angle": 0,
-      "strokeColor": "transparent",
-      "backgroundColor": "#ffffff",
-      "fillStyle": "solid",
-      "strokeWidth": 0,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 81,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-81",
-      "type": "text",
-      "x": 431,
-      "y": 713,
-      "width": 38,
-      "height": 23.799999999999997,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 82,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false,
-      "text": "근거",
-      "originalText": "근거",
-      "fontSize": 17,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": false
-      }
-    },
-    {
-      "id": "zeb-82",
+      "id": "zeb-111",
       "type": "arrow",
-      "x": 460,
-      "y": 585,
-      "width": 580,
-      "height": 243,
+      "x": 1405,
+      "y": 820,
+      "width": 695,
+      "height": 220,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -3385,7 +4493,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 83,
+      "seed": 112,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3399,20 +4507,20 @@
           0
         ],
         [
-          0,
-          -243
+          25,
+          0
         ],
         [
-          555,
-          -243
+          25,
+          170
         ],
         [
-          555,
-          -165
+          -670,
+          170
         ],
         [
-          580,
-          -165
+          -670,
+          220
         ]
       ],
       "startArrowhead": null,
@@ -3421,11 +4529,64 @@
       "endBinding": null
     },
     {
-      "id": "zeb-83",
+      "id": "zeb-112",
+      "type": "arrow",
+      "x": 1405,
+      "y": 820,
+      "width": 230,
+      "height": 220,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 113,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          25,
+          0
+        ],
+        [
+          25,
+          170
+        ],
+        [
+          -205,
+          170
+        ],
+        [
+          -205,
+          220
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-113",
       "type": "rectangle",
-      "x": 640,
-      "y": 326,
-      "width": 310,
+      "x": 285,
+      "y": 1002,
+      "width": 200,
       "height": 27,
       "angle": 0,
       "strokeColor": "transparent",
@@ -3438,7 +4599,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 84,
+      "seed": 114,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3448,11 +4609,11 @@
       "locked": false
     },
     {
-      "id": "zeb-84",
+      "id": "zeb-114",
       "type": "text",
-      "x": 645,
-      "y": 328,
-      "width": 300,
+      "x": 290,
+      "y": 1004,
+      "width": 190,
       "height": 23.799999999999997,
       "angle": 0,
       "strokeColor": "#000000",
@@ -3465,7 +4626,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 85,
+      "seed": 115,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3473,8 +4634,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "OneLake Gold → Direct Lake",
-      "originalText": "OneLake Gold → Direct Lake",
+      "text": "Gold entity·관계",
+      "originalText": "Gold entity·관계",
       "fontSize": 17,
       "fontFamily": 2,
       "textAlign": "left",
@@ -3487,10 +4648,142 @@
       }
     },
     {
-      "id": "zeb-85",
+      "id": "zeb-115",
+      "type": "rectangle",
+      "x": 750,
+      "y": 1002,
+      "width": 160,
+      "height": 27,
+      "angle": 0,
+      "strokeColor": "transparent",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 0,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 116,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-116",
+      "type": "text",
+      "x": 755,
+      "y": 1004,
+      "width": 150,
+      "height": 23.799999999999997,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 117,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "Direct Lake",
+      "originalText": "Direct Lake",
+      "fontSize": 17,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-117",
+      "type": "rectangle",
+      "x": 1213,
+      "y": 1002,
+      "width": 160,
+      "height": 27,
+      "angle": 0,
+      "strokeColor": "transparent",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 0,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 118,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "zeb-118",
+      "type": "text",
+      "x": 1218,
+      "y": 1004,
+      "width": 150,
+      "height": 23.799999999999997,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 119,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "04_snapshot",
+      "originalText": "04_snapshot",
+      "fontSize": 17,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false
+      }
+    },
+    {
+      "id": "zeb-119",
       "type": "arrow",
-      "x": 1220,
-      "y": 520,
+      "x": 735,
+      "y": 1195,
       "width": 0,
       "height": 40,
       "angle": 0,
@@ -3504,7 +4797,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 86,
+      "seed": 120,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3528,11 +4821,11 @@
       "endBinding": null
     },
     {
-      "id": "zeb-86",
+      "id": "zeb-120",
       "type": "rectangle",
-      "x": 1245,
-      "y": 528,
-      "width": 130,
+      "x": 755,
+      "y": 1198,
+      "width": 145,
       "height": 27,
       "angle": 0,
       "strokeColor": "transparent",
@@ -3545,7 +4838,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 87,
+      "seed": 121,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3555,11 +4848,11 @@
       "locked": false
     },
     {
-      "id": "zeb-87",
+      "id": "zeb-121",
       "type": "text",
-      "x": 1250,
-      "y": 530,
-      "width": 120,
+      "x": 760,
+      "y": 1200,
+      "width": 135,
       "height": 23.799999999999997,
       "angle": 0,
       "strokeColor": "#000000",
@@ -3572,7 +4865,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 88,
+      "seed": 122,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3594,12 +4887,12 @@
       }
     },
     {
-      "id": "zeb-88",
+      "id": "zeb-122",
       "type": "arrow",
-      "x": 420,
-      "y": 855,
-      "width": 75,
-      "height": 0,
+      "x": 1200,
+      "y": 1195,
+      "width": 0,
+      "height": 40,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -3611,7 +4904,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 89,
+      "seed": 123,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3625,8 +4918,8 @@
           0
         ],
         [
-          75,
-          0
+          0,
+          40
         ]
       ],
       "startArrowhead": null,
@@ -3635,11 +4928,11 @@
       "endBinding": null
     },
     {
-      "id": "zeb-89",
+      "id": "zeb-123",
       "type": "rectangle",
-      "x": 426,
-      "y": 825,
-      "width": 50,
+      "x": 1215,
+      "y": 1198,
+      "width": 120,
       "height": 27,
       "angle": 0,
       "strokeColor": "transparent",
@@ -3652,7 +4945,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 90,
+      "seed": 124,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3662,118 +4955,11 @@
       "locked": false
     },
     {
-      "id": "zeb-90",
+      "id": "zeb-124",
       "type": "text",
-      "x": 431,
-      "y": 827,
-      "width": 40,
-      "height": 23.799999999999997,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 91,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false,
-      "text": "수집",
-      "originalText": "수집",
-      "fontSize": 17,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": false
-      }
-    },
-    {
-      "id": "zeb-91",
-      "type": "arrow",
-      "x": 900,
-      "y": 845,
-      "width": 140,
-      "height": 0,
-      "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 92,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          140,
-          0
-        ]
-      ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
-    },
-    {
-      "id": "zeb-92",
-      "type": "rectangle",
-      "x": 910,
-      "y": 813,
+      "x": 1220,
+      "y": 1200,
       "width": 110,
-      "height": 27,
-      "angle": 0,
-      "strokeColor": "transparent",
-      "backgroundColor": "#ffffff",
-      "fillStyle": "solid",
-      "strokeWidth": 0,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 93,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-93",
-      "type": "text",
-      "x": 915,
-      "y": 815,
-      "width": 100,
       "height": 23.799999999999997,
       "angle": 0,
       "strokeColor": "#000000",
@@ -3786,7 +4972,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 94,
+      "seed": 125,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3808,12 +4994,12 @@
       }
     },
     {
-      "id": "zeb-94",
+      "id": "zeb-125",
       "type": "arrow",
       "x": 1405,
-      "y": 845,
+      "y": 1315,
       "width": 105,
-      "height": 0,
+      "height": 135,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -3825,7 +5011,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 95,
+      "seed": 126,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3839,8 +5025,16 @@
           0
         ],
         [
-          105,
+          55,
           0
+        ],
+        [
+          55,
+          135
+        ],
+        [
+          105,
+          135
         ]
       ],
       "startArrowhead": null,
@@ -3849,10 +5043,10 @@
       "endBinding": null
     },
     {
-      "id": "zeb-95",
+      "id": "zeb-126",
       "type": "rectangle",
-      "x": 1421,
-      "y": 812,
+      "x": 1412,
+      "y": 1298,
       "width": 50,
       "height": 27,
       "angle": 0,
@@ -3866,7 +5060,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 96,
+      "seed": 127,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3876,10 +5070,10 @@
       "locked": false
     },
     {
-      "id": "zeb-96",
+      "id": "zeb-127",
       "type": "text",
-      "x": 1426,
-      "y": 814,
+      "x": 1417,
+      "y": 1300,
       "width": 40,
       "height": 23.799999999999997,
       "angle": 0,
@@ -3893,7 +5087,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 97,
+      "seed": 128,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3915,10 +5109,10 @@
       }
     },
     {
-      "id": "zeb-97",
+      "id": "zeb-128",
       "type": "arrow",
       "x": 1510,
-      "y": 1055,
+      "y": 1620,
       "width": 105,
       "height": 0,
       "angle": 0,
@@ -3932,7 +5126,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 98,
+      "seed": 129,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3956,10 +5150,10 @@
       "endBinding": null
     },
     {
-      "id": "zeb-98",
+      "id": "zeb-129",
       "type": "rectangle",
       "x": 1417,
-      "y": 1023,
+      "y": 1588,
       "width": 50,
       "height": 27,
       "angle": 0,
@@ -3973,7 +5167,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 99,
+      "seed": 130,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -3983,10 +5177,10 @@
       "locked": false
     },
     {
-      "id": "zeb-99",
+      "id": "zeb-130",
       "type": "text",
       "x": 1422,
-      "y": 1025,
+      "y": 1590,
       "width": 40,
       "height": 23.799999999999997,
       "angle": 0,
@@ -4000,7 +5194,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 100,
+      "seed": 131,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4022,12 +5216,12 @@
       }
     },
     {
-      "id": "zeb-100",
+      "id": "zeb-131",
       "type": "arrow",
-      "x": 1040,
-      "y": 1055,
-      "width": 335,
-      "height": 120,
+      "x": 1200,
+      "y": 1500,
+      "width": 235,
+      "height": 330,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -4039,7 +5233,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 101,
+      "seed": 132,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4053,20 +5247,20 @@
           0
         ],
         [
-          -75,
-          0
+          0,
+          -40
         ],
         [
-          -75,
-          -90
+          -235,
+          -40
         ],
         [
-          -335,
-          -90
+          -235,
+          -330
         ],
         [
-          -335,
-          -120
+          -200,
+          -330
         ]
       ],
       "startArrowhead": null,
@@ -4075,10 +5269,10 @@
       "endBinding": null
     },
     {
-      "id": "zeb-101",
+      "id": "zeb-132",
       "type": "rectangle",
-      "x": 718,
-      "y": 945,
+      "x": 978,
+      "y": 1422,
       "width": 265,
       "height": 27,
       "angle": 0,
@@ -4092,7 +5286,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 102,
+      "seed": 133,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4102,10 +5296,10 @@
       "locked": false
     },
     {
-      "id": "zeb-102",
+      "id": "zeb-133",
       "type": "text",
-      "x": 723,
-      "y": 947,
+      "x": 983,
+      "y": 1424,
       "width": 255,
       "height": 23.799999999999997,
       "angle": 0,
@@ -4119,7 +5313,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 103,
+      "seed": 134,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4141,12 +5335,12 @@
       }
     },
     {
-      "id": "zeb-103",
+      "id": "zeb-134",
       "type": "arrow",
-      "x": 1220,
-      "y": 1140,
-      "width": 975,
-      "height": 187,
+      "x": 1000,
+      "y": 1580,
+      "width": 525,
+      "height": 0,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -4158,7 +5352,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 104,
+      "seed": 135,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4172,16 +5366,8 @@
           0
         ],
         [
-          0,
-          17
-        ],
-        [
-          -975,
-          17
-        ],
-        [
-          -975,
-          -170
+          -525,
+          0
         ]
       ],
       "startArrowhead": null,
@@ -4190,11 +5376,11 @@
       "endBinding": null
     },
     {
-      "id": "zeb-104",
+      "id": "zeb-135",
       "type": "rectangle",
-      "x": 505,
-      "y": 1140,
-      "width": 500,
+      "x": 535,
+      "y": 1542,
+      "width": 425,
       "height": 27,
       "angle": 0,
       "strokeColor": "transparent",
@@ -4207,7 +5393,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 105,
+      "seed": 136,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4217,11 +5403,11 @@
       "locked": false
     },
     {
-      "id": "zeb-105",
+      "id": "zeb-136",
       "type": "text",
-      "x": 510,
-      "y": 1142,
-      "width": 490,
+      "x": 540,
+      "y": 1544,
+      "width": 415,
       "height": 23.799999999999997,
       "angle": 0,
       "strokeColor": "#000000",
@@ -4234,7 +5420,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 106,
+      "seed": 137,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4242,8 +5428,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "OneLake audit.decision_log | 승인 기록만 저장",
-      "originalText": "OneLake audit.decision_log | 승인 기록만 저장",
+      "text": "승인 기록만 저장 · Gold는 그대로 유지",
+      "originalText": "승인 기록만 저장 · Gold는 그대로 유지",
       "fontSize": 17,
       "fontFamily": 2,
       "textAlign": "left",
@@ -4256,12 +5442,12 @@
       }
     },
     {
-      "id": "zeb-106",
+      "id": "zeb-137",
       "type": "arrow",
       "x": 1510,
-      "y": 465,
-      "width": 610,
-      "height": 275,
+      "y": 1135,
+      "width": 1035,
+      "height": 280,
       "angle": 0,
       "strokeColor": "#788AA3",
       "backgroundColor": "transparent",
@@ -4273,7 +5459,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 107,
+      "seed": 138,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4287,24 +5473,24 @@
           0
         ],
         [
-          -48,
+          -30,
           0
         ],
         [
-          -48,
-          275
+          -30,
+          280
         ],
         [
-          -580,
-          275
+          -1015,
+          280
         ],
         [
-          -580,
-          145
+          -1015,
+          105
         ],
         [
-          -610,
-          145
+          -1035,
+          105
         ]
       ],
       "startArrowhead": null,
@@ -4313,10 +5499,10 @@
       "endBinding": null
     },
     {
-      "id": "zeb-107",
+      "id": "zeb-138",
       "type": "rectangle",
-      "x": 1055,
-      "y": 723,
+      "x": 605,
+      "y": 1398,
       "width": 310,
       "height": 27,
       "angle": 0,
@@ -4330,7 +5516,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 108,
+      "seed": 139,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4340,10 +5526,10 @@
       "locked": false
     },
     {
-      "id": "zeb-108",
+      "id": "zeb-139",
       "type": "text",
-      "x": 1060,
-      "y": 725,
+      "x": 610,
+      "y": 1400,
       "width": 300,
       "height": 23.799999999999997,
       "angle": 0,
@@ -4357,7 +5543,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 109,
+      "seed": 140,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4379,12 +5565,12 @@
       }
     },
     {
-      "id": "zeb-109",
+      "id": "zeb-140",
       "type": "arrow",
       "x": 1710,
-      "y": 560,
+      "y": 1235,
       "width": 0,
-      "height": 200,
+      "height": 125,
       "angle": 0,
       "strokeColor": "#788AA3",
       "backgroundColor": "transparent",
@@ -4396,7 +5582,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 110,
+      "seed": 141,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4411,7 +5597,7 @@
         ],
         [
           0,
-          200
+          125
         ]
       ],
       "startArrowhead": "arrow",
@@ -4420,10 +5606,10 @@
       "endBinding": null
     },
     {
-      "id": "zeb-110",
+      "id": "zeb-141",
       "type": "rectangle",
       "x": 1545,
-      "y": 667,
+      "y": 1298,
       "width": 295,
       "height": 27,
       "angle": 0,
@@ -4437,7 +5623,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 111,
+      "seed": 142,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4447,10 +5633,10 @@
       "locked": false
     },
     {
-      "id": "zeb-111",
+      "id": "zeb-142",
       "type": "text",
       "x": 1550,
-      "y": 669,
+      "y": 1300,
       "width": 285,
       "height": 23.799999999999997,
       "angle": 0,
@@ -4464,7 +5650,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 112,
+      "seed": 143,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4486,12 +5672,12 @@
       }
     },
     {
-      "id": "zeb-112",
+      "id": "zeb-143",
       "type": "rectangle",
       "x": 40,
-      "y": 1220,
+      "y": 1750,
       "width": 1820,
-      "height": 165,
+      "height": 140,
       "angle": 0,
       "strokeColor": "#788AA3",
       "backgroundColor": "transparent",
@@ -4505,7 +5691,7 @@
       "roundness": {
         "type": 3
       },
-      "seed": 113,
+      "seed": 144,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4515,10 +5701,10 @@
       "locked": false
     },
     {
-      "id": "zeb-113",
+      "id": "zeb-144",
       "type": "text",
       "x": 65,
-      "y": 1236,
+      "y": 1766,
       "width": 1750,
       "height": 30.799999999999997,
       "angle": 0,
@@ -4532,7 +5718,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 114,
+      "seed": 145,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4540,8 +5726,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "운영에 적용할 때 연결 | 미래 범위 · 이 워크숍에서는 구현하지 않음",
-      "originalText": "운영에 적용할 때 연결 | 미래 범위 · 이 워크숍에서는 구현하지 않음",
+      "text": "운영에 적용할 때 | 미래 범위 · 이 워크숍에서는 구현하지 않음",
+      "originalText": "운영에 적용할 때 | 미래 범위 · 이 워크숍에서는 구현하지 않음",
       "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
@@ -4554,10 +5740,10 @@
       }
     },
     {
-      "id": "zeb-114",
+      "id": "zeb-145",
       "type": "text",
       "x": 70,
-      "y": 1282,
+      "y": 1812,
       "width": 500,
       "height": 53.199999999999996,
       "angle": 0,
@@ -4571,7 +5757,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 115,
+      "seed": 146,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4579,8 +5765,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "원천 시스템 연결\nERP·PMS·BIM·SCM 추출·일정 수집",
-      "originalText": "원천 시스템 연결\nERP·PMS·BIM·SCM 추출·일정 수집",
+      "text": "원천 시스템 연결·증분 수집\nERP·PMS·BIM·SCM 추출·일정 수집",
+      "originalText": "원천 시스템 연결·증분 수집\nERP·PMS·BIM·SCM 추출·일정 수집",
       "fontSize": 19,
       "fontFamily": 2,
       "textAlign": "left",
@@ -4593,10 +5779,10 @@
       }
     },
     {
-      "id": "zeb-115",
+      "id": "zeb-146",
       "type": "text",
       "x": 660,
-      "y": 1282,
+      "y": 1812,
       "width": 560,
       "height": 53.199999999999996,
       "angle": 0,
@@ -4610,7 +5796,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 116,
+      "seed": 147,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4618,8 +5804,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "공학·인증 검증\n설비 상호작용·배타성·시공성·법적 인증",
-      "originalText": "공학·인증 검증\n설비 상호작용·배타성·시공성·법적 인증",
+      "text": "계층별 권한·품질 통제\n별도 Lakehouse/workspace · 격리·재처리",
+      "originalText": "계층별 권한·품질 통제\n별도 Lakehouse/workspace · 격리·재처리",
       "fontSize": 19,
       "fontFamily": 2,
       "textAlign": "left",
@@ -4632,10 +5818,10 @@
       }
     },
     {
-      "id": "zeb-116",
+      "id": "zeb-147",
       "type": "text",
       "x": 1260,
-      "y": 1282,
+      "y": 1812,
       "width": 550,
       "height": 53.199999999999996,
       "angle": 0,
@@ -4649,7 +5835,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 117,
+      "seed": 148,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4657,8 +5843,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "승인 후 업무 시스템 반영\n발주·시공 변경은 별도 통제·승인 필요",
-      "originalText": "승인 후 업무 시스템 반영\n발주·시공 변경은 별도 통제·승인 필요",
+      "text": "공학·인증 및 승인 후 업무 반영\n효과·시공성·법적 인증·발주 변경 별도",
+      "originalText": "공학·인증 및 승인 후 업무 반영\n효과·시공성·법적 인증·발주 변경 별도",
       "fontSize": 19,
       "fontFamily": 2,
       "textAlign": "left",
@@ -4671,10 +5857,10 @@
       }
     },
     {
-      "id": "zeb-117",
+      "id": "zeb-148",
       "type": "arrow",
       "x": 60,
-      "y": 1420,
+      "y": 1930,
       "width": 60,
       "height": 0,
       "angle": 0,
@@ -4688,7 +5874,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 118,
+      "seed": 149,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4712,10 +5898,10 @@
       "endBinding": null
     },
     {
-      "id": "zeb-118",
+      "id": "zeb-149",
       "type": "text",
       "x": 135,
-      "y": 1405,
+      "y": 1915,
       "width": 340,
       "height": 25.2,
       "angle": 0,
@@ -4729,7 +5915,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 119,
+      "seed": 150,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4751,10 +5937,10 @@
       }
     },
     {
-      "id": "zeb-119",
+      "id": "zeb-150",
       "type": "arrow",
       "x": 525,
-      "y": 1420,
+      "y": 1930,
       "width": 60,
       "height": 0,
       "angle": 0,
@@ -4768,7 +5954,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 120,
+      "seed": 151,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4792,10 +5978,10 @@
       "endBinding": null
     },
     {
-      "id": "zeb-120",
+      "id": "zeb-151",
       "type": "text",
       "x": 600,
-      "y": 1405,
+      "y": 1915,
       "width": 610,
       "height": 25.2,
       "angle": 0,
@@ -4809,7 +5995,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 121,
+      "seed": 152,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4817,8 +6003,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "점선: 선택 확장·제품 경계·미래 연결",
-      "originalText": "점선: 선택 확장·제품 경계·미래 연결",
+      "text": "점선: 선택 확장·제품/논리 경계",
+      "originalText": "점선: 선택 확장·제품/논리 경계",
       "fontSize": 18,
       "fontFamily": 2,
       "textAlign": "left",
@@ -4831,10 +6017,10 @@
       }
     },
     {
-      "id": "zeb-121",
+      "id": "zeb-152",
       "type": "text",
       "x": 1340,
-      "y": 1405,
+      "y": 1915,
       "width": 500,
       "height": 25.2,
       "angle": 0,
@@ -4848,7 +6034,7 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 122,
+      "seed": 153,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
@@ -4885,18 +6071,18 @@
       "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBmaWxsPSJ1cmwoI2kwYjQwMGUtYSkiIGQ9Ik0xMCAxMWE3IDcgMCAwIDEgNy03aDMwYTcgNyAwIDAgMSA3IDd2NDJhNyA3IDAgMCAxLTcgN0gxN2E3IDcgMCAwIDEtNy03eiIvPjxwYXRoIGZpbGw9InVybCgjaTBiNDAwZS1iKSIgZmlsbC1vcGFjaXR5PSIuMiIgZD0iTTEwIDExYTcgNyAwIDAgMSA3LTdoMzBhNyA3IDAgMCAxIDcgN3Y0MmE3IDcgMCAwIDEtNyA3SDE3YTcgNyAwIDAgMS03LTd6Ii8+PHBhdGggZmlsbD0idXJsKCNpMGI0MDBlLWMpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00NyA1SDE3YTYgNiAwIDAgMC02IDZ2NDJhNiA2IDAgMCAwIDYgNmgzMGE2IDYgMCAwIDAgNi02VjExYTYgNiAwIDAgMC02LTZNMTcgNGE3IDcgMCAwIDAtNyA3djQyYTcgNyAwIDAgMCA3IDdoMzBhNyA3IDAgMCAwIDctN1YxMWE3IDcgMCAwIDAtNy03eiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0idXJsKCNpMGI0MDBlLWQpIiBkPSJNMzIuODM3IDQ2SDIxYTIgMiAwIDAgMS0yLTJWMzAuODg4YTIgMiAwIDAgMSAuNjU5LTEuNDg0bDExLTkuOTQyYTIgMiAwIDAgMSAyLjY4MyAwbDExIDkuOTQyQTIgMiAwIDAgMSA0NSAzMC44ODh2OS4xMTZhMS41IDEuNSAwIDAgMC0uNS0uMDg0Yy0uNjIgMC0xLjE2LjM2LTEuMzkuOTMtLjAxLjA0LS4wNi4wOS0uMTEuMTNhLjQuNCAwIDAgMS0uMTEtLjEzIDEuNDkgMS40OSAwIDAgMC0xLjM5LS45MyAxLjQ5IDEuNDkgMCAwIDAtMS4zOS45MmMtLjAxLjA0LS4wNi4wOS0uMTEuMTNhLjQuNCAwIDAgMS0uMTEtLjEzIDEuNDk4IDEuNDk4IDAgMCAwLTIuNDUtLjQ4OCAxLjQgMS40IDAgMCAwLS4zMy40ODhjLS4wMS4wNC0uMDYuMDktLjExLjEzYS40LjQgMCAwIDEtLjExLS4xM2MtLjIzLS41Ni0uNzYtLjkzLTEuNC0uOTMtLjYyLjAxLTEuMTYuMzgtMS4zOC45Ni0uMDQuMDktLjA2LjEzLS4wNi4xM2EuNy43IDAgMCAxLS4xMy4wNGMtLjguMTgtMS4zMS45OS0xLjEzIDEuNzlhMS40OCAxLjQ4IDAgMCAwIDEuMjY2IDEuMTU3TDM0LjA1IDQ0YS43LjcgMCAwIDEtLjEzLjA0QTEuNTA1IDEuNTA1IDAgMCAwIDMyLjgzNyA0NiIvPjxwYXRoIGZpbGw9InVybCgjaTBiNDAwZS1lKSIgZD0iTTM1Ljc2IDQyLjU0NGEzIDMgMCAwIDEtLjIzLS4yMDdxLS4wODcuMDk5LS4xODguMTg1Yy0uMjgxLjI0Mi0uNjEzLjM4My0uOTgyLjQ2NmEuNS41IDAgMSAxLS4yMi0uOTc2Yy4yNTctLjA1OC40MjUtLjE0MS41NS0uMjQ5LjEyNi0uMTA3LjI0MS0uMjY4LjM0NC0uNTMzYS41LjUgMCAwIDEgLjkzLS4wMDdjLjA3Mi4xNzguMjIuMzgyLjQxNi41MzguMTk2LjE1NC40MS4yMzkuNjEzLjIzOXMuNDIyLS4wODUuNjIyLS4yNDJjLjE5OC0uMTU0LjM0NS0uMzUyLjQxOC0uNTI0YS40OTkuNDk5IDAgMCAxIC45MzUgMCAxLjQgMS40IDAgMCAwIC40MTIuNTI2Yy4xOTYuMTU1LjQwOS4yNC42MTIuMjQuMjA1IDAgLjQyMy0uMDg1LjYyMy0uMjQycy4zNS0uMzU5LjQyMS0uNTMzbC4wMDItLjAwNWEuNS41IDAgMCAxIC4yNy0uMjdsLjAxMi0uMDA1YS41LjUgMCAwIDEgLjM2IDBsLjAxMS4wMDRjLjEyLjA1LjIyLjE0NS4yNzIuMjc0YTEuNCAxLjQgMCAwIDAgLjQxNy41MzhjLjE5Ni4xNTQuNDA5LjIzOS42MTIuMjM5LjIwNSAwIC40MjMtLjA4NS42MjMtLjI0Mi4yMDItLjE1Ny4zNS0uMzYuNDIyLS41MzVhLjQ5OC40OTggMCAwIDEgLjgyLS4xNjIuNS41IDAgMCAxIC4xMS4xN2MuMTAyLjI2NC4yMTcuNDI1LjM0My41MzIuMTI1LjEwOC4yOTQuMTkxLjU1LjI1YS41LjUgMCAxIDEtLjIyLjk3NWMtLjM2OC0uMDgzLS43LS4yMjQtLjk4Mi0uNDY2YTIgMiAwIDAgMS0uMTktLjE4OCAzIDMgMCAwIDEtLjIzOC4yMTNjLS4zMjguMjU2LS43NTcuNDUzLTEuMjM4LjQ1M3MtLjkwNy0uMTk3LTEuMjMzLS40NTZhMi40IDIuNCAwIDAgMS0uMjYxLS4yNCAyLjUgMi41IDAgMCAxLS4yNjcuMjQzYy0uMzMuMjU2LS43NTguNDUzLTEuMjM5LjQ1M3MtLjkwNy0uMTk3LTEuMjMzLS40NTZhMi40IDIuNCAwIDAgMS0uMjYxLS4yNCAyLjUgMi41IDAgMCAxLS4yNjcuMjQzYy0uMzMuMjU2LS43NTguNDUzLTEuMjM4LjQ1My0uNDgyIDAtLjkwOC0uMTk3LTEuMjM0LS40NTZaIi8+PHBhdGggZmlsbD0idXJsKCNpMGI0MDBlLWYpIiBkPSJNMzUuNzYgNDUuNTQ0YTMgMyAwIDAgMS0uMjMtLjIwN3EtLjA4Ny4wOTktLjE4OC4xODVjLS4yODEuMjQyLS42MTMuMzgzLS45ODIuNDY2YS41LjUgMCAxIDEtLjIyLS45NzZjLjI1Ny0uMDU4LjQyNS0uMTQxLjU1LS4yNDkuMTI2LS4xMDcuMjQxLS4yNjguMzQ0LS41MzNhLjUuNSAwIDAgMSAuOTMtLjAwN2MuMDcyLjE3OC4yMi4zODIuNDE2LjUzOC4xOTYuMTU0LjQxLjIzOS42MTMuMjM5cy40MjItLjA4NS42MjItLjI0MmMuMTk4LS4xNTQuMzQ1LS4zNTIuNDE4LS41MjRhLjQ5OS40OTkgMCAwIDEgLjkzNSAwIDEuNCAxLjQgMCAwIDAgLjQxMi41MjZjLjE5Ni4xNTUuNDA5LjI0LjYxMi4yNC4yMDUgMCAuNDIzLS4wODUuNjIzLS4yNDJzLjM1LS4zNTkuNDIxLS41MzNsLjAwMi0uMDA1YS41LjUgMCAwIDEgLjI3LS4yN2wuMDEyLS4wMDVhLjUuNSAwIDAgMSAuMzYgMGwuMDExLjAwNGMuMTIuMDUuMjIuMTQ1LjI3Mi4yNzRhMS40IDEuNCAwIDAgMCAuNDE3LjUzOGMuMTk2LjE1NC40MDkuMjM5LjYxMi4yMzkuMjA1IDAgLjQyMy0uMDg1LjYyMy0uMjQyLjIwMi0uMTU3LjM1LS4zNi40MjItLjUzNWEuNDk4LjQ5OCAwIDAgMSAuODItLjE2Mi41LjUgMCAwIDEgLjExLjE3Yy4xMDIuMjY0LjIxNy40MjUuMzQzLjUzMi4xMjUuMTA4LjI5NC4xOTEuNTUuMjVhLjUuNSAwIDEgMS0uMjIuOTc1Yy0uMzY4LS4wODMtLjctLjIyNC0uOTgyLS40NjZhMiAyIDAgMCAxLS4xOS0uMTg4IDMgMyAwIDAgMS0uMjM4LjIxM2MtLjMyOC4yNTYtLjc1Ny40NTMtMS4yMzguNDUzcy0uOTA3LS4xOTctMS4yMzMtLjQ1NmEyLjQgMi40IDAgMCAxLS4yNjEtLjI0IDIuNSAyLjUgMCAwIDEtLjI2Ny4yNDNjLS4zMy4yNTYtLjc1OC40NTMtMS4yMzkuNDUzcy0uOTA3LS4xOTctMS4yMzMtLjQ1NmEyLjQgMi40IDAgMCAxLS4yNjEtLjI0IDIuNSAyLjUgMCAwIDEtLjI2Ny4yNDNjLS4zMy4yNTYtLjc1OC40NTMtMS4yMzguNDUzLS40ODIgMC0uOTA4LS4xOTctMS4yMzQtLjQ1NloiLz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImkwYjQwMGUtYSIgeDE9IjIyLjIyMiIgeDI9IjMxLjE1MyIgeTE9IjQiIHkyPSI2MC4xMzUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRUJFQkVCIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImkwYjQwMGUtYyIgeDE9IjI0LjIwOCIgeDI9IjMzLjcwMiIgeTE9IjQiIHkyPSI1OS45NDQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjQkJCIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjODg4Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImkwYjQwMGUtZCIgeDE9IjE5IiB4Mj0iNDYuMDUzIiB5MT0iMTguOTQ2IiB5Mj0iNDYuMTk1IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iIzM0NzdFQSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzFENTNBNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJpMGI0MDBlLWUiIHgxPSIxOSIgeDI9IjQ2LjA1MyIgeTE9IjE4Ljk0NiIgeTI9IjQ2LjE5NSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiMzNDc3RUEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxRDUzQTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iaTBiNDAwZS1mIiB4MT0iMTkiIHgyPSI0Ni4wNTMiIHkxPSIxOC45NDYiIHkyPSI0Ni4xOTUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjMzQ3N0VBIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMUQ1M0E0Ii8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImkwYjQwMGUtYiIgY3g9IjAiIGN5PSIwIiByPSIxIiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDIzLjIyMjIyIDQ0LjMzMzI5IC0zNC4xNjcwNSAxNy44OTcwNCAyNC4wNTYgMTguNTgzKSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjE3NyIgc3RvcC1jb2xvcj0iI2ZmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0I4QjhCOCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==",
       "lastRetrieved": 0
     },
-    "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0": {
-      "id": "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0",
-      "mimeType": "image/svg+xml",
-      "created": 0,
-      "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBmaWxsPSJ1cmwoI2kxYmU5YmItYSkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjg3NSAyLjVINDguNWMyLjM0MyAwIDQuODkzIDIuNzU5IDQuODkzIDUuMTcydjM1LjczYzAgMS40NzkgMS4yNTUuNDQyIDAgMS4zNDhsLjM0OCAxLjY3MXY4LjcwNGwtLjM0OCAyLjU2My0zLjAxOCAzLjVoLTM1bC00LjMxMy0yLTEuNzUtNC41NjN2LTIuMjVzMS4xNDMtMS43MTUuMzQ4LS44OFYxMS42NTRjMC0zLjYyLjctOS4xNTQgNC4yMTUtOS4xNTQiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9InVybCgjaTFiZTliYi1iKSIgZmlsbC1vcGFjaXR5PSIuMiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTMuODc1IDIuNUg0OC41YzIuMzQzIDAgNC44OTMgMi43NTkgNC44OTMgNS4xNzJ2MzUuNzNjMCAxLjQ3OSAxLjI1NS40NDIgMCAxLjM0OGwuMzQ4IDEuNjcxdjguNzA0bC0uMzQ4IDIuNTYzLTMuMDE4IDMuNWgtMzVsLTQuMzEzLTItMS43NS00LjU2M3YtMi4yNXMxLjE0My0xLjcxNS4zNDgtLjg4VjExLjY1NGMwLTMuNjIuNy05LjE1NCA0LjIxNS05LjE1NCIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0idXJsKCNpMWJlOWJiLWMpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05LjAwNiA1NC4zMkE4IDggMCAwIDAgMTcgNjJoMzFhNiA2IDAgMCAwIDYtNlY4YTYgNiAwIDAgMC02LTZIMTVhNiA2IDAgMCAwLTYgNnY0NnEwIC4wODMuMDAyLjE2NEw5IDU0LjMyek0xNSAzaDMzYTUgNSAwIDAgMSA1IDV2MzUuNWEzLjUgMy41IDAgMCAxLTMuNSAzLjVIMTYuMzJBNy4zMiA3LjMyIDAgMCAwIDEwIDUwLjYyNVY4YTUgNSAwIDAgMSA1LTVtLTQuOTk4IDUxLjE2NEE2LjMyIDYuMzIgMCAwIDEgMTYuMzIgNDhINDkuNWE0LjUgNC41IDAgMCAwIDMuNS0xLjY3MVY1MC41YTMuNSAzLjUgMCAwIDEtMy41IDMuNWgtMzRhLjUuNSAwIDAgMCAwIDFoMzRhNC41IDQuNSAwIDAgMCAzLjUtMS42NzFWNTZhNSA1IDAgMCAxLTUgNUgxN2E3IDcgMCAwIDEtNi45OTgtNi44MzYiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9InVybCgjaTFiZTliYi1kKSIgZD0iTTM0LjkyNiAxNC4wMmEuNS41IDAgMCAxIC4zMzcuNjIzbC02LjUzNCAyMmEuNS41IDAgMSAxLS45NTgtLjI4NWw2LjUzMy0yMmEuNS41IDAgMCAxIC42MjItLjMzN1oiLz48cGF0aCBmaWxsPSJ1cmwoI2kxYmU5YmItZSkiIGQ9Ik0yNC44NTQgMTguMTQ2YS41LjUgMCAwIDAtLjcwOCAwbC02LjkyOSA2LjkzYS42LjYgMCAwIDAgMCAuODQ4bDYuOTMgNi45M2EuNS41IDAgMCAwIC43MDctLjcwOEwxOC4yMDcgMjUuNWw2LjY0Ny02LjY0NmEuNS41IDAgMCAwIDAtLjcwOCIvPjxwYXRoIGZpbGw9InVybCgjaTFiZTliYi1mKSIgZD0iTTM4Ljg1NCAzMi44NTRhLjUuNSAwIDAgMS0uNzA4LS43MDhsNi42NDctNi42NDYtNi42NDctNi42NDZhLjUuNSAwIDAgMSAuNzA4LS43MDhsNi45MjkgNi45M2EuNi42IDAgMCAxIDAgLjg0OHoiLz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImkxYmU5YmItYSIgeDE9IjIxLjcxMiIgeDI9IjMxLjM2NCIgeTE9IjIuNSIgeTI9IjYxLjIzMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNFQkVCRUIiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iaTFiZTliYi1jIiB4MT0iMjMuNTMxIiB4Mj0iMzQuMTU4IiB5MT0iMiIgeTI9IjYxLjc3NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNCQkIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM4ODgiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iaTFiZTliYi1kIiB4MT0iMTcuMDQxIiB4Mj0iMzkuNDUyIiB5MT0iMTQiIHkyPSI0Mi4xNzYiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjNEJBNDQ2Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjM0Y3RDM1Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImkxYmU5YmItZSIgeDE9IjE3LjA0MSIgeDI9IjM5LjQ1MiIgeTE9IjE0IiB5Mj0iNDIuMTc2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iIzRCQTQ0NiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzNGN0QzNSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJpMWJlOWJiLWYiIHgxPSIxNy4wNDEiIHgyPSIzOS40NTIiIHkxPSIxNCIgeTI9IjQyLjE3NiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiM0QkE0NDYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMzRjdEMzUiLz48L2xpbmVhckdyYWRpZW50PjxyYWRpYWxHcmFkaWVudCBpZD0iaTFiZTliYi1iIiBjeD0iMCIgY3k9IjAiIHI9IjEiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoNjMuMTEyIC0yLjY5MiAyOC4wODMpc2NhbGUoNTIuMDkyOCAzOS4zOTc5KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjE3NyIgc3RvcC1jb2xvcj0iI2ZmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0I4QjhCOCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==",
-      "lastRetrieved": 0
-    },
     "23fe33bcc61e703f655ac98753512a780bc2ff71d157d6c25682841ed9b6a825": {
       "id": "23fe33bcc61e703f655ac98753512a780bc2ff71d157d6c25682841ed9b6a825",
       "mimeType": "image/svg+xml",
       "created": 0,
       "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBmaWxsPSJ1cmwoI2k4ODVkZTktYSkiIGQ9Ik0yMi4yMSAzMi41NDFjNS40ODYtMy4xNjcgNy4yOTItMTAuMzEyIDQuMDMzLTE1Ljk1Ny0zLjI2LTUuNjQ1LTEwLjM1LTcuNjU0LTE1LjgzNy00LjQ4NlMzLjExMyAyMi40MTEgNi4zNzMgMjguMDU2czEwLjM1IDcuNjUzIDE1LjgzNiA0LjQ4NVoiLz48cGF0aCBmaWxsPSJ1cmwoI2k4ODVkZTktYikiIGQ9Ik0yOS4zNzEgMTYuNzE1YzIuODQ5LTIuODUgMi43ODEtNy41MzctLjE1Mi0xMC40NjgtMi45MzItMi45MzItNy42Mi0yLjk5OC0xMC40NjgtLjE0OC0yLjg0OSAyLjg1LTIuNzggNy41MzYuMTUyIDEwLjQ2OCAyLjkzMyAyLjkzMSA3LjYyIDIuOTk4IDEwLjQ2OC4xNDgiLz48cGF0aCBmaWxsPSJ1cmwoI2k4ODVkZTktYykiIGQ9Ik0yNi4yOTkgNDMuMjJjOS40ODcgMCAxNy4xNzgtNy42OTIgMTcuMTc4LTE3LjE4UzM1Ljc4NyA4Ljg2MiAyNi4yOTkgOC44NjIgOS4xMiAxNi41NTMgOS4xMiAyNi4wNDFzNy42OTEgMTcuMTc4IDE3LjE3OSAxNy4xNzhaIi8+PHBhdGggZmlsbD0idXJsKCNpODg1ZGU5LWQpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xOS41NjkgNS4zODdjLTEwLjA4NSA2LjIzLTEzLjYxIDE5LjM1LTcuODE1IDI5Ljg0NXEuNTg1IDEuMDY3IDEuMjc0IDIuMDM5bC40NS4wNjkgOS45NjYgMy4zMjcgOS40NjgtNi4zNDNjLTEuNTg1LjA1LTguMTgtMy42OTMtMTIuNDktMTEuODcyLTUuNC0xMC4yNDgtMy4xNzMtMTQuOTgyLS44NDMtMTcuMDY1eiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0idXJsKCNpODg1ZGU5LWUpIiBmaWxsLW9wYWNpdHk9Ii4yIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xOS41NjkgNS4zODdjLTEwLjA4NSA2LjIzLTEzLjYxIDE5LjM1LTcuODE1IDI5Ljg0NXEuNTg1IDEuMDY3IDEuMjc0IDIuMDM5bC40NS4wNjkgOS45NjYgMy4zMjcgOS40NjgtNi4zNDNjLTEuNTg1LjA1LTguMTgtMy42OTMtMTIuNDktMTEuODcyLTUuNC0xMC4yNDgtMy4xNzMtMTQuOTgyLS44NDMtMTcuMDY1eiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0idXJsKCNpODg1ZGU5LWYpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zOS4zNjQgMzcuMTk3YTE3LjI0IDE3LjI0IDAgMCAwIDMuNjM4LTcuMTA5Yy0xLjcwOC00Ljg3Ny04LjU4LTYuMjUtMTIuMzQtMi40MzMtMi44ODkgMi45MjctNS44OSA1LjM4NS04LjE0NiA1LjgyNUM5LjQ2OSAzNi4wNDEgMy45MTkgMjUuMjg3IDQuODczIDIwLjMzOWExOS44IDE5LjggMCAwIDAgLjA1IDcuNzNDNy4xMTkgMzguODMxIDE3LjYxOSA0NS43NzEgMjguMzggNDMuNTc0YTE5LjggMTkuOCAwIDAgMCA4LjcyNy00LjE4cy4wNC0uMDMuMDU0LS4wNDVhMjAgMjAgMCAwIDAgMi4yMDItMi4xNTd6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9Imk4ODVkZTktYyIgY3g9IjAiIGN5PSIwIiByPSIxIiBncmFkaWVudFRyYW5zZm9ybT0icm90YXRlKDEzNC44MyAxOC4yMTcgOC4wNDQpc2NhbGUoMjUuODkyNSAzMy40MDMzKSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjM5IiBzdG9wLWNvbG9yPSIjMDI4RkRDIi8+PHN0b3Agb2Zmc2V0PSIuNTkiIHN0b3AtY29sb3I9IiMwMDc4RDQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxQTUwOEIiLz48L3JhZGlhbEdyYWRpZW50PjxyYWRpYWxHcmFkaWVudCBpZD0iaTg4NWRlOS1kIiBjeD0iMCIgY3k9IjAiIHI9IjEiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoMTM5LjQ0IDEyLjYzMiAxMy44OTUpc2NhbGUoMjMuMzAwNiAyOC43NDk1KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjQ2IiBzdG9wLWNvbG9yPSIjNDBEOUZBIi8+PHN0b3Agb2Zmc2V0PSIuOSIgc3RvcC1jb2xvcj0iIzAwOTVFNiIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJpODg1ZGU5LWUiIGN4PSIwIiBjeT0iMCIgcj0iMSIgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgtMi42NTMwOCAyNC41ODE4NCAtMTcuNDU4MzEgLTEuODg0MjUgMTguNDA4IDExLjI2NCkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9Ii43NyIgc3RvcC1vcGFjaXR5PSIwIi8+PHN0b3Agb2Zmc2V0PSIxIi8+PC9yYWRpYWxHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9Imk4ODVkZTktZiIgY3g9IjAiIGN5PSIwIiByPSIxIiBncmFkaWVudFRyYW5zZm9ybT0icm90YXRlKDg1Ljk3IC0uNzQzIDMwLjk1OSlzY2FsZSgzOC40NzQ5IDcwLjE1NzgpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIuMSIgc3RvcC1jb2xvcj0iI0JERjVGRiIvPjxzdG9wIG9mZnNldD0iLjQ3IiBzdG9wLWNvbG9yPSIjNDBEOUZBIi8+PC9yYWRpYWxHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9Imk4ODVkZTktYSIgeDE9IjM5LjUwOSIgeDI9IjQuNDQ4IiB5MT0iMTYuOTczIiB5Mj0iMjUuMDU4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIuMiIgc3RvcC1jb2xvcj0iIzAyOEZEQyIvPjxzdG9wIG9mZnNldD0iLjUxIiBzdG9wLWNvbG9yPSIjMDA3OEQ0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEIzMTVCIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9Imk4ODVkZTktYiIgeDE9IjQxLjk5NSIgeDI9IjE4LjgzMSIgeTE9IjI3Ljg0MSIgeTI9IjYuNjEyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIuMDQiIHN0b3AtY29sb3I9IiMwMjhGREMiLz48c3RvcCBvZmZzZXQ9Ii40NiIgc3RvcC1jb2xvcj0iIzAwNzhENCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzBCMzE1QiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==",
+      "lastRetrieved": 0
+    },
+    "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0": {
+      "id": "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0",
+      "mimeType": "image/svg+xml",
+      "created": 0,
+      "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBmaWxsPSJ1cmwoI2kxYmU5YmItYSkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjg3NSAyLjVINDguNWMyLjM0MyAwIDQuODkzIDIuNzU5IDQuODkzIDUuMTcydjM1LjczYzAgMS40NzkgMS4yNTUuNDQyIDAgMS4zNDhsLjM0OCAxLjY3MXY4LjcwNGwtLjM0OCAyLjU2My0zLjAxOCAzLjVoLTM1bC00LjMxMy0yLTEuNzUtNC41NjN2LTIuMjVzMS4xNDMtMS43MTUuMzQ4LS44OFYxMS42NTRjMC0zLjYyLjctOS4xNTQgNC4yMTUtOS4xNTQiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9InVybCgjaTFiZTliYi1iKSIgZmlsbC1vcGFjaXR5PSIuMiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTMuODc1IDIuNUg0OC41YzIuMzQzIDAgNC44OTMgMi43NTkgNC44OTMgNS4xNzJ2MzUuNzNjMCAxLjQ3OSAxLjI1NS40NDIgMCAxLjM0OGwuMzQ4IDEuNjcxdjguNzA0bC0uMzQ4IDIuNTYzLTMuMDE4IDMuNWgtMzVsLTQuMzEzLTItMS43NS00LjU2M3YtMi4yNXMxLjE0My0xLjcxNS4zNDgtLjg4VjExLjY1NGMwLTMuNjIuNy05LjE1NCA0LjIxNS05LjE1NCIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0idXJsKCNpMWJlOWJiLWMpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05LjAwNiA1NC4zMkE4IDggMCAwIDAgMTcgNjJoMzFhNiA2IDAgMCAwIDYtNlY4YTYgNiAwIDAgMC02LTZIMTVhNiA2IDAgMCAwLTYgNnY0NnEwIC4wODMuMDAyLjE2NEw5IDU0LjMyek0xNSAzaDMzYTUgNSAwIDAgMSA1IDV2MzUuNWEzLjUgMy41IDAgMCAxLTMuNSAzLjVIMTYuMzJBNy4zMiA3LjMyIDAgMCAwIDEwIDUwLjYyNVY4YTUgNSAwIDAgMSA1LTVtLTQuOTk4IDUxLjE2NEE2LjMyIDYuMzIgMCAwIDEgMTYuMzIgNDhINDkuNWE0LjUgNC41IDAgMCAwIDMuNS0xLjY3MVY1MC41YTMuNSAzLjUgMCAwIDEtMy41IDMuNWgtMzRhLjUuNSAwIDAgMCAwIDFoMzRhNC41IDQuNSAwIDAgMCAzLjUtMS42NzFWNTZhNSA1IDAgMCAxLTUgNUgxN2E3IDcgMCAwIDEtNi45OTgtNi44MzYiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9InVybCgjaTFiZTliYi1kKSIgZD0iTTM0LjkyNiAxNC4wMmEuNS41IDAgMCAxIC4zMzcuNjIzbC02LjUzNCAyMmEuNS41IDAgMSAxLS45NTgtLjI4NWw2LjUzMy0yMmEuNS41IDAgMCAxIC42MjItLjMzN1oiLz48cGF0aCBmaWxsPSJ1cmwoI2kxYmU5YmItZSkiIGQ9Ik0yNC44NTQgMTguMTQ2YS41LjUgMCAwIDAtLjcwOCAwbC02LjkyOSA2LjkzYS42LjYgMCAwIDAgMCAuODQ4bDYuOTMgNi45M2EuNS41IDAgMCAwIC43MDctLjcwOEwxOC4yMDcgMjUuNWw2LjY0Ny02LjY0NmEuNS41IDAgMCAwIDAtLjcwOCIvPjxwYXRoIGZpbGw9InVybCgjaTFiZTliYi1mKSIgZD0iTTM4Ljg1NCAzMi44NTRhLjUuNSAwIDAgMS0uNzA4LS43MDhsNi42NDctNi42NDYtNi42NDctNi42NDZhLjUuNSAwIDAgMSAuNzA4LS43MDhsNi45MjkgNi45M2EuNi42IDAgMCAxIDAgLjg0OHoiLz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImkxYmU5YmItYSIgeDE9IjIxLjcxMiIgeDI9IjMxLjM2NCIgeTE9IjIuNSIgeTI9IjYxLjIzMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNFQkVCRUIiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iaTFiZTliYi1jIiB4MT0iMjMuNTMxIiB4Mj0iMzQuMTU4IiB5MT0iMiIgeTI9IjYxLjc3NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNCQkIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM4ODgiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iaTFiZTliYi1kIiB4MT0iMTcuMDQxIiB4Mj0iMzkuNDUyIiB5MT0iMTQiIHkyPSI0Mi4xNzYiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjNEJBNDQ2Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjM0Y3RDM1Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImkxYmU5YmItZSIgeDE9IjE3LjA0MSIgeDI9IjM5LjQ1MiIgeTE9IjE0IiB5Mj0iNDIuMTc2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iIzRCQTQ0NiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzNGN0QzNSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJpMWJlOWJiLWYiIHgxPSIxNy4wNDEiIHgyPSIzOS40NTIiIHkxPSIxNCIgeTI9IjQyLjE3NiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiM0QkE0NDYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMzRjdEMzUiLz48L2xpbmVhckdyYWRpZW50PjxyYWRpYWxHcmFkaWVudCBpZD0iaTFiZTliYi1iIiBjeD0iMCIgY3k9IjAiIHI9IjEiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoNjMuMTEyIC0yLjY5MiAyOC4wODMpc2NhbGUoNTIuMDkyOCAzOS4zOTc5KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjE3NyIgc3RvcC1jb2xvcj0iI2ZmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0I4QjhCOCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==",
       "lastRetrieved": 0
     },
     "4a796479fc554eb2c9ad0aab22daccd6038d9cbaf36e0a63e76dac173a9a7d89": {

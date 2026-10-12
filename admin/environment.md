@@ -16,6 +16,10 @@
 
 한 Lakehouse에서 participant column만 나누는 공유 실습이 아닙니다. 동일한 workspace/Lakehouse ID를 두 참가자에게 배정하지 않습니다. 같은 이름의 ID를 추정하지 말고 실제 item/workspace readback으로 확인합니다.
 
+각 참가자의 Lakehouse 안에서 `bronze`·`silver`·`gold` schema로 **원천 보존 / 타입·키 검증 / 업무 판단 근거**를 논리 분리합니다. 모두 OneLake의 Delta이며 Files 원본과 audit 증적은 별도 산출물입니다. schema 이름만으로 보안 격리를 보장하지 않습니다.
+
+Microsoft의 [운영 권고](https://learn.microsoft.com/en-us/fabric/onelake/onelake-medallion-lakehouse-architecture)는 계층별 Lakehouse와 별도 workspace입니다. 이 kit의 단일 schema-enabled Lakehouse는 참가자 바인딩·학습을 단순화한 교육적 절충입니다. [메달리온 설계 해설](medallion-architecture.md)의 실제 table 매핑·품질 계약·재실행 경계를 확인하고 운영 배치로 그대로 일반화하지 마십시오.
+
 ## 별도 승인 후 준비 절차
 
 1. 관리자가 비공개 원본 inventory와 현재 로그인 조직을 대조한 올바른 tenant에서 workspace와 참가자 소유 Lakehouse를 만들고 schema 지원을 확인합니다. 다른 Azure CLI 계정을 자동 재사용하지 않습니다. 실제 tenant/account 식별자는 공개 kit에 넣지 않습니다.

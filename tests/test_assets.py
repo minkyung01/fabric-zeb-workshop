@@ -163,6 +163,43 @@ class AssetTests(unittest.TestCase):
                         overlap = top < y1 < bottom and max(min(x1, x2), left) < min(max(x1, x2), right)
                     self.assertFalse(overlap, f'Route {route["id"]} crosses card {c["id"]}')
 
+    def test_medallion_layers_and_gold_consumption_contract(self):
+        import ast
+        import build_notebooks
+        from reference import fixtures
+        scene = json.loads((ROOT / "assets" / "architecture.scene.json").read_text(encoding="utf-8"))
+        cards = {c["id"]: c for c in scene["cards"]}
+        layers = [c for c in scene["cards"] if c.get("role") == "medallion"]
+        self.assertEqual([c["schema"] for c in layers], ["bronze", "silver", "gold"])
+        self.assertEqual([c["notebook"] for c in layers], ["01_bronze", "02_silver", "03_gold"])
+        self.assertEqual(len({c["y"] for c in layers}), 1)
+        self.assertLess(cards["bronze"]["x"], cards["silver"]["x"])
+        self.assertLess(cards["silver"]["x"], cards["gold"]["x"])
+        self.assertGreater(cards["audit-store"]["y"], cards["gold"]["y"] + cards["gold"]["height"])
+        routes = {r["id"]: r for r in scene["routes"]}
+        gold = cards["gold"]
+        for route_id, target in (("gold-to-ontology", "ontology"),
+                                 ("gold-to-directlake", "model"),
+                                 ("gold-to-snapshot", "eventhouse")):
+            start, end = routes[route_id]["points"][0], routes[route_id]["points"][-1]
+            self.assertEqual(start[0], gold["x"] + gold["width"])
+            self.assertTrue(gold["y"] <= start[1] <= gold["y"] + gold["height"])
+            self.assertEqual(end[1], cards[target]["y"])
+            self.assertTrue(cards[target]["x"] <= end[0] <= cards[target]["x"] + cards[target]["width"])
+        text = "\n".join(e["text"] for e in scene["elements"] if e["type"] == "text")
+        for label in ("Bronze | Raw", "Silver | Enriched", "Gold | Curated",
+                      "원본 파일 보존 ≠ Bronze Delta table", "SQL analytics endpoint",
+                      "업무 entity 12 + 계산 결과 3", "별도 통제·증적 경로"):
+            self.assertIn(label, text)
+        data = fixtures()
+        self.assertEqual(len(data), 16)
+        tree = ast.parse(build_notebooks.GOLD)
+        mapping = next(ast.literal_eval(n.value) for n in tree.body if isinstance(n, ast.Assign)
+                       and any(isinstance(t, ast.Name) and t.id == "mapping" for t in n.targets))
+        self.assertEqual(len(mapping), 12)
+        self.assertTrue(set(mapping).issubset(data))
+        self.assertEqual(len(data["bim_design_version"]["rows"]), 18)
+
     def test_action_parameter_discovery_and_contract(self):
         import ast
         nb = json.loads((ROOT / "notebooks" / "05_decision_log.ipynb").read_text(encoding="utf-8"))

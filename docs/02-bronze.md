@@ -3,6 +3,8 @@
 ## 업무 목적
 실제 시스템 추출물과 가상 실습 데이터를 혼동하지 않고, 원천 문자열과 출처 hash를 보존합니다.
 
+**메달리온의 Raw 계층**입니다. `Files/workshop/`의 원본 JSON/CSV는 재처리 근거이고, `bronze.*`는 그 값을 문자열로 표현한 **별도 Delta table**입니다. 여기서 등급·지역 표준화·보완안 계산을 하지 않습니다. 원본 bytes까지 보존해야 문자열 table만으로 복원할 수 없는 파일 표현도 확인할 수 있습니다. [계층별 설계](../admin/medallion-architecture.md)를 참고합니다.
+
 ## 시작 전 준비
 [01](01-environment.md) preflight 완료, 자체 Files fixture 제공, 첫 실행의 Bronze 테이블이 없는 상태가 필요합니다. 데이터 사전은 [data/README](../data/README.md)를 엽니다.
 
@@ -23,6 +25,8 @@
 ## 확인할 결과
 내부 Bronze 16개: 프로젝트/현장/MDM 각 8, 설계 18, 목표 12, 인증서 10, 일정 48, 설비 39, 공급사 9, 발주 25, 이벤트 1, 옵션 12, source action 0, 등급 기준 6, 지역 17, 설비 분야 8. **공공 ZEB 추가 후 Bronze 총17개**이며 public count는 실제 retained manifest와 같아야 합니다. 원본 관찰9760을 다른 snapshot에도 강제로 적용하지 않습니다.
 `_source_kind=SYNTHETIC`, `_source_sha256`이 남습니다. 원천 JSON/CSV도 보존되어 재검증할 수 있습니다. 공공 미취득을 가상 데이터로 바꾸지 않습니다.
+
+가상 metadata와 공공 metadata는 다릅니다. 가상 16개는 `_source_kind`·`_source_sha256`, 공공은 `source_row_num`·`_source_dataset_id`·`_source_file_sha256`으로 출처를 추적합니다. 공공 컬럼명은 명시 mapping으로 바꾸되 값은 string으로 유지합니다. 수집 timestamp·batch ID를 추가했다고 주장하지 않습니다.
 
 ![실제 공공 ZEB Bronze와 Silver 각 9760행 출력](../assets/screenshots/p01-public-zeb-counts.png)
 

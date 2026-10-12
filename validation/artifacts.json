@@ -1,6 +1,6 @@
 {
   "kind": "public_kit_and_redacted_evidence_inventory",
-  "file_count_excluding_this_inventory": 124,
+  "file_count_excluding_this_inventory": 125,
   "files": [
     {
       "path": ".gitattributes",
@@ -14,8 +14,13 @@
     },
     {
       "path": "admin/environment.md",
-      "bytes": 18837,
-      "sha256": "ed080e910623bc11ee3e0e670ab5e450618f0888de1f8b1559527c6d2f024219"
+      "bytes": 19637,
+      "sha256": "cb33ff1e1392b9f8ebfa5d4a74a382de8fb6b545572438b5c288ff517df97768"
+    },
+    {
+      "path": "admin/medallion-architecture.md",
+      "bytes": 9886,
+      "sha256": "a1eb459c49ffa98fbe29cb9b3d4ec6982371a4d149cf5a2efc59e7b731a65a20"
     },
     {
       "path": "admin/validation.md",
@@ -24,23 +29,23 @@
     },
     {
       "path": "assets/architecture.excalidraw",
-      "bytes": 162191,
-      "sha256": "5ada831d263f24baa2dc2f0a27ce53a02b2dd2f8c58a94196449d90731df1c05"
+      "bytes": 191431,
+      "sha256": "cb873e261e4f81ffff0fe631bb5a13f13ba93ccda9f3a401ff838db0d8ae6c23"
     },
     {
       "path": "assets/architecture.png",
-      "bytes": 233456,
-      "sha256": "babb96eea3e2db6930119557d2c6a499ab6938c8a2d40cead1d755230ed91219"
+      "bytes": 317566,
+      "sha256": "e5d7a075b1644e99bbed10ad16cbfedd95c44c86996464e52de9949036f37d92"
     },
     {
       "path": "assets/architecture.scene.json",
-      "bytes": 167930,
-      "sha256": "ed74145d972184a8fb8358b5ec04f494de42e0e605906b2a5e1a9cc41d8d8586"
+      "bytes": 198128,
+      "sha256": "e77b324d8866e6ff935adacb648a8f37d0fdfa046b6a3550bdcc5761a07eba2a"
     },
     {
       "path": "assets/architecture.svg",
-      "bytes": 79595,
-      "sha256": "fa30a15fc89bf4c0cf689e03ced673e6ed69b4ada58c35bf5a043087aa5840bb"
+      "bytes": 101574,
+      "sha256": "22809b00ca55bff77b99a479e236dd5c976d4de01c66f2fd1f0a458e46ef21b4"
     },
     {
       "path": "assets/icon-attribution.md",
@@ -244,8 +249,8 @@
     },
     {
       "path": "data/README.md",
-      "bytes": 5279,
-      "sha256": "76738e754d0d760bc80d3b08738a15f47d42fcf63916ae1f861b69689b536f42"
+      "bytes": 5852,
+      "sha256": "1ed7129e9a8a7e3b77263e2b2f5d371e8cfb551a1aa0bae39b4e16c273ae5721"
     },
     {
       "path": "data/reference-answers.md",
@@ -364,18 +369,18 @@
     },
     {
       "path": "docs/02-bronze.md",
-      "bytes": 3644,
-      "sha256": "10cc6d476066de5ff9d22e4e040fdad9ce2f785a93a9f8e49ec022ef9a844e45"
+      "bytes": 4479,
+      "sha256": "7eb844b17fdd1bc4b028a6d4439150f79d787a69a99ebb3c0b20242ad374ecee"
     },
     {
       "path": "docs/03-silver.md",
-      "bytes": 2501,
-      "sha256": "a4aae34582d2bb1de876a09a6b2a6103cfc82dff5dc61be6ec960e01eabba7c4"
+      "bytes": 3400,
+      "sha256": "c6466c41d1618e431d1886579cc7df6b0a93cbbd3271db4e19093bf89584876c"
     },
     {
       "path": "docs/04-gold.md",
-      "bytes": 2353,
-      "sha256": "4b2dac69a7fb8ed536f4262f96580ba43f1ec91ee9515c5a345c25236bdece82"
+      "bytes": 3148,
+      "sha256": "15a34cf0e65a395bd24a18202d692ea83acdadf10fd9312b036b24d9a911638f"
     },
     {
       "path": "docs/05-options.md",
@@ -414,8 +419,8 @@
     },
     {
       "path": "docs/sources.md",
-      "bytes": 3757,
-      "sha256": "bd98e8e4621e331f78d65946884d3bdcfea0a83e8f8c1b760ca4ccd0fb5ec94c"
+      "bytes": 6823,
+      "sha256": "6396c133f368e91e38a12ea40b96807584265da98df431917d645ef19365019f"
     },
     {
       "path": "notebooks/00_preflight.ipynb",
@@ -524,8 +529,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7280,
-      "sha256": "5175e7258a6241b4832c1d04f69f9acf920bcd13c4a2d34960abb8a36fae3b6f"
+      "bytes": 9214,
+      "sha256": "f483391d1f2b3ff811d768ef3540ab2a23532c3634de5f7a66a03bbb0da504c5"
     },
     {
       "path": "semantic_model/apply-model.tmdl",
@@ -554,8 +559,8 @@
     },
     {
       "path": "tests/test_assets.py",
-      "bytes": 19447,
-      "sha256": "fcbba12cf2d2176c599e4a06f5c1dae448b304d7201468b5b55d411ac0d3d69d"
+      "bytes": 21896,
+      "sha256": "70b7fe303c1adf92c25faa27daf27bfa7c848b0494c49ca31df680602364bb8d"
     },
     {
       "path": "tests/test_reference.py",
@@ -569,8 +574,8 @@
     },
     {
       "path": "tools/build_architecture.py",
-      "bytes": 15222,
-      "sha256": "b3d11f886c35d98b9bde0f79d3f82ee8a3eae5e7aed55ddb5132b7e3abb8189f"
+      "bytes": 18227,
+      "sha256": "a4eba40da1671131fc99345ccde1b15cf2ae67a5781ef1140e55efcd3ecb6538"
     },
     {
       "path": "tools/build_data.py",

@@ -3,6 +3,8 @@
 ## 업무 목적
 AI의 설명을 믿기 전에 실제 설계 행과 교육 기준으로 등급을 계산합니다.
 
+**메달리온의 Curated 계층**입니다. Gold는 요약 집계만이 아니라 `project`·`site`·`design_version` 등 재사용할 **업무 entity 12개**와 `site_status`·`option_eval`·`po_status` **계산 결과 3개**입니다. Silver는 검증된 입력, Gold는 Ontology·Direct Lake·위험 snapshot이 공유하는 판단 근거입니다. [정확한 매핑](../admin/medallion-architecture.md#실제-table-매핑)을 참고합니다.
+
 ## 시작 전 준비
 Silver 완료. [읽기 SQL](../sql/reference_checks.sql), [계산 해설](../data/reference-answers.md)을 엽니다. 기준은 법적 현행 적용 검토가 완료되지 않은 **잠정 교육 reference**입니다.
 
@@ -16,6 +18,8 @@ Silver 완료. [읽기 SQL](../sql/reference_checks.sql), [계산 해설](../dat
 7. `gold.po_status`에서 `deadline_breach`를 집계하고 0인지 확인합니다. IC-B 이벤트의 +5일은 반영되지만 설치 마감을 넘지 않습니다.
 
 Spark 성공 직후 SQL에서 새 schema/table이 보이지 않으면 writer를 다시 실행하지 않습니다. 관리자가 [SQL metadata 동기화 절차](../admin/environment.md#sql-endpoint-동기화)를 수행한 뒤 **읽기 쿼리만** 재시도합니다.
+
+`03_gold`는 Spark로 Delta를 씁니다. SQL analytics endpoint는 같은 Delta의 **읽기 전용** 경로이므로 INSERT/UPDATE/DELETE로 Gold를 생성·보정하지 않습니다. 독립 검산은 같은 Gold grade를 다시 읽는 것이 아니라 Silver 설계와 기준으로 계산하여 저장 결과와 비교하는 것입니다.
 
 ## 확인할 결과
 | 현장 | 교육 등급 rank | risk |
