@@ -1,6 +1,6 @@
 {
   "kind": "public_kit_and_redacted_evidence_inventory",
-  "file_count_excluding_this_inventory": 111,
+  "file_count_excluding_this_inventory": 124,
   "files": [
     {
       "path": ".gitattributes",
@@ -19,28 +19,93 @@
     },
     {
       "path": "admin/validation.md",
-      "bytes": 18796,
-      "sha256": "478eb62e557f262dc49a98122ad4e2d5d25ad64d5494df6c2e605e3b0a550816"
+      "bytes": 19295,
+      "sha256": "1ba5e10e92de230a6606750eb8d46b6e94f65024edeaef8d609a672d8804f8de"
     },
     {
       "path": "assets/architecture.excalidraw",
-      "bytes": 41376,
-      "sha256": "7c68ef97c50f5fe83010397f4f939cda263d3d19257dfb0ff789489e0cb8c53e"
+      "bytes": 162191,
+      "sha256": "5ada831d263f24baa2dc2f0a27ce53a02b2dd2f8c58a94196449d90731df1c05"
     },
     {
       "path": "assets/architecture.png",
-      "bytes": 76597,
-      "sha256": "ed4c8e38a92be4366da387bc280dbbd0ac40c92bed915963ae5f949aec5abe49"
+      "bytes": 233456,
+      "sha256": "babb96eea3e2db6930119557d2c6a499ab6938c8a2d40cead1d755230ed91219"
     },
     {
       "path": "assets/architecture.scene.json",
-      "bytes": 3365,
-      "sha256": "9501f36eac10d60dbe0166cf3cbb2c664ed4180b0d3491307065bf9b69e5f64b"
+      "bytes": 167930,
+      "sha256": "ed74145d972184a8fb8358b5ec04f494de42e0e605906b2a5e1a9cc41d8d8586"
     },
     {
       "path": "assets/architecture.svg",
-      "bytes": 8370,
-      "sha256": "a182513bda412f706de1a6b610eac90a1107e5a23b322ac97b10710e29c59ddc"
+      "bytes": 79595,
+      "sha256": "fa30a15fc89bf4c0cf689e03ced673e6ed69b4ada58c35bf5a043087aa5840bb"
+    },
+    {
+      "path": "assets/icon-attribution.md",
+      "bytes": 3098,
+      "sha256": "826423ffd5797d97d9d62106425b53313039c6b774fe09594c00c9ca49bc7a9e"
+    },
+    {
+      "path": "assets/icons/eventhouse.svg",
+      "bytes": 2579,
+      "sha256": "9d3805a744770579728552eee9ea28bf73afc47bb469b00b1671a0e66cee96c6"
+    },
+    {
+      "path": "assets/icons/fabric.svg",
+      "bytes": 4558,
+      "sha256": "ef80d2edbfc1b045241d2e9550b7930b648d8018e0274116a3df6d6ccf3adbf9"
+    },
+    {
+      "path": "assets/icons/foundry-agent.svg",
+      "bytes": 3284,
+      "sha256": "aedb65eeb06c1d4f3d57568edd2e8e7205065589ae8ceba4513a2fd21b4053ca"
+    },
+    {
+      "path": "assets/icons/foundry.svg",
+      "bytes": 2824,
+      "sha256": "fab039a771f72780ae34e59065d61c66a02d3c347d50923ef2956f34912ea02c"
+    },
+    {
+      "path": "assets/icons/lakehouse.svg",
+      "bytes": 4405,
+      "sha256": "fbf6da87a91ac447b251d283a9a01b9e8987d53cf1acf6aa64692155ac6508ca"
+    },
+    {
+      "path": "assets/icons/notebook.svg",
+      "bytes": 2770,
+      "sha256": "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0"
+    },
+    {
+      "path": "assets/icons/onelake.svg",
+      "bytes": 3022,
+      "sha256": "23fe33bcc61e703f655ac98753512a780bc2ff71d157d6c25682841ed9b6a825"
+    },
+    {
+      "path": "assets/icons/ontology.svg",
+      "bytes": 2616,
+      "sha256": "4a796479fc554eb2c9ad0aab22daccd6038d9cbaf36e0a63e76dac173a9a7d89"
+    },
+    {
+      "path": "assets/icons/operations-agent.svg",
+      "bytes": 3267,
+      "sha256": "90cd5514cedb667f1b8ec7745b2a0969551fc949874e58321f3b7693d7f69fbd"
+    },
+    {
+      "path": "assets/icons/power-bi.svg",
+      "bytes": 2452,
+      "sha256": "264abad01f50acaffb697b3ede22215b7d87f387c1af92f0a0b14117d2c2e4f1"
+    },
+    {
+      "path": "assets/icons/semantic-model.svg",
+      "bytes": 2453,
+      "sha256": "87861c159d7b08bbefc2483eda204a0d1ff6c57c4ab9f64b156c29d9125f45b0"
+    },
+    {
+      "path": "assets/icons/teams.svg",
+      "bytes": 2094,
+      "sha256": "6ec0e1afd7359a71915430bab4a49554bcfd1f1b881db5108c807ed08f1a0afb"
     },
     {
       "path": "assets/screenshots/p01-action-binding.png",
@@ -459,8 +524,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6743,
-      "sha256": "32acb992f6b814c79f98e634fc810cc042075c961d26a51985438aef936eaa1b"
+      "bytes": 7280,
+      "sha256": "5175e7258a6241b4832c1d04f69f9acf920bcd13c4a2d34960abb8a36fae3b6f"
     },
     {
       "path": "semantic_model/apply-model.tmdl",
@@ -489,8 +554,8 @@
     },
     {
       "path": "tests/test_assets.py",
-      "bytes": 15674,
-      "sha256": "31551e39df0f6d6ed231ae3af6c86f8b869ceb5729b6e42a56a3dd2dfa9be222"
+      "bytes": 19447,
+      "sha256": "fcbba12cf2d2176c599e4a06f5c1dae448b304d7201468b5b55d411ac0d3d69d"
     },
     {
       "path": "tests/test_reference.py",
@@ -504,8 +569,8 @@
     },
     {
       "path": "tools/build_architecture.py",
-      "bytes": 6422,
-      "sha256": "c450a9f43186d37f0a841e0ce5700b2962b95a64889b9e08b6c16556d6e62d6a"
+      "bytes": 15222,
+      "sha256": "b3d11f886c35d98b9bde0f79d3f82ee8a3eae5e7aed55ddb5132b7e3abb8189f"
     },
     {
       "path": "tools/build_data.py",
@@ -544,8 +609,8 @@
     },
     {
       "path": "tools/render_architecture.ps1",
-      "bytes": 2873,
-      "sha256": "44df555aca722dcd6a41bb1eff4a39e116253d294a9c230068b259e5c64c32e8"
+      "bytes": 2790,
+      "sha256": "127b47f437550e38a69d83a10bb7b42d2cdc47d2fdf24ced9cde1b561926528d"
     },
     {
       "path": "validation/rehearsal-summary.json",

@@ -30,7 +30,7 @@
 - 실제 ZEB snapshot `20251231`을 보존·검토하여 p01에 공급했고 `06_public_zeb`으로 Bronze/Silver 각 **9,760행**을 확인했습니다. **다른 참가자도 승인된 실제 bytes/manifest 공급 및 자신의 실행이 필수**입니다. [공공 원천 준비](data/public/README.md)가 blocked이면 데이터 chapter를 완료로 표시하지 않습니다. 다른 3종은 미취득 관리자 reference이며 raw public 파일을 GitHub에 공개하지 않았습니다.
 - 모든 등급·효과·기간은 **잠정 교육 기준**입니다. 법적 인증·물리적 실현 가능성·12명 동시 실행 성능을 보증하지 않습니다.
 
-Windows PowerShell에서 저장소 루트 기준, Python 표준 라이브러리와 기존 Windows 렌더러만 사용합니다.
+Windows PowerShell에서 저장소 루트 기준, Python 표준 라이브러리와 Microsoft Edge의 로컬 SVG 렌더러를 사용합니다.
 
 ```powershell
 python .\tools\build_data.py
@@ -44,11 +44,13 @@ python .\tools\check_kit.py
 
 이 명령은 로컬 파일 생성·검사만 합니다. 클라우드 배포·capacity 조작·알림 발송은 없습니다. 배포 준비 도구도 오프라인 정의 패키지만 만들며, 클라우드 프로비저닝은 별도 승인 작업입니다.
 
-## 아키텍처
+## 전체 구성
+
+Fabric Notebook에서 **Bronze → Silver → Gold**로 정제·계산하고, schema-enabled Lakehouse의 **OneLake**에 저장합니다. Ontology·내장 agent와 Power BI의 Direct Lake 모델은 **같은 Gold**를 근거로 현황과 보완안을 검토합니다. Operations agent는 명시적으로 수집한 위험 snapshot을 조회하여 Teams에 제안하고, 담당자가 확인한 뒤 Notebook은 **결정 로그만** 기록합니다.
 
 ![오프라인 설계도 — 실제 화면 아님](assets/architecture.png)
 
-[SVG](assets/architecture.svg) · [편집 원본 Excalidraw](assets/architecture.excalidraw) · [장면 JSON](assets/architecture.scene.json)
+[선명한 SVG](assets/architecture.svg) · [편집 원본 Excalidraw](assets/architecture.excalidraw) · [장면 JSON](assets/architecture.scene.json) · [공식 제품 아이콘 출처](assets/icon-attribution.md)
 
 기본: 실제 공공 ZEB + SYNTHETIC Files → Bronze → Silver → Gold → Ontology/Power BI Copilot 페이지·질문·인사이트 → 명시적 Eventhouse snapshot → Teams 제안 → native/SQL 근거 검토 → **사람 Proceed/Confirm → creator-delegated Operations Notebook action → 결정 로그만** → 읽기 검증 → 명시적 recorded 상태 → Operations agent Stop. 자유 입력 승인 flag는 사용하지 않으며 notebook에서 verified 인간 identity를 주장하지 않습니다.
 

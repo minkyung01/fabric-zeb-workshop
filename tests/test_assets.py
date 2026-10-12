@@ -107,6 +107,62 @@ class AssetTests(unittest.TestCase):
         self.assertTrue((ROOT / "assets" / "architecture.svg").exists())
         self.assertEqual((ROOT / "assets" / "architecture.png").read_bytes()[:8], b"\x89PNG\r\n\x1a\n")
 
+    def test_architecture_shared_scene_icons_and_scope(self):
+        import base64
+        import struct
+        import xml.etree.ElementTree as ET
+        scene = json.loads((ROOT / "assets" / "architecture.scene.json").read_text(encoding="utf-8"))
+        editable = json.loads((ROOT / "assets" / "architecture.excalidraw").read_text(encoding="utf-8"))
+        self.assertEqual(scene["elements"], editable["elements"])
+        self.assertEqual(scene["files"], editable["files"])
+        svg = ET.parse(ROOT / "assets" / "architecture.svg")
+        images = svg.findall("{http://www.w3.org/2000/svg}image")
+        icon_elements = [e for e in scene["elements"] if e["type"] == "image"]
+        self.assertEqual(len(images), len(icon_elements))
+        products = {e["customData"]["productIcon"] for e in icon_elements}
+        self.assertEqual(products, {
+            "fabric", "lakehouse", "onelake", "notebook", "ontology",
+            "semantic-model", "power-bi", "eventhouse", "operations-agent",
+            "teams", "foundry", "foundry-agent",
+        })
+        for e, image in zip(icon_elements, images):
+            data = scene["files"][e["fileId"]]
+            self.assertEqual(image.attrib["href"], data["dataURL"])
+            self.assertEqual(base64.b64decode(data["dataURL"].split(",", 1)[1]),
+                             (ROOT / "assets" / "icons" / (e["customData"]["productIcon"]+".svg")).read_bytes())
+        png = (ROOT / "assets" / "architecture.png").read_bytes()
+        self.assertEqual(struct.unpack(">II", png[16:24]), (scene["width"], scene["height"]))
+        text = "\n".join(e["text"] for e in scene["elements"] if e["type"] == "text")
+        for expected in ("① 현황 계산", "② 보완안 비교", "③ Agent 제안", "④ 담당자 결정",
+                         "HS-D", "SS ≥ 40 또는 PE < 70", "snapshot 명시적 수집",
+                         "자동 스트리밍 연결은 아님", "선택 확장", "audit만 기록"):
+            self.assertIn(expected, text)
+        for stale in ("Capacity remains paused", "No cloud deployment", "Databricks", "Genie"):
+            self.assertNotIn(stale, text)
+        cards = {c["id"]: c for c in scene["cards"]}
+        self.assertLess(cards["audit"]["x"] + cards["audit"]["width"], cards["teams"]["x"])
+        self.assertLess(cards["model"]["x"] + cards["model"]["width"], cards["foundry"]["x"])
+        for card in cards.values():
+            for e in scene["elements"]:
+                if (e["type"] == "text" and card["x"] < e["x"] < card["x"]+card["width"]
+                        and card["y"] < e["y"] < card["y"]+card["height"]):
+                    self.assertLessEqual(e["y"]+e["height"], card["y"]+card["height"]-4,
+                                         f'Text clips card {card["id"]}: {e["text"]}')
+
+    def test_architecture_routes_are_orthogonal_and_clear_of_cards(self):
+        scene = json.loads((ROOT / "assets" / "architecture.scene.json").read_text(encoding="utf-8"))
+        for route in scene["routes"]:
+            for (x1, y1), (x2, y2) in zip(route["points"], route["points"][1:]):
+                self.assertTrue(x1 == x2 or y1 == y2, f'Diagonal route: {route["id"]}')
+                for c in scene["cards"]:
+                    left, top = c["x"], c["y"]
+                    right, bottom = left+c["width"], top+c["height"]
+                    if x1 == x2:
+                        overlap = left < x1 < right and max(min(y1, y2), top) < min(max(y1, y2), bottom)
+                    else:
+                        overlap = top < y1 < bottom and max(min(x1, x2), left) < min(max(x1, x2), right)
+                    self.assertFalse(overlap, f'Route {route["id"]} crosses card {c["id"]}')
+
     def test_action_parameter_discovery_and_contract(self):
         import ast
         nb = json.loads((ROOT / "notebooks" / "05_decision_log.ipynb").read_text(encoding="utf-8"))

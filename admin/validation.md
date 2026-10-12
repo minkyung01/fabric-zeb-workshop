@@ -31,6 +31,8 @@ python -m unittest discover -s tests -v
 python .\tools\check_kit.py
 ```
 
+구성도는 [한 장면의 SVG·Excalidraw 원본](../assets/architecture.scene.json)과 [공식 아이콘 출처](../assets/icon-attribution.md)를 함께 보존합니다. PNG는 Microsoft Edge로 **실제 SVG 자체**를 렌더링합니다. asset 검사는 원본/내장 아이콘 일치, 제품 경계, 직교 화살표의 카드 침범·글자 잘림을 검사하며 최종 PNG를 눈으로도 확인합니다. 구성도에 capacity 상태나 미실행 완료 주장을 넣지 않습니다.
+
 PASS는 계산·파일 무결성의 로컬 증거입니다. Spark runtime, delegated permissions, Direct Lake, Teams card, Copilot 또는 human identity의 실증이 아닙니다. [status.json](../validation/status.json)에서 local/live/공공 source 상태를 따로 읽습니다.
 
 초기 full suite **41개 PASS**를 보존했습니다. 후속 변경은 기존 runner의 관련 asset/OR/strict PE/baseline selector **15개를 한 invocation으로 검사**했고 현재 available case는 추가 교육 measure test를 포함해 42개입니다. 변경되지 않은 나머지를 재실행한 것처럼 표시하지 않습니다. compileall·check_kit과 갱신된 private p01 package/preview의 binding·hash 일치도 별도 확인합니다. offline package 재생성은 cloud 재배포/기존 stage 재실행이 아닙니다.
