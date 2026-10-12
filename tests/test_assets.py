@@ -123,7 +123,7 @@ class AssetTests(unittest.TestCase):
         self.assertEqual(products, {
             "fabric", "lakehouse", "onelake", "notebook", "ontology",
             "semantic-model", "power-bi", "eventhouse", "operations-agent",
-            "teams", "foundry", "foundry-agent",
+            "teams", "foundry",
         })
         for e, image in zip(icon_elements, images):
             data = scene["files"][e["fileId"]]
@@ -133,11 +133,13 @@ class AssetTests(unittest.TestCase):
         png = (ROOT / "assets" / "architecture.png").read_bytes()
         self.assertEqual(struct.unpack(">II", png[16:24]), (scene["width"], scene["height"]))
         text = "\n".join(e["text"] for e in scene["elements"] if e["type"] == "text")
-        for expected in ("① 현황 계산", "② 보완안 비교", "③ Agent 제안", "④ 담당자 결정",
-                         "HS-D", "SS ≥ 40 또는 PE < 70", "snapshot 명시적 수집",
-                         "자동 스트리밍 연결은 아님", "선택 확장", "audit만 기록"):
+        for expected in ("건설 ZEB 워크숍 | Microsoft Fabric", "명시적 수집",
+                         "Foundry | 선택", "결정 기록만 저장", "설계·발주 변경 없음",
+                         "제안·담당자 승인", "근거 질의", "현황·보완안"):
             self.assertIn(expected, text)
-        for stale in ("Capacity remains paused", "No cloud deployment", "Databricks", "Genie"):
+        for stale in ("Capacity remains paused", "No cloud deployment", "Databricks", "Genie",
+                      "메달리온을 읽는 법", "메달리온 읽는 법", "01_bronze", "gold.site_status",
+                      "9,760", "63행", "SS ≥", "운영에 적용할 때", "① 현황 계산"):
             self.assertNotIn(stale, text)
         cards = {c["id"]: c for c in scene["cards"]}
         self.assertLess(cards["audit"]["x"] + cards["audit"]["width"], cards["teams"]["x"])
@@ -171,11 +173,10 @@ class AssetTests(unittest.TestCase):
         cards = {c["id"]: c for c in scene["cards"]}
         layers = [c for c in scene["cards"] if c.get("role") == "medallion"]
         self.assertEqual([c["schema"] for c in layers], ["bronze", "silver", "gold"])
-        self.assertEqual([c["notebook"] for c in layers], ["01_bronze", "02_silver", "03_gold"])
         self.assertEqual(len({c["y"] for c in layers}), 1)
         self.assertLess(cards["bronze"]["x"], cards["silver"]["x"])
         self.assertLess(cards["silver"]["x"], cards["gold"]["x"])
-        self.assertGreater(cards["audit-store"]["y"], cards["gold"]["y"] + cards["gold"]["height"])
+        self.assertGreater(cards["audit"]["y"], cards["gold"]["y"] + cards["gold"]["height"])
         routes = {r["id"]: r for r in scene["routes"]}
         gold = cards["gold"]
         for route_id, target in (("gold-to-ontology", "ontology"),
@@ -187,10 +188,17 @@ class AssetTests(unittest.TestCase):
             self.assertEqual(end[1], cards[target]["y"])
             self.assertTrue(cards[target]["x"] <= end[0] <= cards[target]["x"] + cards[target]["width"])
         text = "\n".join(e["text"] for e in scene["elements"] if e["type"] == "text")
-        for label in ("Bronze | Raw", "Silver | Enriched", "Gold | Curated",
-                      "원본 파일 보존 ≠ Bronze Delta table", "SQL analytics endpoint",
-                      "업무 entity 12 + 계산 결과 3", "별도 통제·증적 경로"):
+        for label in ("BRONZE", "SILVER", "GOLD", "원천 보존", "정제·연결",
+                      "업무지표·판단근거", "OneLake | 공통 저장소", "schema-enabled Lakehouse"):
             self.assertIn(label, text)
+        self.assertEqual((scene["width"], scene["height"]), (1600, 1100))
+        for e in scene["elements"]:
+            if e["type"] == "text":
+                self.assertGreaterEqual(e["fontSize"], 20)
+                self.assertGreaterEqual(e["x"], 0)
+                self.assertGreaterEqual(e["y"], 0)
+                self.assertLessEqual(e["x"] + e["width"], scene["width"])
+                self.assertLessEqual(e["y"] + e["height"], scene["height"])
         data = fixtures()
         self.assertEqual(len(data), 16)
         tree = ast.parse(build_notebooks.GOLD)

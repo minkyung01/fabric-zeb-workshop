@@ -46,27 +46,15 @@ python .\tools\check_kit.py
 
 ## 전체 구성
 
-핵심은 **원천 보존 → 타입·정체성 검증 → 업무 판단 근거**로 품질과 책임을 높이는 메달리온 아키텍처입니다. 세 계층은 **OneLake 안의 한 schema-enabled Lakehouse**에 별도 Delta table로 저장되고 Fabric Spark Notebook이 변환합니다. OneLake는 Gold 다음 ETL 단계가 아닌 **전체 계층의 저장 기반**입니다.
+**Bronze 원천 보존 → Silver 정제·연결 → Gold 업무지표·판단근거**를 중심으로 현황과 보완안을 검토합니다.
 
 ![오프라인 설계도 — 실제 화면 아님](assets/architecture.png)
 
 [선명한 SVG](assets/architecture.svg) · [편집 원본 Excalidraw](assets/architecture.excalidraw) · [장면 JSON](assets/architecture.scene.json) · [공식 제품 아이콘 출처](assets/icon-attribution.md)
 
-| 계층 | 이 실습에서 책임지는 것 | 실제 산출물·완료 확인 |
-|---|---|---|
-| **Bronze · Raw** | 원천 값은 string으로 보존하고 Files 원본 bytes·hash를 추적 | `01_bronze`: 가상 16개 + `06_public_zeb`: 실제 공공 1개. 원천 hash·행 수 대조 |
-| **Silver · Enriched** | 명시 타입·공백 정리, 프로젝트↔현장↔BIM 키와 현행/제출 설계 검증 | `02_silver`: 가상 16개 + 공공 1개. 잘못된 cast·중복/고아 시 중단, 원천 metadata 유지 |
-| **Gold · Curated** | 분석용 업무 entity와 재사용 가능한 위험·보완안·발주 계산 결과 제공 — 집계만 하는 계층 아님 | `03_gold`: 업무 entity 12개 + 결과 3개. 현장 8행, 조합 63행, 발주 25행·마감 초과 0 |
+OneLake는 세 계층의 공통 저장소입니다. Gold 근거를 Ontology·Power BI·Operations에서 활용하며, Teams 담당자 승인 후 **결정 기록만** 저장합니다. 실제 설계·발주는 변경하지 않습니다. Foundry 근거 재검토는 선택입니다.
 
-**Files landing과 Bronze Delta는 별도 산출물**입니다. `06_public_zeb`은 공공 Bronze/Silver를 함께 만들며 p01 보존 snapshot은 각각 9,760행입니다. 공공 시설을 가상 현장과 이름으로 합치거나 공공 Gold를 생성하지 않습니다. 오류 격리 테이블·중복 자동 삭제·증분 스케줄링은 현재 구현하지 않았습니다.
-
-Ontology·내장 agent와 Power BI의 Direct Lake 모델은 **같은 Gold**를 소비합니다. SQL analytics endpoint는 Delta **읽기·독립 검산**이며 writer가 아닙니다. Operations는 Gold의 위험을 **명시적 snapshot**으로 수집합니다. 사람 확인 후 `audit.decision_log`만 기록하며 audit는 **네 번째 메달리온 계층이 아닙니다**.
-
-한 Lakehouse의 schema 분리는 참가자별 실습을 단순화한 교육 선택이며, schema 이름만으로 보안 격리를 보장하지 않습니다. Microsoft의 운영 권고인 **계층별 Lakehouse/workspace 분리**와의 차이, 실제 테이블 매핑·품질 계약은 [메달리온 설계 해설](admin/medallion-architecture.md), [공식 근거](docs/sources.md#메달리온-설계-검증-2026-10-13)를 참고하십시오.
-
-기본: 실제 공공 ZEB + SYNTHETIC Files → Bronze → Silver → Gold → Ontology/Power BI Copilot 페이지·질문·인사이트 → 명시적 Eventhouse snapshot → Teams 제안 → native/SQL 근거 검토 → **사람 Proceed/Confirm → creator-delegated Operations Notebook action → 결정 로그만** → 읽기 검증 → 명시적 recorded 상태 → Operations agent Stop. 자유 입력 승인 flag는 사용하지 않으며 notebook에서 verified 인간 identity를 주장하지 않습니다.
-
-선택: Teams 제안 후 승인하지 않고 Foundry Fabric IQ 근거 검토 → Teams로 복귀 → 사람 승인. 미래 ERP·발주·현장 통합은 구현하지 않았습니다.
+세부 테이블·수량·품질 기준·운영 설계는 [메달리온 설계 해설](admin/medallion-architecture.md)과 [공식 근거](docs/sources.md#메달리온-설계-검증-2026-10-13)를 참고하십시오.
 
 ## 핵심 정답
 

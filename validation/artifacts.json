@@ -29,23 +29,23 @@
     },
     {
       "path": "assets/architecture.excalidraw",
-      "bytes": 191431,
-      "sha256": "cb873e261e4f81ffff0fe631bb5a13f13ba93ccda9f3a401ff838db0d8ae6c23"
+      "bytes": 113251,
+      "sha256": "a2b1eb00de6bc7ae4858fed58e9b7635c930711fbfe24ecd2b0d4b38421d9600"
     },
     {
       "path": "assets/architecture.png",
-      "bytes": 317566,
-      "sha256": "e5d7a075b1644e99bbed10ad16cbfedd95c44c86996464e52de9949036f37d92"
+      "bytes": 92217,
+      "sha256": "0227fb125d023234c5e03cff571708aa9a0606bb24c1841867995bc9d3ecec23"
     },
     {
       "path": "assets/architecture.scene.json",
-      "bytes": 198128,
-      "sha256": "e77b324d8866e6ff935adacb648a8f37d0fdfa046b6a3550bdcc5761a07eba2a"
+      "bytes": 118069,
+      "sha256": "cdd196d15837bd7e8d8b6075cd49a2029aa7571c76160603ad5a45d3c9562190"
     },
     {
       "path": "assets/architecture.svg",
-      "bytes": 101574,
-      "sha256": "22809b00ca55bff77b99a479e236dd5c976d4de01c66f2fd1f0a458e46ef21b4"
+      "bytes": 56443,
+      "sha256": "139b278d26efac2cb6d16e7f40316cbf9e1c01ef0f1a71cd5bf4736ca86dcde4"
     },
     {
       "path": "assets/icon-attribution.md",
@@ -529,8 +529,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 9214,
-      "sha256": "f483391d1f2b3ff811d768ef3540ab2a23532c3634de5f7a66a03bbb0da504c5"
+      "bytes": 6777,
+      "sha256": "3f82c9a49522cac134dd9915abfbd09f8922969da1410c615a8367a5fc59b0de"
     },
     {
       "path": "semantic_model/apply-model.tmdl",
@@ -559,8 +559,8 @@
     },
     {
       "path": "tests/test_assets.py",
-      "bytes": 21896,
-      "sha256": "70b7fe303c1adf92c25faa27daf27bfa7c848b0494c49ca31df680602364bb8d"
+      "bytes": 22360,
+      "sha256": "d66c0b14c6cc49af4bdc9046ae6e2d2d42e8668b942232c1ce7169b6fecce140"
     },
     {
       "path": "tests/test_reference.py",
@@ -574,8 +574,8 @@
     },
     {
       "path": "tools/build_architecture.py",
-      "bytes": 18227,
-      "sha256": "a4eba40da1671131fc99345ccde1b15cf2ae67a5781ef1140e55efcd3ecb6538"
+      "bytes": 11495,
+      "sha256": "96522f8904b929905f39c6c7a34191a96b45b769ad88683b2cb26161c829617c"
     },
     {
       "path": "tools/build_data.py",
