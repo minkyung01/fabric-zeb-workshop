@@ -29,28 +29,28 @@
     },
     {
       "path": "assets/architecture.excalidraw",
-      "bytes": 113251,
-      "sha256": "a2b1eb00de6bc7ae4858fed58e9b7635c930711fbfe24ecd2b0d4b38421d9600"
+      "bytes": 130069,
+      "sha256": "2c5193c34d6cbfee8d1a5d2adf35437a70c2d88f90db6ce2de8d6d06f8858c4e"
     },
     {
       "path": "assets/architecture.png",
-      "bytes": 92217,
-      "sha256": "0227fb125d023234c5e03cff571708aa9a0606bb24c1841867995bc9d3ecec23"
+      "bytes": 209120,
+      "sha256": "dc83fe1acbceb82ae9dac0815e2e9e579caaa900333fb117b351c46259ae08c7"
     },
     {
       "path": "assets/architecture.scene.json",
-      "bytes": 118069,
-      "sha256": "cdd196d15837bd7e8d8b6075cd49a2029aa7571c76160603ad5a45d3c9562190"
+      "bytes": 134887,
+      "sha256": "71428454de07e201b72febcc7eac9a85032c938a6a19fb57249dcb8ebb910a20"
     },
     {
       "path": "assets/architecture.svg",
-      "bytes": 56443,
-      "sha256": "139b278d26efac2cb6d16e7f40316cbf9e1c01ef0f1a71cd5bf4736ca86dcde4"
+      "bytes": 61341,
+      "sha256": "6be43da62803780b7fa9fe98cf98f648faf8a54f8e335ee6a02b571fa097e628"
     },
     {
       "path": "assets/icon-attribution.md",
-      "bytes": 3098,
-      "sha256": "826423ffd5797d97d9d62106425b53313039c6b774fe09594c00c9ca49bc7a9e"
+      "bytes": 3282,
+      "sha256": "ef22c9fbecb296b84306356c02e92263263066811088778ce00b312b94d046e6"
     },
     {
       "path": "assets/icons/eventhouse.svg",
@@ -574,8 +574,8 @@
     },
     {
       "path": "tools/build_architecture.py",
-      "bytes": 11495,
-      "sha256": "96522f8904b929905f39c6c7a34191a96b45b769ad88683b2cb26161c829617c"
+      "bytes": 18347,
+      "sha256": "341a3c3a69a3bb66b910b4ace3219af32c396325676942859525f044f567a943"
     },
     {
       "path": "tools/build_data.py",

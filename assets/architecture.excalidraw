@@ -5,22 +5,24 @@
   "elements": [
     {
       "id": "zeb-0",
-      "type": "text",
+      "type": "rectangle",
       "x": 40,
       "y": 28,
-      "width": 1500,
-      "height": 42.0,
+      "width": 6,
+      "height": 74,
       "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
+      "strokeColor": "transparent",
+      "backgroundColor": "#0078D4",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 0,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 1,
       "version": 1,
       "versionNonce": 1,
@@ -29,26 +31,24 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "건설 ZEB 워크숍 | Microsoft Fabric",
-      "originalText": "건설 ZEB 워크숍 | Microsoft Fabric",
-      "fontSize": 30,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "radius": 3,
+        "gradient": {
+          "stops": [
+            "#2AA9F5",
+            "#0067B8"
+          ],
+          "dir": "v"
+        }
       }
     },
     {
       "id": "zeb-1",
       "type": "text",
-      "x": 40,
-      "y": 78,
-      "width": 1500,
-      "height": 30.799999999999997,
+      "x": 62,
+      "y": 22,
+      "width": 900,
+      "height": 47.6,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -68,6 +68,48 @@
       "updated": 0,
       "link": null,
       "locked": false,
+      "text": "건설 ZEB 워크숍 | Microsoft Fabric",
+      "originalText": "건설 ZEB 워크숍 | Microsoft Fabric",
+      "fontSize": 34,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true,
+        "weight": 700,
+        "fill": "#1B1A19",
+        "split": true
+      }
+    },
+    {
+      "id": "zeb-2",
+      "type": "text",
+      "x": 62,
+      "y": 72,
+      "width": 930,
+      "height": 30.8,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 3,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
       "text": "현장·설계 데이터를 연결해 ZEB 현황과 보완안을 검토하고, 담당자의 결정을 기록합니다.",
       "originalText": "현장·설계 데이터를 연결해 ZEB 현황과 보완안을 검토하고, 담당자의 결정을 기록합니다.",
       "fontSize": 22,
@@ -78,21 +120,23 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
       }
     },
     {
-      "id": "zeb-2",
+      "id": "zeb-3",
       "type": "rectangle",
-      "x": 40,
-      "y": 125,
-      "width": 1120,
-      "height": 925,
+      "x": 1014,
+      "y": 64,
+      "width": 546,
+      "height": 48,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "transparent",
+      "strokeColor": "#D5DEE9",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 1.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -101,33 +145,6 @@
       "roundness": {
         "type": 3
       },
-      "seed": 3,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-3",
-      "type": "image",
-      "x": 65.0,
-      "y": 141.0,
-      "width": 40.0,
-      "height": 40.0,
-      "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
       "seed": 4,
       "version": 1,
       "versionNonce": 1,
@@ -136,29 +153,22 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "ef80d2edbfc1b045241d2e9550b7930b648d8018e0274116a3df6d6ccf3adbf9",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null,
       "customData": {
-        "productIcon": "fabric"
+        "radius": 24
       }
     },
     {
       "id": "zeb-4",
-      "type": "text",
-      "x": 120,
-      "y": 145,
-      "width": 450,
-      "height": 33.599999999999994,
+      "type": "arrow",
+      "x": 1038,
+      "y": 88,
+      "width": 42,
+      "height": 0,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -173,29 +183,31 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Microsoft Fabric",
-      "originalText": "Microsoft Fabric",
-      "fontSize": 24,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": true
-      }
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          42,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
     },
     {
       "id": "zeb-5",
-      "type": "rectangle",
-      "x": 80,
-      "y": 205,
-      "width": 310,
-      "height": 110,
+      "type": "text",
+      "x": 1092,
+      "y": 74,
+      "width": 93,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
       "strokeStyle": "solid",
@@ -203,9 +215,7 @@
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": {
-        "type": 3
-      },
+      "roundness": null,
       "seed": 6,
       "version": 1,
       "versionNonce": 1,
@@ -213,20 +223,34 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "text": "기본 흐름",
+      "originalText": "기본 흐름",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#1B1A19"
+      }
     },
     {
       "id": "zeb-6",
-      "type": "image",
-      "x": 98.0,
-      "y": 221.0,
-      "width": 40.0,
-      "height": 40.0,
+      "type": "arrow",
+      "x": 1205,
+      "y": 88,
+      "width": 42,
+      "height": 0,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#107C10",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -241,24 +265,28 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "fbf6da87a91ac447b251d283a9a01b9e8987d53cf1acf6aa64692155ac6508ca",
-      "status": "saved",
-      "scale": [
-        1,
-        1
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          42,
+          0
+        ]
       ],
-      "crop": null,
-      "customData": {
-        "productIcon": "lakehouse"
-      }
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
     },
     {
       "id": "zeb-7",
       "type": "text",
-      "x": 152,
-      "y": 229,
-      "width": 224,
-      "height": 30.799999999999997,
+      "x": 1259,
+      "y": 74,
+      "width": 118,
+      "height": 28.0,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -278,9 +306,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Files | 원천",
-      "originalText": "Files | 원천",
-      "fontSize": 22,
+      "text": "승인 후 기록",
+      "originalText": "승인 후 기록",
+      "fontSize": 20,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -288,22 +316,24 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "bold": false,
+        "weight": 400,
+        "fill": "#1B1A19"
       }
     },
     {
       "id": "zeb-8",
-      "type": "text",
-      "x": 100,
-      "y": 269,
-      "width": 270,
-      "height": 28.0,
+      "type": "arrow",
+      "x": 1397,
+      "y": 88,
+      "width": 42,
+      "height": 0,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#7F8DA3",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "dashed",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
@@ -317,82 +347,28 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "현장·설계·공공 ZEB",
-      "originalText": "현장·설계·공공 ZEB",
-      "fontSize": 20,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": false
-      }
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          42,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
     },
     {
       "id": "zeb-9",
-      "type": "rectangle",
-      "x": 80,
-      "y": 350,
-      "width": 310,
-      "height": 150,
-      "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 10,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-10",
-      "type": "rectangle",
-      "x": 100,
-      "y": 373,
-      "width": 7,
-      "height": 45,
-      "angle": 0,
-      "strokeColor": "#9B6A43",
-      "backgroundColor": "#9B6A43",
-      "fillStyle": "solid",
-      "strokeWidth": 0,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 11,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-11",
       "type": "text",
-      "x": 122,
-      "y": 375,
-      "width": 250,
-      "height": 42.0,
+      "x": 1451,
+      "y": 74,
+      "width": 93,
+      "height": 28.0,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -404,6 +380,88 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
+      "seed": 10,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "선택 검토",
+      "originalText": "선택 검토",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#1B1A19"
+      }
+    },
+    {
+      "id": "zeb-10",
+      "type": "rectangle",
+      "x": 40,
+      "y": 128,
+      "width": 1160,
+      "height": 930,
+      "angle": 0,
+      "strokeColor": "#A9CBEB",
+      "backgroundColor": "#F2F7FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 11,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "radius": 24,
+        "gradient": {
+          "stops": [
+            "#F7FAFE",
+            "#EBF3FC"
+          ],
+          "dir": "v"
+        }
+      }
+    },
+    {
+      "id": "zeb-11",
+      "type": "rectangle",
+      "x": 60,
+      "y": 138,
+      "width": 250,
+      "height": 44,
+      "angle": 0,
+      "strokeColor": "#CFE0F1",
+      "backgroundColor": "#FFFFFF",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 12,
       "version": 1,
       "versionNonce": 1,
@@ -412,28 +470,19 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "BRONZE",
-      "originalText": "BRONZE",
-      "fontSize": 30,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "radius": 22
       }
     },
     {
       "id": "zeb-12",
-      "type": "text",
-      "x": 100,
-      "y": 441,
-      "width": 275,
-      "height": 33.599999999999994,
+      "type": "image",
+      "x": 70.0,
+      "y": 144.0,
+      "width": 32.0,
+      "height": 32.0,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -451,8 +500,45 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "원천 보존",
-      "originalText": "원천 보존",
+      "fileId": "ef80d2edbfc1b045241d2e9550b7930b648d8018e0274116a3df6d6ccf3adbf9",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
+      "customData": {
+        "productIcon": "fabric"
+      }
+    },
+    {
+      "id": "zeb-13",
+      "type": "text",
+      "x": 114,
+      "y": 143.2,
+      "width": 190,
+      "height": 33.6,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 14,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "Microsoft Fabric",
+      "originalText": "Microsoft Fabric",
       "fontSize": 24,
       "fontFamily": 2,
       "textAlign": "left",
@@ -461,21 +547,23 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19"
       }
     },
     {
-      "id": "zeb-13",
+      "id": "zeb-14",
       "type": "rectangle",
-      "x": 445,
-      "y": 350,
-      "width": 310,
-      "height": 150,
+      "x": 80,
+      "y": 222,
+      "width": 330,
+      "height": 128,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#D5DEE9",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 1.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -484,33 +572,6 @@
       "roundness": {
         "type": 3
       },
-      "seed": 14,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-14",
-      "type": "rectangle",
-      "x": 465,
-      "y": 373,
-      "width": 7,
-      "height": 45,
-      "angle": 0,
-      "strokeColor": "#788AA3",
-      "backgroundColor": "#788AA3",
-      "fillStyle": "solid",
-      "strokeWidth": 0,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
       "seed": 15,
       "version": 1,
       "versionNonce": 1,
@@ -518,17 +579,21 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "customData": {
+        "radius": 14,
+        "shadow": true
+      }
     },
     {
       "id": "zeb-15",
-      "type": "text",
-      "x": 487,
-      "y": 375,
-      "width": 250,
-      "height": 42.0,
+      "type": "image",
+      "x": 98.0,
+      "y": 259.0,
+      "width": 54.0,
+      "height": 54.0,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -546,26 +611,24 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "SILVER",
-      "originalText": "SILVER",
-      "fontSize": 30,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
+      "fileId": "fbf6da87a91ac447b251d283a9a01b9e8987d53cf1acf6aa64692155ac6508ca",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
       "customData": {
-        "bold": true
+        "productIcon": "lakehouse"
       }
     },
     {
       "id": "zeb-16",
       "type": "text",
-      "x": 465,
-      "y": 441,
-      "width": 275,
-      "height": 33.599999999999994,
+      "x": 166,
+      "y": 253.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -585,9 +648,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "정제·연결",
-      "originalText": "정제·연결",
-      "fontSize": 24,
+      "text": "Files | 원천",
+      "originalText": "Files | 원천",
+      "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -595,19 +658,63 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
       }
     },
     {
       "id": "zeb-17",
-      "type": "rectangle",
-      "x": 810,
-      "y": 350,
-      "width": 310,
-      "height": 150,
+      "type": "text",
+      "x": 166,
+      "y": 290.4,
+      "width": 230,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 18,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "현장·설계·공공 ZEB",
+      "originalText": "현장·설계·공공 ZEB",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
+      }
+    },
+    {
+      "id": "zeb-18",
+      "type": "rectangle",
+      "x": 80,
+      "y": 388,
+      "width": 330,
+      "height": 128,
+      "angle": 0,
+      "strokeColor": "#E6CFB8",
+      "backgroundColor": "#FCF6F0",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
       "strokeStyle": "solid",
@@ -618,33 +725,6 @@
       "roundness": {
         "type": 3
       },
-      "seed": 18,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-18",
-      "type": "rectangle",
-      "x": 830,
-      "y": 373,
-      "width": 7,
-      "height": 45,
-      "angle": 0,
-      "strokeColor": "#A47B19",
-      "backgroundColor": "#A47B19",
-      "fillStyle": "solid",
-      "strokeWidth": 0,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
       "seed": 19,
       "version": 1,
       "versionNonce": 1,
@@ -652,20 +732,24 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "customData": {
+        "radius": 14,
+        "shadow": true
+      }
     },
     {
       "id": "zeb-19",
-      "type": "text",
-      "x": 852,
-      "y": 375,
-      "width": 250,
-      "height": 42.0,
+      "type": "ellipse",
+      "x": 98,
+      "y": 425.0,
+      "width": 54,
+      "height": 54,
       "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
+      "strokeColor": "#8C5528",
+      "backgroundColor": "#C0824A",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -680,34 +764,32 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "GOLD",
-      "originalText": "GOLD",
-      "fontSize": 30,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "gradient": {
+          "stops": [
+            "#F3D9BC",
+            "#C0824A",
+            "#8C5528"
+          ],
+          "dir": "d"
+        }
       }
     },
     {
       "id": "zeb-20",
-      "type": "text",
-      "x": 830,
-      "y": 441,
-      "width": 275,
-      "height": 33.599999999999994,
+      "type": "ellipse",
+      "x": 108,
+      "y": 435.0,
+      "width": 34,
+      "height": 34,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#FFFFFF",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
-      "opacity": 100,
+      "opacity": 80,
       "groupIds": [],
       "frameId": null,
       "roundness": null,
@@ -719,29 +801,18 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "업무지표·판단근거",
-      "originalText": "업무지표·판단근거",
-      "fontSize": 24,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": true
-      }
+      "customData": {}
     },
     {
       "id": "zeb-21",
-      "type": "rectangle",
-      "x": 80,
-      "y": 530,
-      "width": 1040,
-      "height": 75,
+      "type": "text",
+      "x": 166,
+      "y": 420.6,
+      "width": 230,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
       "strokeStyle": "solid",
@@ -749,9 +820,7 @@
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": {
-        "type": 3
-      },
+      "roundness": null,
       "seed": 22,
       "version": 1,
       "versionNonce": 1,
@@ -759,17 +828,32 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "text": "BRONZE",
+      "originalText": "BRONZE",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true,
+        "weight": 700,
+        "fill": "#8C5528",
+        "spacing": 1.2
+      }
     },
     {
       "id": "zeb-22",
-      "type": "image",
-      "x": 100.0,
-      "y": 548.0,
-      "width": 40.0,
-      "height": 40.0,
+      "type": "text",
+      "x": 166,
+      "y": 452.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -787,27 +871,31 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "23fe33bcc61e703f655ac98753512a780bc2ff71d157d6c25682841ed9b6a825",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null,
+      "text": "원천 보존",
+      "originalText": "원천 보존",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
       "customData": {
-        "productIcon": "onelake"
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19"
       }
     },
     {
       "id": "zeb-23",
-      "type": "text",
-      "x": 158,
-      "y": 550,
-      "width": 480,
-      "height": 33.599999999999994,
+      "type": "rectangle",
+      "x": 455,
+      "y": 388,
+      "width": 330,
+      "height": 128,
       "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
+      "strokeColor": "#D2D9E3",
+      "backgroundColor": "#F6F8FA",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
       "strokeStyle": "solid",
@@ -815,7 +903,9 @@
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 24,
       "version": 1,
       "versionNonce": 1,
@@ -824,31 +914,23 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "OneLake | 공통 저장소",
-      "originalText": "OneLake | 공통 저장소",
-      "fontSize": 24,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "radius": 14,
+        "shadow": true
       }
     },
     {
       "id": "zeb-24",
-      "type": "text",
-      "x": 695,
-      "y": 553,
-      "width": 410,
-      "height": 30.799999999999997,
+      "type": "ellipse",
+      "x": 473,
+      "y": 425.0,
+      "width": 54,
+      "height": 54,
       "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
+      "strokeColor": "#4F5E75",
+      "backgroundColor": "#8E9CB1",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -863,39 +945,35 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "schema-enabled Lakehouse",
-      "originalText": "schema-enabled Lakehouse",
-      "fontSize": 22,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "gradient": {
+          "stops": [
+            "#E3E8EF",
+            "#8E9CB1",
+            "#4F5E75"
+          ],
+          "dir": "d"
+        }
       }
     },
     {
       "id": "zeb-25",
-      "type": "rectangle",
-      "x": 80,
-      "y": 700,
-      "width": 310,
-      "height": 125,
+      "type": "ellipse",
+      "x": 483,
+      "y": 435.0,
+      "width": 34,
+      "height": 34,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#FFFFFF",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
-      "opacity": 100,
+      "opacity": 80,
       "groupIds": [],
       "frameId": null,
-      "roundness": {
-        "type": 3
-      },
+      "roundness": null,
       "seed": 26,
       "version": 1,
       "versionNonce": 1,
@@ -903,17 +981,18 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "customData": {}
     },
     {
       "id": "zeb-26",
-      "type": "image",
-      "x": 98.0,
-      "y": 716.0,
-      "width": 40.0,
-      "height": 40.0,
+      "type": "text",
+      "x": 541,
+      "y": 420.6,
+      "width": 230,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -931,24 +1010,29 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "4a796479fc554eb2c9ad0aab22daccd6038d9cbaf36e0a63e76dac173a9a7d89",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null,
+      "text": "SILVER",
+      "originalText": "SILVER",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
       "customData": {
-        "productIcon": "ontology"
+        "bold": true,
+        "weight": 700,
+        "fill": "#4F5E75",
+        "spacing": 1.2
       }
     },
     {
       "id": "zeb-27",
       "type": "text",
-      "x": 152,
-      "y": 724,
-      "width": 224,
-      "height": 30.799999999999997,
+      "x": 541,
+      "y": 452.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -968,8 +1052,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Ontology | 내장 agent",
-      "originalText": "Ontology | 내장 agent",
+      "text": "정제·연결",
+      "originalText": "정제·연결",
       "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
@@ -978,58 +1062,21 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19"
       }
     },
     {
       "id": "zeb-28",
-      "type": "text",
-      "x": 100,
-      "y": 764,
-      "width": 270,
-      "height": 28.0,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 29,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false,
-      "text": "근거 질의",
-      "originalText": "근거 질의",
-      "fontSize": 20,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": false
-      }
-    },
-    {
-      "id": "zeb-29",
       "type": "rectangle",
-      "x": 445,
-      "y": 700,
-      "width": 310,
-      "height": 125,
+      "x": 830,
+      "y": 388,
+      "width": 330,
+      "height": 128,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#EBD596",
+      "backgroundColor": "#FFFAEC",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
       "strokeStyle": "solid",
@@ -1040,6 +1087,37 @@
       "roundness": {
         "type": 3
       },
+      "seed": 29,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "radius": 14,
+        "shadow": true
+      }
+    },
+    {
+      "id": "zeb-29",
+      "type": "ellipse",
+      "x": 848,
+      "y": 425.0,
+      "width": 54,
+      "height": 54,
+      "angle": 0,
+      "strokeColor": "#855D00",
+      "backgroundColor": "#DDA51D",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
       "seed": 30,
       "version": 1,
       "versionNonce": 1,
@@ -1047,23 +1125,33 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "customData": {
+        "gradient": {
+          "stops": [
+            "#FAEBB4",
+            "#DDA51D",
+            "#855D00"
+          ],
+          "dir": "d"
+        }
+      }
     },
     {
       "id": "zeb-30",
-      "type": "image",
-      "x": 463.0,
-      "y": 716.0,
-      "width": 40.0,
-      "height": 40.0,
+      "type": "ellipse",
+      "x": 858,
+      "y": 435.0,
+      "width": 34,
+      "height": 34,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#FFFFFF",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
-      "opacity": 100,
+      "opacity": 80,
       "groupIds": [],
       "frameId": null,
       "roundness": null,
@@ -1075,24 +1163,15 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "87861c159d7b08bbefc2483eda204a0d1ff6c57c4ab9f64b156c29d9125f45b0",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null,
-      "customData": {
-        "productIcon": "semantic-model"
-      }
+      "customData": {}
     },
     {
       "id": "zeb-31",
       "type": "text",
-      "x": 517,
-      "y": 724,
-      "width": 224,
-      "height": 30.799999999999997,
+      "x": 916,
+      "y": 420.6,
+      "width": 230,
+      "height": 28.0,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -1112,9 +1191,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Semantic model",
-      "originalText": "Semantic model",
-      "fontSize": 22,
+      "text": "GOLD",
+      "originalText": "GOLD",
+      "fontSize": 20,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1122,16 +1201,19 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "bold": true,
+        "weight": 700,
+        "fill": "#855D00",
+        "spacing": 1.2
       }
     },
     {
       "id": "zeb-32",
       "type": "text",
-      "x": 465,
-      "y": 764,
-      "width": 270,
-      "height": 28.0,
+      "x": 916,
+      "y": 452.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -1151,9 +1233,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Direct Lake",
-      "originalText": "Direct Lake",
-      "fontSize": 20,
+      "text": "업무지표·판단근거",
+      "originalText": "업무지표·판단근거",
+      "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1161,29 +1243,29 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19"
       }
     },
     {
       "id": "zeb-33",
-      "type": "rectangle",
-      "x": 810,
-      "y": 700,
-      "width": 310,
-      "height": 125,
+      "type": "line",
+      "x": 245,
+      "y": 516,
+      "width": 0,
+      "height": 26,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#9CC4EC",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": {
-        "type": 3
-      },
+      "roundness": null,
       "seed": 34,
       "version": 1,
       "versionNonce": 1,
@@ -1191,20 +1273,34 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          26
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": null,
+      "startBinding": null,
+      "endBinding": null
     },
     {
       "id": "zeb-34",
-      "type": "image",
-      "x": 828.0,
-      "y": 716.0,
-      "width": 40.0,
-      "height": 40.0,
+      "type": "line",
+      "x": 620,
+      "y": 516,
+      "width": 0,
+      "height": 26,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#9CC4EC",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -1219,29 +1315,33 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "9d3805a744770579728552eee9ea28bf73afc47bb469b00b1671a0e66cee96c6",
-      "status": "saved",
-      "scale": [
-        1,
-        1
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          26
+        ]
       ],
-      "crop": null,
-      "customData": {
-        "productIcon": "eventhouse"
-      }
+      "startArrowhead": null,
+      "endArrowhead": null,
+      "startBinding": null,
+      "endBinding": null
     },
     {
       "id": "zeb-35",
-      "type": "text",
-      "x": 882,
-      "y": 724,
-      "width": 224,
-      "height": 30.799999999999997,
+      "type": "line",
+      "x": 995,
+      "y": 516,
+      "width": 0,
+      "height": 26,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#9CC4EC",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -1256,37 +1356,41 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Eventhouse",
-      "originalText": "Eventhouse",
-      "fontSize": 22,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": true
-      }
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          26
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": null,
+      "startBinding": null,
+      "endBinding": null
     },
     {
       "id": "zeb-36",
-      "type": "text",
-      "x": 830,
-      "y": 764,
-      "width": 270,
-      "height": 28.0,
+      "type": "rectangle",
+      "x": 80,
+      "y": 542,
+      "width": 1080,
+      "height": 70,
       "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
+      "strokeColor": "#A9CBEB",
+      "backgroundColor": "#DCEBFA",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 1.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 37,
       "version": 1,
       "versionNonce": 1,
@@ -1295,31 +1399,29 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "위험 snapshot",
-      "originalText": "위험 snapshot",
-      "fontSize": 20,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "radius": 16,
+        "gradient": {
+          "stops": [
+            "#EEF6FE",
+            "#D6E9FA"
+          ],
+          "dir": "h"
+        }
       }
     },
     {
       "id": "zeb-37",
       "type": "rectangle",
-      "x": 445,
-      "y": 865,
-      "width": 310,
-      "height": 125,
+      "x": 94,
+      "y": 552,
+      "width": 50,
+      "height": 50,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#CFE0F1",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -1335,15 +1437,18 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "customData": {
+        "radius": 14
+      }
     },
     {
       "id": "zeb-38",
       "type": "image",
-      "x": 463.0,
-      "y": 881.0,
-      "width": 40.0,
-      "height": 40.0,
+      "x": 100.0,
+      "y": 558.0,
+      "width": 38.0,
+      "height": 38.0,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -1363,7 +1468,7 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "264abad01f50acaffb697b3ede22215b7d87f387c1af92f0a0b14117d2c2e4f1",
+      "fileId": "23fe33bcc61e703f655ac98753512a780bc2ff71d157d6c25682841ed9b6a825",
       "status": "saved",
       "scale": [
         1,
@@ -1371,16 +1476,16 @@
       ],
       "crop": null,
       "customData": {
-        "productIcon": "power-bi"
+        "productIcon": "onelake"
       }
     },
     {
       "id": "zeb-39",
       "type": "text",
-      "x": 517,
-      "y": 889,
-      "width": 224,
-      "height": 30.799999999999997,
+      "x": 160,
+      "y": 560.2,
+      "width": 330,
+      "height": 33.6,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -1400,9 +1505,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Power BI",
-      "originalText": "Power BI",
-      "fontSize": 22,
+      "text": "OneLake | 공통 저장소",
+      "originalText": "OneLake | 공통 저장소",
+      "fontSize": 24,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1410,60 +1515,24 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": true
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
       }
     },
     {
       "id": "zeb-40",
-      "type": "text",
-      "x": 465,
-      "y": 929,
-      "width": 270,
-      "height": 28.0,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 41,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false,
-      "text": "현황·보완안",
-      "originalText": "현황·보완안",
-      "fontSize": 20,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": false
-      }
-    },
-    {
-      "id": "zeb-41",
       "type": "rectangle",
-      "x": 810,
-      "y": 865,
-      "width": 310,
-      "height": 125,
+      "x": 832,
+      "y": 557,
+      "width": 304,
+      "height": 40,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#A9CBEB",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 1.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -1472,24 +1541,27 @@
       "roundness": {
         "type": 3
       },
-      "seed": 42,
+      "seed": 41,
       "version": 1,
       "versionNonce": 1,
       "isDeleted": false,
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "customData": {
+        "radius": 20
+      }
     },
     {
-      "id": "zeb-42",
-      "type": "image",
-      "x": 828.0,
-      "y": 881.0,
-      "width": 40.0,
-      "height": 40.0,
+      "id": "zeb-41",
+      "type": "text",
+      "x": 832,
+      "y": 561.6,
+      "width": 304,
+      "height": 30.8,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -1499,6 +1571,49 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
+      "seed": 42,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "schema-enabled Lakehouse",
+      "originalText": "schema-enabled Lakehouse",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#1B1A19"
+      }
+    },
+    {
+      "id": "zeb-42",
+      "type": "rectangle",
+      "x": 80,
+      "y": 700,
+      "width": 330,
+      "height": 128,
+      "angle": 0,
+      "strokeColor": "#D5DEE9",
+      "backgroundColor": "#FFFFFF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 43,
       "version": 1,
       "versionNonce": 1,
@@ -1507,26 +1622,20 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "90cd5514cedb667f1b8ec7745b2a0969551fc949874e58321f3b7693d7f69fbd",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null,
       "customData": {
-        "productIcon": "operations-agent"
+        "radius": 14,
+        "shadow": true
       }
     },
     {
       "id": "zeb-43",
-      "type": "text",
-      "x": 882,
-      "y": 889,
-      "width": 224,
-      "height": 30.799999999999997,
+      "type": "image",
+      "x": 98.0,
+      "y": 737.0,
+      "width": 54.0,
+      "height": 54.0,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -1544,26 +1653,24 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Operations agent",
-      "originalText": "Operations agent",
-      "fontSize": 22,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
+      "fileId": "4a796479fc554eb2c9ad0aab22daccd6038d9cbaf36e0a63e76dac173a9a7d89",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
       "customData": {
-        "bold": true
+        "productIcon": "ontology"
       }
     },
     {
       "id": "zeb-44",
       "type": "text",
-      "x": 830,
-      "y": 929,
-      "width": 270,
-      "height": 28.0,
+      "x": 166,
+      "y": 731.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -1583,9 +1690,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "위험 감시·제안",
-      "originalText": "위험 감시·제안",
-      "fontSize": 20,
+      "text": "Ontology | 내장 agent",
+      "originalText": "Ontology | 내장 agent",
+      "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1593,47 +1700,21 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
       }
     },
     {
       "id": "zeb-45",
-      "type": "rectangle",
-      "x": 80,
-      "y": 865,
-      "width": 310,
-      "height": 125,
+      "type": "text",
+      "x": 166,
+      "y": 768.4,
+      "width": 230,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 46,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-46",
-      "type": "image",
-      "x": 98.0,
-      "y": 881.0,
-      "width": 40.0,
-      "height": 40.0,
-      "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -1643,6 +1724,49 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
+      "seed": 46,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "근거 질의",
+      "originalText": "근거 질의",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
+      }
+    },
+    {
+      "id": "zeb-46",
+      "type": "rectangle",
+      "x": 455,
+      "y": 700,
+      "width": 330,
+      "height": 128,
+      "angle": 0,
+      "strokeColor": "#D5DEE9",
+      "backgroundColor": "#FFFFFF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 47,
       "version": 1,
       "versionNonce": 1,
@@ -1651,26 +1775,20 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null,
       "customData": {
-        "productIcon": "notebook"
+        "radius": 14,
+        "shadow": true
       }
     },
     {
       "id": "zeb-47",
-      "type": "text",
-      "x": 152,
-      "y": 889,
-      "width": 224,
-      "height": 30.799999999999997,
+      "type": "image",
+      "x": 473.0,
+      "y": 737.0,
+      "width": 54.0,
+      "height": 54.0,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -1688,26 +1806,24 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Notebook | 결정 기록",
-      "originalText": "Notebook | 결정 기록",
-      "fontSize": 22,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
+      "fileId": "87861c159d7b08bbefc2483eda204a0d1ff6c57c4ab9f64b156c29d9125f45b0",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
       "customData": {
-        "bold": true
+        "productIcon": "semantic-model"
       }
     },
     {
       "id": "zeb-48",
       "type": "text",
-      "x": 100,
-      "y": 929,
-      "width": 270,
-      "height": 56.0,
+      "x": 541,
+      "y": 731.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -1727,9 +1843,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "결정 기록만 저장\n설계·발주 변경 없음",
-      "originalText": "결정 기록만 저장\n설계·발주 변경 없음",
-      "fontSize": 20,
+      "text": "Semantic model",
+      "originalText": "Semantic model",
+      "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1737,47 +1853,21 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
       }
     },
     {
       "id": "zeb-49",
-      "type": "rectangle",
-      "x": 1220,
-      "y": 205,
-      "width": 340,
-      "height": 125,
+      "type": "text",
+      "x": 541,
+      "y": 768.4,
+      "width": 230,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#788AA3",
-      "backgroundColor": "#ffffff",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "dashed",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 50,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-50",
-      "type": "image",
-      "x": 1238.0,
-      "y": 221.0,
-      "width": 40.0,
-      "height": 40.0,
-      "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -1787,6 +1877,49 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
+      "seed": 50,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "Direct Lake",
+      "originalText": "Direct Lake",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
+      }
+    },
+    {
+      "id": "zeb-50",
+      "type": "rectangle",
+      "x": 830,
+      "y": 700,
+      "width": 330,
+      "height": 128,
+      "angle": 0,
+      "strokeColor": "#D5DEE9",
+      "backgroundColor": "#FFFFFF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 51,
       "version": 1,
       "versionNonce": 1,
@@ -1795,26 +1928,20 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "fab039a771f72780ae34e59065d61c66a02d3c347d50923ef2956f34912ea02c",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null,
       "customData": {
-        "productIcon": "foundry"
+        "radius": 14,
+        "shadow": true
       }
     },
     {
       "id": "zeb-51",
-      "type": "text",
-      "x": 1292,
-      "y": 229,
-      "width": 254,
-      "height": 30.799999999999997,
+      "type": "image",
+      "x": 848.0,
+      "y": 737.0,
+      "width": 54.0,
+      "height": 54.0,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -1832,26 +1959,24 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Foundry | 선택",
-      "originalText": "Foundry | 선택",
-      "fontSize": 22,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
+      "fileId": "9d3805a744770579728552eee9ea28bf73afc47bb469b00b1671a0e66cee96c6",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
       "customData": {
-        "bold": true
+        "productIcon": "eventhouse"
       }
     },
     {
       "id": "zeb-52",
       "type": "text",
-      "x": 1240,
-      "y": 269,
-      "width": 300,
-      "height": 28.0,
+      "x": 916,
+      "y": 731.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -1871,9 +1996,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "승인 전 근거 재검토",
-      "originalText": "승인 전 근거 재검토",
-      "fontSize": 20,
+      "text": "Eventhouse",
+      "originalText": "Eventhouse",
+      "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1881,47 +2006,21 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
       }
     },
     {
       "id": "zeb-53",
-      "type": "rectangle",
-      "x": 1220,
-      "y": 865,
-      "width": 340,
-      "height": 125,
+      "type": "text",
+      "x": 916,
+      "y": 768.4,
+      "width": 230,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "#ffffff",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 54,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-54",
-      "type": "image",
-      "x": 1238.0,
-      "y": 881.0,
-      "width": 40.0,
-      "height": 40.0,
-      "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -1931,6 +2030,49 @@
       "groupIds": [],
       "frameId": null,
       "roundness": null,
+      "seed": 54,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "위험 snapshot",
+      "originalText": "위험 snapshot",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
+      }
+    },
+    {
+      "id": "zeb-54",
+      "type": "rectangle",
+      "x": 455,
+      "y": 868,
+      "width": 330,
+      "height": 128,
+      "angle": 0,
+      "strokeColor": "#D5DEE9",
+      "backgroundColor": "#FFFFFF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 55,
       "version": 1,
       "versionNonce": 1,
@@ -1939,26 +2081,20 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "fileId": "6ec0e1afd7359a71915430bab4a49554bcfd1f1b881db5108c807ed08f1a0afb",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null,
       "customData": {
-        "productIcon": "teams"
+        "radius": 14,
+        "shadow": true
       }
     },
     {
       "id": "zeb-55",
-      "type": "text",
-      "x": 1292,
-      "y": 889,
-      "width": 254,
-      "height": 30.799999999999997,
+      "type": "image",
+      "x": 473.0,
+      "y": 905.0,
+      "width": 54.0,
+      "height": 54.0,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -1976,26 +2112,24 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Teams",
-      "originalText": "Teams",
-      "fontSize": 22,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
+      "fileId": "264abad01f50acaffb697b3ede22215b7d87f387c1af92f0a0b14117d2c2e4f1",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
       "customData": {
-        "bold": true
+        "productIcon": "power-bi"
       }
     },
     {
       "id": "zeb-56",
       "type": "text",
-      "x": 1240,
-      "y": 929,
-      "width": 300,
-      "height": 28.0,
+      "x": 541,
+      "y": 899.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -2015,9 +2149,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "제안·담당자 승인",
-      "originalText": "제안·담당자 승인",
-      "fontSize": 20,
+      "text": "Power BI",
+      "originalText": "Power BI",
+      "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2025,18 +2159,21 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
       }
     },
     {
       "id": "zeb-57",
-      "type": "arrow",
-      "x": 235,
-      "y": 315,
-      "width": 0,
-      "height": 35,
+      "type": "text",
+      "x": 541,
+      "y": 936.4,
+      "width": 230,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -2054,39 +2191,41 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          35
-        ]
-      ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "text": "현황·보완안",
+      "originalText": "현황·보완안",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
+      }
     },
     {
       "id": "zeb-58",
-      "type": "arrow",
-      "x": 390,
-      "y": 425,
-      "width": 55,
-      "height": 0,
+      "type": "rectangle",
+      "x": 830,
+      "y": 868,
+      "width": 330,
+      "height": 128,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "transparent",
+      "strokeColor": "#D5DEE9",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 1.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 59,
       "version": 1,
       "versionNonce": 1,
@@ -2095,28 +2234,18 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          55,
-          0
-        ]
-      ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "customData": {
+        "radius": 14,
+        "shadow": true
+      }
     },
     {
       "id": "zeb-59",
-      "type": "arrow",
-      "x": 755,
-      "y": 425,
-      "width": 55,
-      "height": 0,
+      "type": "image",
+      "x": 848.0,
+      "y": 905.0,
+      "width": 54.0,
+      "height": 54.0,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -2136,30 +2265,26 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          55,
-          0
-        ]
+      "fileId": "90cd5514cedb667f1b8ec7745b2a0969551fc949874e58321f3b7693d7f69fbd",
+      "status": "saved",
+      "scale": [
+        1,
+        1
       ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "crop": null,
+      "customData": {
+        "productIcon": "operations-agent"
+      }
     },
     {
       "id": "zeb-60",
-      "type": "arrow",
-      "x": 1120,
-      "y": 425,
-      "width": 905,
-      "height": 275,
+      "type": "text",
+      "x": 916,
+      "y": 899.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -2177,42 +2302,31 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          20,
-          0
-        ],
-        [
-          20,
-          225
-        ],
-        [
-          -885,
-          225
-        ],
-        [
-          -885,
-          275
-        ]
-      ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "text": "Operations agent",
+      "originalText": "Operations agent",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
+      }
     },
     {
       "id": "zeb-61",
-      "type": "arrow",
-      "x": 1120,
-      "y": 425,
-      "width": 540,
-      "height": 275,
+      "type": "text",
+      "x": 916,
+      "y": 936.4,
+      "width": 230,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -2230,51 +2344,41 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          20,
-          0
-        ],
-        [
-          20,
-          225
-        ],
-        [
-          -520,
-          225
-        ],
-        [
-          -520,
-          275
-        ]
-      ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "text": "위험 감시·제안",
+      "originalText": "위험 감시·제안",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
+      }
     },
     {
       "id": "zeb-62",
-      "type": "arrow",
-      "x": 1120,
-      "y": 425,
-      "width": 175,
-      "height": 275,
+      "type": "rectangle",
+      "x": 80,
+      "y": 868,
+      "width": 330,
+      "height": 128,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "transparent",
+      "strokeColor": "#D5DEE9",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 1.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 63,
       "version": 1,
       "versionNonce": 1,
@@ -2283,45 +2387,23 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          20,
-          0
-        ],
-        [
-          20,
-          225
-        ],
-        [
-          -155,
-          225
-        ],
-        [
-          -155,
-          275
-        ]
-      ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "customData": {
+        "radius": 14,
+        "shadow": true
+      }
     },
     {
       "id": "zeb-63",
-      "type": "rectangle",
-      "x": 975,
-      "y": 662,
-      "width": 130,
-      "height": 30,
+      "type": "image",
+      "x": 98.0,
+      "y": 905.0,
+      "width": 54.0,
+      "height": 54.0,
       "angle": 0,
-      "strokeColor": "transparent",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 0,
+      "strokeWidth": 1.5,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -2335,15 +2417,25 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "fileId": "169c2230621a597b778b757d5788dc54d58ce6a2eacebbf1590e9e89bd11c9d0",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null,
+      "customData": {
+        "productIcon": "notebook"
+      }
     },
     {
       "id": "zeb-64",
       "type": "text",
-      "x": 980,
-      "y": 664,
-      "width": 120,
-      "height": 28.0,
+      "x": 166,
+      "y": 885.6,
+      "width": 230,
+      "height": 30.8,
       "angle": 0,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
@@ -2363,9 +2455,9 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "명시적 수집",
-      "originalText": "명시적 수집",
-      "fontSize": 20,
+      "text": "Notebook | 결정 기록",
+      "originalText": "Notebook | 결정 기록",
+      "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2373,18 +2465,21 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
       }
     },
     {
       "id": "zeb-65",
-      "type": "arrow",
-      "x": 600,
-      "y": 825,
-      "width": 0,
-      "height": 40,
+      "type": "text",
+      "x": 166,
+      "y": 922.4,
+      "width": 230,
+      "height": 56.0,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -2402,39 +2497,41 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          40
-        ]
-      ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "text": "결정 기록만 저장\n설계·발주 변경 없음",
+      "originalText": "결정 기록만 저장\n설계·발주 변경 없음",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
+      }
     },
     {
       "id": "zeb-66",
-      "type": "arrow",
-      "x": 965,
-      "y": 825,
-      "width": 0,
-      "height": 40,
+      "type": "rectangle",
+      "x": 1250,
+      "y": 222,
+      "width": 310,
+      "height": 128,
       "angle": 0,
-      "strokeColor": "#0078D4",
-      "backgroundColor": "transparent",
+      "strokeColor": "#7F8DA3",
+      "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
-      "strokeStyle": "solid",
+      "strokeStyle": "dashed",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 67,
       "version": 1,
       "versionNonce": 1,
@@ -2443,28 +2540,17 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          40
-        ]
-      ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "customData": {
+        "radius": 14
+      }
     },
     {
       "id": "zeb-67",
-      "type": "arrow",
-      "x": 1120,
-      "y": 925,
-      "width": 100,
-      "height": 0,
+      "type": "image",
+      "x": 1268.0,
+      "y": 259.0,
+      "width": 54.0,
+      "height": 54.0,
       "angle": 0,
       "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
@@ -2484,30 +2570,26 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          100,
-          0
-        ]
+      "fileId": "fab039a771f72780ae34e59065d61c66a02d3c347d50923ef2956f34912ea02c",
+      "status": "saved",
+      "scale": [
+        1,
+        1
       ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "crop": null,
+      "customData": {
+        "productIcon": "foundry"
+      }
     },
     {
       "id": "zeb-68",
-      "type": "arrow",
-      "x": 1390,
-      "y": 990,
-      "width": 1155,
-      "height": 35,
+      "type": "text",
+      "x": 1336,
+      "y": 253.6,
+      "width": 210,
+      "height": 30.8,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
@@ -2525,41 +2607,34 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          35
-        ],
-        [
-          -1155,
-          35
-        ],
-        [
-          -1155,
-          0
-        ]
-      ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "text": "Foundry | 선택",
+      "originalText": "Foundry | 선택",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
+      }
     },
     {
       "id": "zeb-69",
-      "type": "rectangle",
-      "x": 680,
-      "y": 1007,
-      "width": 150,
-      "height": 30,
+      "type": "text",
+      "x": 1336,
+      "y": 290.4,
+      "width": 210,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "transparent",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 0,
+      "strokeWidth": 1.5,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -2573,36 +2648,9 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
-    },
-    {
-      "id": "zeb-70",
-      "type": "text",
-      "x": 685,
-      "y": 1009,
-      "width": 140,
-      "height": 28.0,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1.5,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 71,
-      "version": 1,
-      "versionNonce": 1,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 0,
-      "link": null,
       "locked": false,
-      "text": "승인 후 기록",
-      "originalText": "승인 후 기록",
+      "text": "승인 전 근거 재검토",
+      "originalText": "승인 전 근거 재검토",
       "fontSize": 20,
       "fontFamily": 2,
       "textAlign": "left",
@@ -2611,22 +2659,57 @@
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
+      }
+    },
+    {
+      "id": "zeb-70",
+      "type": "rectangle",
+      "x": 1250,
+      "y": 868,
+      "width": 310,
+      "height": 128,
+      "angle": 0,
+      "strokeColor": "#8CC08C",
+      "backgroundColor": "#F4FAF4",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 71,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "radius": 14,
+        "shadow": true
       }
     },
     {
       "id": "zeb-71",
-      "type": "arrow",
-      "x": 1220,
-      "y": 265,
-      "width": 1160,
-      "height": 575,
+      "type": "image",
+      "x": 1268.0,
+      "y": 905.0,
+      "width": 54.0,
+      "height": 54.0,
       "angle": 0,
-      "strokeColor": "#788AA3",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
-      "strokeStyle": "dashed",
+      "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
@@ -2640,50 +2723,30 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          -35,
-          0
-        ],
-        [
-          -35,
-          -80
-        ],
-        [
-          -1160,
-          -80
-        ],
-        [
-          -1160,
-          495
-        ],
-        [
-          -1140,
-          495
-        ]
+      "fileId": "6ec0e1afd7359a71915430bab4a49554bcfd1f1b881db5108c807ed08f1a0afb",
+      "status": "saved",
+      "scale": [
+        1,
+        1
       ],
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "crop": null,
+      "customData": {
+        "productIcon": "teams"
+      }
     },
     {
       "id": "zeb-72",
-      "type": "arrow",
-      "x": 1390,
-      "y": 330,
-      "width": 0,
-      "height": 535,
+      "type": "text",
+      "x": 1336,
+      "y": 899.6,
+      "width": 210,
+      "height": 30.8,
       "angle": 0,
-      "strokeColor": "#788AA3",
+      "strokeColor": "#000000",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1.5,
-      "strokeStyle": "dashed",
+      "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
@@ -2697,33 +2760,34 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          535
-        ]
-      ],
-      "startArrowhead": "arrow",
-      "endArrowhead": "arrow",
-      "startBinding": null,
-      "endBinding": null
+      "text": "Teams",
+      "originalText": "Teams",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": true,
+        "weight": 600,
+        "fill": "#1B1A19",
+        "split": true
+      }
     },
     {
       "id": "zeb-73",
-      "type": "rectangle",
-      "x": 1240,
-      "y": 563,
-      "width": 110,
-      "height": 30,
+      "type": "text",
+      "x": 1336,
+      "y": 936.4,
+      "width": 210,
+      "height": 28.0,
       "angle": 0,
-      "strokeColor": "transparent",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 0,
+      "strokeWidth": 1.5,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -2737,20 +2801,34 @@
       "boundElements": null,
       "updated": 0,
       "link": null,
-      "locked": false
+      "locked": false,
+      "text": "제안·담당자 승인",
+      "originalText": "제안·담당자 승인",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#605E5C"
+      }
     },
     {
       "id": "zeb-74",
-      "type": "text",
-      "x": 1245,
-      "y": 565,
-      "width": 100,
-      "height": 28.0,
+      "type": "arrow",
+      "x": 245,
+      "y": 350,
+      "width": 0,
+      "height": 38,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -2765,31 +2843,33 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "선택 검토",
-      "originalText": "선택 검토",
-      "fontSize": 20,
-      "fontFamily": 2,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "autoResize": false,
-      "lineHeight": 1.4,
-      "customData": {
-        "bold": false
-      }
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          38
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
     },
     {
       "id": "zeb-75",
-      "type": "text",
-      "x": 40,
-      "y": 1064,
-      "width": 700,
-      "height": 28.0,
+      "type": "arrow",
+      "x": 410,
+      "y": 452,
+      "width": 45,
+      "height": 0,
       "angle": 0,
-      "strokeColor": "#000000",
+      "strokeColor": "#0078D4",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1.5,
+      "strokeWidth": 2.25,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -2804,17 +2884,708 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "실선: 기본 흐름 · 점선: 선택 검토",
-      "originalText": "실선: 기본 흐름 · 점선: 선택 검토",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          45,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-76",
+      "type": "arrow",
+      "x": 785,
+      "y": 452,
+      "width": 45,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 77,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          45,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-77",
+      "type": "arrow",
+      "x": 1160,
+      "y": 452,
+      "width": 935,
+      "height": 248,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 78,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          20,
+          0
+        ],
+        [
+          20,
+          194
+        ],
+        [
+          -915,
+          194
+        ],
+        [
+          -915,
+          248
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-78",
+      "type": "arrow",
+      "x": 1160,
+      "y": 452,
+      "width": 560,
+      "height": 248,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 79,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          20,
+          0
+        ],
+        [
+          20,
+          194
+        ],
+        [
+          -540,
+          194
+        ],
+        [
+          -540,
+          248
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-79",
+      "type": "arrow",
+      "x": 1160,
+      "y": 452,
+      "width": 185,
+      "height": 248,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 80,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          20,
+          0
+        ],
+        [
+          20,
+          194
+        ],
+        [
+          -165,
+          194
+        ],
+        [
+          -165,
+          248
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-80",
+      "type": "arrow",
+      "x": 620,
+      "y": 828,
+      "width": 0,
+      "height": 40,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 81,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          40
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-81",
+      "type": "arrow",
+      "x": 995,
+      "y": 828,
+      "width": 0,
+      "height": 40,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 82,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          40
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-82",
+      "type": "arrow",
+      "x": 1160,
+      "y": 932,
+      "width": 90,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#0078D4",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 83,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          90,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-83",
+      "type": "arrow",
+      "x": 1405,
+      "y": 996,
+      "width": 1160,
+      "height": 34,
+      "angle": 0,
+      "strokeColor": "#107C10",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 84,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          34
+        ],
+        [
+          -1160,
+          34
+        ],
+        [
+          -1160,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-84",
+      "type": "arrow",
+      "x": 1250,
+      "y": 286,
+      "width": 1190,
+      "height": 566,
+      "angle": 0,
+      "strokeColor": "#7F8DA3",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 85,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -25,
+          0
+        ],
+        [
+          -25,
+          -88
+        ],
+        [
+          -1190,
+          -88
+        ],
+        [
+          -1190,
+          478
+        ],
+        [
+          -1170,
+          478
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-85",
+      "type": "arrow",
+      "x": 1405,
+      "y": 350,
+      "width": 0,
+      "height": 518,
+      "angle": 0,
+      "strokeColor": "#7F8DA3",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2.25,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 86,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          518
+        ]
+      ],
+      "startArrowhead": "arrow",
+      "endArrowhead": "arrow",
+      "startBinding": null,
+      "endBinding": null
+    },
+    {
+      "id": "zeb-86",
+      "type": "rectangle",
+      "x": 1011.0,
+      "y": 658,
+      "width": 137,
+      "height": 30,
+      "angle": 0,
+      "strokeColor": "#9CC4EC",
+      "backgroundColor": "#FFFFFF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 87,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "radius": 15
+      }
+    },
+    {
+      "id": "zeb-87",
+      "type": "text",
+      "x": 1011.0,
+      "y": 659,
+      "width": 137,
+      "height": 28.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 88,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "명시적 수집",
+      "originalText": "명시적 수집",
       "fontSize": 20,
       "fontFamily": 2,
-      "textAlign": "left",
+      "textAlign": "center",
       "verticalAlign": "top",
       "containerId": null,
       "autoResize": false,
       "lineHeight": 1.4,
       "customData": {
-        "bold": false
+        "bold": false,
+        "weight": 400,
+        "fill": "#1B1A19"
+      }
+    },
+    {
+      "id": "zeb-88",
+      "type": "rectangle",
+      "x": 629.0,
+      "y": 1015,
+      "width": 142,
+      "height": 30,
+      "angle": 0,
+      "strokeColor": "#107C10",
+      "backgroundColor": "#FFFFFF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 89,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "radius": 15
+      }
+    },
+    {
+      "id": "zeb-89",
+      "type": "text",
+      "x": 629.0,
+      "y": 1016,
+      "width": 142,
+      "height": 28.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 90,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "승인 후 기록",
+      "originalText": "승인 후 기록",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#1B1A19"
+      }
+    },
+    {
+      "id": "zeb-90",
+      "type": "rectangle",
+      "x": 1346.5,
+      "y": 594,
+      "width": 117,
+      "height": 30,
+      "angle": 0,
+      "strokeColor": "#7F8DA3",
+      "backgroundColor": "#FFFFFF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.25,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 91,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "radius": 15
+      }
+    },
+    {
+      "id": "zeb-91",
+      "type": "text",
+      "x": 1346.5,
+      "y": 595,
+      "width": 117,
+      "height": 28.0,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 92,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 0,
+      "link": null,
+      "locked": false,
+      "text": "선택 검토",
+      "originalText": "선택 검토",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "containerId": null,
+      "autoResize": false,
+      "lineHeight": 1.4,
+      "customData": {
+        "bold": false,
+        "weight": 400,
+        "fill": "#1B1A19"
       }
     }
   ],

@@ -29,6 +29,6 @@ Eventhouse·OneLake는 공식 zip에서, 나머지는 원본 출처를 기록한
 
 ## 편집·재생성
 
-`tools/build_architecture.py`의 한 장면에서 SVG·Excalidraw·scene JSON을 함께 생성합니다. 공식 SVG 아이콘은 두 편집 형식에 data URL로 내장되어 외부 다운로드 없이 표시됩니다. `tools/render_architecture.ps1`은 별도의 도형을 다시 그리지 않고 **그 SVG 자체**를 Microsoft Edge의 격리된 로컬 세션으로 1900×1460 PNG에 렌더링합니다. 클라우드와 학습용 Fabric 브라우저에는 접근하지 않습니다.
+`tools/build_architecture.py`의 한 장면에서 SVG·Excalidraw·scene JSON을 함께 생성합니다. 공식 SVG 아이콘은 두 편집 형식에 data URL로 내장되어 외부 다운로드 없이 표시됩니다. `tools/render_architecture.ps1`은 별도의 도형을 다시 그리지 않고 **그 SVG 자체**를 Microsoft Edge의 격리된 로컬 세션으로 1600×1100 PNG에 렌더링합니다. 그림자·그라데이션·보조 글자색 같은 표현은 SVG·PNG에만 적용되며, Excalidraw에는 같은 도형과 배치가 단색 채움·검은 글자로 보존됩니다. 클라우드와 학습용 Fabric 브라우저에는 접근하지 않습니다.
 
 Excalidraw는 <https://aka.ms/excalidraw>에서 편집할 수 있습니다. PNG·SVG·Excalidraw는 개념 구성도이며, 실제 실행 화면·성공 증거가 아닙니다. 실행 상태는 [실제 리허설 검증](../admin/validation.md)에 따로 기록합니다.
