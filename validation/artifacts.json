@@ -29,23 +29,23 @@
     },
     {
       "path": "assets/architecture.excalidraw",
-      "bytes": 130069,
-      "sha256": "2c5193c34d6cbfee8d1a5d2adf35437a70c2d88f90db6ce2de8d6d06f8858c4e"
+      "bytes": 126802,
+      "sha256": "cb54b5cecd348a404b2651f2aa964816f11293f3076176d5444b964860004ffa"
     },
     {
       "path": "assets/architecture.png",
-      "bytes": 209120,
-      "sha256": "dc83fe1acbceb82ae9dac0815e2e9e579caaa900333fb117b351c46259ae08c7"
+      "bytes": 172506,
+      "sha256": "9ca078325c4cb71a05620792fa86d0f42f5702bd07e42a3e5c711a16f5978a07"
     },
     {
       "path": "assets/architecture.scene.json",
-      "bytes": 134887,
-      "sha256": "71428454de07e201b72febcc7eac9a85032c938a6a19fb57249dcb8ebb910a20"
+      "bytes": 131618,
+      "sha256": "101457b2bbcb3183de72188f811ae40d02070fe89398414fc5e5f50143ec09f3"
     },
     {
       "path": "assets/architecture.svg",
-      "bytes": 61341,
-      "sha256": "6be43da62803780b7fa9fe98cf98f648faf8a54f8e335ee6a02b571fa097e628"
+      "bytes": 60328,
+      "sha256": "8f653f2f26bd2a621364d58fcb993032feb8777ef1f02c35905347255fba4721"
     },
     {
       "path": "assets/icon-attribution.md",
@@ -574,8 +574,8 @@
     },
     {
       "path": "tools/build_architecture.py",
-      "bytes": 18347,
-      "sha256": "341a3c3a69a3bb66b910b4ace3219af32c396325676942859525f044f567a943"
+      "bytes": 18793,
+      "sha256": "2ee0ffc9f9b631e683154ecc25b7b670216f53be3d22f239efedc5ef2dba8054"
     },
     {
       "path": "tools/build_data.py",

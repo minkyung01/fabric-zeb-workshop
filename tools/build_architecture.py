@@ -125,18 +125,22 @@ class Diagram:
         self.text(x+86, top, title, 22, w-100, weight=600, split=True)
         self.text(x+86, top+36.8, detail, 20, w-100, fill=SUBTLE)
 
+    def chip(self, key, x, y, w, h, title, detail, palette, *, plain=False, extra=None):
+        accent, tint, line, ink = palette
+        self.cards.append({"id": key, "x": x, "y": y, "width": w, "height": h, **(extra or {})})
+        self.rect(x, y, w, h, fill=tint, line=line, width=1.25, radius=14)
+        self.rect(x+12, y+14, 5, h-28, fill=accent, line="transparent", width=0, radius=3)
+        if plain:
+            self.text(x+28, y+16, title, 20, w-40, weight=600, fill=ink, split=True)
+            self.text(x+28, y+44, detail, 20, w-40, fill=SUBTLE)
+        else:
+            self.text(x+28, y+16, title, 20, w-40, weight=700, fill=ink, spacing=1.2)
+            self.text(x+28, y+44, detail, 20, w-40, weight=600)
+
     def layer(self, key, x, y, w, h, title, purpose):
         m = METALS[key]
-        self.cards.append({"id": key, "x": x, "y": y, "width": w, "height": h,
-                          "role": "medallion", "schema": key})
-        self.rect(x, y, w, h, fill=m["tint"], line=m["line"], width=1.5, shadow=True)
-        cy = y + h / 2
-        self.ellipse(x+18, cy-27, 54, 54, fill=m["mid"], line=m["dark"], width=1,
-                     gradient={"stops": [m["light"], m["mid"], m["dark"]], "dir": "d"})
-        self.ellipse(x+28, cy-17, 34, 34, line=WHITE, width=2, opacity=80)
-        top = y + (h - 62.8) / 2
-        self.text(x+86, top, title, 20, w-100, weight=700, fill=m["dark"], spacing=1.2)
-        self.text(x+86, top+32, purpose, 22, w-100, weight=600)
+        self.chip(key, x, y, w, h, title, purpose, (m["mid"], m["tint"], m["line"], m["dark"]),
+                  extra={"role": "medallion", "schema": key})
 
     def arrow(self, key, points, *, role="flow", both=False):
         color, dashed = ROLES[role]
@@ -214,7 +218,7 @@ class Diagram:
         return "\n".join([
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">',
             '<title id="title">건설 ZEB 워크숍 | Microsoft Fabric</title>',
-            '<desc id="desc">Bronze 원천 보존, Silver 정제·연결, Gold 업무지표·판단근거의 세 계층은 OneLake 공통 저장소를 사용합니다. Gold에서 Ontology 내장 agent, Direct Lake 모델과 Power BI, 명시적 snapshot과 Eventhouse 및 Operations agent로 연결됩니다. Teams 담당자 승인 후 Notebook은 결정 기록만 저장하며 설계·발주는 변경하지 않습니다. Foundry 근거 재검토는 선택입니다.</desc>',
+            '<desc id="desc">OneLake의 schema-enabled Lakehouse 안에서 Files 원천이 Bronze 원천 보존, Silver 정제·연결, Gold 업무지표·판단근거 스키마로 이어집니다. Gold에서 Ontology 내장 agent, Direct Lake 모델과 Power BI, 명시적 snapshot과 Eventhouse 및 Operations agent로 연결됩니다. Teams 담당자 승인 후 Notebook은 결정 기록만 저장하며 설계·발주는 변경하지 않습니다. Foundry 근거 재검토는 선택입니다.</desc>',
             f'<rect width="{WIDTH}" height="{HEIGHT}" fill="white"/>',
             "<defs>", *defs, "</defs>", *body, "</svg>"]) + "\n"
 
@@ -234,7 +238,6 @@ class Diagram:
 
 def build():
     d = Diagram()
-    mid = (245, 620, 995)
 
     d.rect(40, 28, 6, 74, fill=BLUE, line="transparent", width=0, radius=3,
            gradient={"stops": ["#2AA9F5", "#0067B8"], "dir": "v"})
@@ -256,46 +259,49 @@ def build():
     d.icon("fabric", 70, 144, 32)
     d.text(114, 143.2, "Microsoft Fabric", 24, 190, weight=600)
 
-    d.card("files", 80, 222, 330, 128, "lakehouse", "Files | 원천", "현장·설계·공공 ZEB")
-    d.layer("bronze", 80, 388, 330, 128, "BRONZE", "원천 보존")
-    d.layer("silver", 455, 388, 330, 128, "SILVER", "정제·연결")
-    d.layer("gold", 830, 388, 330, 128, "GOLD", "업무지표·판단근거")
-    for cx in mid:
-        d.stroke("line", [(cx, 516), (cx, 542)], color=SOFT_BLUE, width=2)
-    d.rect(80, 542, 1080, 70, fill="#DCEBFA", line=PANEL_LINE, width=1.25, radius=16,
-           gradient={"stops": ["#EEF6FE", "#D6E9FA"], "dir": "h"})
-    d.rect(94, 552, 50, 50, line="#CFE0F1", width=1, radius=14)
-    d.icon("onelake", 100, 558, 38)
-    d.text(160, 560.2, "OneLake | 공통 저장소", 24, 330, weight=600, split=True)
-    d.rect(832, 557, 304, 40, line=PANEL_LINE, width=1.25, radius=20)
-    d.text(832, 561.6, "schema-enabled Lakehouse", 22, 304, align="center")
+    # OneLake holds the Lakehouse; the medallion is only the schema layout inside it.
+    d.rect(80, 226, 1080, 280, fill="#E6F0FB", line="#B5D1EE", width=1.25, radius=22,
+           gradient={"stops": ["#EDF5FD", "#D8E8F8"], "dir": "v"})
+    d.rect(96, 240, 1048, 184, line="#C5D6EA", width=1.25, radius=16, shadow=True)
+    d.icon("lakehouse", 112, 250, 40)
+    d.text(164, 254.6, "schema-enabled Lakehouse | 메달리온 세 계층을 스키마로 구분", 22, 960,
+           weight=600, split=True)
+    d.stroke("line", [(112, 300), (1128, 300)], color="#E3EAF3", width=1.5)
+    d.chip("files", 120, 316, 217, 88, "Files | 원천", "현장·설계·공공 ZEB",
+           ("#9FB1C8", WHITE, CARD_LINE, INK), plain=True)
+    d.layer("bronze", 381, 316, 217, 88, "BRONZE", "원천 보존")
+    d.layer("silver", 642, 316, 217, 88, "SILVER", "정제·연결")
+    d.layer("gold", 903, 316, 217, 88, "GOLD", "업무지표·판단근거")
+    d.rect(110, 441, 46, 46, line="#CFE0F1", width=1, radius=12)
+    d.icon("onelake", 116, 447, 34)
+    d.text(170, 447.2, "OneLake | 공통 저장소", 24, 330, weight=600, split=True)
 
-    d.card("ontology", 80, 700, 330, 128, "ontology", "Ontology | 내장 agent", "근거 질의")
-    d.card("model", 455, 700, 330, 128, "semantic-model", "Semantic model", "Direct Lake")
-    d.card("eventhouse", 830, 700, 330, 128, "eventhouse", "Eventhouse", "위험 snapshot")
-    d.card("powerbi", 455, 868, 330, 128, "power-bi", "Power BI", "현황·보완안")
-    d.card("operations", 830, 868, 330, 128, "operations-agent", "Operations agent", "위험 감시·제안")
-    d.card("audit", 80, 868, 330, 128, "notebook", "Notebook | 결정 기록",
+    d.card("ontology", 80, 646, 330, 128, "ontology", "Ontology | 내장 agent", "근거 질의")
+    d.card("model", 455, 646, 330, 128, "semantic-model", "Semantic model", "Direct Lake")
+    d.card("eventhouse", 830, 646, 330, 128, "eventhouse", "Eventhouse", "위험 snapshot")
+    d.card("powerbi", 455, 828, 330, 128, "power-bi", "Power BI", "현황·보완안")
+    d.card("operations", 830, 828, 330, 128, "operations-agent", "Operations agent", "위험 감시·제안")
+    d.card("audit", 80, 828, 330, 128, "notebook", "Notebook | 결정 기록",
            "결정 기록만 저장\n설계·발주 변경 없음")
-    d.card("foundry", 1250, 222, 310, 128, "foundry", "Foundry | 선택", "승인 전 근거 재검토", dashed=True)
-    d.card("teams", 1250, 868, 310, 128, "teams", "Teams", "제안·담당자 승인",
+    d.card("foundry", 1250, 226, 310, 128, "foundry", "Foundry | 선택", "승인 전 근거 재검토", dashed=True)
+    d.card("teams", 1250, 828, 310, 128, "teams", "Teams", "제안·담당자 승인",
            accent=("#F4FAF4", "#8CC08C"))
 
-    d.arrow("files-to-bronze", [(245, 350), (245, 388)])
-    d.arrow("bronze-to-silver", [(410, 452), (455, 452)])
-    d.arrow("silver-to-gold", [(785, 452), (830, 452)])
+    d.arrow("files-to-bronze", [(337, 360), (381, 360)])
+    d.arrow("bronze-to-silver", [(598, 360), (642, 360)])
+    d.arrow("silver-to-gold", [(859, 360), (903, 360)])
     for route, cx in (("gold-to-ontology", 245), ("gold-to-directlake", 620), ("gold-to-snapshot", 995)):
-        d.arrow(route, [(1160, 452), (1180, 452), (1180, 646), (cx, 646), (cx, 700)])
-    d.arrow("model-to-powerbi", [(620, 828), (620, 868)])
-    d.arrow("snapshot-to-operations", [(995, 828), (995, 868)])
-    d.arrow("operations-to-teams", [(1160, 932), (1250, 932)])
-    d.arrow("teams-to-audit", [(1405, 996), (1405, 1030), (245, 1030), (245, 996)], role="approval")
-    d.arrow("foundry-to-ontology", [(1250, 286), (1225, 286), (1225, 198), (60, 198), (60, 764), (80, 764)],
+        d.arrow(route, [(1120, 360), (1180, 360), (1180, 576), (cx, 576), (cx, 646)])
+    d.arrow("model-to-powerbi", [(620, 774), (620, 828)])
+    d.arrow("snapshot-to-operations", [(995, 774), (995, 828)])
+    d.arrow("operations-to-teams", [(1160, 892), (1250, 892)])
+    d.arrow("teams-to-audit", [(1405, 956), (1405, 1004), (245, 1004), (245, 956)], role="approval")
+    d.arrow("foundry-to-ontology", [(1250, 290), (1225, 290), (1225, 198), (60, 198), (60, 710), (80, 710)],
             role="optional")
-    d.arrow("teams-foundry-review", [(1405, 350), (1405, 868)], role="optional", both=True)
-    d.label(1011 + 137/2, 673, "명시적 수집", 105, SOFT_BLUE)
-    d.label(700, 1030, "승인 후 기록", 110, GREEN)
-    d.label(1405, 609, "선택 검토", 85, MUTED)
+    d.arrow("teams-foundry-review", [(1405, 354), (1405, 828)], role="optional", both=True)
+    d.label(1011 + 137/2, 611, "명시적 수집", 105, SOFT_BLUE)
+    d.label(700, 1004, "승인 후 기록", 110, GREEN)
+    d.label(1405, 591, "선택 검토", 85, MUTED)
     d.save()
     print(f"Built Korean medallion SVG + Excalidraw + shared scene ({WIDTH}×{HEIGHT}).")
 
