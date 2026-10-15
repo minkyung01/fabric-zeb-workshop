@@ -33,9 +33,9 @@ URL 경로/preview 문서는 변경될 수 있습니다. 아래 메달리온 설
 
 | 실제 조회한 공식 문서 | 확인한 근거 | 이 저장소에 반영한 설계 |
 |---|---|---|
-| [Implement Medallion Lakehouse Architecture in Fabric](https://learn.microsoft.com/en-us/fabric/onelake/onelake-medallion-lakehouse-architecture) | Bronze=raw, Silver=enriched, Gold=curated. 원본 보존과 단계적 품질 개선. 운영에서는 계층별 Lakehouse 및 별도 workspace 권고 | 세 계층을 그림의 주 흐름으로 분리. 한 Lakehouse/schema 실습은 교육적 절충이며 운영 권고와 구별 |
+| [Implement Medallion Lakehouse Architecture in Fabric](https://learn.microsoft.com/en-us/fabric/onelake/onelake-medallion-lakehouse-architecture) | Bronze=raw, Silver=enriched, Gold=curated. 원본 보존과 단계적 품질 개선. 운영에서는 계층별 Lakehouse 및 별도 workspace 권고 | 세 계층을 Lakehouse 안의 스키마 흐름(Files → Bronze → Silver → Gold)으로 표시. 한 Lakehouse/schema 실습은 교육적 절충이며 운영 권고와 구별 |
 | [Lakehouse schemas](https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-schemas) | schema.table로 table 저장·그룹화. Notebook의 default Lakehouse가 schema-enabled이거나 default가 없어야 schema 사용 가능 | 참가자별 schema-enabled Lakehouse에 `bronze`·`silver`·`gold`; schema 이름 자체는 권한 격리 증명 아님 |
-| [OneLake, the unified data lake](https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview) | 통합 저장소의 동일 데이터를 여러 분석 엔진이 사용 | OneLake를 Gold 다음 단계가 아닌 전체 계층의 저장 기반으로 표시 |
+| [OneLake, the unified data lake](https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview) | 통합 저장소의 동일 데이터를 여러 분석 엔진이 사용 | OneLake를 Gold 다음 단계가 아닌, Lakehouse와 전체 계층을 담는 저장 기반으로 표시 |
 | [What is the SQL analytics endpoint for a lakehouse?](https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-sql-analytics-endpoint) | Delta table에는 읽기 전용 T-SQL. 데이터 수정은 Spark. view/function/procedure 생성 가능하지만 Delta INSERT/UPDATE/DELETE 불가 | SQL은 읽기·독립 검산. Bronze/Silver/Gold 물리 table의 writer는 Spark |
 | [Direct Lake overview](https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-overview) | OneLake Delta table을 읽는 semantic model 저장 모드이며 Gold 분석 계층에 적합 | Gold → semantic model(Direct Lake) → Power BI; Silver에서 보고서로 바로 연결하지 않음 |
 | [How to use notebooks](https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook) | Spark 기반 ingestion·preparation·transformation, Lakehouse 연결 | `01_bronze`·`02_silver`·`03_gold`를 각 계층의 실제 변환 책임자로 표시 |

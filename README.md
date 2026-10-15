@@ -46,13 +46,13 @@ python .\tools\check_kit.py
 
 ## 전체 구성
 
-**Bronze 원천 보존 → Silver 정제·연결 → Gold 업무지표·판단근거**를 중심으로 현황과 보완안을 검토합니다.
+현장·설계·공공 ZEB 원천을 **OneLake의 schema-enabled Lakehouse**에 두고 Bronze → Silver → Gold 스키마로 정제한 뒤, 그 근거로 현황과 보완안을 검토합니다.
 
 ![오프라인 설계도 — 실제 화면 아님](assets/architecture.png)
 
 [선명한 SVG](assets/architecture.svg) · [편집 원본 Excalidraw](assets/architecture.excalidraw) · [장면 JSON](assets/architecture.scene.json) · [공식 제품 아이콘 출처](assets/icon-attribution.md)
 
-OneLake는 세 계층의 공통 저장소입니다. Gold 근거를 Ontology·Power BI·Operations에서 활용하며, Teams 담당자 승인 후 **결정 기록만** 저장합니다. 실제 설계·발주는 변경하지 않습니다. Foundry 근거 재검토는 선택입니다.
+이 워크숍에서 Bronze·Silver·Gold는 **하나의 Lakehouse 안의 스키마**로 구분합니다. Gold 근거를 Ontology·Power BI·Operations에서 활용하며, Teams 담당자 승인 후 **결정 기록만** 저장합니다. 실제 설계·발주는 변경하지 않습니다. Foundry 근거 재검토는 선택입니다.
 
 세부 테이블·수량·품질 기준·운영 설계는 [메달리온 설계 해설](admin/medallion-architecture.md)과 [공식 근거](docs/sources.md#메달리온-설계-검증-2026-10-13)를 참고하십시오.
 

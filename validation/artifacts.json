@@ -19,8 +19,8 @@
     },
     {
       "path": "admin/medallion-architecture.md",
-      "bytes": 9886,
-      "sha256": "a1eb459c49ffa98fbe29cb9b3d4ec6982371a4d149cf5a2efc59e7b731a65a20"
+      "bytes": 9960,
+      "sha256": "d923e45968a3a68732ae3a93f33f82cc1ea512469803275c386d949094358f88"
     },
     {
       "path": "admin/validation.md",
@@ -419,8 +419,8 @@
     },
     {
       "path": "docs/sources.md",
-      "bytes": 6823,
-      "sha256": "6396c133f368e91e38a12ea40b96807584265da98df431917d645ef19365019f"
+      "bytes": 6895,
+      "sha256": "138391035e391a97e8345ea618af318c1f66bc17a1faa022366cd9beb5f641da"
     },
     {
       "path": "notebooks/00_preflight.ipynb",
@@ -529,8 +529,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6777,
-      "sha256": "3f82c9a49522cac134dd9915abfbd09f8922969da1410c615a8367a5fc59b0de"
+      "bytes": 6883,
+      "sha256": "a9d2ab2d3ca50f533daa4303f14261f08c49aa87ad17aa469a5dc351c2efa16b"
     },
     {
       "path": "semantic_model/apply-model.tmdl",

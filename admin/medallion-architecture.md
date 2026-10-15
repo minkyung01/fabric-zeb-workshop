@@ -1,6 +1,6 @@
 # 메달리온 아키텍처: 원천 보존에서 판단 근거까지
 
-이 워크숍의 중심은 제품을 연결하는 것이 아니라 **같은 데이터를 Bronze → Silver → Gold로 발전시키면서 각 단계의 책임과 완료 조건을 구분하는 것**입니다. [전체 구성도](../assets/architecture.svg)의 상단 메달리온 세 계층과 아래 Gold 소비 경로를 함께 읽으십시오.
+이 문서는 Lakehouse 안에서 일어나는 데이터 준비, 즉 **같은 데이터를 Bronze → Silver → Gold로 발전시키면서 각 단계의 책임과 완료 조건을 구분하는 방법**을 설명합니다. [전체 구성도](../assets/architecture.svg)에서 Lakehouse 안의 Files → Bronze → Silver → Gold 흐름과, Gold를 읽는 아래 소비 경로를 함께 읽으십시오.
 
 ## 공식 권고와 실습 배치
 
@@ -18,7 +18,7 @@ Microsoft Learn은 Bronze를 **Raw**, Silver를 **Enriched**, Gold를 **Curated*
    └─ Tables / audit.decision_log 승인 검토 증적; 메달리온의 네 번째 계층 아님
 ```
 
-OneLake는 세 계층과 Files를 담는 **통합 저장소**입니다. Gold 뒤에 복사하는 네 번째 ETL 단계가 아닙니다. Files 원본 보존과 Bronze Delta 생성도 동일한 산출물이 아닙니다.
+OneLake는 이 Lakehouse(Files와 세 계층)를 담는 **통합 저장소**입니다. Gold 뒤에 복사하는 네 번째 ETL 단계가 아닙니다. Files 원본 보존과 Bronze Delta 생성도 동일한 산출물이 아닙니다.
 
 ## 계층별 데이터 계약
 
