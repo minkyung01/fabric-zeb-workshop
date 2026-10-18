@@ -12,25 +12,25 @@ Contoso 건설의 에코시티 D단지는 제로에너지건축물(ZEB) **예비
 
 | 결과 | 할 수 있는 일 |
 |---|---|
-| Bronze·Silver·Gold 테이블 | 공공데이터포털의 인증 4종(ZEB·녹색건축·BF·녹색기술)을 **Notebook으로 직접 내려받고**, Contoso 내부 시스템(ERP·PMS·BIM·SCM) 데이터와 같은 기준으로 정제합니다. |
-| Ontology와 Data agent | 시스템마다 다른 코드(프로젝트 번호·현장 코드·BIM 모델 번호)와 **등급 판정 규칙**을 Ontology에 담고, Data agent의 답을 정답 Notebook과 비교합니다. |
-| Power BI 컨트롤 타워 2페이지 | 공공 ZEB 인증 현황은 직접 만들고, 현장 컨트롤 타워는 **Copilot으로 생성**한 뒤 질문·인사이트로 근거를 확인합니다. |
+| Bronze·Silver·Gold 테이블 | 공공데이터포털의 인증 4종(ZEB·녹색건축·BF·녹색기술)을 **Notebook으로 직접 내려받고**, Contoso 내부 시스템(ERP·PMS·BIM·SCM) 데이터와 표기·형식을 맞춰 정리합니다. |
+| Ontology와 Data agent | 시스템마다 다른 코드(프로젝트 번호·현장 코드·BIM 모델 번호)와 **등급 판정 규칙**을 Ontology에 정의하고, Data agent의 답을 정답 Notebook과 비교합니다. |
+| Power BI 컨트롤 타워 2페이지 | 공공 ZEB 인증 현황은 직접 만들고, 현장 컨트롤 타워는 **Copilot으로 생성**한 뒤 Copilot에게 질문하고 인사이트를 요약받습니다. |
 | Teams 제안과 보완안 반영 | Operations agent가 D단지 위험과 **가장 싼 추천 보완안**을 Teams로 제안하고, 담당자가 승인하면 Notebook이 조치를 기록하고 **설계안·예상 등급을 다시 계산**합니다. |
 
-추천은 계산으로 정하고, AI의 설명은 계산 결과와 대조합니다. **최종 결정은 담당자가 하며, 실습은 데이터 안의 조치 기록과 재계산까지입니다. 실제 설계 변경·발주는 하지 않습니다.**
+추천안은 Notebook 계산으로 정하고, AI 답변은 그 계산 결과와 비교해 확인합니다. **최종 결정은 담당자가 합니다. 실습에서는 조치를 기록하고 데이터를 다시 계산하는 데까지만 진행하며, 실제 설계 변경이나 발주는 하지 않습니다.**
 
 ## 전체 구성
 
-Notebook이 원천 데이터를 **OneLake의 schema-enabled Lakehouse 하나**에 적재하고, `bronze` → `silver` → `gold`·`ops` 스키마로 정제합니다. Gold는 Ontology·Data agent, Direct Lake 모델·Power BI, Eventhouse·Operations agent가 함께 사용합니다.
+Notebook이 원천 데이터를 **OneLake의 Lakehouse 하나(스키마 사용)**에 적재한 뒤 `bronze` → `silver` → `gold`·`ops` 스키마 순서로 정리합니다. Ontology·Data agent, Power BI, Operations agent는 모두 이 Gold 테이블을 읽습니다.
 
-<img src="assets/architecture.svg" width="1000" alt="전체 구성. Notebook이 공공 인증 4종과 Contoso 내부 데이터를 Lakehouse의 Bronze에 적재하고 Silver에서 정제한 뒤 Gold 사실 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Semantic model과 Power BI, Eventhouse와 Operations agent로 이어집니다. Operations agent가 Teams로 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 선택입니다." />
+<img src="assets/architecture.svg" width="1000" alt="전체 구성. Notebook이 공공 인증 4종과 Contoso 내부 데이터를 Lakehouse의 Bronze에 적재하고 Silver에서 정리한 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Semantic model과 Power BI, Eventhouse와 Operations agent로 이어집니다. Operations agent가 Teams로 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 선택입니다." />
 
 [그림 크게 보기](assets/architecture.png)
 
-- **Gold는 사실 데이터만** 담습니다. 예상 등급·위험 같은 판단 기준은 06장에서 **Ontology의 업무 규칙**으로 정의하고, 보고서와 감시에 쓸 계산 결과는 별도 `ops` 스키마에 둡니다.
-- 06장은 **Ontology 내장 agent로 구조를 작성**하고, 07장은 **별도 Data agent `da_zeb`에 Ontology를 연결해 업무 질문**을 합니다.
+- **Gold에는 원천에서 정리한 데이터만 두고, 예상 등급·위험 여부는 저장하지 않습니다.** 등급을 판정하는 기준은 06장에서 **Ontology의 업무 규칙**으로 정의하고, 보고서와 감시에 쓰는 계산 결과는 따로 `ops` 스키마에 저장합니다.
+- 06장에서는 **Ontology에 들어 있는 agent로 구조를 만들고**, 07장에서는 **별도로 만든 Data agent `da_zeb`에 이 Ontology를 연결해 업무 질문**을 합니다.
 - Operations agent는 Lakehouse를 직접 감시하지 않고, 09장에서 Eventhouse로 보낸 **위험 이벤트 상태**를 감시합니다.
-- 실선은 실습 흐름, 초록 선은 승인 후 반영, 점선은 선택 단계입니다. 10장 Foundry는 선택입니다.
+- 구성도의 파란 실선은 실습 흐름, 초록 선은 승인 후 반영, 점선은 선택 단계(10장 Foundry)입니다.
 
 ## 시작 전 확인
 
@@ -55,7 +55,7 @@ Notebook이 원천 데이터를 **OneLake의 schema-enabled Lakehouse 하나**�
 | [02. Bronze ① 공공 인증 데이터](docs/02-bronze-public.md) | 공공데이터포털에서 인증 4종을 Notebook으로 내려받아 그대로 저장합니다. |
 | [03. Bronze ② Contoso 내부 데이터](docs/03-bronze-contoso.md) | ERP·PMS·BIM·SCM의 가상 데이터를 만들고 시스템별 코드 차이를 확인합니다. |
 | [04. Silver](docs/04-silver.md) | 시도·용도·등급 표기를 통일하고, 같은 건물을 묶고, 발주 이벤트를 반영합니다. |
-| [05. Gold와 운영 지표](docs/05-gold.md) | 사실 데이터(Gold)와 현장 상태(ops)를 만들고 D단지 위험을 확인합니다. |
+| [05. Gold와 운영 지표](docs/05-gold.md) | Gold 테이블과 현장 상태(ops)를 만들고 D단지 위험을 확인합니다. |
 | [06. Ontology](docs/06-ontology.md) | Ontology agent로 엔터티·관계·바인딩을 만들고 등급 판정 규칙을 넣습니다. |
 | [07. Data agent](docs/07-data-agent.md) | Ontology를 연결한 Data agent에 질문 8개를 하고 정답 Notebook과 비교합니다. |
 | [08. Power BI](docs/08-power-bi.md) | 인증 현황 페이지는 직접, 현장 컨트롤 타워는 Copilot으로 만들고 질문·인사이트를 확인합니다. |
@@ -64,7 +64,7 @@ Notebook이 원천 데이터를 **OneLake의 schema-enabled Lakehouse 하나**�
 | [11. 승인과 반영](docs/11-approval.md) | Teams에서 승인하고, 조치 기록·설계안 V4·등급 회복·이벤트 종료를 확인한 뒤 Stop합니다. |
 | [12. 마무리](docs/12-finish.md) | 결과를 확인하고 감시·실행을 멈춥니다. |
 
-**09장 Teams 제안 → (선택) 10장 근거 검토 → 11장 승인·반영·Stop** 순서를 지킵니다. AI가 만드는 구조·페이지·답변은 달라질 수 있으므로, 완료 메시지만 믿지 않고 각 장의 데이터·필드·근거와 비교합니다.
+**09장 Teams 제안 → (선택) 10장 근거 검토 → 11장 승인·반영·Stop** 순서를 지킵니다. AI가 만든 구조·페이지·답변은 실행할 때마다 달라질 수 있습니다. 완료 메시지만 보고 넘어가지 말고, 각 장에 적힌 데이터·필드·값과 비교합니다.
 
 ## 실습 파일
 
@@ -78,7 +78,7 @@ Notebook이 원천 데이터를 **OneLake의 schema-enabled Lakehouse 하나**�
 
 원본은 이 저장소의 [notebooks](notebooks)와 [fabric](fabric) 폴더입니다. Notebook은 `notebooks/src`의 소스에서 만들어집니다(`python tools/build_notebooks.py`).
 
-저장소를 고친 뒤에는 로컬에서 아래 검사로 Notebook·문서·Fabric 파일의 일관성을 확인합니다. 클라우드에 접속하지 않습니다.
+저장소를 수정했다면 아래 명령으로 Notebook·문서·Fabric 파일이 서로 맞는지 로컬에서 확인합니다. 클라우드에는 접속하지 않습니다.
 
 ``` bash
 python tools/build_notebooks.py

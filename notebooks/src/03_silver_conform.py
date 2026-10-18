@@ -1,8 +1,8 @@
 # %% [markdown]
-# # 03. Silver — 정제하고 같은 기준으로 맞추기
+# # 03. Silver — 표기와 형식 맞추기
 # 
-# Bronze의 공공데이터와 Contoso 내부 데이터를 **같은 기준**으로 정리합니다.
-# Silver는 값을 정제·통일하고 이벤트를 반영할 뿐, **업무 판단(예상 등급, 위험 여부 등)은 계산하지 않습니다.**
+# Bronze의 공공 데이터와 Contoso 내부 데이터를 **서로 비교할 수 있도록** 정리합니다.
+# Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하기만 합니다. **예상 등급이나 위험 여부는 계산하지 않습니다.**
 # 
 # | 규칙 | 예시 |
 # |---|---|
@@ -13,16 +13,16 @@
 # | 날짜·숫자 형식 | 앞뒤 공백 제거, 날짜가 아닌 값(예: `본인증 교부전 또는 사용승인 후 1년 이내`)은 비고로 분리 |
 # | 이벤트·조치 반영 | 발주 납기 변경·공급사 변경 이벤트, 승인된 보완안을 반영해 현재 상태를 만듦 |
 #
-# 이 Notebook은 실행할 때마다 `silver` 스키마를 비우고 Bronze에서 다시 만듭니다. 전체 실행 시간은 약 2–3분입니다.
+# 이 Notebook은 실행할 때마다 `silver` 스키마를 비우고 Bronze에서 다시 만듭니다. 전체 실행에 약 3분 걸립니다.
 
 # %% [parameters]
 as_of_date = "2026-09-30"
 
 # %% [markdown]
-# ## 0. 준비 — 정제 함수
+# ## 0. 준비 — 정리용 함수
 #
-# 문자열 앞뒤 공백 제거(`trim_strings`), 빈 문자열 → null(`blank_null`), 날짜·숫자 변환(`as_date`, `as_double`)을 정의합니다.
-# 날짜·숫자로 바꿀 수 없는 값은 오류로 멈추지 않고 null이 됩니다.
+# 문자열 앞뒤 공백 제거(`trim_strings`), 빈 문자열을 null로 바꾸기(`blank_null`), 날짜·숫자 변환(`as_date`, `as_double`) 함수를 만듭니다.
+# 날짜나 숫자로 바꿀 수 없는 값이 있어도 멈추지 않고 null로 둡니다.
 #
 # **예상 결과:** 결과 없이 끝납니다.
 
@@ -54,9 +54,9 @@ B = lambda t: trim_strings(spark.table(f"bronze.{t}")).drop("_source", "_generat
 # %% [markdown]
 # ## 1. 공통 규칙 — 시도, 건물명, 용도
 #
-# - **시도:** `ref_region`의 정식명·별칭을 모두 펼쳐 `별칭 → 시도` 표를 만들고 원천 표기를 연결합니다.
-# - **건물명 키:** 괄호 안 내용·기호·`신축공사` 같은 단어를 지워 기관마다 조금씩 다른 건물명을 같은 키로 만듭니다.
-# - **용도:** 원천 용도를 실습에서 쓰는 용도 그룹(`use_group`)으로 맞춥니다.
+# - **시도:** `ref_region`의 정식명과 별칭을 모두 펼쳐 `별칭 → 시도` 대응표를 만들고, 원천 표기를 이 표로 바꿉니다.
+# - **건물명 키:** 괄호 안 내용, 기호, `신축공사` 같은 말을 지워서 기관마다 조금씩 다른 건물명이 같은 키가 되게 합니다.
+# - **용도:** 원천 용도를 실습에서 쓰는 용도 그룹(`use_group`)으로 바꿉니다.
 #
 # **예상 결과:** `silver.ref_zeb_grade_criteria 6행`, `silver.ref_region 17행`, `silver.ref_equipment_category 8행`
 
@@ -100,11 +100,11 @@ save(B("ref_equipment_category"), "silver.ref_equipment_category")
 # %% [markdown]
 # ## 2. 공공 인증 데이터
 #
-# 인증 4종을 같은 규칙으로 정제합니다. 행을 지우지 않으므로 **Bronze와 행 수가 같습니다.**
-# 각 인증에는 `cert_id`(예: `ZEB-00001`)와 같은 건물을 묶는 `building_key`(`시도|정규화한 건물명`)가 붙습니다.
+# 인증 4종을 같은 규칙으로 정리합니다. 행을 지우지 않으므로 **행 수는 Bronze와 같습니다.**
+# 인증마다 `cert_id`(예: `ZEB-00001`)와, 같은 건물을 묶는 `building_key`(`시도|정리한 건물명`)가 붙습니다.
 #
-# **예상 결과:** 4줄. `silver.zeb_certification`, `silver.gseed_certification`, `silver.bf_certification`, `silver.green_tech_certificate`의 행 수가
-# 02장 Bronze의 행 수와 같습니다.
+# **예상 결과:** 4줄이 출력됩니다. `silver.zeb_certification`, `silver.gseed_certification`, `silver.bf_certification`, `silver.green_tech_certificate`의
+# 행 수가 Bronze와 같습니다.
 
 # %%
 # 제로에너지건축물(ZEB) 인증 — 인증 구분(본인증/예비인증)과 등급 코드(+, 1~5)는 기관 원본 값을 그대로 씁니다.
@@ -185,10 +185,10 @@ save(green_tech, "silver.green_tech_certificate")
 # %% [markdown]
 # ## 3. 같은 건물 연결 — 인증 건물
 # 
-# 한 건물이 ZEB·녹색건축·BF 인증을 각각 받으면 기관마다 따로 기록됩니다. **시도 + 정규화한 건물명**이 같으면 같은 건물(`building_key`)로 봅니다.
-# 건물 이름·시도·용도는 ZEB → 녹색건축 → BF 순서로, 각 인증의 최신 기록(본인증 우선)에서 가져옵니다.
+# 한 건물이 ZEB·녹색건축·BF 인증을 각각 받으면 기관마다 따로 기록됩니다. **시도와 정리한 건물명**이 같으면 같은 건물(`building_key`)로 봅니다.
+# 건물 이름·시도·용도는 ZEB → 녹색건축 → BF 순서로 찾고, 인증마다 가장 최근 기록(본인증 우선)의 값을 씁니다.
 #
-# **예상 결과:** `silver.certified_building 25,362행` 한 줄. 세 인증의 건수 합보다 적습니다. 한 건물이 받은 여러 인증이 한 행으로 묶이기 때문입니다.
+# **예상 결과:** `silver.certified_building 25,362행` 한 줄이 출력됩니다. 한 건물이 받은 여러 인증이 한 행으로 묶이므로 세 인증의 건수를 더한 값보다 적습니다.
 
 # %%
 def latest(df, name_col, cols):
@@ -209,15 +209,15 @@ save(certified_building, "silver.certified_building")
 # %% [markdown]
 # ## 4. Contoso 내부 데이터 — 이벤트와 승인된 조치를 반영한 현재 상태
 #
-# 내부 데이터는 원천 값을 정리하면서 **이벤트와 조치를 반영한 현재 상태**를 만듭니다.
+# 내부 데이터는 값을 정리하면서 **이벤트와 조치를 반영해 현재 상태로 맞춥니다.**
 #
 # - **발주 이벤트:** 납기 변경 이벤트가 있으면 `expected_date`를 새 날짜로 바꾸고, 원래 날짜는 `original_expected_date`에 남깁니다.
-#   리버뷰 B단지 창호(`IC-B-ENV`)가 `2027-04-15 → 2027-04-20`이 됩니다.
-# - **승인된 보완안:** `pms_action_log`에 `apply_options` 기록이 있으면, 현행 설계안에 보완안 효과를 더한 **새 설계안(조치 반영안)** 을 만들고
-#   그 설계안을 `현행`으로 바꿉니다. 지금은 조치 기록이 없으므로 새 설계안이 생기지 않습니다(11장에서 생깁니다).
+#   리버뷰 B단지 창호(`IC-B-ENV`)의 예상 입고일이 `2027-04-15`에서 `2027-04-20`으로 바뀝니다.
+# - **승인된 보완안:** `pms_action_log`에 `apply_options` 기록이 있으면, 현재 설계안에 보완안 효과를 더한 **새 설계안(조치 반영안)** 을 만들어
+#   `현행`으로 바꿉니다. 지금은 조치 기록이 없어서 새 설계안이 생기지 않습니다(11장에서 생깁니다).
 #
-# **예상 결과:** `silver.bim_design_version 18행`, `silver.pms_equipment_plan 39행`, `silver.scm_purchase_order 25행`, `silver.pms_action_log 0행` 등
-# 내부 테이블 13개가 Bronze와 같은 행 수로 만들어집니다.
+# **예상 결과:** 내부 테이블 13개가 Bronze와 같은 행 수로 만들어집니다. `silver.bim_design_version 18행`, `silver.pms_equipment_plan 39행`,
+# `silver.scm_purchase_order 25행`, `silver.pms_action_log 0행` 등입니다.
 
 # %%
 # ERP 프로젝트, PMS 현장, MDM 매핑
@@ -305,14 +305,14 @@ applied_ids = applied.select("option_id", F.col("action_id").alias("applied_acti
 save(opts.join(applied_ids, "option_id", "left").withColumn("is_applied", F.col("applied_action_id").isNotNull()), "silver.sim_improvement_option")
 
 # %% [markdown]
-# ## 5. 정제 결과 확인
+# ## 5. 정리 결과 확인
 #
-# 시도 표기 통일이 제대로 됐는지 확인합니다.
+# 시도 표기가 제대로 맞춰졌는지 확인합니다.
 #
 # **예상 결과:** 두 표가 나옵니다.
 #
-# 1. `시도를 정하지 못한 원천 값`: 1행. 원천 값이 비어 있는 1건뿐입니다. 별칭 표가 나머지 표기를 모두 시도로 바꿨습니다.
-# 2. BF 인증에서 `전북`으로 통일된 원천 표기: 2행. `전라북도` 1,125건, `전북특별자치도` 167건
+# 1. `시도를 정하지 못한 원천 값`: 1행. 원천 값이 비어 있는 1건뿐이고, 나머지 표기는 모두 시도로 바뀌었습니다.
+# 2. BF 인증에서 `전북`으로 바뀐 원천 표기: 2행. `전라북도` 1,125건, `전북특별자치도` 167건
 
 # %%
 unmatched = (spark.table("silver.gseed_certification").where("sido is null").select("sido_raw")

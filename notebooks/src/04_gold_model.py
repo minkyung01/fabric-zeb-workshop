@@ -1,11 +1,11 @@
 # %% [markdown]
 # # 04. Gold — 보고서·온톨로지·에이전트가 함께 쓰는 테이블
 # 
-# Gold는 **정제된 사실 데이터**만 담습니다. 원천 시스템의 코드(ERP 프로젝트 번호, PMS 현장 코드, BIM 모델 번호, SCM 거래처 코드)를 그대로 두고,
-# 시스템 간 연결은 MDM 매핑표(`mdm_site_xref`)와 WBS 코드로 이어집니다.
+# Gold에는 Silver에서 정리한 **업무 데이터**를 저장합니다. 원천 시스템의 코드(ERP 프로젝트 번호, PMS 현장 코드, BIM 모델 번호, SCM 거래처 코드)를
+# 그대로 쓰고, 시스템 사이는 MDM 매핑표(`mdm_site_xref`)와 WBS 코드로 연결합니다.
 # 
-# **예상 등급·위험 여부 같은 업무 판단 결과는 Gold에 넣지 않습니다.** 판단 기준(등급 판정 규칙, 본인증 조건, 일정 연쇄 등)은
-# 온톨로지(Fabric IQ)의 업무 규칙으로 정의하고, 운영 모니터링용 계산 결과는 별도 `ops` 스키마에 둡니다(보고서 전용).
+# **예상 등급이나 위험 여부 같은 판정 결과는 Gold에 저장하지 않습니다.** 판정 기준(등급 판정, 본인증 조건, 일정 지연 전파 등)은
+# 온톨로지(Fabric IQ)의 업무 규칙으로 정의하고, 보고서와 감시에 쓰는 계산 결과는 따로 `ops` 스키마에 저장합니다.
 # 
 # | 영역 | Gold 테이블 |
 # |---|---|
@@ -14,8 +14,8 @@
 # | Contoso 내부 | `erp_project`, `pms_site`, `mdm_site_xref`, `bim_design_version`, `pms_certificate`, `pms_cert_target`, `pms_cert_milestone`, `pms_equipment_plan`, `scm_vendor`, `scm_purchase_order`, `scm_po_event`, `sim_improvement_option`, `pms_action_log` |
 # | 운영 모니터링(`ops`) | `ops.site_status`, `ops.po_status`, `ops.milestone_forecast` |
 #
-# 다시 실행하면 이 Notebook이 만드는 테이블만 덮어씁니다. 09장의 위험 이벤트 테이블(`ops.risk_event` 등)은 그대로 둡니다.
-# 전체 실행 시간은 약 2–3분입니다.
+# 다시 실행하면 이 Notebook이 만드는 테이블만 덮어쓰고, 09장에서 만드는 위험 이벤트 테이블(`ops.risk_event` 등)은 건드리지 않습니다.
+# 전체 실행에 약 4분 걸립니다.
 
 # %% [parameters]
 as_of_date = "2026-09-30"
@@ -25,7 +25,7 @@ wait_for_graph = True
 # %% [markdown]
 # ## 0. 준비
 #
-# Power BI가 빠르게 읽도록 V-Order로 저장합니다(Direct Lake 권장 설정).
+# `gold`·`ops` 스키마를 만들고, Power BI가 빠르게 읽을 수 있도록 V-Order 저장 방식을 켭니다(Direct Lake 권장 설정).
 #
 # **예상 결과:** 결과 없이 끝납니다.
 
@@ -47,9 +47,9 @@ S = lambda t: spark.table(f"silver.{t}")
 # %% [markdown]
 # ## 1. 기준 정보
 #
-# 보고서 색(`grade_color`)과 용도의 주거 구분(`use_family`: 주거용/주거용 이외)을 더합니다. 1차에너지 기준값은 주거 구분에 따라 다릅니다.
+# 등급별 보고서 색(`grade_color`)과 용도별 주거 구분(`use_family`: 주거용/주거용 이외)을 추가합니다. 1차에너지 기준값이 주거 구분에 따라 다르기 때문입니다.
 #
-# **예상 결과:** `gold.ref_region 17행`, `gold.ref_building_use …행`, `gold.ref_zeb_grade_criteria 6행`, `gold.ref_equipment_category 8행`
+# **예상 결과:** `gold.ref_region 17행`, `gold.ref_building_use 14행`, `gold.ref_zeb_grade_criteria 6행`, `gold.ref_equipment_category 8행`
 
 # %%
 save(S("ref_region").select("sido", "sido_full", "region_group", "latitude", "longitude"), "gold.ref_region")
@@ -66,9 +66,9 @@ save(S("ref_equipment_category").select("category_code", "category_name", "zeb_r
 # %% [markdown]
 # ## 2. 공공 인증
 #
-# Silver의 공공 인증을 그대로 옮기고 원천 표기 열(`sido_raw`)만 뺍니다. 테이블 이름 앞의 `pub_`는 공공 데이터라는 뜻입니다.
+# Silver의 공공 인증 테이블을 옮기면서 원천 시도 표기 열(`sido_raw`)만 뺍니다. 테이블 이름 앞의 `pub_`는 공공 데이터라는 뜻입니다.
 #
-# **예상 결과:** 5줄. `gold.pub_zeb_certification`의 행 수가 Bronze `pub_zeb_cert`와 같습니다.
+# **예상 결과:** 5줄이 출력됩니다. `gold.pub_zeb_certification 9,760행`, `gold.pub_certified_building 25,362행` 등입니다.
 
 # %%
 save(S("certified_building"), "gold.pub_certified_building")
@@ -78,11 +78,11 @@ save(S("bf_certification").drop("sido_raw"), "gold.pub_bf_certification")
 save(S("green_tech_certificate"), "gold.pub_green_tech_certificate")
 
 # %% [markdown]
-# ## 3. Contoso 내부 — 시스템별 사실 데이터
+# ## 3. Contoso 내부 — 시스템별 업무 데이터
 #
-# 원천 시스템의 코드와 이름을 그대로 둡니다. 예상 등급이나 위험 여부 같은 **판단 결과는 넣지 않습니다.**
+# 원천 시스템의 코드와 이름을 그대로 씁니다. 예상 등급이나 위험 여부 같은 **판정 결과는 저장하지 않습니다.**
 #
-# **예상 결과:** 13줄. `gold.erp_project 8행` … `gold.pms_action_log 0행`
+# **예상 결과:** 13줄이 출력됩니다. `gold.erp_project 8행`부터 `gold.pms_action_log 0행`까지입니다.
 
 # %%
 save(S("erp_project").drop("sido_raw"), "gold.erp_project")
@@ -103,17 +103,17 @@ save(S("sim_improvement_option"), "gold.sim_improvement_option")
 save(S("pms_action_log").select("action_id", "action_ts", "site_code", "action_type", "detail_json", "approved_by", "source_system"), "gold.pms_action_log")
 
 # %% [markdown]
-# ## 4. 운영 모니터링(`ops`) — 보고서용 계산 결과
+# ## 4. 운영 지표(`ops`) — 보고서와 감시에 쓰는 계산 결과
 # 
-# 온톨로지 규칙과 **같은 기준**으로 계산한 현재 상태입니다. Power BI 보고서(08장)와 Operations agent(09장)가 사용합니다.
-# - 예상 등급 = 에너지자립률 기준 등급과 1차에너지소요량 기준 등급(주거용/주거용 이외 기준값) 중 **높은 등급**
+# 06장에서 온톨로지에 넣을 규칙과 **같은 기준**으로 현재 상태를 계산합니다. Power BI 보고서(08장)와 Operations agent(09장)가 사용합니다.
+# - 예상 등급 = 에너지자립률 기준 등급과 1차에너지소요량 기준 등급(주거용/주거용 이외 기준값) 중 **더 좋은 등급**
 # - 예비인증을 받은 현장은 사용승인 전 **예비 등급 이상의 본인증**이 필요
 # - BEMS(또는 원격검침)는 인증 필수 요건
-# - 필수 설비 입고가 '설비 설치 완료' 계획일을 넘기면 이후 인증 일정(본인증 신청·취득, 사용승인)이 넘긴 일수만큼 밀림
+# - 필수 설비가 '설비 설치 완료' 계획일보다 늦게 입고되면 이후 인증 일정(본인증 신청·취득, 사용승인)이 늦어진 일수만큼 밀림
 #
 # | 상태(`risk_level`) | 조건 |
 # |---|---|
-# | 위험 | 예상 등급이 **예비인증 등급보다 낮음**, 또는 필수 설비가 설치 완료 계획일을 넘겨 입고 |
+# | 위험 | 예상 등급이 **예비인증 등급보다 낮음**, 또는 필수 설비가 설치 완료 계획일보다 늦게 입고됨 |
 # | 주의 | 예상 등급이 목표 등급보다 낮음, BEMS 미계획, 추가 인증(녹색건축·BF) 목표 미달 |
 # | 정상 | 위 조건에 해당하지 않음 |
 #
@@ -240,13 +240,13 @@ save(site_status, "ops.site_status")
 # %% [markdown]
 # ## 5. 결과 확인
 #
-# **예상 결과:** 첫 표는 현장 8행이며 위험 순서로 정렬됩니다. 위험 1곳(에코시티 D단지), 주의 3곳, 정상 4곳입니다.
+# **예상 결과:** 첫 번째 표에 현장 8곳이 위험한 순서대로 나옵니다. 위험 1곳(에코시티 D단지), 주의 3곳, 정상 4곳입니다.
 #
 # - **에코시티 D단지(HS-D):** VE 반영안 V3 자립률 38.2%·1차에너지 76 → 예상 **5등급**. 예비인증 4등급보다 낮아 **위험**
 # - **주의:** 스마트오피스 C센터(BEMS 미계획), 세종 E학교(BF 예비 우수 < 목표 최우수), 마포 H단지(예상 5등급 < 목표 4등급)
-# - **리버뷰 B단지(IC-B):** 자립률 39%로 4등급 하한(40%)에 못 미치지만 1차에너지소요량 65가 주거용 4등급 기준(70 미만)을 충족해 **4등급·정상**
+# - **리버뷰 B단지(IC-B):** 자립률 39%는 4등급 하한(40%)에 못 미치지만, 1차에너지소요량 65가 주거용 4등급 기준(70 미만)을 충족해 **4등급·정상**
 #
-# 두 번째 표는 `gold` 스키마의 테이블 22개입니다.
+# 두 번째 표에는 `gold` 스키마의 테이블 22개가 나옵니다.
 
 # %%
 display(spark.table("ops.site_status").select("site_name", "selfsuff_pct", "primary_energy_kwh_m2y", "forecast_zeb_label", "grade_basis",
@@ -256,9 +256,9 @@ display(spark.sql("SHOW TABLES IN gold"))
 # %% [markdown]
 # ## 6. 온톨로지 그래프 새로 고침
 # 
-# Gold를 다시 만들었으므로 온톨로지 그래프(`ont_zeb_graph_…`)가 있으면 새로 고쳐 최신 데이터를 반영합니다.
-# 05장에서는 아직 온톨로지가 없으므로 `온톨로지 그래프가 없어 새로 고침을 건너뜁니다.`가 정상입니다.
-# 그래프는 06장의 선택 단계에서만 만듭니다. `wait_for_graph = False`이면 새로 고침을 요청만 하고 기다리지 않습니다(승인 반영 Notebook이 사용).
+# Gold를 다시 만들었으니, 온톨로지 그래프(`ont_zeb_graph_…`)가 있으면 함께 새로 고쳐 최신 데이터를 반영합니다.
+# 05장에서는 아직 온톨로지가 없으므로 `온톨로지 그래프가 없어 새로 고침을 건너뜁니다.`가 나오면 정상입니다.
+# 그래프는 06장의 선택 단계에서만 만듭니다. `wait_for_graph = False`이면 새로 고침을 요청만 하고 끝날 때까지 기다리지 않습니다(승인 반영 Notebook에서 사용).
 
 # %%
 import time

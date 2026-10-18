@@ -10,7 +10,7 @@
 |---|---|---|---|
 | `bronze` | `01_bronze_public_ingest`, `02_bronze_contoso_generate`, `nb_apply_decision`(조치 기록 추가) | 원천 그대로. 공공은 문자열·영문 열 이름, 출처 열(`source_row_num`, `_source_dataset_id`, `_batch_id`, `_ingested_at`) | 21 |
 | `silver` | `03_silver_conform` | 정제·표기 통일·같은 건물 연결·이벤트와 승인된 조치 반영. 업무 판단 없음. 실행마다 전체 재생성 | 21 |
-| `gold` | `04_gold_model` | 정제된 **사실 데이터만**. 원천 시스템 코드 유지. 판단 결과 없음 | 22 |
+| `gold` | `04_gold_model` | Silver에서 정리한 **업무 데이터**. 원천 시스템 코드 유지. 판단 결과 없음 | 22 |
 | `ops` | `04_gold_model`, `06_risk_event`, `nb_apply_decision` | 판정 규칙을 적용한 운영 지표·위험 이벤트(보고서·Operations agent 전용) | 5 |
 
 판단 기준을 Gold에 넣지 않고 Ontology 업무 규칙(06장)으로 정의하는 것이 이 설계의 핵심입니다. `ops`는 같은 규칙으로 계산한 결과를 보고서와 감시에 쓰기 위한 별도 계층입니다.

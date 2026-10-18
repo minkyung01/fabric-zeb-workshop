@@ -219,7 +219,7 @@ class Diagram:
         return "\n".join([
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">',
             '<title id="title">건설 ZEB 인증 컨트롤 타워 | Microsoft Fabric</title>',
-            '<desc id="desc">Notebook이 공공 인증 4종과 Contoso 내부 데이터를 OneLake의 schema-enabled Lakehouse에 Bronze로 적재하고, Silver에서 정제·표기를 통일한 뒤 Gold 사실 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Direct Lake 모델과 Power BI, Eventhouse 위험 이벤트와 Operations agent로 이어집니다. Operations agent가 Teams로 보완안을 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 선택입니다.</desc>',
+            '<desc id="desc">Notebook이 공공 인증 4종과 Contoso 내부 데이터를 OneLake의 schema-enabled Lakehouse에 Bronze로 적재하고, Silver에서 표기를 맞춘 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Direct Lake 모델과 Power BI, Eventhouse 위험 이벤트와 Operations agent로 이어집니다. Operations agent가 Teams로 보완안을 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 선택입니다.</desc>',
             f'<rect width="{WIDTH}" height="{HEIGHT}" fill="white"/>',
             "<defs>", *defs, "</defs>", *body, "</svg>"]) + "\n"
 
@@ -272,7 +272,7 @@ def build():
            ("#9FB1C8", WHITE, CARD_LINE, INK), plain=True)
     d.layer("bronze", 381, 316, 217, 88, "BRONZE", "원천 그대로")
     d.layer("silver", 642, 316, 217, 88, "SILVER", "정제·표기 통일")
-    d.layer("gold", 903, 316, 217, 88, "GOLD", "사실 데이터·ops")
+    d.layer("gold", 903, 316, 217, 88, "GOLD", "업무 데이터·ops")
     d.rect(110, 441, 46, 46, line="#CFE0F1", width=1, radius=12)
     d.icon("onelake", 116, 447, 34)
     d.text(170, 447.2, "OneLake | 공통 저장소", 24, 330, weight=600, split=True)

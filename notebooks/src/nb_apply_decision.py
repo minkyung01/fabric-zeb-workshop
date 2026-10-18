@@ -1,14 +1,14 @@
 # %% [markdown]
 # # 보완안 승인 반영
 #
-# Operations agent가 Teams로 보낸 제안을 담당자가 승인(**Proceed** → **Confirm**)하면 이 Notebook이 실행됩니다. **직접 실행하지 않습니다.**
+# 담당자가 Operations agent의 Teams 제안을 승인(**Proceed** → **Confirm**)하면 이 Notebook이 실행됩니다. **직접 실행하지 않습니다.**
 #
 # 1. 위험 이벤트와 추천 보완안이 맞는지 확인합니다.
-# 2. 공사관리(PMS) 조치 기록 `bronze.pms_action_log`에 `apply_options` 1행을 남기고, Eventhouse에 `approved`를 추가합니다.
+# 2. 공사관리(PMS) 조치 기록 `bronze.pms_action_log`에 `apply_options` 1행을 추가하고, Eventhouse에 `approved` 상태를 기록합니다.
 # 3. Silver·Gold Notebook을 다시 실행합니다. Silver가 조치 기록을 읽어 **보완안을 반영한 새 설계안**을 만들고, Gold가 예상 등급을 다시 계산합니다.
-# 4. 현장이 더 이상 위험하지 않으면 Eventhouse와 `ops.risk_event`에 `resolved`를 남깁니다.
+# 4. 현장이 더 이상 위험하지 않으면 Eventhouse와 `ops.risk_event`에 `resolved` 상태를 기록합니다.
 #
-# 실습 데이터 안의 설계안·등급만 다시 계산합니다. 실제 설계 변경·발주는 하지 않습니다.
+# 실습 데이터의 설계안과 등급만 다시 계산하며, 실제 설계 변경이나 발주는 하지 않습니다.
 
 # %% [parameters]
 event_id = "ZEB-HS-D-20260930"
@@ -17,7 +17,7 @@ option_id = "OPT-D2"
 # %% [markdown]
 # ## 1. 위험 이벤트와 보완안 확인
 #
-# **예상 결과:** 1행. `ZEB-HS-D-20260930`, `HS-D`, 추천 `OPT-D2`, 상태 `open`
+# **예상 결과:** 1행이 나옵니다. `ZEB-HS-D-20260930`, `HS-D`, 추천안 `OPT-D2`, 상태 `open`입니다.
 
 # %%
 from datetime import datetime, timezone
@@ -42,7 +42,7 @@ if ev.status not in ("open", "approved"):
 # %% [markdown]
 # ## 2. 조치 기록과 승인 상태 남기기
 #
-# 같은 이벤트의 조치 기록이 이미 있으면 다시 추가하지 않습니다. 승인자는 Operations agent를 만든 사람(조치를 실행한 계정)입니다.
+# 같은 이벤트의 조치 기록이 이미 있으면 다시 추가하지 않습니다. 승인자로는 Operations agent를 만든 사람(조치를 실행한 계정)이 기록됩니다.
 #
 # **예상 결과:** `ACT-ZEB-HS-D-20260930: 조치 기록 추가`, `ZEB-HS-D-20260930: ZebRiskEvent에 approved 추가`
 
@@ -130,10 +130,10 @@ print("Silver·Gold 다시 계산 완료")
 # %% [markdown]
 # ## 4. 결과 확인과 이벤트 종료
 #
-# 보완안을 반영한 새 설계안이 `현행`이 되고, 현장의 예상 등급·상태가 다시 계산됩니다.
+# 보완안을 반영한 새 설계안이 `현행`이 되고, 현장의 예상 등급과 상태가 다시 계산됩니다.
 #
 # **예상 결과:** 에코시티 D단지 현장의 현행 설계안이 `V4`(조치 반영안), 자립률 41.4%, 1차에너지 72.5, 예상 **4등급**, 상태 **정상**입니다.
-# 위험이 해소되어 `ZebRiskEvent`에 `resolved`가 추가되고 `ops.risk_event`의 상태도 `resolved`가 됩니다.
+# 위험이 해소되었으므로 `ZebRiskEvent`에 `resolved`가 추가되고, `ops.risk_event`의 상태도 `resolved`로 바뀝니다.
 
 # %%
 site = spark.table("ops.site_status").where(F.col("site_code") == ev.site_code).first()
