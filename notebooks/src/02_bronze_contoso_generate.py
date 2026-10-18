@@ -396,13 +396,11 @@ display(spark.sql("SHOW TABLES IN bronze"))
 #
 # **예상 결과:** 3행이 나옵니다. 같은 현장(`CT-24-0189` = `HS-D` = `BIM-0397`)의 설계안 V1·V2·V3입니다.
 # 예비인증서 `ZEB-P-2024-0831`(4등급)은 **V2**(자립률 43.5%)로 받았지만, 현재 설계안(`현행`)은 VE 반영안 **V3**(자립률 38.2%)입니다.
-# ERP의 시도는 원천 표기인 `경기 `(뒤에 공백 포함)입니다.
 
 # %%
 display(spark.sql("""
-    SELECT e.project_no, e.project_name, e.sido_raw, x.site_code, x.bim_model_id,
-           v.version_code, v.version_name, v.selfsuff_pct, v.primary_energy_kwh_m2y, v.pv_kw, v.version_status,
-           c.cert_no AS prelim_cert_no, c.grade AS prelim_grade
+    SELECT e.project_no, x.site_code, x.bim_model_id, v.version_code, v.version_name,
+           v.selfsuff_pct, v.primary_energy_kwh_m2y, v.version_status, c.cert_no AS prelim_cert_no, c.grade AS prelim_grade
     FROM bronze.mdm_site_xref x
     JOIN bronze.erp_project e ON e.project_no = x.project_no
     JOIN bronze.bim_design_version v ON v.bim_model_id = x.bim_model_id

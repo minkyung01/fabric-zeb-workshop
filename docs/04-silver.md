@@ -51,6 +51,8 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
     silver.green_tech_certificate             1,905행
     ```
 
+    <img src="../assets/screenshots/d04-public-silver.png" width="1000" alt="2번 셀 실행 결과. silver.zeb_certification 9,760행, silver.gseed_certification 5,104행, silver.bf_certification 22,184행, silver.green_tech_certificate 1,905행이 출력되어 있습니다." />
+
 4.  **3. 같은 건물 연결 — 인증 건물**
 
     한 건물이 ZEB·녹색건축·BF 인증을 각각 받으면 기관마다 따로 기록됩니다. **시도와 정리한 건물명**이 같으면 같은 건물로 봅니다. 건물 이름·시도·용도는 ZEB → 녹색건축 → BF 순서로 찾고, 인증마다 가장 최근 기록(본인증 우선)의 값을 씁니다.
@@ -71,11 +73,13 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
     - `시도를 정하지 못한 원천 값`: 1행. 원천 값이 비어 있는 1건뿐이고, 나머지 표기는 모두 시도로 바뀌었습니다.
     - BF 인증에서 `전북`으로 바뀐 원천 표기: 2행. `전라북도` 1,125건, `전북특별자치도` 167건
 
+    <img src="../assets/screenshots/d04-sido-check.png" width="1000" alt="5번 셀 실행 결과. 첫 표는 sido_raw가 빈 값인 1행(count 1)이고, 둘째 표는 전라북도 1125, 전북특별자치도 167입니다." />
+
 ## 3. SQL analytics endpoint로 확인
 
 Silver 결과를 SQL로도 조회해 봅니다. SQL analytics endpoint는 같은 Delta 테이블을 **읽기 전용**으로 조회하는 창구입니다.
 
-1.  작업 영역에서 **SQL analytics endpoint** `lh_zeb`를 엽니다.
+1.  작업 영역에서 **SQL analytics endpoint** `lh_zeb`를 엽니다. 작업 영역 목록에서 Lakehouse `lh_zeb` 바로 아래에 있는 항목입니다.
 2.  도구 모음의 **New SQL query**를 누르고 아래 쿼리를 붙여 넣은 뒤 **Run**을 누릅니다.
 
     ``` sql
@@ -89,7 +93,15 @@ Silver 결과를 SQL로도 조회해 봅니다. SQL analytics endpoint는 같은
     WHERE change_event_count > 0;
     ```
 
-**예상 결과:** 첫 결과는 `경기` / `경기도` / `3,827`입니다. BF에서 `경기도`로 쓰던 값이 ZEB와 같은 `경기`로 바뀌었습니다. 두 번째 결과는 1행입니다. `IC-B-ENV`의 예상 입고일이 `2027-04-15`에서 `2027-04-20`으로 바뀌었고, 사유는 `창호 유리 사양 확정 지연(+5일)`입니다.
+**예상 결과:** 아래 **Results**에 첫 번째 쿼리의 결과 `경기` / `경기도` / `3827`이 보입니다. BF에서 `경기도`로 쓰던 값이 ZEB와 같은 `경기`로 바뀌었습니다.
+
+<img src="../assets/screenshots/d04-sql-result1.png" width="1000" alt="SQL analytics endpoint의 SQL query 1. 편집기에 두 쿼리가 있고, 아래 Results에 sido 경기, sido_raw 경기도, cnt 3827 한 행이 보입니다. 하단 상태 표시줄에 Succeeded가 보입니다." />
+
+3.  두 번째 쿼리(6–8행)만 마우스로 드래그해 선택하고 다시 **Run**을 누릅니다. 선택한 부분만 실행됩니다.
+
+**예상 결과:** 1행이 보입니다. `IC-B-ENV`의 예상 입고일이 `2027-04-15`에서 `2027-04-20`으로 바뀌었고, 사유는 `창호 유리 사양 확정 지연(+5일)`입니다.
+
+<img src="../assets/screenshots/d04-sql-result2.png" width="1000" alt="두 번째 쿼리만 선택해 실행한 결과. po_no 4500031213, wbs_element IC-B-ENV, original_expected_date 2027-04-15, expected_date 2027-04-20, last_change_reason 창호 유리 사양 확정 지연(+5일)입니다." />
 
 Notebook을 실행한 직후에는 새 테이블이 SQL에 바로 보이지 않을 수 있습니다. SQL analytics endpoint가 테이블 정보를 동기화하는 데 시간이 조금 걸리기 때문입니다. 1–2분 뒤 탐색기에서 새로 고침을 누르고 다시 실행합니다.
 
