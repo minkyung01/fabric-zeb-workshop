@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "e3e37fba-bd23-5471-891f-a233b9016fd9",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "action_id",
+        "targetPropertyId": "195448179069133964"
+      },
+      {
+        "sourceColumnName": "action_ts",
+        "targetPropertyId": "2643452253546851806"
+      },
+      {
+        "sourceColumnName": "site_code",
+        "targetPropertyId": "558984962047224053"
+      },
+      {
+        "sourceColumnName": "action_type",
+        "targetPropertyId": "4042874984296351772"
+      },
+      {
+        "sourceColumnName": "detail_json",
+        "targetPropertyId": "99538220826473100"
+      },
+      {
+        "sourceColumnName": "approved_by",
+        "targetPropertyId": "2063096256120865223"
+      },
+      {
+        "sourceColumnName": "source_system",
+        "targetPropertyId": "669771713870982739"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pms_action_log",
+      "sourceSchema": "gold"
+    }
+  }
+}

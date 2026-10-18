@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "ae7f08f5-0916-555c-8b15-1d0ee6940b38",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "milestone_id",
+        "targetPropertyId": "2708155855024558724"
+      },
+      {
+        "sourceColumnName": "site_code",
+        "targetPropertyId": "2083864047508799723"
+      },
+      {
+        "sourceColumnName": "seq",
+        "targetPropertyId": "432032971726006080"
+      },
+      {
+        "sourceColumnName": "milestone_type",
+        "targetPropertyId": "1124193315129222471"
+      },
+      {
+        "sourceColumnName": "planned_date",
+        "targetPropertyId": "3677788498847741747"
+      },
+      {
+        "sourceColumnName": "actual_date",
+        "targetPropertyId": "4257255420769332987"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pms_cert_milestone",
+      "sourceSchema": "gold"
+    }
+  }
+}

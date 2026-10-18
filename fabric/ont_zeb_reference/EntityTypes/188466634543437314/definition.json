@@ -1,0 +1,146 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "188466634543437314",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "DesignVersion",
+  "entityIdParts": [
+    "1227263192869907489"
+  ],
+  "displayNamePropertyId": "1227263192869907489",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "1227263192869907489",
+      "name": "version_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC124\uACC4\uC548 \uC2DD\uBCC4\uC790(\uBAA8\uB378 \uBC88\uD638-\uBC84\uC804)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3442687336433125194",
+      "name": "bim_model_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "BIM \uBAA8\uB378 \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2424640388389874388",
+      "name": "version_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBC84\uC804(V1, V2 \u2026)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1163260444647699769",
+      "name": "version_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC124\uACC4\uC548 \uC774\uB984",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "347209339467950353",
+      "name": "version_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC791\uC131\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1693084511398681828",
+      "name": "selfsuff_pct",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uC5D0\uB108\uC9C0\uC790\uB9BD\uB960(%)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1391803422048669064",
+      "name": "primary_energy_kwh_m2y",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "1\uCC28\uC5D0\uB108\uC9C0\uC18C\uC694\uB7C9(kWh/\u33A1\u00B7\uB144)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4521705546901709182",
+      "name": "pv_kw",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uD0DC\uC591\uAD11 \uC6A9\uB7C9(kW)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3430935744201043129",
+      "name": "geothermal_kw",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uC9C0\uC5F4 \uC6A9\uB7C9(kW)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "322252688730990571",
+      "name": "change_note",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBCC0\uACBD \uB0B4\uC6A9",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3794669480130189255",
+      "name": "version_status",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD604\uD589 \uB610\uB294 \uC774\uC804",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uC124\uACC4\uC548",
+      "\uC124\uACC4\uBC84\uC804"
+    ],
+    "description": "BIM \uC5D0\uB108\uC9C0 \uC2DC\uBBAC\uB808\uC774\uC158 \uC124\uACC4\uC548. version_status = \u0027\uD604\uD589\u0027\uC774 \uD604\uC7AC \uC124\uACC4\uC548\uC774\uB2E4. \uD604\uC7A5\uC758 \uC608\uC0C1 ZEB \uB4F1\uAE09\uC740 \uD604\uD589 \uC124\uACC4\uC548\uC758 selfsuff_pct\u00B7primary_energy_kwh_m2y\uC5D0 ZEBGradeCriteria\uC758 \uD310\uC815 \uC808\uCC28\uB97C \uC801\uC6A9\uD574 \uAD6C\uD55C\uB2E4. ZEB \uB4F1\uAE09\uC740 \u002B(ZEB\u002B)\uAC00 \uAC00\uC7A5 \uB192\uACE0 1, 2, 3, 4, 5 \uC21C\uC11C\uB85C \uB0AE\uC544\uC9C4\uB2E4. \u0027N\uB4F1\uAE09 \uC774\uC0C1\u0027\uC740 N\uB4F1\uAE09\uACFC \uADF8\uBCF4\uB2E4 \uB192\uC740 \uB4F1\uAE09\uC744 \uB73B\uD55C\uB2E4. \uC608: \u00274\uB4F1\uAE09 \uC774\uC0C1\u0027 = \u002B, 1, 2, 3, 4\uB4F1\uAE09(5\uB4F1\uAE09 \uC81C\uC678). ZEB \uC608\uC0C1 \uB4F1\uAE09 \uD310\uC815 \uC808\uCC28(\uB450 \uAE30\uC900 \uC911 \uD558\uB098\uB9CC \uCDA9\uC871\uD574\uB3C4 \uB428): (1) \uC790\uB9BD\uB960 \uB4F1\uAE09 = selfsuff_pct \u003E= selfsuff_min_pct\uB97C \uB9CC\uC871\uD558\uB294 \uB4F1\uAE09 \uC911 \uAC00\uC7A5 \uB192\uC740 \uB4F1\uAE09. (2) 1\uCC28\uC5D0\uB108\uC9C0 \uB4F1\uAE09 = primary_energy_kwh_m2y \u003C \uAE30\uC900\uAC12\uC744 \uB9CC\uC871\uD558\uB294 \uB4F1\uAE09 \uC911 \uAC00\uC7A5 \uB192\uC740 \uB4F1\uAE09(\uAE30\uC900\uAC12: \uC8FC\uAC70\uC6A9\uC774\uBA74 primary_energy_limit_residential, \uC8FC\uAC70\uC6A9 \uC774\uC678\uBA74 primary_energy_limit_nonresidential). (3) \uCD5C\uC885 \uB4F1\uAE09 = (1)\uACFC (2) \uC911 \uB354 \uB192\uC740 \uB4F1\uAE09. \uB450 \uAE30\uC900\uC744 \uBAA8\uB450 \uCDA9\uC871\uD574\uC57C \uD558\uB294 \uAC83\uC774 \uC544\uB2C8\uBBC0\uB85C, \uC790\uB9BD\uB960\uC774 \uC5B4\uB5A4 \uB4F1\uAE09\uC758 \uD558\uD55C\uBCF4\uB2E4 \uB0AE\uC544\uB3C4 1\uCC28\uC5D0\uB108\uC9C0\uC18C\uC694\uB7C9\uC774 \uADF8 \uB4F1\uAE09 \uAE30\uC900\uAC12\uBCF4\uB2E4 \uB0AE\uC73C\uBA74 \uADF8 \uB4F1\uAE09\uC744 \uBC1B\uB294\uB2E4. (4) BEMS \uB610\uB294 \uC6D0\uACA9\uAC80\uCE68 \uC124\uCE58\uB294 \uD544\uC218 \uC694\uAC74\uC774\uB2E4. \uC608\uBE44\uC778\uC99D\uC744 \uBC1B\uC740 \uD604\uC7A5\uC740 \uC0AC\uC6A9\uC2B9\uC778 \uC804\uC5D0 \uC608\uBE44\uC778\uC99D \uB4F1\uAE09 \uC774\uC0C1\uC758 \uBCF8\uC778\uC99D\uC744 \uBC1B\uC544\uC57C \uD55C\uB2E4(\uC6A9\uC801\uB960 \uC644\uD654 \uAC19\uC740 \uC778\uC13C\uD2F0\uBE0C\uB97C \uBC1B\uC740 \uD504\uB85C\uC81D\uD2B8\uB294 \uD544\uC218). \uD310\uC815 \uBC29\uBC95: \uD604\uC7A5\uC758 \uD604\uD589 \uC124\uACC4\uC548(version_status = \u0027\uD604\uD589\u0027)\uC73C\uB85C \uC608\uC0C1 \uB4F1\uAE09\uC744 \uAD6C\uD558\uACE0(ZEBGradeCriteria\uC758 \uD310\uC815 \uC808\uCC28), \uC608\uBE44\uC778\uC99D \uB4F1\uAE09\uACFC \uBE44\uAD50\uD55C\uB2E4. \uC608\uC0C1 \uB4F1\uAE09\uC774 \uC608\uBE44\uC778\uC99D \uB4F1\uAE09\uBCF4\uB2E4 \uB0AE\uC73C\uBA74 \uBCF8\uC778\uC99D \uC704\uD5D8\uC774\uB2E4.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

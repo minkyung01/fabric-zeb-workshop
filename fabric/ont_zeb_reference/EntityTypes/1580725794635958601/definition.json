@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "1580725794635958601",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "ImprovementOption",
+  "entityIdParts": [
+    "846884696029298906"
+  ],
+  "displayNamePropertyId": "846884696029298906",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "846884696029298906",
+      "name": "option_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBCF4\uC644\uC548 \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2548289462402687552",
+      "name": "site_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "PMS \uD604\uC7A5 \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1886515354109715997",
+      "name": "option_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBCF4\uC644\uC548 \uC774\uB984",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "587298984003203477",
+      "name": "category_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC124\uBE44 \uBD84\uC57C \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3921618616131258064",
+      "name": "selfsuff_gain_pp",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uC790\uB9BD\uB960 \uC0C1\uC2B9(%p)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3663198568054213527",
+      "name": "primary_energy_delta",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "1\uCC28\uC5D0\uB108\uC9C0\uC18C\uC694\uB7C9 \uBCC0\uD654",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1230202922078052827",
+      "name": "cost_krw",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uBE44\uC6A9(\uC6D0)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2302506780899761383",
+      "name": "lead_time_days",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uC18C\uC694 \uAE30\uAC04(\uC77C)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "971084089289669360",
+      "name": "applied_action_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC801\uC6A9\uD55C \uC870\uCE58 \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "351910874244410070",
+      "name": "is_applied",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Boolean",
+      "semanticEnrichment": {
+        "description": "\uC801\uC6A9 \uC5EC\uBD80",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uBCF4\uC644\uC548",
+      "\uAC1C\uC120\uC548"
+    ],
+    "description": "\uC5D0\uB108\uC9C0 \uCEE8\uC124\uD305\uC774 \uC2DC\uBBAC\uB808\uC774\uC158\uD55C \uB4F1\uAE09 \uBCF4\uC644\uC548. selfsuff_gain_pp\uB294 \uC5D0\uB108\uC9C0\uC790\uB9BD\uB960 \uC0C1\uC2B9(%p), primary_energy_delta\uB294 1\uCC28\uC5D0\uB108\uC9C0\uC18C\uC694\uB7C9 \uBCC0\uD654\uB2E4. ZEB \uB4F1\uAE09\uC740 \u002B(ZEB\u002B)\uAC00 \uAC00\uC7A5 \uB192\uACE0 1, 2, 3, 4, 5 \uC21C\uC11C\uB85C \uB0AE\uC544\uC9C4\uB2E4. \u0027N\uB4F1\uAE09 \uC774\uC0C1\u0027\uC740 N\uB4F1\uAE09\uACFC \uADF8\uBCF4\uB2E4 \uB192\uC740 \uB4F1\uAE09\uC744 \uB73B\uD55C\uB2E4. \uC608: \u00274\uB4F1\uAE09 \uC774\uC0C1\u0027 = \u002B, 1, 2, 3, 4\uB4F1\uAE09(5\uB4F1\uAE09 \uC81C\uC678). ZEB \uC608\uC0C1 \uB4F1\uAE09 \uD310\uC815 \uC808\uCC28(\uB450 \uAE30\uC900 \uC911 \uD558\uB098\uB9CC \uCDA9\uC871\uD574\uB3C4 \uB428): (1) \uC790\uB9BD\uB960 \uB4F1\uAE09 = selfsuff_pct \u003E= selfsuff_min_pct\uB97C \uB9CC\uC871\uD558\uB294 \uB4F1\uAE09 \uC911 \uAC00\uC7A5 \uB192\uC740 \uB4F1\uAE09. (2) 1\uCC28\uC5D0\uB108\uC9C0 \uB4F1\uAE09 = primary_energy_kwh_m2y \u003C \uAE30\uC900\uAC12\uC744 \uB9CC\uC871\uD558\uB294 \uB4F1\uAE09 \uC911 \uAC00\uC7A5 \uB192\uC740 \uB4F1\uAE09(\uAE30\uC900\uAC12: \uC8FC\uAC70\uC6A9\uC774\uBA74 primary_energy_limit_residential, \uC8FC\uAC70\uC6A9 \uC774\uC678\uBA74 primary_energy_limit_nonresidential). (3) \uCD5C\uC885 \uB4F1\uAE09 = (1)\uACFC (2) \uC911 \uB354 \uB192\uC740 \uB4F1\uAE09. \uB450 \uAE30\uC900\uC744 \uBAA8\uB450 \uCDA9\uC871\uD574\uC57C \uD558\uB294 \uAC83\uC774 \uC544\uB2C8\uBBC0\uB85C, \uC790\uB9BD\uB960\uC774 \uC5B4\uB5A4 \uB4F1\uAE09\uC758 \uD558\uD55C\uBCF4\uB2E4 \uB0AE\uC544\uB3C4 1\uCC28\uC5D0\uB108\uC9C0\uC18C\uC694\uB7C9\uC774 \uADF8 \uB4F1\uAE09 \uAE30\uC900\uAC12\uBCF4\uB2E4 \uB0AE\uC73C\uBA74 \uADF8 \uB4F1\uAE09\uC744 \uBC1B\uB294\uB2E4. (4) BEMS \uB610\uB294 \uC6D0\uACA9\uAC80\uCE68 \uC124\uCE58\uB294 \uD544\uC218 \uC694\uAC74\uC774\uB2E4.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "3450651382165404045",
+  "name": "Site_has_Equipment",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "4328945662752225469"
+  },
+  "target": {
+    "entityTypeId": "934984786928465053"
+  },
+  "semanticEnrichment": {
+    "description": "\uD604\uC7A5\uC758 \uC124\uBE44 \uACC4\uD68D",
+    "customAttributes": {}
+  }
+}

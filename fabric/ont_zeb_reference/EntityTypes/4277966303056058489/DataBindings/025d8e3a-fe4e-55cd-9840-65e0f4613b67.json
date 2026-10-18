@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "025d8e3a-fe4e-55cd-9840-65e0f4613b67",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "target_id",
+        "targetPropertyId": "3725012396917513057"
+      },
+      {
+        "sourceColumnName": "site_code",
+        "targetPropertyId": "4221294681898808405"
+      },
+      {
+        "sourceColumnName": "cert_type",
+        "targetPropertyId": "1481410941232875419"
+      },
+      {
+        "sourceColumnName": "target_grade",
+        "targetPropertyId": "4159080154988316243"
+      },
+      {
+        "sourceColumnName": "basis",
+        "targetPropertyId": "34366208563064700"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pms_cert_target",
+      "sourceSchema": "gold"
+    }
+  }
+}

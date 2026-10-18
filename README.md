@@ -1,73 +1,94 @@
-# Fabric 건설 ZEB 의사결정 실습
+# Workshop: 건설 ZEB 인증 컨트롤 타워
 
-**HS-D의 인증 제출 설계 V2와 VE 변경 설계 V3를 비교하고, 근거를 검토한 사람이 보완안 검토 결정을 기록하는 워크숍입니다.** 실제 설계·발주·시공을 변경하지 않습니다. Foundry는 **선택 확장**이며 기본 경로의 필수 요소가 아닙니다.
+Contoso 건설의 에코시티 D단지는 제로에너지건축물(ZEB) **예비인증 4등급**을 받았습니다. 그런데 원가 절감(VE)으로 옥상 태양광을 줄인 현행 설계로는 **5등급**이 예상됩니다. 이대로라면 사용승인 전 본인증을 받을 수 없습니다. **어느 현장이 위험한지, 어떤 보완안이 가장 싸고 일정 안에 끝나는지** 데이터로 확인해야 합니다.
 
-> 2026-10-12 p01 실제 리허설: 기본 7개 실행과 3개 immutable snapshot refresh, 실제 공공 ZEB 9,760행, Ontology, Direct Lake, 수동 첫 페이지·native Copilot·IC-B 교육 근거 답변을 검증했습니다. genuine OneLake 수집과 승인받은 Operations **Start/Stop**도 실행했으나 30분 이상 관찰한 native 활동/Teams에 p01 제안은 나타나지 않았습니다. 사람 확인·audit는 실행하지 않았습니다. 기존 capacity는 18:42 KST **Paused**를 확인했고, 최종 ARM/콜드 재열기에서 승인 당시 F16과 다른 **F64**를 발견했습니다. SKU 변경 요청은 하지 않았으며 재개 전 조사해야 합니다. [실제 증거와 남은 단계](admin/validation.md)를 읽으십시오.
+이 hands-on Workshop에서는 **Microsoft Fabric만으로** 공공 인증 데이터와 현장 데이터를 연결하고, 보고서와 에이전트로 근거를 검토한 뒤, 담당자가 Teams에서 승인한 보완안을 데이터에 반영합니다.
 
-## 학습 경로
+**공공·현장 데이터 연결 → 등급 위험 찾기 → 근거 질문 → Teams 제안·승인 → 보완안 반영과 재계산**
 
-| 단계 | 실습 |
+처음 시작한다면 [00. 시나리오와 실습 순서](docs/00-scenario.md)에서 업무 상황과 판단 기준을 확인합니다.
+
+## 이 실습에서 완성하는 것
+
+| 결과 | 할 수 있는 일 |
 |---|---|
-| 00 | [업무 시나리오와 판단 경계](docs/00-scenario.md) |
-| 01 | [내 환경·출처·바인딩 확인](docs/01-environment.md) |
-| 02 | [보존된 원천 → Bronze](docs/02-bronze.md) |
-| 03 | [Silver 타입·코드 연결](docs/03-silver.md) |
-| 04 | [Gold 및 독립 계산](docs/04-gold.md) |
-| 05 | [63개 VE 조합과 정답 검토](docs/05-options.md) |
-| 06 | [직접 만드는 Ontology·native agent](docs/06-ontology.md) |
-| 07 | [수동 Power BI → Copilot → 검증·저장](docs/07-powerbi.md) |
-| 08 | [명시적 snapshot → Operations 제안 → 대기](docs/08-operations.md) |
-| 09 | [선택: Foundry 근거 재검토](docs/09-foundry-optional.md) |
-| 10 | [Teams 사람 승인 → 결정 로그 → Stop](docs/10-approval.md) |
-| 11 | [마무리·재현·검증](docs/11-finish.md) |
+| Bronze·Silver·Gold 테이블 | 공공데이터포털의 인증 4종(ZEB·녹색건축·BF·녹색기술)을 **Notebook으로 직접 내려받고**, Contoso 내부 시스템(ERP·PMS·BIM·SCM) 데이터와 같은 기준으로 정제합니다. |
+| Ontology와 Data agent | 시스템마다 다른 코드(프로젝트 번호·현장 코드·BIM 모델 번호)와 **등급 판정 규칙**을 Ontology에 담고, Data agent의 답을 정답 Notebook과 비교합니다. |
+| Power BI 컨트롤 타워 2페이지 | 공공 ZEB 인증 현황은 직접 만들고, 현장 컨트롤 타워는 **Copilot으로 생성**한 뒤 질문·인사이트로 근거를 확인합니다. |
+| Teams 제안과 보완안 반영 | Operations agent가 D단지 위험과 **가장 싼 추천 보완안**을 Teams로 제안하고, 담당자가 승인하면 Notebook이 조치를 기록하고 **설계안·예상 등급을 다시 계산**합니다. |
 
-## 준비와 실행
-
-- 관리자: [환경·12명 격리·배포 가이드](admin/environment.md), [리허설·캡처 체크리스트](admin/validation.md).
-- 데이터: [출처·사전·계산 범위](data/README.md), [정답 해설](data/reference-answers.md).
-- 네이티브 Fabric PySpark: `notebooks/*.ipynb` (8개, 원본 ID에 **바인딩되지 않은** 템플릿), 같은 코드의 `.py`. `05_decision_log`는 Teams 승인 후 Operations action으로 실행하고 `07_verify_readonly`로 읽기 검증합니다.
-- 기본 데이터는 기존 Notebook02의 **결정적 가상 fixture**입니다. 실제 고객 ERP/PMS 추출물이나 Gold 역추출물이 아닙니다.
-- 실제 ZEB snapshot `20251231`을 보존·검토하여 p01에 공급했고 `06_public_zeb`으로 Bronze/Silver 각 **9,760행**을 확인했습니다. **다른 참가자도 승인된 실제 bytes/manifest 공급 및 자신의 실행이 필수**입니다. [공공 원천 준비](data/public/README.md)가 blocked이면 데이터 chapter를 완료로 표시하지 않습니다. 다른 3종은 미취득 관리자 reference이며 raw public 파일을 GitHub에 공개하지 않았습니다.
-- 모든 등급·효과·기간은 **잠정 교육 기준**입니다. 법적 인증·물리적 실현 가능성·12명 동시 실행 성능을 보증하지 않습니다.
-
-Windows PowerShell에서 저장소 루트 기준, Python 표준 라이브러리와 Microsoft Edge의 로컬 SVG 렌더러를 사용합니다.
-
-```powershell
-python .\tools\build_data.py
-python .\tools\reference.py
-python .\tools\build_notebooks.py
-python .\tools\build_architecture.py
-.\tools\render_architecture.ps1
-python -m unittest discover -s tests -v
-python .\tools\check_kit.py
-```
-
-이 명령은 로컬 파일 생성·검사만 합니다. 클라우드 배포·capacity 조작·알림 발송은 없습니다. 배포 준비 도구도 오프라인 정의 패키지만 만들며, 클라우드 프로비저닝은 별도 승인 작업입니다.
+추천은 계산으로 정하고, AI의 설명은 계산 결과와 대조합니다. **최종 결정은 담당자가 하며, 실습은 데이터 안의 조치 기록과 재계산까지입니다. 실제 설계 변경·발주는 하지 않습니다.**
 
 ## 전체 구성
 
-현장·설계·공공 ZEB 원천을 **OneLake의 schema-enabled Lakehouse**에 두고 Bronze → Silver → Gold 스키마로 정제한 뒤, 그 근거로 현황과 보완안을 검토합니다.
+Notebook이 원천 데이터를 **OneLake의 schema-enabled Lakehouse 하나**에 적재하고, `bronze` → `silver` → `gold`·`ops` 스키마로 정제합니다. Gold는 Ontology·Data agent, Direct Lake 모델·Power BI, Eventhouse·Operations agent가 함께 사용합니다.
 
-![오프라인 설계도 — 실제 화면 아님](assets/architecture.png)
+<img src="assets/architecture.svg" width="1000" alt="전체 구성. Notebook이 공공 인증 4종과 Contoso 내부 데이터를 Lakehouse의 Bronze에 적재하고 Silver에서 정제한 뒤 Gold 사실 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Semantic model과 Power BI, Eventhouse와 Operations agent로 이어집니다. Operations agent가 Teams로 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 선택입니다." />
 
-[선명한 SVG](assets/architecture.svg) · [편집 원본 Excalidraw](assets/architecture.excalidraw) · [장면 JSON](assets/architecture.scene.json) · [공식 제품 아이콘 출처](assets/icon-attribution.md)
+[그림 크게 보기](assets/architecture.png)
 
-이 워크숍에서 Bronze·Silver·Gold는 **하나의 Lakehouse 안의 스키마**로 구분합니다. Gold 근거를 Ontology·Power BI·Operations에서 활용하며, Teams 담당자 승인 후 **결정 기록만** 저장합니다. 실제 설계·발주는 변경하지 않습니다. Foundry 근거 재검토는 선택입니다.
+- **Gold는 사실 데이터만** 담습니다. 예상 등급·위험 같은 판단 기준은 06장에서 **Ontology의 업무 규칙**으로 정의하고, 보고서와 감시에 쓸 계산 결과는 별도 `ops` 스키마에 둡니다.
+- 06장은 **Ontology 내장 agent로 구조를 작성**하고, 07장은 **별도 Data agent `da_zeb`에 Ontology를 연결해 업무 질문**을 합니다.
+- Operations agent는 Lakehouse를 직접 감시하지 않고, 09장에서 Eventhouse로 보낸 **위험 이벤트 상태**를 감시합니다.
+- 실선은 실습 흐름, 초록 선은 승인 후 반영, 점선은 선택 단계입니다. 10장 Foundry는 선택입니다.
 
-세부 테이블·수량·품질 기준·운영 설계는 [메달리온 설계 해설](admin/medallion-architecture.md)과 [공식 근거](docs/sources.md#메달리온-설계-검증-2026-10-13)를 참고하십시오.
+## 시작 전 확인
 
-## 핵심 정답
+**전체 실습은 관리자가 준비한 활성 유료 Fabric 용량(F64 이상 권장)에 참가자 작업 영역을 할당한 상태로 진행합니다.** 준비 방법은 [관리자 준비 가이드](admin/README.md)를 따릅니다.
 
-- HS-D: V2 `43.5%, 69, PV530kW` → V3 `38.2%, 76, PV380kW`, 교육 계산 등급 `4 → 5`.
-- 주거 4등급: `SS >= 40 OR PE < 70`; AND가 아닙니다. IC-B `39%, 65`는 4등급입니다.
-- 최저 비용 **가산 에너지 기준** 충족 조합: `OPT-D5+OPT-D6`, `40.1%, 72.2`, 110,000,000원, 병렬 가정 최대 30일. 공학·상호작용·배타성·일정 검증이 없어 `decision_feasible=false`입니다.
-- 기준일 `2026-09-30`, 위험 현장 4개, 설치 마감 초과 PO **0/25**. 공급 충격을 새로 꾸미지 않습니다.
+| 참가자가 확인할 것 | 관리자에게 받을 안내 |
+|---|---|
+| 실습 계정·참가자 번호 | Fabric·Teams에 사용할 계정과 본인 번호(예: `p001`) |
+| 작업 영역 | 본인 작업 영역 `zeb-p001`, Lakehouse `lh_zeb`, 미리 넣어 둔 Notebook 7개와 `Files/workshop`의 파일 2개 |
+| 보고서·에이전트 사용 환경 | Power BI Pro 또는 PPU 라이선스, Copilot·Data agent·Ontology·Operations agent 테넌트 설정, Teams의 **Fabric Operations Agent** 앱 |
 
-## 출처·상태
+문서의 `p001`은 예시입니다. 작업 영역은 **본인 번호**를 사용합니다. `lh_zeb`, `ont_zeb`, `da_zeb` 같은 항목 이름은 본인 작업 영역 안에서 그대로 씁니다.
 
-[공식 문서](docs/sources.md) · [기계 판독 검증 상태](validation/status.json) · [전체 파일/hash 목록](validation/artifacts.json) · [배포 계약](deployment/README.md).
-공공 데이터의 이용 조건은 해당 제공 기관/포털에서 다시 확인하십시오. 이 저장소는 원본 데이터·코드의 별도 라이선스를 주장하지 않습니다. 토큰·비공개 원본 notebook envelope·원본 Ontology 정의는 포함하지 않습니다.
+## 실습 순서
 
-공개 범위는 학습 kit·가상 fixture·실제 crop 화면과 [식별자 없는 리허설 요약](validation/rehearsal-summary.json)입니다. 계정/tenant/resource/job 식별자, 상세 private ledger, 참가자 binding 설정, prepared 배포 정의, raw 공공 CSV는 제외됩니다. 공개 checkout의 로컬 검사에는 비공개 파일이 필요하지 않습니다. 원본 보호 목록은 관리자가 비공개 inventory로 설정해야 하며 공개 템플릿은 설정 전 실패합니다.
+00장부터 순서대로 진행하며, 각 장의 **완료 기준**을 확인한 뒤 다음 장으로 넘어갑니다. 예상 시간은 약 **5시간 20분**이며 휴식·AI 응답 대기는 별도입니다([장별 일정](docs/00-scenario.md#실습-일정)).
 
-`.gitattributes`는 파일의 정확한 bytes를 보존합니다. Git의 자동 줄바꿈 변환으로 CSV/fixture/inventory hash가 달라지지 않도록 공개 checkout에서도 같은 manifest를 검증합니다.
+| 장 | 이번 단계에서 할 일 |
+|---|---|
+| [00. 시나리오와 실습 순서](docs/00-scenario.md) | 업무 상황·판단 기준과 실습 흐름을 이해합니다. |
+| [01. 작업 영역 준비](docs/01-workspace.md) | 본인 작업 영역·Lakehouse·Notebook을 확인하고 Notebook 실행 방법을 익힙니다. |
+| [02. Bronze ① 공공 인증 데이터](docs/02-bronze-public.md) | 공공데이터포털에서 인증 4종을 Notebook으로 내려받아 그대로 저장합니다. |
+| [03. Bronze ② Contoso 내부 데이터](docs/03-bronze-contoso.md) | ERP·PMS·BIM·SCM의 가상 데이터를 만들고 시스템별 코드 차이를 확인합니다. |
+| [04. Silver](docs/04-silver.md) | 시도·용도·등급 표기를 통일하고, 같은 건물을 묶고, 발주 이벤트를 반영합니다. |
+| [05. Gold와 운영 지표](docs/05-gold.md) | 사실 데이터(Gold)와 현장 상태(ops)를 만들고 D단지 위험을 확인합니다. |
+| [06. Ontology](docs/06-ontology.md) | Ontology agent로 엔터티·관계·바인딩을 만들고 등급 판정 규칙을 넣습니다. |
+| [07. Data agent](docs/07-data-agent.md) | Ontology를 연결한 Data agent에 질문 8개를 하고 정답 Notebook과 비교합니다. |
+| [08. Power BI](docs/08-power-bi.md) | 인증 현황 페이지는 직접, 현장 컨트롤 타워는 Copilot으로 만들고 질문·인사이트를 확인합니다. |
+| [09. Operations agent](docs/09-operations-agent.md) | 위험 이벤트를 Eventhouse로 보내 Teams 제안을 받습니다. |
+| [10. Foundry agent (선택)](docs/10-foundry-agent.md) | 승인 전에 Fabric IQ로 Ontology에 근거를 다시 묻습니다. |
+| [11. 승인과 반영](docs/11-approval.md) | Teams에서 승인하고, 조치 기록·설계안 V4·등급 회복·이벤트 종료를 확인한 뒤 Stop합니다. |
+| [12. 마무리](docs/12-finish.md) | 결과를 확인하고 감시·실행을 멈춥니다. |
+
+**09장 Teams 제안 → (선택) 10장 근거 검토 → 11장 승인·반영·Stop** 순서를 지킵니다. AI가 만드는 구조·페이지·답변은 달라질 수 있으므로, 완료 메시지만 믿지 않고 각 장의 데이터·필드·근거와 비교합니다.
+
+## 실습 파일
+
+관리자가 실습 전에 본인 작업 영역에 넣어 둡니다. 참가자가 GitHub에서 내려받을 필요는 없습니다.
+
+| 파일 | 위치 | 용도 |
+|---|---|---|
+| Notebook 7개 | 작업 영역 `zeb-p001` | `01`–`04` 메달리온, `05_answers` 정답 계산(07장), `06_risk_event` 위험 이벤트(09장), `nb_apply_decision` 승인 반영(11장, 직접 실행 안 함) |
+| `sm_zeb.tmdl` | `lh_zeb` → **Files → workshop** | 08장 Semantic model의 관계·측정값 |
+| `zeb-theme.json` | `lh_zeb` → **Files → workshop** | 08장 보고서 테마 |
+
+원본은 이 저장소의 [notebooks](notebooks)와 [fabric](fabric) 폴더입니다. Notebook은 `notebooks/src`의 소스에서 만들어집니다(`python tools/build_notebooks.py`).
+
+저장소를 고친 뒤에는 로컬에서 아래 검사로 Notebook·문서·Fabric 파일의 일관성을 확인합니다. 클라우드에 접속하지 않습니다.
+
+``` bash
+python tools/build_notebooks.py
+python -m unittest discover -s tests -v
+```
+
+## 관리자용
+
+- [관리자 준비 가이드](admin/README.md) — 용량·테넌트 설정·참가자 작업 영역 일괄 준비(`admin/provision.py`)와 종료 후 정리
+- [데이터 설계](admin/data-design.md) — 테이블 구조·판정 규칙·정답 수치
+- [구성도 아이콘 출처](assets/icon-attribution.md)
+
+공공데이터는 공공데이터포털 표기 기준 **이용허락범위 제한 없음** 데이터이며, Notebook이 실습 시점에 직접 내려받습니다. 이 저장소는 공공 원본 파일을 포함하지 않습니다. Contoso 건설과 현장·공급사·인물은 모두 가상입니다.

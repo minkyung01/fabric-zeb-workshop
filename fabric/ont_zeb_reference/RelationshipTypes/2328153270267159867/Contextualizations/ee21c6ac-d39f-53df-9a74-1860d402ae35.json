@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "ee21c6ac-d39f-53df-9a74-1860d402ae35",
+  "dataBindingTable": {
+    "workspaceId": "{{WORKSPACE_ID}}",
+    "itemId": "{{LAKEHOUSE_ID}}",
+    "sourceTableName": "scm_po_event",
+    "sourceSchema": "gold",
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "event_id",
+      "targetPropertyId": "2597127657420212978"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "po_no",
+      "targetPropertyId": "1414369925095147907"
+    }
+  ]
+}

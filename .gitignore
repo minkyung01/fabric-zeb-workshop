@@ -1,7 +1,4 @@
 __pycache__/
 *.pyc
-config/targets.json
-deployment/prepared/
-data/public/staged/
-validation/rehearsal-p01.json
-assets/private-captures/
+.architecture-render-*
+users.csv

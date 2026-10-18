@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "3f8432fa-47e2-58ff-af38-7f870051cd82",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "version_id",
+        "targetPropertyId": "1227263192869907489"
+      },
+      {
+        "sourceColumnName": "bim_model_id",
+        "targetPropertyId": "3442687336433125194"
+      },
+      {
+        "sourceColumnName": "version_code",
+        "targetPropertyId": "2424640388389874388"
+      },
+      {
+        "sourceColumnName": "version_name",
+        "targetPropertyId": "1163260444647699769"
+      },
+      {
+        "sourceColumnName": "version_date",
+        "targetPropertyId": "347209339467950353"
+      },
+      {
+        "sourceColumnName": "selfsuff_pct",
+        "targetPropertyId": "1693084511398681828"
+      },
+      {
+        "sourceColumnName": "primary_energy_kwh_m2y",
+        "targetPropertyId": "1391803422048669064"
+      },
+      {
+        "sourceColumnName": "pv_kw",
+        "targetPropertyId": "4521705546901709182"
+      },
+      {
+        "sourceColumnName": "geothermal_kw",
+        "targetPropertyId": "3430935744201043129"
+      },
+      {
+        "sourceColumnName": "change_note",
+        "targetPropertyId": "322252688730990571"
+      },
+      {
+        "sourceColumnName": "version_status",
+        "targetPropertyId": "3794669480130189255"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "bim_design_version",
+      "sourceSchema": "gold"
+    }
+  }
+}

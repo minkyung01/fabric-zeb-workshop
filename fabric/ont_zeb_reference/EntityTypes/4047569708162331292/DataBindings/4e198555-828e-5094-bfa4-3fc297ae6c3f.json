@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "4e198555-828e-5094-bfa4-3fc297ae6c3f",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "grade_code",
+        "targetPropertyId": "4431172074520838737"
+      },
+      {
+        "sourceColumnName": "grade_name",
+        "targetPropertyId": "187334362055737653"
+      },
+      {
+        "sourceColumnName": "selfsuff_min_pct",
+        "targetPropertyId": "3345749498380557049"
+      },
+      {
+        "sourceColumnName": "primary_energy_limit_residential",
+        "targetPropertyId": "440190607157019601"
+      },
+      {
+        "sourceColumnName": "primary_energy_limit_nonresidential",
+        "targetPropertyId": "4289715432647209072"
+      },
+      {
+        "sourceColumnName": "grade_color",
+        "targetPropertyId": "1872252401100189407"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "ref_zeb_grade_criteria",
+      "sourceSchema": "gold"
+    }
+  }
+}

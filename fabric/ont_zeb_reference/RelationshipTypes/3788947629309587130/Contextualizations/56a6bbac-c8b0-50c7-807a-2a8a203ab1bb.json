@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "56a6bbac-c8b0-50c7-807a-2a8a203ab1bb",
+  "dataBindingTable": {
+    "workspaceId": "{{WORKSPACE_ID}}",
+    "itemId": "{{LAKEHOUSE_ID}}",
+    "sourceTableName": "pub_zeb_certification",
+    "sourceSchema": "gold",
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "cert_id",
+      "targetPropertyId": "439504748666454448"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "sido",
+      "targetPropertyId": "2521258608952167398"
+    }
+  ]
+}

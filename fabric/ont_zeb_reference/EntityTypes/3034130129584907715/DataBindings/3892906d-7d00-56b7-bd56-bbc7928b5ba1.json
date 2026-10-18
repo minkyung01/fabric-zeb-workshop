@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "3892906d-7d00-56b7-bd56-bbc7928b5ba1",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "cert_id",
+        "targetPropertyId": "439504748666454448"
+      },
+      {
+        "sourceColumnName": "building_key",
+        "targetPropertyId": "804600102855463215"
+      },
+      {
+        "sourceColumnName": "building_name",
+        "targetPropertyId": "2130268307215234878"
+      },
+      {
+        "sourceColumnName": "sido",
+        "targetPropertyId": "253298207941985088"
+      },
+      {
+        "sourceColumnName": "use_group",
+        "targetPropertyId": "1337089672615788648"
+      },
+      {
+        "sourceColumnName": "main_use",
+        "targetPropertyId": "1156828114741580838"
+      },
+      {
+        "sourceColumnName": "residential_type",
+        "targetPropertyId": "4354117889029802254"
+      },
+      {
+        "sourceColumnName": "cert_stage",
+        "targetPropertyId": "2867523769861490388"
+      },
+      {
+        "sourceColumnName": "grade_code",
+        "targetPropertyId": "582971637916193183"
+      },
+      {
+        "sourceColumnName": "selfsuff_pct",
+        "targetPropertyId": "4228754607940701336"
+      },
+      {
+        "sourceColumnName": "cert_date",
+        "targetPropertyId": "4152886121001856820"
+      },
+      {
+        "sourceColumnName": "cert_year",
+        "targetPropertyId": "3499621685175551615"
+      },
+      {
+        "sourceColumnName": "applicant_name",
+        "targetPropertyId": "3821848725850124590"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pub_zeb_certification",
+      "sourceSchema": "gold"
+    }
+  }
+}

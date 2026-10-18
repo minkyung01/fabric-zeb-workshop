@@ -1,0 +1,235 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "3478282182215326248",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "BFCertification",
+  "entityIdParts": [
+    "3442506632269895996"
+  ],
+  "displayNamePropertyId": "3442506632269895996",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "3442506632269895996",
+      "name": "cert_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uAC74 \uC2DD\uBCC4\uC790",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1372055994694434151",
+      "name": "cert_no",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2081678021097245125",
+      "name": "building_key",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAC74\uBB3C \uC2DD\uBCC4 \uD0A4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2146635580332419893",
+      "name": "facility_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC2DC\uC124\uBA85",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4399700157061040102",
+      "name": "sido",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD1B5\uC77C\uD55C \uC2DC\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4081747616119426471",
+      "name": "sigungu",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC2DC\uAD70\uAD6C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3736346133415312110",
+      "name": "cert_target",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uB300\uC0C1(\uAC74\uCD95\uBB3C, \uB3C4\uB85C \uB4F1)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3876466595554633417",
+      "name": "is_building",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Boolean",
+      "semanticEnrichment": {
+        "description": "\uAC74\uCD95\uBB3C \uC778\uC99D \uC5EC\uBD80",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1214049894895955592",
+      "name": "use_group",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD1B5\uC77C\uD55C \uC6A9\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4311765485732479037",
+      "name": "use_type",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAE30\uAD00 \uC6D0\uBCF8 \uC6A9\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "683139590956887010",
+      "name": "cert_stage",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC608\uBE44\uC778\uC99D \uB610\uB294 \uBCF8\uC778\uC99D",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1476390376690506869",
+      "name": "grade_label",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uB4F1\uAE09(\uCD5C\uC6B0\uC218/\uC6B0\uC218/\uC77C\uBC18)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1377522124845190997",
+      "name": "cert_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3848393858474551186",
+      "name": "cert_year",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uC5F0\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "521647444752428056",
+      "name": "expiry_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uB9CC\uB8CC\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4381823985222117221",
+      "name": "expiry_note",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uB9CC\uB8CC\uC77C \uBE44\uACE0",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "897304145818780414",
+      "name": "applicant_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC2E0\uCCAD \uAE30\uAD00",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "35104988367710449",
+      "name": "cert_body",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uAE30\uAD00",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2795288109395298665",
+      "name": "area_m2",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uBA74\uC801(\u33A1)",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "BF\uC778\uC99D",
+      "\uBB34\uC7A5\uC560\uC778\uC99D",
+      "\uBC30\uB9AC\uC5B4\uD504\uB9AC\uC778\uC99D"
+    ],
+    "description": "\uC7A5\uC560\uBB3C \uC5C6\uB294 \uC0DD\uD65C\uD658\uACBD(BF) \uC778\uC99D \uD604\uD669(\uACF5\uACF5\uB370\uC774\uD130). \uB179\uC0C9\uAC74\uCD95(G-SEED) \uB4F1\uAE09: \uCD5C\uC6B0\uC218(\uADF8\uB9B01\uB4F1\uAE09) \u003E \uC6B0\uC218(\uADF8\uB9B02\uB4F1\uAE09) \u003E \uC6B0\uB7C9(\uADF8\uB9B03\uB4F1\uAE09) \u003E \uC77C\uBC18(\uADF8\uB9B04\uB4F1\uAE09). BF(\uC7A5\uC560\uBB3C \uC5C6\uB294 \uC0DD\uD65C\uD658\uACBD) \uB4F1\uAE09: \uCD5C\uC6B0\uC218 \u003E \uC6B0\uC218 \u003E \uC77C\uBC18. \uC608\uBE44\uC778\uC99D = \uC124\uACC4 \uB2E8\uACC4\uC5D0\uC11C \uC124\uACC4\uB3C4\uC11C\uB85C \uBC1B\uB294 \uC778\uC99D. \uBCF8\uC778\uC99D = \uC900\uACF5(\uC0AC\uC6A9\uC2B9\uC778) \uBB34\uB835 \uCD5C\uC885 \uC124\uACC4\uB3C4\uC11C\uC640 \uD604\uC7A5 \uC2E4\uC0AC\uB85C \uBC1B\uB294 \uC778\uC99D\uC73C\uB85C, \u0027\uC900\uACF5 \uD6C4 \uC778\uC99D\u0027\uC774\uB77C\uACE0\uB3C4 \uD55C\uB2E4. \uC2DC\uB3C4\uB294 \uC6D0\uCC9C\uB9C8\uB2E4 \uD45C\uAE30\uAC00 \uB2EC\uB77C(\uACBD\uAE30\uB3C4, \uACBD\uAE30, \uC11C\uC6B8\uC2DC \uB4F1) \uD1B5\uC77C\uD55C \uAC12(sido: \uACBD\uAE30, \uC11C\uC6B8, \uC804\uBD81 \uB4F1)\uC744 \uC4F4\uB2E4. \uC6B0\uB9AC \uD68C\uC0AC(Contoso) \uD604\uC7A5\uC740 \uACF5\uACF5 \uC778\uC99D \uB370\uC774\uD130(ZEB\u00B7\uB179\uC0C9\uAC74\uCD95\u00B7BF\u00B7\uB179\uC0C9\uAE30\uC220 \uC778\uC99D \uD604\uD669)\uC5D0 \uC5C6\uB2E4. \uC9C8\uBB38\uC5D0 \uB098\uC628 \u0027\u25CB\u25CB \uD604\uC7A5\u0027, \u0027\u25CB\u25CB\uB2E8\uC9C0\u0027 \uAC19\uC740 \uC774\uB984\uC740 \uC77C\uBD80\uB9CC \uC77C\uCE58\uD574\uB3C4(\uC608: \u0027D\uB2E8\uC9C0\u0027) \uD604\uC7A5 \uC774\uB984(pms_site.site_name, \uC608: \u0027\uD574\uC6B4\uB300 F\uCCAD\uC0AC \uD604\uC7A5\u0027)\uC774\uB098 \uD504\uB85C\uC81D\uD2B8 \uC774\uB984(erp_project.project_name, \uC608: \u0027\uD574\uC6B4\uB300 F\uCCAD\uC0AC\u0027)\uC5D0\uC11C \uCC3E\uB294\uB2E4. \uD604\uC7A5\uC758 \uC2DC\uB3C4\u00B7\uC6A9\uB3C4\uB294 MDM \uB9E4\uD551(mdm_site_xref)\uC73C\uB85C \uC5F0\uACB0\uD55C \uD504\uB85C\uC81D\uD2B8\uC758 sido\u00B7use_group\uC774\uBA70, \uACF5\uACF5 \uC778\uC99D \uC0AC\uB840\uC640 \uBE44\uAD50\uD560 \uB54C\uB294 \uC774 \uC2DC\uB3C4\u00B7\uC6A9\uB3C4\uAC00 \uAC19\uC740 \uACF5\uACF5 \uC778\uC99D\uC744 \uACE0\uB978\uB2E4.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

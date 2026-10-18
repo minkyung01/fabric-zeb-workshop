@@ -1,7 +1,0 @@
-// Run only after administrator creates/ingests owned WorkshopRiskSnapshot.
-// Query only; provisioning is intentionally not automated in this offline kit.
-WorkshopRiskSnapshot
-| summarize arg_max(status_time, *) by participant_id, scenario_id, event_id
-| where risk != "normal" and event_state == "open"
-| project participant_id, scenario_id, event_id, site_code, risk, baseline_hash, progress_as_of,
-          status_time, recommended_option_set_id, result_hash

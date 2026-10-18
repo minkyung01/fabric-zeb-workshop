@@ -1,0 +1,169 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "55168649473673395",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "Project",
+  "entityIdParts": [
+    "2520663198013643601"
+  ],
+  "displayNamePropertyId": "2520663198013643601",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "2520663198013643601",
+      "name": "project_no",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "ERP \uD504\uB85C\uC81D\uD2B8 \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "300051710574010749",
+      "name": "project_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD504\uB85C\uC81D\uD2B8 \uC774\uB984",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2915217880651897604",
+      "name": "sido",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD1B5\uC77C\uD55C \uC2DC\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "922740667600153426",
+      "name": "sigungu",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC2DC\uAD70\uAD6C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3786209228622939128",
+      "name": "use_group",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD1B5\uC77C\uD55C \uC6A9\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3299556822958106431",
+      "name": "main_use",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC6D0\uCC9C \uC8FC\uC6A9\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2126483349236323725",
+      "name": "households",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uC138\uB300\uC218",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "161575202094783679",
+      "name": "gross_floor_area_m2",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uC5F0\uBA74\uC801(\u33A1)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "712423126376339644",
+      "name": "client_type",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBC1C\uC8FC\uCC98 \uAD6C\uBD84(\uBBFC\uAC04/\uACF5\uACF5)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4006313815146915429",
+      "name": "start_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uCC29\uACF5\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "629830923375119390",
+      "name": "planned_completion_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC900\uACF5(\uC0AC\uC6A9\uC2B9\uC778) \uC608\uC815\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3163778201033833475",
+      "name": "pm_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "PM",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3434221075385675759",
+      "name": "zeb_incentive",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "ZEB \uC778\uC99D \uC870\uAC74 \uC778\uC13C\uD2F0\uBE0C(\uC608: \uC6A9\uC801\uB960 \uC644\uD654)",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uD504\uB85C\uC81D\uD2B8",
+      "\uC0AC\uC5C5",
+      "\uB2E8\uC9C0"
+    ],
+    "description": "Contoso \uAC74\uC124 ERP \uD504\uB85C\uC81D\uD2B8. zeb_incentive\uAC00 \u0027\uC6A9\uC801\uB960 \uC644\uD654\u0027\uC778 \uD504\uB85C\uC81D\uD2B8\uB294 ZEB \uC778\uC99D\uC744 \uC870\uAC74\uC73C\uB85C \uAC74\uCD95 \uAE30\uC900 \uC644\uD654\uB97C \uBC1B\uC558\uC73C\uBBC0\uB85C SiteCertificate\uC758 \uBCF8\uC778\uC99D \uADDC\uCE59(\uC608\uBE44 \uB4F1\uAE09 \uC774\uC0C1)\uC774 \uBC18\uB4DC\uC2DC \uC801\uC6A9\uB41C\uB2E4. \uC900\uACF5 \uC608\uC815\uC77C = \uC0AC\uC6A9\uC2B9\uC778 \uC608\uC815\uC77C. \uD604\uC7A5\u00B7BIM \uBAA8\uB378\uACFC\uC758 \uCF54\uB4DC \uC5F0\uACB0\uC740 BIMModel(MDM \uB9E4\uD551)\uC744 \uB530\uB978\uB2E4. \uC8FC\uAC70\uC6A9 = \uACF5\uB3D9\uC8FC\uD0DD(\uC544\uD30C\uD2B8)\uACFC \uB2E8\uB3C5\uC8FC\uD0DD, \uADF8 \uBC16\uC758 \uC6A9\uB3C4\uB294 \uC8FC\uAC70\uC6A9 \uC774\uC678\uB2E4(ref_building_use.use_family). \uACF5\uACF5 ZEB \uC778\uC99D\uC740 residential_type(\uAE30\uAD00 \uC6D0\uBCF8 \uAD6C\uBD84: \uC8FC\uAC70\uC6A9/\uC8FC\uAC70\uC6A9 \uC774\uC678)\uB3C4 \uC788\uB2E4. \uC608\uBE44\uC778\uC99D\uC744 \uBC1B\uC740 \uD604\uC7A5\uC740 \uC0AC\uC6A9\uC2B9\uC778 \uC804\uC5D0 \uC608\uBE44\uC778\uC99D \uB4F1\uAE09 \uC774\uC0C1\uC758 \uBCF8\uC778\uC99D\uC744 \uBC1B\uC544\uC57C \uD55C\uB2E4(\uC6A9\uC801\uB960 \uC644\uD654 \uAC19\uC740 \uC778\uC13C\uD2F0\uBE0C\uB97C \uBC1B\uC740 \uD504\uB85C\uC81D\uD2B8\uB294 \uD544\uC218). \uD310\uC815 \uBC29\uBC95: \uD604\uC7A5\uC758 \uD604\uD589 \uC124\uACC4\uC548(version_status = \u0027\uD604\uD589\u0027)\uC73C\uB85C \uC608\uC0C1 \uB4F1\uAE09\uC744 \uAD6C\uD558\uACE0(ZEBGradeCriteria\uC758 \uD310\uC815 \uC808\uCC28), \uC608\uBE44\uC778\uC99D \uB4F1\uAE09\uACFC \uBE44\uAD50\uD55C\uB2E4. \uC608\uC0C1 \uB4F1\uAE09\uC774 \uC608\uBE44\uC778\uC99D \uB4F1\uAE09\uBCF4\uB2E4 \uB0AE\uC73C\uBA74 \uBCF8\uC778\uC99D \uC704\uD5D8\uC774\uB2E4. \uAC19\uC740 \uD604\uC7A5\uB3C4 \uC2DC\uC2A4\uD15C\uB9C8\uB2E4 \uCF54\uB4DC\uAC00 \uB2E4\uB974\uB2E4. ERP \uD504\uB85C\uC81D\uD2B8 \uBC88\uD638(project_no, \uC608: CT-24-0189), PMS \uD604\uC7A5 \uCF54\uB4DC(site_code, \uC608: HS-D), BIM \uBAA8\uB378 \uBC88\uD638(bim_model_id, \uC608: BIM-0397)\uB294 MDM \uB9E4\uD551\uD45C mdm_site_xref\uB85C \uC5F0\uACB0\uD55C\uB2E4. \uBC1C\uC8FC\uC758 wbs_element\uB294 \uC124\uBE44 \uACC4\uD68D\uC758 wbs_code\uC640 \uAC19\uACE0, \uBC1C\uC8FC\uC758 vendor_code\uB294 \uACF5\uAE09\uC0AC\uC758 vendor_code\uC640 \uAC19\uB2E4. \uC2DC\uB3C4\uB294 \uC6D0\uCC9C\uB9C8\uB2E4 \uD45C\uAE30\uAC00 \uB2EC\uB77C(\uACBD\uAE30\uB3C4, \uACBD\uAE30, \uC11C\uC6B8\uC2DC \uB4F1) \uD1B5\uC77C\uD55C \uAC12(sido: \uACBD\uAE30, \uC11C\uC6B8, \uC804\uBD81 \uB4F1)\uC744 \uC4F4\uB2E4. \uC6B0\uB9AC \uD68C\uC0AC(Contoso) \uD604\uC7A5\uC740 \uACF5\uACF5 \uC778\uC99D \uB370\uC774\uD130(ZEB\u00B7\uB179\uC0C9\uAC74\uCD95\u00B7BF\u00B7\uB179\uC0C9\uAE30\uC220 \uC778\uC99D \uD604\uD669)\uC5D0 \uC5C6\uB2E4. \uC9C8\uBB38\uC5D0 \uB098\uC628 \u0027\u25CB\u25CB \uD604\uC7A5\u0027, \u0027\u25CB\u25CB\uB2E8\uC9C0\u0027 \uAC19\uC740 \uC774\uB984\uC740 \uC77C\uBD80\uB9CC \uC77C\uCE58\uD574\uB3C4(\uC608: \u0027D\uB2E8\uC9C0\u0027) \uD604\uC7A5 \uC774\uB984(pms_site.site_name, \uC608: \u0027\uD574\uC6B4\uB300 F\uCCAD\uC0AC \uD604\uC7A5\u0027)\uC774\uB098 \uD504\uB85C\uC81D\uD2B8 \uC774\uB984(erp_project.project_name, \uC608: \u0027\uD574\uC6B4\uB300 F\uCCAD\uC0AC\u0027)\uC5D0\uC11C \uCC3E\uB294\uB2E4. \uD604\uC7A5\uC758 \uC2DC\uB3C4\u00B7\uC6A9\uB3C4\uB294 MDM \uB9E4\uD551(mdm_site_xref)\uC73C\uB85C \uC5F0\uACB0\uD55C \uD504\uB85C\uC81D\uD2B8\uC758 sido\u00B7use_group\uC774\uBA70, \uACF5\uACF5 \uC778\uC99D \uC0AC\uB840\uC640 \uBE44\uAD50\uD560 \uB54C\uB294 \uC774 \uC2DC\uB3C4\u00B7\uC6A9\uB3C4\uAC00 \uAC19\uC740 \uACF5\uACF5 \uC778\uC99D\uC744 \uACE0\uB978\uB2E4.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

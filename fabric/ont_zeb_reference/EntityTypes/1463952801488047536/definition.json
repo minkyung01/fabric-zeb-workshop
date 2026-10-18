@@ -1,0 +1,213 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "1463952801488047536",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "GSEEDCertification",
+  "entityIdParts": [
+    "1313431874546254777"
+  ],
+  "displayNamePropertyId": "1313431874546254777",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "1313431874546254777",
+      "name": "cert_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uAC74 \uC2DD\uBCC4\uC790",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1860771197477390636",
+      "name": "cert_no",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3060215425741820204",
+      "name": "building_key",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAC74\uBB3C \uC2DD\uBCC4 \uD0A4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1904839073888677939",
+      "name": "building_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAC74\uCD95\uBB3C\uBA85",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2664990948214419119",
+      "name": "sido",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD1B5\uC77C\uD55C \uC2DC\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "661208407115360200",
+      "name": "use_group",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD1B5\uC77C\uD55C \uC6A9\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "485484622724724978",
+      "name": "building_group_raw",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAE30\uAD00 \uC6D0\uBCF8 \uAC74\uCD95\uBB3C\uAD70",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4624335845193424",
+      "name": "cert_stage",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC608\uBE44\uC778\uC99D \uB610\uB294 \uBCF8\uC778\uC99D",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1081450629746577975",
+      "name": "is_validity_extension",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Boolean",
+      "semanticEnrichment": {
+        "description": "\uC720\uD6A8\uAE30\uAC04 \uC5F0\uC7A5 \uAC74 \uC5EC\uBD80",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1897385177389803547",
+      "name": "grade_label",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uB4F1\uAE09(\uCD5C\uC6B0\uC218/\uC6B0\uC218/\uC6B0\uB7C9/\uC77C\uBC18)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4161442222094290026",
+      "name": "cert_grade_raw",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAE30\uAD00 \uC6D0\uBCF8 \uB4F1\uAE09 \uD45C\uAE30",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1387252934433772610",
+      "name": "cert_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3347851424459150415",
+      "name": "cert_year",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uC5F0\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1644675583214395521",
+      "name": "address",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC8FC\uC18C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2161665545986941269",
+      "name": "gross_floor_area_m2",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uC5F0\uBA74\uC801(\u33A1)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3858610150223897248",
+      "name": "floors_above",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uC9C0\uC0C1\uCE35\uC218",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1159648276425366984",
+      "name": "floors_below",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uC9C0\uD558\uCE35\uC218",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uB179\uC0C9\uAC74\uCD95\uC778\uC99D",
+      "\uADF8\uB9B0\uC778\uC99D",
+      "GSEED"
+    ],
+    "description": "\uD55C\uAD6D\uBD80\uB3D9\uC0B0\uC6D0 \uB179\uC0C9\uAC74\uCD95 \uC778\uC99D \uD604\uD669(\uACF5\uACF5\uB370\uC774\uD130). \uC608\uBE44\uC778\uC99D\u00B7\uBCF8\uC778\uC99D \uAD6C\uBD84\uC740 ZEBCertification\uACFC \uAC19\uB2E4. \uB179\uC0C9\uAC74\uCD95(G-SEED) \uB4F1\uAE09: \uCD5C\uC6B0\uC218(\uADF8\uB9B01\uB4F1\uAE09) \u003E \uC6B0\uC218(\uADF8\uB9B02\uB4F1\uAE09) \u003E \uC6B0\uB7C9(\uADF8\uB9B03\uB4F1\uAE09) \u003E \uC77C\uBC18(\uADF8\uB9B04\uB4F1\uAE09). BF(\uC7A5\uC560\uBB3C \uC5C6\uB294 \uC0DD\uD65C\uD658\uACBD) \uB4F1\uAE09: \uCD5C\uC6B0\uC218 \u003E \uC6B0\uC218 \u003E \uC77C\uBC18. \uC608\uBE44\uC778\uC99D = \uC124\uACC4 \uB2E8\uACC4\uC5D0\uC11C \uC124\uACC4\uB3C4\uC11C\uB85C \uBC1B\uB294 \uC778\uC99D. \uBCF8\uC778\uC99D = \uC900\uACF5(\uC0AC\uC6A9\uC2B9\uC778) \uBB34\uB835 \uCD5C\uC885 \uC124\uACC4\uB3C4\uC11C\uC640 \uD604\uC7A5 \uC2E4\uC0AC\uB85C \uBC1B\uB294 \uC778\uC99D\uC73C\uB85C, \u0027\uC900\uACF5 \uD6C4 \uC778\uC99D\u0027\uC774\uB77C\uACE0\uB3C4 \uD55C\uB2E4. \uC2DC\uB3C4\uB294 \uC6D0\uCC9C\uB9C8\uB2E4 \uD45C\uAE30\uAC00 \uB2EC\uB77C(\uACBD\uAE30\uB3C4, \uACBD\uAE30, \uC11C\uC6B8\uC2DC \uB4F1) \uD1B5\uC77C\uD55C \uAC12(sido: \uACBD\uAE30, \uC11C\uC6B8, \uC804\uBD81 \uB4F1)\uC744 \uC4F4\uB2E4. \uC6B0\uB9AC \uD68C\uC0AC(Contoso) \uD604\uC7A5\uC740 \uACF5\uACF5 \uC778\uC99D \uB370\uC774\uD130(ZEB\u00B7\uB179\uC0C9\uAC74\uCD95\u00B7BF\u00B7\uB179\uC0C9\uAE30\uC220 \uC778\uC99D \uD604\uD669)\uC5D0 \uC5C6\uB2E4. \uC9C8\uBB38\uC5D0 \uB098\uC628 \u0027\u25CB\u25CB \uD604\uC7A5\u0027, \u0027\u25CB\u25CB\uB2E8\uC9C0\u0027 \uAC19\uC740 \uC774\uB984\uC740 \uC77C\uBD80\uB9CC \uC77C\uCE58\uD574\uB3C4(\uC608: \u0027D\uB2E8\uC9C0\u0027) \uD604\uC7A5 \uC774\uB984(pms_site.site_name, \uC608: \u0027\uD574\uC6B4\uB300 F\uCCAD\uC0AC \uD604\uC7A5\u0027)\uC774\uB098 \uD504\uB85C\uC81D\uD2B8 \uC774\uB984(erp_project.project_name, \uC608: \u0027\uD574\uC6B4\uB300 F\uCCAD\uC0AC\u0027)\uC5D0\uC11C \uCC3E\uB294\uB2E4. \uD604\uC7A5\uC758 \uC2DC\uB3C4\u00B7\uC6A9\uB3C4\uB294 MDM \uB9E4\uD551(mdm_site_xref)\uC73C\uB85C \uC5F0\uACB0\uD55C \uD504\uB85C\uC81D\uD2B8\uC758 sido\u00B7use_group\uC774\uBA70, \uACF5\uACF5 \uC778\uC99D \uC0AC\uB840\uC640 \uBE44\uAD50\uD560 \uB54C\uB294 \uC774 \uC2DC\uB3C4\u00B7\uC6A9\uB3C4\uAC00 \uAC19\uC740 \uACF5\uACF5 \uC778\uC99D\uC744 \uACE0\uB978\uB2E4.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

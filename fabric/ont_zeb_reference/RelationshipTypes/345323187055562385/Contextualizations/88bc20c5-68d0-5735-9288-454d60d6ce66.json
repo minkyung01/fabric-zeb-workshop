@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "88bc20c5-68d0-5735-9288-454d60d6ce66",
+  "dataBindingTable": {
+    "workspaceId": "{{WORKSPACE_ID}}",
+    "itemId": "{{LAKEHOUSE_ID}}",
+    "sourceTableName": "pub_certified_building",
+    "sourceSchema": "gold",
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "building_key",
+      "targetPropertyId": "1873500990648595129"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "sido",
+      "targetPropertyId": "2521258608952167398"
+    }
+  ]
+}

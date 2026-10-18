@@ -1,9 +1,0 @@
-category_code,category_name,zeb_role,green_tech_classes
-PV,태양광,에너지 생산,태양전지|태양 전지용 BOS(Balance Of system) 주변 기기
-GEO,지열 히트펌프,에너지 생산,지열 냉난방 기술
-EHP,전기 히트펌프,에너지 절감,"전기구동 히트펌프(EHP,ElectricHeatPump)"
-FC,연료전지,에너지 생산,건물용 PEMFC (핵심부품)|건물용 PEMFC (시스템 양산제조기술)|건물용 SOFC (구성요소 및 스택)
-ENV,고효율 창호·외피,에너지 절감,고효율 외피시스템
-VENT,전열교환 환기,에너지 절감,에코 실내 환기설비
-LIGHT,고효율 조명·제어,에너지 절감,
-BEMS,건물에너지관리시스템(BEMS),에너지 관리,

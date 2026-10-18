@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "345323187055562385",
+  "name": "CertifiedBuilding_in_Region",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "4307514000270038304"
+  },
+  "target": {
+    "entityTypeId": "3048527271857511843"
+  },
+  "semanticEnrichment": {
+    "description": "\uAC74\uBB3C\uC774 \uC788\uB294 \uC2DC\uB3C4",
+    "customAttributes": {}
+  }
+}

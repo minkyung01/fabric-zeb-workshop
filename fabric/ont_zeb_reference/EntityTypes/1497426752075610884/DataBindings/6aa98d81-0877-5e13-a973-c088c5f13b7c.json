@@ -1,0 +1,32 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "6aa98d81-0877-5e13-a973-c088c5f13b7c",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "project_no",
+        "targetPropertyId": "3027775520997633704"
+      },
+      {
+        "sourceColumnName": "site_code",
+        "targetPropertyId": "1280767412102119174"
+      },
+      {
+        "sourceColumnName": "bim_model_id",
+        "targetPropertyId": "4514191674000656076"
+      },
+      {
+        "sourceColumnName": "valid_from",
+        "targetPropertyId": "2708488000898610342"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "mdm_site_xref",
+      "sourceSchema": "gold"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "1245849653033349210",
+  "name": "Site_has_BIMModel",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "4328945662752225469"
+  },
+  "target": {
+    "entityTypeId": "1497426752075610884"
+  },
+  "semanticEnrichment": {
+    "description": "\uD604\uC7A5\uC758 BIM \uBAA8\uB378(MDM \uB9E4\uD551)",
+    "customAttributes": {}
+  }
+}

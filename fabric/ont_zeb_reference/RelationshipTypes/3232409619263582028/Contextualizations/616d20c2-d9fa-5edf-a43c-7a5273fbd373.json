@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "616d20c2-d9fa-5edf-a43c-7a5273fbd373",
+  "dataBindingTable": {
+    "workspaceId": "{{WORKSPACE_ID}}",
+    "itemId": "{{LAKEHOUSE_ID}}",
+    "sourceTableName": "erp_project",
+    "sourceSchema": "gold",
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "project_no",
+      "targetPropertyId": "2520663198013643601"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "use_group",
+      "targetPropertyId": "3241568107773932743"
+    }
+  ]
+}

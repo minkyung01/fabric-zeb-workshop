@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "f129ebe3-8aeb-5859-a55b-87ef9420110f",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "wbs_code",
+        "targetPropertyId": "3798037809493792927"
+      },
+      {
+        "sourceColumnName": "site_code",
+        "targetPropertyId": "543004380617633964"
+      },
+      {
+        "sourceColumnName": "design_version_id",
+        "targetPropertyId": "3782330183034359202"
+      },
+      {
+        "sourceColumnName": "category_code",
+        "targetPropertyId": "2622000757110859278"
+      },
+      {
+        "sourceColumnName": "equipment_name",
+        "targetPropertyId": "1014985117646515003"
+      },
+      {
+        "sourceColumnName": "capacity",
+        "targetPropertyId": "1276066317104195577"
+      },
+      {
+        "sourceColumnName": "capacity_unit",
+        "targetPropertyId": "2886186309729085577"
+      },
+      {
+        "sourceColumnName": "selfsuff_contribution_pp",
+        "targetPropertyId": "1868802449742520931"
+      },
+      {
+        "sourceColumnName": "planned_cost_krw",
+        "targetPropertyId": "484883687910408068"
+      },
+      {
+        "sourceColumnName": "added_by_action_id",
+        "targetPropertyId": "2005183058309469457"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pms_equipment_plan",
+      "sourceSchema": "gold"
+    }
+  }
+}

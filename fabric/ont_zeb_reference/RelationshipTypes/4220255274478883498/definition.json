@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "4220255274478883498",
+  "name": "GSEEDCertification_of_Building",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "1463952801488047536"
+  },
+  "target": {
+    "entityTypeId": "4307514000270038304"
+  },
+  "semanticEnrichment": {
+    "description": "\uC778\uC99D\uC744 \uBC1B\uC740 \uAC74\uBB3C",
+    "customAttributes": {}
+  }
+}

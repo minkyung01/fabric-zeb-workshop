@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "25d119cb-1be5-5684-8869-5cf68586bc3f",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "project_no",
+        "targetPropertyId": "2520663198013643601"
+      },
+      {
+        "sourceColumnName": "project_name",
+        "targetPropertyId": "300051710574010749"
+      },
+      {
+        "sourceColumnName": "sido",
+        "targetPropertyId": "2915217880651897604"
+      },
+      {
+        "sourceColumnName": "sigungu",
+        "targetPropertyId": "922740667600153426"
+      },
+      {
+        "sourceColumnName": "use_group",
+        "targetPropertyId": "3786209228622939128"
+      },
+      {
+        "sourceColumnName": "main_use",
+        "targetPropertyId": "3299556822958106431"
+      },
+      {
+        "sourceColumnName": "households",
+        "targetPropertyId": "2126483349236323725"
+      },
+      {
+        "sourceColumnName": "gross_floor_area_m2",
+        "targetPropertyId": "161575202094783679"
+      },
+      {
+        "sourceColumnName": "client_type",
+        "targetPropertyId": "712423126376339644"
+      },
+      {
+        "sourceColumnName": "start_date",
+        "targetPropertyId": "4006313815146915429"
+      },
+      {
+        "sourceColumnName": "planned_completion_date",
+        "targetPropertyId": "629830923375119390"
+      },
+      {
+        "sourceColumnName": "pm_name",
+        "targetPropertyId": "3163778201033833475"
+      },
+      {
+        "sourceColumnName": "zeb_incentive",
+        "targetPropertyId": "3434221075385675759"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "erp_project",
+      "sourceSchema": "gold"
+    }
+  }
+}

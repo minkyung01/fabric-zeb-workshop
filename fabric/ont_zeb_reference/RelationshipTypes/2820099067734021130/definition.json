@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "2820099067734021130",
+  "name": "Project_has_BIMModel",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "55168649473673395"
+  },
+  "target": {
+    "entityTypeId": "1497426752075610884"
+  },
+  "semanticEnrichment": {
+    "description": "\uD504\uB85C\uC81D\uD2B8\uB97C MDM \uCF54\uB4DC\uB9E4\uD551(BIMModel)\uC5D0 \uC5F0\uACB0\uD55C\uB2E4. \uD604\uC7A5\uC740 Site_has_BIMModel\uC758 \uC5ED\uBC29\uD5A5\uC73C\uB85C \uCC3E\uB294\uB2E4. \uAC19\uC740 \uB9E4\uD551 \uD589\uC758 project_no\u00B7site_code\u00B7bim_model_id\uB97C \uC0AC\uC6A9\uD55C\uB2E4.",
+    "customAttributes": {}
+  }
+}

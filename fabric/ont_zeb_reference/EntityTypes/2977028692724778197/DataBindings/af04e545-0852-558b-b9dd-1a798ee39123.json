@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "af04e545-0852-558b-b9dd-1a798ee39123",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "po_no",
+        "targetPropertyId": "1414369925095147907"
+      },
+      {
+        "sourceColumnName": "wbs_element",
+        "targetPropertyId": "2758625452628747554"
+      },
+      {
+        "sourceColumnName": "vendor_code",
+        "targetPropertyId": "2336171356681251850"
+      },
+      {
+        "sourceColumnName": "original_vendor_code",
+        "targetPropertyId": "1702652432605790540"
+      },
+      {
+        "sourceColumnName": "order_date",
+        "targetPropertyId": "1335030622929226873"
+      },
+      {
+        "sourceColumnName": "promised_date",
+        "targetPropertyId": "3417563157275597547"
+      },
+      {
+        "sourceColumnName": "original_expected_date",
+        "targetPropertyId": "519302861662187602"
+      },
+      {
+        "sourceColumnName": "expected_date",
+        "targetPropertyId": "1928446441132817427"
+      },
+      {
+        "sourceColumnName": "delivered_date",
+        "targetPropertyId": "100081857989329175"
+      },
+      {
+        "sourceColumnName": "status",
+        "targetPropertyId": "1833659446624568670"
+      },
+      {
+        "sourceColumnName": "amount_krw",
+        "targetPropertyId": "3116710181528708271"
+      },
+      {
+        "sourceColumnName": "change_event_count",
+        "targetPropertyId": "1861947172363543281"
+      },
+      {
+        "sourceColumnName": "last_change_reason",
+        "targetPropertyId": "648779690998741048"
+      },
+      {
+        "sourceColumnName": "last_change_at",
+        "targetPropertyId": "901953446599701899"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "scm_purchase_order",
+      "sourceSchema": "gold"
+    }
+  }
+}

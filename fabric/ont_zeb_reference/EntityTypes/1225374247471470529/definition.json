@@ -1,0 +1,113 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "1225374247471470529",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "POEvent",
+  "entityIdParts": [
+    "2597127657420212978"
+  ],
+  "displayNamePropertyId": "2597127657420212978",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "2597127657420212978",
+      "name": "event_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC774\uBCA4\uD2B8 \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2463332365671849744",
+      "name": "po_no",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBC1C\uC8FC \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3386329899704643868",
+      "name": "event_type",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC774\uBCA4\uD2B8 \uC885\uB958",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3475595230387234401",
+      "name": "new_expected_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC0C8 \uC608\uC0C1 \uC785\uACE0\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1039110620399008802",
+      "name": "new_vendor_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC0C8 \uAC70\uB798\uCC98 \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2143580602824317479",
+      "name": "reason",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC0AC\uC720",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2402592485729289845",
+      "name": "source_system",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC6D0\uCC9C \uC2DC\uC2A4\uD15C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1242812698753490717",
+      "name": "event_ts",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uBC1C\uC0DD \uC2DC\uAC01",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uB0A9\uAE30\uBCC0\uACBD",
+      "\uBC1C\uC8FC\uC774\uBCA4\uD2B8"
+    ],
+    "description": "\uBC1C\uC8FC \uB0A9\uAE30 \uBCC0\uACBD\u00B7\uACF5\uAE09\uC0AC \uBCC0\uACBD \uC774\uBCA4\uD2B8.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

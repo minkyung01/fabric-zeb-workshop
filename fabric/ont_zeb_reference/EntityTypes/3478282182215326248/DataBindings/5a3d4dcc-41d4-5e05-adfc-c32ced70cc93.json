@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "5a3d4dcc-41d4-5e05-adfc-c32ced70cc93",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "cert_id",
+        "targetPropertyId": "3442506632269895996"
+      },
+      {
+        "sourceColumnName": "cert_no",
+        "targetPropertyId": "1372055994694434151"
+      },
+      {
+        "sourceColumnName": "building_key",
+        "targetPropertyId": "2081678021097245125"
+      },
+      {
+        "sourceColumnName": "facility_name",
+        "targetPropertyId": "2146635580332419893"
+      },
+      {
+        "sourceColumnName": "sido",
+        "targetPropertyId": "4399700157061040102"
+      },
+      {
+        "sourceColumnName": "sigungu",
+        "targetPropertyId": "4081747616119426471"
+      },
+      {
+        "sourceColumnName": "cert_target",
+        "targetPropertyId": "3736346133415312110"
+      },
+      {
+        "sourceColumnName": "is_building",
+        "targetPropertyId": "3876466595554633417"
+      },
+      {
+        "sourceColumnName": "use_group",
+        "targetPropertyId": "1214049894895955592"
+      },
+      {
+        "sourceColumnName": "use_type",
+        "targetPropertyId": "4311765485732479037"
+      },
+      {
+        "sourceColumnName": "cert_stage",
+        "targetPropertyId": "683139590956887010"
+      },
+      {
+        "sourceColumnName": "grade_label",
+        "targetPropertyId": "1476390376690506869"
+      },
+      {
+        "sourceColumnName": "cert_date",
+        "targetPropertyId": "1377522124845190997"
+      },
+      {
+        "sourceColumnName": "cert_year",
+        "targetPropertyId": "3848393858474551186"
+      },
+      {
+        "sourceColumnName": "expiry_date",
+        "targetPropertyId": "521647444752428056"
+      },
+      {
+        "sourceColumnName": "expiry_note",
+        "targetPropertyId": "4381823985222117221"
+      },
+      {
+        "sourceColumnName": "applicant_name",
+        "targetPropertyId": "897304145818780414"
+      },
+      {
+        "sourceColumnName": "cert_body",
+        "targetPropertyId": "35104988367710449"
+      },
+      {
+        "sourceColumnName": "area_m2",
+        "targetPropertyId": "2795288109395298665"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pub_bf_certification",
+      "sourceSchema": "gold"
+    }
+  }
+}

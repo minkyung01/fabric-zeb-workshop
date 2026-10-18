@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "3987585017413173922",
+  "name": "Vendor_supplies_Category",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "700397378357897743"
+  },
+  "target": {
+    "entityTypeId": "1362259218905118307"
+  },
+  "semanticEnrichment": {
+    "description": "\uACF5\uAE09\uC0AC\uAC00 \uACF5\uAE09\uD558\uB294 \uC124\uBE44 \uBD84\uC57C",
+    "customAttributes": {}
+  }
+}

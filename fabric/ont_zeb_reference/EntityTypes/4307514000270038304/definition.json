@@ -1,0 +1,69 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "4307514000270038304",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "CertifiedBuilding",
+  "entityIdParts": [
+    "1873500990648595129"
+  ],
+  "displayNamePropertyId": "1873500990648595129",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "1873500990648595129",
+      "name": "building_key",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAC74\uBB3C \uC2DD\uBCC4 \uD0A4(\uC2DC\uB3C4|\uC815\uADDC\uD654 \uAC74\uBB3C\uBA85)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4289005037132287843",
+      "name": "building_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAC74\uBB3C\uBA85",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2659449985555882389",
+      "name": "sido",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC2DC\uB3C4",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3079421563595177717",
+      "name": "use_group",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC6A9\uB3C4",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uC778\uC99D\uAC74\uBB3C",
+      "\uAC74\uCD95\uBB3C"
+    ],
+    "description": "\uACF5\uACF5 \uC778\uC99D \uB370\uC774\uD130(ZEB\u00B7\uB179\uC0C9\uAC74\uCD95\u00B7BF)\uC5D0 \uB098\uC624\uB294 \uAC74\uBB3C. \uC2DC\uB3C4\uC640 \uC815\uADDC\uD654\uD55C \uAC74\uBB3C\uBA85\uC774 \uAC19\uC73C\uBA74 \uAC19\uC740 \uAC74\uBB3C\uB85C \uBB36\uC5C8\uB2E4. \uC2DC\uB3C4\uB294 \uC6D0\uCC9C\uB9C8\uB2E4 \uD45C\uAE30\uAC00 \uB2EC\uB77C(\uACBD\uAE30\uB3C4, \uACBD\uAE30, \uC11C\uC6B8\uC2DC \uB4F1) \uD1B5\uC77C\uD55C \uAC12(sido: \uACBD\uAE30, \uC11C\uC6B8, \uC804\uBD81 \uB4F1)\uC744 \uC4F4\uB2E4. \uC6B0\uB9AC \uD68C\uC0AC(Contoso) \uD604\uC7A5\uC740 \uACF5\uACF5 \uC778\uC99D \uB370\uC774\uD130(ZEB\u00B7\uB179\uC0C9\uAC74\uCD95\u00B7BF\u00B7\uB179\uC0C9\uAE30\uC220 \uC778\uC99D \uD604\uD669)\uC5D0 \uC5C6\uB2E4. \uC9C8\uBB38\uC5D0 \uB098\uC628 \u0027\u25CB\u25CB \uD604\uC7A5\u0027, \u0027\u25CB\u25CB\uB2E8\uC9C0\u0027 \uAC19\uC740 \uC774\uB984\uC740 \uC77C\uBD80\uB9CC \uC77C\uCE58\uD574\uB3C4(\uC608: \u0027D\uB2E8\uC9C0\u0027) \uD604\uC7A5 \uC774\uB984(pms_site.site_name, \uC608: \u0027\uD574\uC6B4\uB300 F\uCCAD\uC0AC \uD604\uC7A5\u0027)\uC774\uB098 \uD504\uB85C\uC81D\uD2B8 \uC774\uB984(erp_project.project_name, \uC608: \u0027\uD574\uC6B4\uB300 F\uCCAD\uC0AC\u0027)\uC5D0\uC11C \uCC3E\uB294\uB2E4. \uD604\uC7A5\uC758 \uC2DC\uB3C4\u00B7\uC6A9\uB3C4\uB294 MDM \uB9E4\uD551(mdm_site_xref)\uC73C\uB85C \uC5F0\uACB0\uD55C \uD504\uB85C\uC81D\uD2B8\uC758 sido\u00B7use_group\uC774\uBA70, \uACF5\uACF5 \uC778\uC99D \uC0AC\uB840\uC640 \uBE44\uAD50\uD560 \uB54C\uB294 \uC774 \uC2DC\uB3C4\u00B7\uC6A9\uB3C4\uAC00 \uAC19\uC740 \uACF5\uACF5 \uC778\uC99D\uC744 \uACE0\uB978\uB2E4.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "e6dde98d-83dc-5f9a-ad09-1b6743cee712",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "sido",
+        "targetPropertyId": "2521258608952167398"
+      },
+      {
+        "sourceColumnName": "sido_full",
+        "targetPropertyId": "4417905565898985814"
+      },
+      {
+        "sourceColumnName": "region_group",
+        "targetPropertyId": "1737461281478859869"
+      },
+      {
+        "sourceColumnName": "latitude",
+        "targetPropertyId": "3939472385090659662"
+      },
+      {
+        "sourceColumnName": "longitude",
+        "targetPropertyId": "51381489230477944"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "ref_region",
+      "sourceSchema": "gold"
+    }
+  }
+}

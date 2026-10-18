@@ -1,0 +1,180 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "2977028692724778197",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "PurchaseOrder",
+  "entityIdParts": [
+    "1414369925095147907"
+  ],
+  "displayNamePropertyId": "1414369925095147907",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "1414369925095147907",
+      "name": "po_no",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBC1C\uC8FC \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2758625452628747554",
+      "name": "wbs_element",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "WBS \uCF54\uB4DC(\uC124\uBE44 \uACC4\uD68D wbs_code)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2336171356681251850",
+      "name": "vendor_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD604\uC7AC \uAC70\uB798\uCC98 \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1702652432605790540",
+      "name": "original_vendor_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uCD5C\uCD08 \uAC70\uB798\uCC98 \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1335030622929226873",
+      "name": "order_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uBC1C\uC8FC\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3417563157275597547",
+      "name": "promised_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC57D\uC18D \uB0A9\uAE30",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "519302861662187602",
+      "name": "original_expected_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uCD5C\uCD08 \uC608\uC0C1 \uC785\uACE0\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1928446441132817427",
+      "name": "expected_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uD604\uC7AC \uC608\uC0C1 \uC785\uACE0\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "100081857989329175",
+      "name": "delivered_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC785\uACE0\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1833659446624568670",
+      "name": "status",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC0C1\uD0DC(\uC0DD\uC0B0\uC911/\uCD9C\uD558\uC900\uBE44/\uC785\uACE0\uC644\uB8CC)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3116710181528708271",
+      "name": "amount_krw",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uAE08\uC561(\uC6D0)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1861947172363543281",
+      "name": "change_event_count",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uBCC0\uACBD \uC774\uBCA4\uD2B8 \uC218",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "648779690998741048",
+      "name": "last_change_reason",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uB9C8\uC9C0\uB9C9 \uBCC0\uACBD \uC0AC\uC720",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "901953446599701899",
+      "name": "last_change_at",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uB9C8\uC9C0\uB9C9 \uBCC0\uACBD \uC2DC\uAC01",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uBC1C\uC8FC",
+      "\uAD6C\uB9E4\uC624\uB354",
+      "PO"
+    ],
+    "description": "SCM \uC124\uBE44 \uBC1C\uC8FC. expected_date\uB294 \uD604\uC7AC \uC608\uC0C1 \uC785\uACE0\uC77C\uC774\uACE0 delivered_date\uAC00 \uC788\uC73C\uBA74 \uC785\uACE0 \uC644\uB8CC\uB2E4. wbs_element = Equipment.wbs_code, vendor_code = Vendor.vendor_code. \uC785\uACE0 \uC9C0\uC5F0\uC774 \uC778\uC99D \uC77C\uC815\uC5D0 \uC8FC\uB294 \uC601\uD5A5\uC740 CertMilestone\uC758 \uC77C\uC815 \uADDC\uCE59\uC73C\uB85C \uACC4\uC0B0\uD55C\uB2E4. \uD604\uC7A5 \uC778\uC99D \uC77C\uC815 \uC21C\uC11C: 1 \uC608\uBE44\uC778\uC99D \uCDE8\uB4DD \u2192 2 \uCC29\uACF5 \u2192 3 \uC124\uBE44 \uC124\uCE58 \uC644\uB8CC \u2192 4 \uBCF8\uC778\uC99D \uC2E0\uCCAD \u2192 5 \uBCF8\uC778\uC99D \uCDE8\uB4DD \u2192 6 \uC0AC\uC6A9\uC2B9\uC778. \uBBF8\uC785\uACE0 \uC124\uBE44 \uBC1C\uC8FC(delivered_date \uC5C6\uC74C)\uC758 \uC608\uC0C1 \uC785\uACE0\uC77C\uC774 \uB2A6\uC5B4\uC9C8 \uB54C: \uC0C8 \uC608\uC0C1 \uC785\uACE0\uC77C = \uD604\uC7AC expected_date \u002B \uC9C0\uC5F0 \uC77C\uC218. \uCD08\uACFC \uC77C\uC218 = \uC0C8 \uC608\uC0C1 \uC785\uACE0\uC77C \u2212 \uADF8 \uD604\uC7A5 \u0027\uC124\uBE44 \uC124\uCE58 \uC644\uB8CC\u0027 \uACC4\uD68D\uC77C(planned_date). \uCD08\uACFC \uC77C\uC218\uAC00 0\uBCF4\uB2E4 \uD06C\uBA74 \uC124\uBE44 \uC124\uCE58 \uC644\uB8CC\u00B7\uBCF8\uC778\uC99D \uC2E0\uCCAD\u00B7\uBCF8\uC778\uC99D \uCDE8\uB4DD\u00B7\uC0AC\uC6A9\uC2B9\uC778\uC774 \uBAA8\uB450 \uCD08\uACFC \uC77C\uC218\uB9CC\uD07C \uBC00\uB9AC\uACE0, 0 \uC774\uD558\uC774\uBA74 \uC778\uC99D \uC77C\uC815 \uC601\uD5A5\uC774 \uC5C6\uB2E4(\uB0A8\uC740 \uC77C\uC218\uAC00 \uC5EC\uC720). \uAC19\uC740 \uD604\uC7A5\uB3C4 \uC2DC\uC2A4\uD15C\uB9C8\uB2E4 \uCF54\uB4DC\uAC00 \uB2E4\uB974\uB2E4. ERP \uD504\uB85C\uC81D\uD2B8 \uBC88\uD638(project_no, \uC608: CT-24-0189), PMS \uD604\uC7A5 \uCF54\uB4DC(site_code, \uC608: HS-D), BIM \uBAA8\uB378 \uBC88\uD638(bim_model_id, \uC608: BIM-0397)\uB294 MDM \uB9E4\uD551\uD45C mdm_site_xref\uB85C \uC5F0\uACB0\uD55C\uB2E4. \uBC1C\uC8FC\uC758 wbs_element\uB294 \uC124\uBE44 \uACC4\uD68D\uC758 wbs_code\uC640 \uAC19\uACE0, \uBC1C\uC8FC\uC758 vendor_code\uB294 \uACF5\uAE09\uC0AC\uC758 vendor_code\uC640 \uAC19\uB2E4. is_alternative_pool = true\uC778 \uACF5\uAE09\uC0AC\uB294 \uAC19\uC740 \uBD84\uC57C(category_code) \uC124\uBE44\uB97C \uB300\uCCB4 \uACF5\uAE09\uD560 \uC218 \uC788\uB2E4. \uB300\uCCB4\uD558\uBA74 \uC608\uC0C1 \uC785\uACE0\uC77C = \uAE30\uC900\uC77C(2026-09-30) \u002B \uD45C\uC900 \uB0A9\uAE30(standard_lead_time_days).",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}
