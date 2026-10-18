@@ -15,17 +15,25 @@ Ontology는 업무 대상을 나타내는 **엔터티 타입**, 엔터티 사이
 
 ## 1. Ontology 만들기
 
-1.  작업 영역 `zeb-p001`에서 **+ New item**을 누르고 검색 칸에 `Ontology`를 입력해 **Ontology (preview)**를 고릅니다.
-2.  **Name**에 `ont_zeb`를 입력하고 **Location**이 `zeb-p001`인지 확인한 뒤 **Create**를 누릅니다.
-3.  **Welcome to Ontology** 창이 나오면 오른쪽 위 **X**로 닫습니다.
+1.  작업 영역 `zeb-p001`에서 **+ New item**을 누르고 오른쪽 위 **Filter by keyword** 칸에 `Ontology`를 입력한 뒤 **Ontology (preview)** 카드를 누릅니다.
 
-**예상 결과:** 가운데에 **Get started**와 카드 3개(**Start with Ontology agent**, **Import ontology**, **Learn more**)가 보입니다. 왼쪽 **Explorer**에는 아직 엔터티 타입이 없습니다.
+    <img src="../assets/screenshots/d06-new-ontology.png" width="900" alt="New item 창의 Filter by keyword 칸에 Ontology를 입력해 Ontology (preview) 카드 하나만 보이는 화면" />
+
+2.  **Name**에 `ont_zeb`를 입력하고 **Location**이 `zeb-p001`인지 확인한 뒤 **Create**를 누릅니다.
+
+    <img src="../assets/screenshots/d06-create-ontology.png" width="700" alt="New Ontology 창에 Name ont_zeb, Location zeb-p001이 입력된 화면" />
+
+3.  "Getting Ontology (preview) ready..."가 1분 넘게 계속되면 브라우저를 새로 고칩니다. **Welcome to Ontology** 창이 나오면 창 오른쪽 위 **X**로 닫습니다.
+
+**확인할 결과:** 가운데에 **Get started**와 카드 3개(**Start with Ontology agent**, **Import ontology**, **Learn more**)가 보입니다. 왼쪽 **Explorer**의 **Entity Types**에는 "No entity types available"이 표시됩니다.
+
+<img src="../assets/screenshots/d06-get-started.png" width="900" alt="ont_zeb의 Get started 화면. 왼쪽 Explorer에 Overview(Rules, Shared properties)와 Ontology(Entity Types, Relationship Types)가 있고 엔터티 타입은 아직 없습니다." />
 
 ## 2. Ontology agent로 초안 만들기
 
 엔터티와 관계를 하나씩 직접 만들지 않습니다. **업무 목적과 질문을 Ontology agent에게 알려 주면** 에이전트가 원본 테이블을 살펴보고 설계를 제안합니다. 참가자는 그 설계로 업무 질문에 답할 수 있는지, 키와 관계가 실제 데이터와 맞는지 검토합니다.
 
-1.  **Start with Ontology agent** 카드를 누릅니다. 오른쪽에 **Ontology Agent** 창이 열립니다. 입력 칸 아래 스위치가 **Plan**인지 확인합니다. **Plan**은 초안을 만들고 검증하는 모드이고, **Act**는 변경을 실제로 적용하는 모드입니다.
+1.  **Start with Ontology agent** 카드를 누릅니다. 오른쪽에 **Ontology Agent** 창이 열립니다. 입력 칸 아래 **Plan | Act** 스위치에서 **Plan**이 선택되어 있는지 확인합니다(처음 열면 Plan입니다). **Plan**은 초안을 만들고 검증만 하는 모드이고, **Act**는 변경을 실제로 적용하는 모드입니다.
 
 2.  **Say something** 칸에 아래 프롬프트를 붙여 넣고 오른쪽 아래 화살표를 눌러 보냅니다.
 
@@ -40,16 +48,27 @@ Ontology는 업무 대상을 나타내는 **엔터티 타입**, 엔터티 사이
     - 공급사의 납품이 늦어지면 어느 발주·설비·현장의 인증 일정이 영향을 받는가? 대체 공급사는 있는가?
     - 위험 현장의 보완안은 무엇이고 비용·효과·준비 기간은 얼마인가?
     - 우리 현장과 같은 시도·용도의 공공 인증 사례는 어떤가? 설비 분야별 유효한 녹색기술 인증이 있는가?
+    현장에서 BIM 모델을 거쳐 인증받은 설계안과 현행 설계안까지 관계로 따라갈 수 있어야 해. 한 테이블은 엔터티 타입 하나에만 바인딩해줘.
     gold 스키마만 사용하고 ops, bronze, silver, dbo와 Files는 쓰지 마. 이름은 영어, 설명과 동의어는 한국어로 작성해줘.
     원본 열과 실제 행으로 키·관계를 검증해줘. 필요한 데이터 읽기에 실패하면 테이블이 없다고 단정하지 말고, 조회 대상과 오류 원문, 해결하지 못한 업무 질문을 보고하고 중단해. 데이터나 연결을 추측해서 만들지 마.
     먼저 Plan에서 설계 근거, 검증 결과와 미리 보기를 보여줘. 적용은 내가 검토하고 Act에서 승인한 다음에 해.
     ```
 
-    `ops` 스키마를 제외하는 이유는 05장에서 본 것처럼 `ops`에는 **판정 결과**가 들어 있기 때문입니다. Ontology에는 업무 데이터와 판정 **규칙**만 두고, 결과는 질문할 때마다 규칙으로 구하게 합니다.
+    <img src="../assets/screenshots/d06-agent-prompt.png" width="900" alt="Ontology Agent 창의 입력 칸에 프롬프트를 붙여 넣은 화면. 입력 칸 아래 Plan | Act 스위치와 보내기 화살표가 있습니다." />
 
-3.  에이전트가 Lakehouse의 열과 샘플 행을 살펴보고 초안을 만들어 검증할 때까지 기다립니다. 보통 3–5분 걸립니다.
+    `ops` 스키마를 빼는 이유는 05장에서 본 것처럼 `ops`에는 **판정 결과**가 들어 있기 때문입니다. Ontology에는 업무 데이터와 판정 **규칙**만 두고, 결과는 질문할 때마다 규칙으로 구하게 합니다.
 
-**확인할 결과:** 답에 제안된 엔터티·키·관계·원본 테이블, **질문별로 그렇게 설계한 이유**, 검증 결과가 있습니다. 아래 참고 설계와 비교해 **빠진 업무 범위가 없는지** 확인합니다. 개수나 이름까지 같을 필요는 없습니다.
+3.  에이전트가 Lakehouse의 열과 샘플 행을 살펴보고 초안을 만들어 검증할 때까지 기다립니다. 진행 중에는 "Considering…", "Deciding…" 같은 생각 단계가 보이고, 보통 5–8분 걸립니다.
+
+**확인할 결과:** 답에 제안된 엔터티·관계 목록, 업무 질문별 연결 경로, 실제 행으로 검증한 근거, **검증 결과(엔터티·관계 개수와 오류 0개)**가 있습니다. 아래 참고 설계와 비교해 **빠진 업무 범위가 없는지** 확인합니다. 개수나 이름까지 같을 필요는 없습니다.
+
+특히 **현장 → BIM 모델 → 설계안** 경로가 있는지 확인합니다. 이 경로가 없으면 "D단지의 현행 설계안은?"에 답할 수 없습니다. 에이전트가 "논리 관계로만 넣었다"거나 "모델 번호는 연결하지 않았다"고 답하면 같은 Plan 대화에서 아래처럼 보완을 요청합니다. 이름은 에이전트가 제안한 이름에 맞춰 바꿉니다.
+
+``` text
+현장 교차표 엔터티를 bim_model_id 키의 BimModel로 바꾸고(gold.mdm_site_xref), BimModel → 현장(site_code), BimModel → 프로젝트(project_no), 설계안 → BimModel(gold.bim_design_version의 bim_model_id) 관계를 실제 열로 바인딩해줘. 다른 엔터티와 관계는 그대로 두고, HS-D 현장에서 현행 설계안까지 이어지는지 실제 행으로 검증해줘.
+```
+
+<img src="../assets/screenshots/d06-plan-review.png" width="900" alt="Plan 대화의 보완 결과. gold.mdm_site_xref의 HS-D 행(CT-24-0189, BIM-0397)과 gold.bim_design_version의 BIM-0397-V3(현행)를 근거로 'HS-D 현장 → BIM-0397 모델 → BIM-0397의 현행 설계안(V3)' 경로가 실제 데이터와 맞는다고 답한 화면" />
 
 아래는 이 Workshop의 원본 데모에서 쓴 **참고 설계(엔터티 22개·관계 27개)**입니다. 프롬프트에 넣어 구조를 지정하는 용도가 아니라, 에이전트의 제안을 검토할 때 비교용으로만 씁니다.
 
@@ -64,19 +83,26 @@ Ontology는 업무 대상을 나타내는 **엔터티 타입**, 엔터티 사이
 
 핵심 관계: `Project → BIMModel`, `Site → BIMModel`, `BIMModel → DesignVersion`, `SiteCertificate → DesignVersion`(**인증받은 설계안**), `PurchaseOrder → Equipment`(`wbs_element` = `wbs_code`), `PurchaseOrder → Vendor`, `ImprovementOption → Site`, `ZEBCertification → Region·BuildingUse·ZEBGradeCriteria`.
 
-**빠진 업무 범위가 있거나 해결되지 않은 조회 오류가 있으면 적용하지 말고**, 같은 Plan 대화에서 보완해 달라고 요청합니다.
+**빠진 업무 범위나 해결되지 않은 조회 오류가 있으면 적용하지 말고**, 같은 Plan 대화에서 보완해 달라고 요청합니다.
 
-## 3. 미리 보기와 적용
+## 3. 적용
 
-1.  답 아래 **Preview ontology**를 누릅니다. 가운데 캔버스에 초안이 열립니다. 왼쪽 아래 **Fit to screen**(네 모서리 모양)을 눌러 전체를 봅니다.
+1.  업무 범위, 원본 연결, 검증 결과에 남은 문제가 없으면 입력 칸 아래 스위치에서 **Act**를 누릅니다.
+2.  아래 요청을 보냅니다.
 
-    **확인할 결과:** 위쪽에 "You are viewing a proposed ontology from the agent. … This is a read-only view."가 보이고, 왼쪽 **Explorer**의 **AI Proposal** 아래에 제안된 엔터티가 있습니다. 이 캔버스는 **엔터티 타입과 관계를 보여 주는 설계도**이며, 실제 데이터를 연결한 Graph가 아닙니다.
+    ``` text
+    업무 질문과 원본 매핑을 검토한 초안을 적용해줘. gold 스키마만 사용하고 내가 검토한 엔터티·키·관계·바인딩을 유지해줘.
+    ```
 
-2.  업무 범위, 원본 연결, 검증 결과에 남은 문제가 없으면 에이전트 창의 **Switch to 'Act' + approve**를 누릅니다. 스위치가 **Act**로 바뀌고 에이전트가 초안을 적용합니다. 보통 2–3분 걸립니다.
+    답 아래에 **Preview ontology**, **Switch to 'Act' + approve** 버튼이 보이면 그 버튼으로 적용해도 됩니다. **Preview ontology**는 적용 전 초안을 읽기 전용 캔버스로 보여 주고, **Switch to 'Act' + approve**는 스위치를 Act로 바꾸고 바로 적용합니다.
 
-    **버튼이 없는 경우:** Plan 답에 텍스트 초안만 있고 **Preview ontology**·**Switch to 'Act' + approve** 버튼이 없으면, 답의 엔터티·관계 목록과 검증 결과를 먼저 검토합니다. 문제가 없으면 직접 **Act**를 선택하고 `업무 질문과 원본 매핑을 검토한 초안을 적용해줘. gold 스키마만 사용하고 내가 검토한 엔터티·키·관계·바인딩을 유지해줘.`를 보냅니다.
+3.  "Applying ontology changes"가 끝나고 결과 답이 나올 때까지 기다립니다. 보통 2–3분 걸립니다.
 
-**확인할 결과:** 답에 적용이 끝났다고 표시되고, 왼쪽 **Explorer**의 **Entity Types** 아래에 엔터티가 있습니다. **AI Proposal이 아니라 Entity Types 아래에** 있어야 적용된 것입니다.
+**확인할 결과:** 답에 적용 성공이 표시되고, 왼쪽 **Explorer**의 **Entity Types** 아래에 엔터티가, 가운데 캔버스(**Full ontology**)에 엔터티와 관계가 보입니다. 캔버스 아래 상태 표시줄의 "Visible: … of N entities | … of M relationships"에서 전체 개수를 확인합니다. 이 캔버스는 **엔터티 타입과 관계를 보여 주는 설계도**이며, 실제 데이터를 연결한 Graph가 아닙니다.
+
+<img src="../assets/screenshots/d06-applied.png" width="1000" alt="적용 후 ont_zeb 화면. 왼쪽 Explorer의 Entity Types에 BimDesignVersion, ErpProject, BimModel, PmsSite 등이 있고, 가운데 Full ontology 캔버스에 PmsSite를 중심으로 관계가 그려져 있습니다. 오른쪽 에이전트 창에는 HS-D 현장 → BimModel(BIM-0397) → 현행 설계안(BIM-0397-V3) 검증과 적용 성공이 표시됩니다." />
+
+**답에 "일부만 적용됐다"고 나오는 경우:** 적용되지 않은 항목과 이유를 읽습니다. 예를 들어 같은 테이블을 엔터티 두 개에 바인딩하려 하면 그 부분만 적용되지 않습니다. 에이전트가 제안한 해결 방법 중 하나를 골라 Act 모드에서 다시 요청합니다.
 
 ## 4. 업무 규칙 추가
 
@@ -102,9 +128,11 @@ Ontology는 업무 대상을 나타내는 **엔터티 타입**, 엔터티 사이
     - CertTarget(pms_cert_target): 녹색건축(G-SEED) 등급은 최우수 > 우수 > 우량 > 일반, BF 등급은 최우수 > 우수 > 일반 순서다.
     ```
 
-3.  변경 요약에서 **설명만 수정**했는지 확인합니다.
+3.  답에서 **설명만 수정**했는지 확인합니다.
 
-**확인할 결과:** 엔터티 13개의 설명 끝에 규칙이 추가되고, 3단계에서 적용한 이름·키·바인딩·관계는 그대로입니다. 이 설명은 실행되는 코드가 아니라 **에이전트가 참고하는 업무 설명**입니다. 정확한 값은 07장의 정답 Notebook을 기준으로 확인합니다.
+**확인할 결과:** 답에 규칙을 덧붙인 엔터티 13개가 나열되고 "누락된 대응 타입은 없습니다"처럼 누락이 없다고 나옵니다. 3단계에서 적용한 이름·키·바인딩·관계는 그대로입니다. 이 설명은 실행되는 코드가 아니라 **에이전트가 참고하는 업무 설명**입니다. 정확한 값은 07장의 정답 Notebook을 기준으로 확인합니다.
+
+<img src="../assets/screenshots/d06-rules-applied.png" width="1000" alt="업무 규칙 적용 후 에이전트 답. BimDesignVersion, ErpProject, PmsSite, PmsCertificate 등 13개 타입이 나열되고 '누락된 대응 타입은 없습니다'라고 나옵니다. 답 아래에 Explain this ontology, Query the ontology, Improve the ontology 버튼이 있습니다." />
 
 ## 5. 엔터티 타입과 관계 점검
 
@@ -112,23 +140,35 @@ Ontology는 업무 대상을 나타내는 **엔터티 타입**, 엔터티 사이
 
 1.  에이전트 창을 **X**로 닫습니다.
 
-2.  **Explorer**에서 **Site**(또는 `gold.pms_site`에 연결된 타입)를 누르고 리본의 **View Entity Type details**를 누릅니다.
+2.  **Explorer**에서 현장 타입(이 예에서는 `PmsSite`, 즉 `gold.pms_site`에 연결된 타입)을 누르고 리본의 **View Entity Type details**를 누릅니다. 처음 열면 "Entity type configuration" 같은 안내 말풍선이 나오는데 **X**로 닫습니다.
 
-    **확인할 결과:** **Configure** 탭의 키가 `site_code`이고, 속성의 **Data source**가 `pms_site`의 열로 되어 있습니다. **Entity metadata**의 **Description** 끝에 4단계에서 넣은 규칙이 있고, **Synonyms**에 한국어 동의어(예: `현장`)가 있습니다.
+    **확인할 결과:** **Configure** 탭의 **Entity type key**가 `site_code`이고, 속성의 **Data source**가 `pms_site.…` 열입니다. 아래로 스크롤하면 **Entity metadata**의 **Description** 끝에 4단계에서 넣은 "업무 규칙:"이 있고(칸 안에서 스크롤), **Synonyms**에 `PMS 현장`, `공사 현장` 같은 한국어 동의어가 있습니다.
 
-3.  **Instances** 탭을 누릅니다.
+    <img src="../assets/screenshots/d06-site-configure.png" width="1000" alt="PmsSite의 Configure 탭. Properties에 progress_pct, site_code(키), site_name, stage가 pms_site 열에 바인딩되어 있고, 오른쪽 Relationships에 PmsSite와 연결된 관계가 보입니다." />
 
-    **확인할 결과:** 현장 **8개**가 보입니다. `HS-D`의 이름은 `에코시티 D단지 현장`, 공정률은 `72`입니다. 에이전트가 지어낸 값이 아니라 **연결된 원본 테이블에서 읽은 데이터**입니다.
+    <img src="../assets/screenshots/d06-site-metadata.png" width="1000" alt="PmsSite의 Entity metadata. Description에 'D단지 같은 이름은 일부만 일치해도 site_name이나 project_name에서 찾는다' 등 업무 규칙이 있고, Synonyms에 PMS 현장, 현장 마스터, 공사 현장, 사이트가 있습니다." />
 
-4.  같은 방법으로 **DesignVersion**(`gold.bim_design_version`)의 **Instances**를 엽니다.
+3.  위쪽 **Instances** 탭을 누릅니다.
 
-    **확인할 결과:** 18개가 보입니다. `BIM-0397-V2`는 `이전`(자립률 43.5), `BIM-0397-V3`는 `현행`(자립률 38.2)입니다.
+    **확인할 결과:** 현장 **8개**가 보입니다. `HS-D`의 이름은 `에코시티 D단지 현장`, 공정률(`progress_pct`)은 `72`입니다. 에이전트가 지어낸 값이 아니라 **연결된 원본 테이블에서 읽은 데이터**입니다.
 
-5.  **SiteCertificate**의 **Configure**에서 오른쪽 위 **Manage relationships**를 누르고, 인증서와 설계안을 잇는 관계(참고 이름 `Certificate_based_on_DesignVersion`)를 엽니다.
+    <img src="../assets/screenshots/d06-site-instances.png" width="1000" alt="PmsSite의 Instances 탭. IC-B 리버뷰 B단지 현장부터 HS-D 에코시티 D단지 현장(시공, 72)까지 현장 8개가 보입니다." />
 
-    **확인할 결과:** 인증서의 `design_version_id`와 설계안의 `version_id`가 연결되어 있습니다. 이 관계가 있어야 "예비인증은 V2로 받았는데 지금은 V3"라는 사실을 찾아낼 수 있습니다. 관계의 방향이나 이름은 달라도 두 원본 열만 맞으면 됩니다. 확인했으면 아무것도 바꾸지 말고 **Cancel**을 누릅니다.
+4.  화면 위쪽 이름(`PmsSite`) 옆 **∨**를 눌러 설계안 타입(`gold.bim_design_version`에 연결된 타입)으로 바꾸고 **Instances**를 엽니다.
 
-6.  `Project`·`Site`·`BIMModel`이 MDM 매핑(`mdm_site_xref`)으로, `PurchaseOrder`와 `Equipment`가 `wbs_element` = `wbs_code`로 연결되는지도 **Manage relationships**에서 확인합니다.
+    **확인할 결과:** 설계안 18개가 보입니다. `BIM-0397-V2`는 `예비인증 제출안`(자립률 43.5), `BIM-0397-V3`는 `VE 반영안`(자립률 38.2)입니다. 오른쪽으로 스크롤하면 `version_status`에서 V3가 `현행`인 것을 볼 수 있습니다.
+
+    <img src="../assets/screenshots/d06-design-instances.png" width="1000" alt="BimDesignVersion의 Instances 탭. BIM-0397-V3 VE 반영안 38.2·76, BIM-0397-V2 예비인증 제출안 43.5·69, BIM-0397-V1 기본설계 41·74 등 설계안이 보입니다." />
+
+5.  같은 방법으로 인증서 타입(`gold.pms_certificate`)의 **Configure**를 열고, 오른쪽 **Manage relationships**를 누릅니다. 목록에서 인증서와 설계안을 잇는 관계(이 예에서는 `CertificateUsesDesignVersion`)를 누릅니다.
+
+    <img src="../assets/screenshots/d06-manage-relationships.png" width="1000" alt="PmsCertificate의 Configure 탭에서 Manage relationships를 펼친 화면. Add new relationship 아래에 CertificateIssuedForSite, CertificateUsesDesignVersion, CertificateGradeMatchesCriteria가 있습니다." />
+
+    **확인할 결과:** **Origin entity type**의 **Property**가 `design_version_id`, **Target entity type**의 **Property**가 `version_id`입니다. 이 관계가 있어야 "예비인증은 V2로 받았는데 지금은 V3"라는 사실을 찾아낼 수 있습니다. 관계의 방향이나 이름은 달라도 두 원본 열만 맞으면 됩니다. 확인했으면 아무것도 바꾸지 말고 오른쪽 아래 **Cancel**을 누릅니다.
+
+    <img src="../assets/screenshots/d06-cert-relationship.png" width="1000" alt="CertificateUsesDesignVersion 관계 화면. Origin entity type PmsCertificate의 Property design_version_id와 Target entity type BimDesignVersion의 Property version_id가 연결되어 있습니다." />
+
+6.  같은 방법으로 BIM 모델 타입(`gold.mdm_site_xref`, 키 `bim_model_id`)의 **Manage relationships**에 현장(`site_code`)·프로젝트(`project_no`)·설계안(`bim_model_id`)으로 가는 관계가 있는지, `PurchaseOrder`와 설비 계획이 `wbs_element` = `wbs_code`로 연결되는지 확인합니다.
 
 여기까지 마쳤으면 업무 질문에 필요한 구조·키·바인딩·규칙과 실제 데이터를 모두 확인한 것입니다. **바로 07장으로 넘어가도 됩니다.** Graph로 관계를 탐색해 보고 싶을 때만 6단계를 진행합니다.
 
@@ -146,7 +186,8 @@ Graph를 만들어 두면, 11장에서 `04_gold_model`이 Gold를 다시 만들 
 
 - 검토한 설계가 `ont_zeb`에 적용되어 있고, 2단계의 업무 질문(공공 인증 통계, 코드 연결, 인증받은 설계안과 현재 설계안, 예상 등급, 일정 영향, 보완안, 공공 사례 비교)에 답할 수 있는 구조입니다. 엔터티·관계 개수는 완료 기준이 아닙니다.
 - 등급 판정·본인증·일정·대체 공급·보완안 규칙이 해당 엔터티의 설명에 들어가 있습니다.
-- `Site` 8개, `DesignVersion` 18개(D단지는 V3가 현행)의 실제 데이터와, 인증서와 설계안의 관계를 확인했습니다.
+- 현장 → BIM 모델 → 설계안 경로가 실제 열로 바인딩되어 있습니다.
+- 현장 8개, 설계안 18개(D단지는 V3가 현행)의 실제 데이터와, 인증서와 설계안의 관계를 확인했습니다.
 
 ## Troubleshooting
 
@@ -154,6 +195,8 @@ Graph를 만들어 두면, 11장에서 `04_gold_model`이 Gold를 다시 만들 
 - 4단계에서 해당하는 엔터티가 없다는 답이 오면, 그 엔터티를 먼저 2–3단계 방식으로 추가한 뒤 규칙을 다시 넣습니다.
 - **Manage graph**에서 관계가 **Not mapped**로 나오면 관계 설정을 열어 양쪽 엔터티의 키와 **Property**에 연결된 원본 열을 확인합니다. 관계 방향부터 바꾸지는 않습니다.
 - 적용을 요청했는데 변화가 없으면 입력 칸 아래 스위치가 **Act**인지 확인합니다.
+- 보완을 거치며 같은 연결의 관계가 두 개 생기면(예: 이전 이름의 관계와 새 관계) 그대로 두어도 답에는 영향이 없습니다. 지우려면 관계 화면 오른쪽 위 **Delete**를 누릅니다.
+- 에이전트가 "Something went wrong"을 내거나 화면에 "This item is not currently available … capacity is currently paused"가 나오면 Fabric 용량이 일시 중지된 것입니다. 관리자에게 용량 재개를 요청하고, 재개 후 페이지를 새로 고칩니다. 이미 적용한 항목은 남아 있습니다.
 - 브라우저를 새로 고치면 에이전트와 나눈 대화는 사라지지만, 이미 적용한 엔터티 타입과 관계는 남아 있습니다.
 - **Instances**에 데이터가 없으면 본인 `lh_zeb`에 `gold` 테이블이 있는지(05장), 엔터티의 **Data source**가 그 테이블을 가리키는지 확인합니다.
 - 에이전트로 설계를 끝내지 못했다면 관리자에게 요청합니다. 관리자가 참고 설계를 본인 작업 영역에 배포해 줄 수 있습니다([관리자 준비 가이드](../admin/README.md)의 참고 Ontology 배포).
