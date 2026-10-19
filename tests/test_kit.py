@@ -52,7 +52,7 @@ class Notebooks(unittest.TestCase):
             self.assertIn(target, NOTEBOOKS)
 
     def test_eventhouse_columns_match_docs(self):
-        doc = (ROOT / "docs" / "09-operations-agent.md").read_text(encoding="utf-8")
+        doc = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
         table = re.search(r"\.create-merge table ZebRiskEvent \((.*?)\)\n", doc, re.S).group(1)
         columns = [line.strip().split(":")[0] for line in table.strip().splitlines()]
         for name in ("06_risk_event", "nb_apply_decision"):

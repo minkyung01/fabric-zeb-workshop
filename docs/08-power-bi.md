@@ -1,6 +1,6 @@
 # 08. Power BI
 
-[목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [09. Operations agent](09-operations-agent.md)
+[목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [09. Foundry agent (선택)](09-foundry-agent.md)
 
 공공 인증 현황과 현장 위험을 보고서로 확인합니다. 이 장의 목표는 **전국 ZEB 인증 현황과 우리 현장의 예상 등급·위험을 두 페이지로 설명하는 것**입니다.
 
@@ -219,7 +219,7 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 - **Copilot으로 생성한 02 현장 컨트롤 타워**의 카드 5개가 기존 측정값에 연결되어 `8`, `1`, `3`, `0`, `34`를 표시하고, D단지의 위험 사유를 확인했습니다.
 - Copilot 질문·인사이트의 대상·수치가 05·07장 결과와 일치합니다.
 
-이 보고서는 11장에서 승인을 반영한 뒤 다시 열어 D단지의 변화를 확인합니다.
+이 보고서는 10장에서 승인을 반영한 뒤 다시 열어 D단지의 변화를 확인합니다.
 
 ## Troubleshooting
 
@@ -234,4 +234,4 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 ## 다음 단계
 
-[09. Operations agent](09-operations-agent.md)에서 D단지 위험을 Eventhouse로 보내고 Teams로 보완안 제안을 받습니다.
+선택: [09. Foundry agent](09-foundry-agent.md)에서 Ontology에 보완안 근거를 다시 묻습니다. 건너뛰면 [10. Operations agent](10-operations-agent.md)에서 D단지 위험을 Eventhouse로 보내고 Teams로 보완안 제안을 받습니다.

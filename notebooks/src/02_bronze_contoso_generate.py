@@ -352,7 +352,7 @@ save(po_events, "bronze.scm_po_event",
 # 보완안마다 적용했을 때 **에너지자립률이 몇 %p 오르는지(`selfsuff_gain_pp`), 1차에너지소요량이 얼마나 줄어드는지(`primary_energy_delta`)**,
 # 비용과 준비 기간이 얼마인지 들어 있습니다. D단지 6개, H단지 5개, C센터 1개입니다.
 #
-# `pms_action_log`(조치 기록)는 **처음에는 비어 있습니다.** 11장에서 담당자가 Teams에서 보완안을 승인하면 이 테이블에 기록이 추가되고,
+# `pms_action_log`(조치 기록)는 **처음에는 비어 있습니다.** 10장에서 담당자가 Teams에서 보완안을 승인하면 이 테이블에 기록이 추가되고,
 # Silver가 그 기록을 읽어 새 설계안을 만듭니다. 이 Notebook을 다시 실행하면 조치 기록도 지워져 **실습 처음 상태로 돌아갑니다.**
 #
 # **예상 결과:** `bronze.sim_improvement_option 12행`, `bronze.pms_action_log 0행`

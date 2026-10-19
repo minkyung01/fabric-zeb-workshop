@@ -14,7 +14,7 @@
 # | Contoso 내부 | `erp_project`, `pms_site`, `mdm_site_xref`, `bim_design_version`, `pms_certificate`, `pms_cert_target`, `pms_cert_milestone`, `pms_equipment_plan`, `scm_vendor`, `scm_purchase_order`, `scm_po_event`, `sim_improvement_option`, `pms_action_log` |
 # | 운영 모니터링(`ops`) | `ops.site_status`, `ops.po_status`, `ops.milestone_forecast` |
 #
-# 다시 실행하면 이 Notebook이 만드는 테이블만 덮어쓰고, 09장에서 만드는 위험 이벤트 테이블(`ops.risk_event` 등)은 건드리지 않습니다.
+# 다시 실행하면 이 Notebook이 만드는 테이블만 덮어쓰고, 10장에서 만드는 위험 이벤트 테이블(`ops.risk_event` 등)은 건드리지 않습니다.
 # 전체 실행에 약 4분 걸립니다.
 
 # %% [parameters]
@@ -105,7 +105,7 @@ save(S("pms_action_log").select("action_id", "action_ts", "site_code", "action_t
 # %% [markdown]
 # ## 4. 운영 지표(`ops`) — 보고서와 감시에 쓰는 계산 결과
 # 
-# 06장에서 온톨로지에 넣을 규칙과 **같은 기준**으로 현재 상태를 계산합니다. Power BI 보고서(08장)와 Operations agent(09장)가 사용합니다.
+# 06장에서 온톨로지에 넣을 규칙과 **같은 기준**으로 현재 상태를 계산합니다. Power BI 보고서(08장)와 Operations agent(10장)가 사용합니다.
 # - 예상 등급 = 에너지자립률 기준 등급과 1차에너지소요량 기준 등급(주거용/주거용 이외 기준값) 중 **더 좋은 등급**
 # - 예비인증을 받은 현장은 사용승인 전 **예비 등급 이상의 본인증**이 필요
 # - BEMS(또는 원격검침)는 인증 필수 요건
