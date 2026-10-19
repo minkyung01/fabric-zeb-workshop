@@ -1,7 +1,0 @@
-grade_code,grade_name,selfsuff_min_pct,primary_energy_limit_residential,primary_energy_limit_nonresidential
-+,ZEB+,120.0,-10.0,-70.0
-1,1등급,100.0,10.0,-30.0
-2,2등급,80.0,30.0,10.0
-3,3등급,60.0,50.0,50.0
-4,4등급,40.0,70.0,90.0
-5,5등급,20.0,90.0,130.0

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "2437862522248500461",
+  "name": "Certificate_based_on_DesignVersion",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "3114205319010727322"
+  },
+  "target": {
+    "entityTypeId": "188466634543437314"
+  },
+  "semanticEnrichment": {
+    "description": "\uC778\uC99D \uC2E0\uCCAD \uB54C \uC81C\uCD9C\uD55C \uC124\uACC4\uC548",
+    "customAttributes": {}
+  }
+}

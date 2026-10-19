@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "e3fc282a-0692-521b-8624-d5cffd76c031",
+  "dataBindingTable": {
+    "workspaceId": "{{WORKSPACE_ID}}",
+    "itemId": "{{LAKEHOUSE_ID}}",
+    "sourceTableName": "pms_cert_milestone",
+    "sourceSchema": "gold",
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "site_code",
+      "targetPropertyId": "2099791295392954062"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "milestone_id",
+      "targetPropertyId": "2708155855024558724"
+    }
+  ]
+}

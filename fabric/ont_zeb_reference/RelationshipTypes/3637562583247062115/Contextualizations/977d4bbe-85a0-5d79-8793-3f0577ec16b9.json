@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "977d4bbe-85a0-5d79-8793-3f0577ec16b9",
+  "dataBindingTable": {
+    "workspaceId": "{{WORKSPACE_ID}}",
+    "itemId": "{{LAKEHOUSE_ID}}",
+    "sourceTableName": "pms_equipment_plan",
+    "sourceSchema": "gold",
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "wbs_code",
+      "targetPropertyId": "3798037809493792927"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "design_version_id",
+      "targetPropertyId": "1227263192869907489"
+    }
+  ]
+}

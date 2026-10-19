@@ -5,9 +5,10 @@ import html
 import json
 import math
 import re
-from reference import ROOT
+from pathlib import Path
 
-WIDTH, HEIGHT = 1600, 1100
+ROOT = Path(__file__).resolve().parents[1]
+WIDTH, HEIGHT = 1600, 1180
 
 # Microsoft blue leads, neutrals carry the structure, green marks the approved path.
 BLUE, GREEN, MUTED = "#0078D4", "#107C10", "#7F8DA3"
@@ -217,8 +218,8 @@ class Diagram:
                             f'stroke-linecap="round" stroke-linejoin="round"{heads}{dash}/>')
         return "\n".join([
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">',
-            '<title id="title">건설 ZEB 워크숍 | Microsoft Fabric</title>',
-            '<desc id="desc">OneLake의 schema-enabled Lakehouse 안에서 Files 원천이 Bronze 원천 보존, Silver 정제·연결, Gold 업무지표·판단근거 스키마로 이어집니다. Gold에서 Ontology 내장 agent, Direct Lake 모델과 Power BI, 명시적 snapshot과 Eventhouse 및 Operations agent로 연결됩니다. Teams 담당자 승인 후 Notebook은 결정 기록만 저장하며 설계·발주는 변경하지 않습니다. Foundry 근거 재검토는 선택입니다.</desc>',
+            '<title id="title">건설 ZEB 인증 컨트롤 타워 | Microsoft Fabric</title>',
+            '<desc id="desc">Notebook이 공공 인증 4종과 Contoso 내부 데이터를 OneLake의 schema-enabled Lakehouse에 Bronze로 적재하고, Silver에서 표기를 맞춘 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Direct Lake 모델과 Power BI, Eventhouse 위험 이벤트와 Operations agent로 이어집니다. Operations agent가 Teams로 보완안을 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 선택입니다.</desc>',
             f'<rect width="{WIDTH}" height="{HEIGHT}" fill="white"/>',
             "<defs>", *defs, "</defs>", *body, "</svg>"]) + "\n"
 
@@ -241,19 +242,19 @@ def build():
 
     d.rect(40, 28, 6, 74, fill=BLUE, line="transparent", width=0, radius=3,
            gradient={"stops": ["#2AA9F5", "#0067B8"], "dir": "v"})
-    d.text(62, 22, "건설 ZEB 워크숍 | Microsoft Fabric", 34, 900, weight=700, split=True)
-    d.text(62, 72, "현장·설계 데이터를 연결해 ZEB 현황과 보완안을 검토하고, 담당자의 결정을 기록합니다.",
+    d.text(62, 22, "건설 ZEB 인증 컨트롤 타워 | Microsoft Fabric", 34, 900, weight=700, split=True)
+    d.text(62, 72, "공공 인증과 현장 데이터를 연결해 등급 위험을 찾고, 담당자 승인으로 보완안을 반영합니다.",
            22, 930, fill=SUBTLE)
     d.rect(1014, 64, 546, 48, line=CARD_LINE, radius=24)
     x = 1038
-    for role, name, text_width in (("flow", "기본 흐름", 85), ("approval", "승인 후 기록", 110),
+    for role, name, text_width in (("flow", "실습 흐름", 85), ("approval", "승인 후 반영", 110),
                                    ("optional", "선택 검토", 85)):
         color, dashed = ROLES[role]
         d.stroke("arrow", [(x, 88), (x + 42, 88)], color=color, dashed=dashed, end=True)
         d.text(x + 54, 74, name, 20, text_width + 8)
         x += 54 + text_width + 28
 
-    d.rect(40, 128, 1160, 930, fill="#F2F7FD", line=PANEL_LINE, width=1.5, radius=24,
+    d.rect(40, 128, 1160, 1012, fill="#F2F7FD", line=PANEL_LINE, width=1.5, radius=24,
            gradient={"stops": ["#F7FAFE", "#EBF3FC"], "dir": "v"})
     d.rect(60, 138, 250, 44, line="#CFE0F1", width=1, radius=22)
     d.icon("fabric", 70, 144, 32)
@@ -267,43 +268,48 @@ def build():
     d.text(164, 254.6, "schema-enabled Lakehouse | 메달리온 세 계층을 스키마로 구분", 22, 960,
            weight=600, split=True)
     d.stroke("line", [(112, 300), (1128, 300)], color="#E3EAF3", width=1.5)
-    d.chip("files", 120, 316, 217, 88, "Files | 원천", "현장·설계·공공 ZEB",
+    d.chip("source", 120, 316, 217, 88, "Notebook | 수집", "공공 4종·Contoso",
            ("#9FB1C8", WHITE, CARD_LINE, INK), plain=True)
-    d.layer("bronze", 381, 316, 217, 88, "BRONZE", "원천 보존")
-    d.layer("silver", 642, 316, 217, 88, "SILVER", "정제·연결")
-    d.layer("gold", 903, 316, 217, 88, "GOLD", "업무지표·판단근거")
+    d.layer("bronze", 381, 316, 217, 88, "BRONZE", "원천 그대로")
+    d.layer("silver", 642, 316, 217, 88, "SILVER", "정제·표기 통일")
+    d.layer("gold", 903, 316, 217, 88, "GOLD", "업무 데이터·ops")
     d.rect(110, 441, 46, 46, line="#CFE0F1", width=1, radius=12)
     d.icon("onelake", 116, 447, 34)
     d.text(170, 447.2, "OneLake | 공통 저장소", 24, 330, weight=600, split=True)
 
-    d.card("ontology", 80, 646, 330, 128, "ontology", "Ontology | 내장 agent", "근거 질의")
-    d.card("model", 455, 646, 330, 128, "semantic-model", "Semantic model", "Direct Lake")
-    d.card("eventhouse", 830, 646, 330, 128, "eventhouse", "Eventhouse", "위험 snapshot")
-    d.card("powerbi", 455, 828, 330, 128, "power-bi", "Power BI", "현황·보완안")
-    d.card("operations", 830, 828, 330, 128, "operations-agent", "Operations agent", "위험 감시·제안")
-    d.card("audit", 80, 828, 330, 128, "notebook", "Notebook | 결정 기록",
-           "결정 기록만 저장\n설계·발주 변경 없음")
+    d.card("ontology", 80, 616, 330, 120, "ontology", "Ontology | 내장 agent", "업무 개념·관계·규칙")
+    d.card("model", 455, 616, 330, 120, "semantic-model", "Semantic model", "Direct Lake")
+    d.card("eventhouse", 830, 616, 330, 120, "eventhouse", "Eventhouse", "위험 이벤트 상태")
+    d.card("dataagent", 80, 790, 330, 120, "data-agent", "Data agent", "업무 질문·근거 답변")
+    d.card("powerbi", 455, 790, 330, 120, "power-bi", "Power BI", "인증 현황·컨트롤 타워")
+    d.card("operations", 830, 790, 330, 120, "operations-agent", "Operations agent", "위험 감시·제안")
+    d.card("apply", 830, 964, 330, 132, "notebook", "Notebook | 승인 반영",
+           "조치 기록 → 재계산\n실제 설계·발주 변경 없음")
     d.card("foundry", 1250, 226, 310, 128, "foundry", "Foundry | 선택", "승인 전 근거 재검토", dashed=True)
-    d.card("teams", 1250, 828, 310, 128, "teams", "Teams", "제안·담당자 승인",
+    d.card("teams", 1250, 790, 310, 120, "teams", "Teams", "제안·담당자 승인",
            accent=("#F4FAF4", "#8CC08C"))
 
-    d.arrow("files-to-bronze", [(337, 360), (381, 360)])
+    d.arrow("source-to-bronze", [(337, 360), (381, 360)])
     d.arrow("bronze-to-silver", [(598, 360), (642, 360)])
     d.arrow("silver-to-gold", [(859, 360), (903, 360)])
-    for route, cx in (("gold-to-ontology", 245), ("gold-to-directlake", 620), ("gold-to-snapshot", 995)):
-        d.arrow(route, [(1120, 360), (1180, 360), (1180, 576), (cx, 576), (cx, 646)])
-    d.arrow("model-to-powerbi", [(620, 774), (620, 828)])
-    d.arrow("snapshot-to-operations", [(995, 774), (995, 828)])
-    d.arrow("operations-to-teams", [(1160, 892), (1250, 892)])
-    d.arrow("teams-to-audit", [(1405, 956), (1405, 1004), (245, 1004), (245, 956)], role="approval")
-    d.arrow("foundry-to-ontology", [(1250, 290), (1225, 290), (1225, 198), (60, 198), (60, 710), (80, 710)],
+    # Gold fans out below OneLake so the right margin stays free for the approval loop.
+    for route, cx in (("gold-to-ontology", 245), ("gold-to-directlake", 620), ("gold-to-eventhouse", 995)):
+        d.arrow(route, [(1011.5, 404), (1011.5, 560), (cx, 560), (cx, 616)])
+    d.arrow("ontology-to-dataagent", [(245, 736), (245, 790)])
+    d.arrow("model-to-powerbi", [(620, 736), (620, 790)])
+    d.arrow("eventhouse-to-operations", [(995, 736), (995, 790)])
+    d.arrow("operations-to-teams", [(1160, 850), (1250, 850)])
+    d.arrow("teams-to-apply", [(1405, 910), (1405, 1118), (995, 1118), (995, 1096)], role="approval")
+    d.arrow("apply-to-lakehouse", [(1160, 1030), (1180, 1030), (1180, 280), (1144, 280)], role="approval")
+    d.arrow("foundry-to-ontology", [(1250, 290), (1225, 290), (1225, 198), (60, 198), (60, 676), (80, 676)],
             role="optional")
-    d.arrow("teams-foundry-review", [(1405, 354), (1405, 828)], role="optional", both=True)
-    d.label(1011 + 137/2, 611, "명시적 수집", 105, SOFT_BLUE)
-    d.label(700, 1004, "승인 후 기록", 110, GREEN)
-    d.label(1405, 591, "선택 검토", 85, MUTED)
+    d.arrow("teams-foundry-review", [(1405, 354), (1405, 790)], role="optional", both=True)
+    d.label(1100, 588, "명시적 전송", 105, SOFT_BLUE)
+    d.label(1180, 536, "조치 기록 → 재계산", 175, GREEN)
+    d.label(1310, 1118, "Teams 승인", 100, GREEN)
+    d.label(1405, 572, "선택 검토", 85, MUTED)
     d.save()
-    print(f"Built Korean medallion SVG + Excalidraw + shared scene ({WIDTH}×{HEIGHT}).")
+    print(f"Built Korean architecture SVG + Excalidraw + shared scene ({WIDTH}×{HEIGHT}).")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "1203076454937387298",
+  "name": "Site_has_Milestone",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "4328945662752225469"
+  },
+  "target": {
+    "entityTypeId": "2302299720270609411"
+  },
+  "semanticEnrichment": {
+    "description": "\uD604\uC7A5\uC758 \uC778\uC99D \uC77C\uC815",
+    "customAttributes": {}
+  }
+}

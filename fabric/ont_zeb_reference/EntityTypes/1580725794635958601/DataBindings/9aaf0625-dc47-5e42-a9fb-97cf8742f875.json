@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "9aaf0625-dc47-5e42-a9fb-97cf8742f875",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "option_id",
+        "targetPropertyId": "846884696029298906"
+      },
+      {
+        "sourceColumnName": "site_code",
+        "targetPropertyId": "2548289462402687552"
+      },
+      {
+        "sourceColumnName": "option_name",
+        "targetPropertyId": "1886515354109715997"
+      },
+      {
+        "sourceColumnName": "category_code",
+        "targetPropertyId": "587298984003203477"
+      },
+      {
+        "sourceColumnName": "selfsuff_gain_pp",
+        "targetPropertyId": "3921618616131258064"
+      },
+      {
+        "sourceColumnName": "primary_energy_delta",
+        "targetPropertyId": "3663198568054213527"
+      },
+      {
+        "sourceColumnName": "cost_krw",
+        "targetPropertyId": "1230202922078052827"
+      },
+      {
+        "sourceColumnName": "lead_time_days",
+        "targetPropertyId": "2302506780899761383"
+      },
+      {
+        "sourceColumnName": "applied_action_id",
+        "targetPropertyId": "971084089289669360"
+      },
+      {
+        "sourceColumnName": "is_applied",
+        "targetPropertyId": "351910874244410070"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "sim_improvement_option",
+      "sourceSchema": "gold"
+    }
+  }
+}

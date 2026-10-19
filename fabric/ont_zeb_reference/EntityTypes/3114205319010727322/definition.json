@@ -1,0 +1,114 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "3114205319010727322",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "SiteCertificate",
+  "entityIdParts": [
+    "1947790878626665324"
+  ],
+  "displayNamePropertyId": "1947790878626665324",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "1947790878626665324",
+      "name": "cert_no",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D\uC11C \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3119225519987667532",
+      "name": "site_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "PMS \uD604\uC7A5 \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "95980316819591566",
+      "name": "cert_type",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uC885\uB958(ZEB, G-SEED, BF)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4175885711345116789",
+      "name": "cert_stage",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC608\uBE44\uC778\uC99D \uB610\uB294 \uBCF8\uC778\uC99D",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1652299848809410141",
+      "name": "grade",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uCDE8\uB4DD \uB4F1\uAE09",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2763353905895383435",
+      "name": "cert_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1413017535769646416",
+      "name": "design_version_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uAE30\uC900 \uC124\uACC4\uC548",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "355759732471561803",
+      "name": "issuer",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uAE30\uAD00",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uCDE8\uB4DD\uC778\uC99D",
+      "\uC778\uC99D\uC11C",
+      "\uC608\uBE44\uC778\uC99D\uC11C"
+    ],
+    "description": "Contoso \uD604\uC7A5\uC774 \uCDE8\uB4DD\uD55C \uC778\uC99D\uC11C(ZEB\u00B7G-SEED\u00B7BF). design_version_id\uB294 \uC778\uC99D\uC744 \uBC1B\uC744 \uB54C \uC81C\uCD9C\uD55C \uC124\uACC4\uC548\uC774\uB2E4. \uC608\uBE44\uC778\uC99D\u00B7\uBCF8\uC778\uC99D \uAD6C\uBD84\uC740 ZEBCertification\uACFC \uAC19\uB2E4. \uC608\uBE44\uC778\uC99D\uC744 \uBC1B\uC740 \uD604\uC7A5\uC740 \uC0AC\uC6A9\uC2B9\uC778 \uC804\uC5D0 \uC608\uBE44\uC778\uC99D \uB4F1\uAE09 \uC774\uC0C1\uC758 \uBCF8\uC778\uC99D\uC744 \uBC1B\uC544\uC57C \uD55C\uB2E4(\uC6A9\uC801\uB960 \uC644\uD654 \uAC19\uC740 \uC778\uC13C\uD2F0\uBE0C\uB97C \uBC1B\uC740 \uD504\uB85C\uC81D\uD2B8\uB294 \uD544\uC218). \uD310\uC815 \uBC29\uBC95: \uD604\uC7A5\uC758 \uD604\uD589 \uC124\uACC4\uC548(version_status = \u0027\uD604\uD589\u0027)\uC73C\uB85C \uC608\uC0C1 \uB4F1\uAE09\uC744 \uAD6C\uD558\uACE0(ZEBGradeCriteria\uC758 \uD310\uC815 \uC808\uCC28), \uC608\uBE44\uC778\uC99D \uB4F1\uAE09\uACFC \uBE44\uAD50\uD55C\uB2E4. \uC608\uC0C1 \uB4F1\uAE09\uC774 \uC608\uBE44\uC778\uC99D \uB4F1\uAE09\uBCF4\uB2E4 \uB0AE\uC73C\uBA74 \uBCF8\uC778\uC99D \uC704\uD5D8\uC774\uB2E4. ZEB \uB4F1\uAE09\uC740 \u002B(ZEB\u002B)\uAC00 \uAC00\uC7A5 \uB192\uACE0 1, 2, 3, 4, 5 \uC21C\uC11C\uB85C \uB0AE\uC544\uC9C4\uB2E4. \u0027N\uB4F1\uAE09 \uC774\uC0C1\u0027\uC740 N\uB4F1\uAE09\uACFC \uADF8\uBCF4\uB2E4 \uB192\uC740 \uB4F1\uAE09\uC744 \uB73B\uD55C\uB2E4. \uC608: \u00274\uB4F1\uAE09 \uC774\uC0C1\u0027 = \u002B, 1, 2, 3, 4\uB4F1\uAE09(5\uB4F1\uAE09 \uC81C\uC678). ZEB \uC608\uC0C1 \uB4F1\uAE09 \uD310\uC815 \uC808\uCC28(\uB450 \uAE30\uC900 \uC911 \uD558\uB098\uB9CC \uCDA9\uC871\uD574\uB3C4 \uB428): (1) \uC790\uB9BD\uB960 \uB4F1\uAE09 = selfsuff_pct \u003E= selfsuff_min_pct\uB97C \uB9CC\uC871\uD558\uB294 \uB4F1\uAE09 \uC911 \uAC00\uC7A5 \uB192\uC740 \uB4F1\uAE09. (2) 1\uCC28\uC5D0\uB108\uC9C0 \uB4F1\uAE09 = primary_energy_kwh_m2y \u003C \uAE30\uC900\uAC12\uC744 \uB9CC\uC871\uD558\uB294 \uB4F1\uAE09 \uC911 \uAC00\uC7A5 \uB192\uC740 \uB4F1\uAE09(\uAE30\uC900\uAC12: \uC8FC\uAC70\uC6A9\uC774\uBA74 primary_energy_limit_residential, \uC8FC\uAC70\uC6A9 \uC774\uC678\uBA74 primary_energy_limit_nonresidential). (3) \uCD5C\uC885 \uB4F1\uAE09 = (1)\uACFC (2) \uC911 \uB354 \uB192\uC740 \uB4F1\uAE09. \uB450 \uAE30\uC900\uC744 \uBAA8\uB450 \uCDA9\uC871\uD574\uC57C \uD558\uB294 \uAC83\uC774 \uC544\uB2C8\uBBC0\uB85C, \uC790\uB9BD\uB960\uC774 \uC5B4\uB5A4 \uB4F1\uAE09\uC758 \uD558\uD55C\uBCF4\uB2E4 \uB0AE\uC544\uB3C4 1\uCC28\uC5D0\uB108\uC9C0\uC18C\uC694\uB7C9\uC774 \uADF8 \uB4F1\uAE09 \uAE30\uC900\uAC12\uBCF4\uB2E4 \uB0AE\uC73C\uBA74 \uADF8 \uB4F1\uAE09\uC744 \uBC1B\uB294\uB2E4. (4) BEMS \uB610\uB294 \uC6D0\uACA9\uAC80\uCE68 \uC124\uCE58\uB294 \uD544\uC218 \uC694\uAC74\uC774\uB2E4. \uC608\uBE44\uC778\uC99D = \uC124\uACC4 \uB2E8\uACC4\uC5D0\uC11C \uC124\uACC4\uB3C4\uC11C\uB85C \uBC1B\uB294 \uC778\uC99D. \uBCF8\uC778\uC99D = \uC900\uACF5(\uC0AC\uC6A9\uC2B9\uC778) \uBB34\uB835 \uCD5C\uC885 \uC124\uACC4\uB3C4\uC11C\uC640 \uD604\uC7A5 \uC2E4\uC0AC\uB85C \uBC1B\uB294 \uC778\uC99D\uC73C\uB85C, \u0027\uC900\uACF5 \uD6C4 \uC778\uC99D\u0027\uC774\uB77C\uACE0\uB3C4 \uD55C\uB2E4. \uB179\uC0C9\uAC74\uCD95(G-SEED) \uB4F1\uAE09: \uCD5C\uC6B0\uC218(\uADF8\uB9B01\uB4F1\uAE09) \u003E \uC6B0\uC218(\uADF8\uB9B02\uB4F1\uAE09) \u003E \uC6B0\uB7C9(\uADF8\uB9B03\uB4F1\uAE09) \u003E \uC77C\uBC18(\uADF8\uB9B04\uB4F1\uAE09). BF(\uC7A5\uC560\uBB3C \uC5C6\uB294 \uC0DD\uD65C\uD658\uACBD) \uB4F1\uAE09: \uCD5C\uC6B0\uC218 \u003E \uC6B0\uC218 \u003E \uC77C\uBC18.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

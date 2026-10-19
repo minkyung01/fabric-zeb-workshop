@@ -1,0 +1,28 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "8f800bfa-6ccb-57b6-acc3-244706dfb0ec",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "category_code",
+        "targetPropertyId": "2158607144537140495"
+      },
+      {
+        "sourceColumnName": "category_name",
+        "targetPropertyId": "2697479876962672679"
+      },
+      {
+        "sourceColumnName": "zeb_role",
+        "targetPropertyId": "818135216995976034"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "ref_equipment_category",
+      "sourceSchema": "gold"
+    }
+  }
+}

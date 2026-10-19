@@ -1,0 +1,212 @@
+{
+  "name": "ZEB Control Tower",
+  "dataColors": [
+    "#00A4EF",
+    "#7FBA00",
+    "#FFB900",
+    "#F25022",
+    "#737373",
+    "#0078D4",
+    "#5C2D91",
+    "#008575",
+    "#E3008C",
+    "#CA5010"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#242424",
+  "tableAccent": "#00A4EF",
+  "good": "#7FBA00",
+  "neutral": "#FFB900",
+  "bad": "#F25022",
+  "maximum": "#00A4EF",
+  "center": "#FFB900",
+  "minimum": "#DEF3FC",
+  "textClasses": {
+    "callout": {
+      "fontSize": 26,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#242424"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#242424"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#242424"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#616161"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E0E0E0"
+              }
+            },
+            "radius": 6
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "padding": [
+          {
+            "top": 10,
+            "bottom": 10,
+            "left": 12,
+            "right": 12
+          }
+        ],
+        "categoryAxis": [
+          {
+            "gridlineStyle": "dotted",
+            "gridlineColor": {
+              "solid": {
+                "color": "#EDEBE9"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "gridlineStyle": "dotted",
+            "gridlineColor": {
+              "solid": {
+                "color": "#EDEBE9"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F5F5F5"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "textbox": {
+      "*": {
+        "padding": [
+          {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          }
+        ],
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "cardVisual": {
+      "*": {
+        "cardCalloutArea": [
+          {
+            "paddingUniform": 0
+          }
+        ],
+        "title": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "columnHeaders": [
+          {
+            "autoSizeColumnWidth": true,
+            "backColor": {
+              "solid": {
+                "color": "#F3F2F1"
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": "#242424"
+              }
+            },
+            "bold": true
+          }
+        ],
+        "values": [
+          {
+            "backColorPrimary": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": "#FAFAFA"
+              }
+            },
+            "fontColorPrimary": {
+              "solid": {
+                "color": "#242424"
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": "#242424"
+              }
+            }
+          }
+        ],
+        "grid": [
+          {
+            "gridHorizontal": true,
+            "gridHorizontalColor": {
+              "solid": {
+                "color": "#EDEBE9"
+              }
+            },
+            "gridVertical": false
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "db816fbe-bdf2-5ce9-9564-8de540fc446e",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "cert_id",
+        "targetPropertyId": "1313431874546254777"
+      },
+      {
+        "sourceColumnName": "cert_no",
+        "targetPropertyId": "1860771197477390636"
+      },
+      {
+        "sourceColumnName": "building_key",
+        "targetPropertyId": "3060215425741820204"
+      },
+      {
+        "sourceColumnName": "building_name",
+        "targetPropertyId": "1904839073888677939"
+      },
+      {
+        "sourceColumnName": "sido",
+        "targetPropertyId": "2664990948214419119"
+      },
+      {
+        "sourceColumnName": "use_group",
+        "targetPropertyId": "661208407115360200"
+      },
+      {
+        "sourceColumnName": "building_group_raw",
+        "targetPropertyId": "485484622724724978"
+      },
+      {
+        "sourceColumnName": "cert_stage",
+        "targetPropertyId": "4624335845193424"
+      },
+      {
+        "sourceColumnName": "is_validity_extension",
+        "targetPropertyId": "1081450629746577975"
+      },
+      {
+        "sourceColumnName": "grade_label",
+        "targetPropertyId": "1897385177389803547"
+      },
+      {
+        "sourceColumnName": "cert_grade_raw",
+        "targetPropertyId": "4161442222094290026"
+      },
+      {
+        "sourceColumnName": "cert_date",
+        "targetPropertyId": "1387252934433772610"
+      },
+      {
+        "sourceColumnName": "cert_year",
+        "targetPropertyId": "3347851424459150415"
+      },
+      {
+        "sourceColumnName": "address",
+        "targetPropertyId": "1644675583214395521"
+      },
+      {
+        "sourceColumnName": "gross_floor_area_m2",
+        "targetPropertyId": "2161665545986941269"
+      },
+      {
+        "sourceColumnName": "floors_above",
+        "targetPropertyId": "3858610150223897248"
+      },
+      {
+        "sourceColumnName": "floors_below",
+        "targetPropertyId": "1159648276425366984"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pub_gseed_certification",
+      "sourceSchema": "gold"
+    }
+  }
+}

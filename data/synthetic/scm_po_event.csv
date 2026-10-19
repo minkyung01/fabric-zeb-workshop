@@ -1,2 +1,0 @@
-event_id,po_no,event_type,new_expected_date,new_vendor_code,reason,event_time,source_system
-EV-0001,4500031213,납기변경,2027-04-20,,창호 유리 사양 확정 지연(+5일),2026-09-10 09:30:00,SCM

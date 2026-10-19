@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "a9590fa1-5a1c-5334-b6b3-1e886884d04c",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "cert_no",
+        "targetPropertyId": "1947790878626665324"
+      },
+      {
+        "sourceColumnName": "site_code",
+        "targetPropertyId": "3119225519987667532"
+      },
+      {
+        "sourceColumnName": "cert_type",
+        "targetPropertyId": "95980316819591566"
+      },
+      {
+        "sourceColumnName": "cert_stage",
+        "targetPropertyId": "4175885711345116789"
+      },
+      {
+        "sourceColumnName": "grade",
+        "targetPropertyId": "1652299848809410141"
+      },
+      {
+        "sourceColumnName": "cert_date",
+        "targetPropertyId": "2763353905895383435"
+      },
+      {
+        "sourceColumnName": "design_version_id",
+        "targetPropertyId": "1413017535769646416"
+      },
+      {
+        "sourceColumnName": "issuer",
+        "targetPropertyId": "355759732471561803"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pms_certificate",
+      "sourceSchema": "gold"
+    }
+  }
+}

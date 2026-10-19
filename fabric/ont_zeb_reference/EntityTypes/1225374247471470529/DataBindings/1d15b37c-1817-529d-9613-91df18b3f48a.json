@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "1d15b37c-1817-529d-9613-91df18b3f48a",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "event_id",
+        "targetPropertyId": "2597127657420212978"
+      },
+      {
+        "sourceColumnName": "po_no",
+        "targetPropertyId": "2463332365671849744"
+      },
+      {
+        "sourceColumnName": "event_type",
+        "targetPropertyId": "3386329899704643868"
+      },
+      {
+        "sourceColumnName": "new_expected_date",
+        "targetPropertyId": "3475595230387234401"
+      },
+      {
+        "sourceColumnName": "new_vendor_code",
+        "targetPropertyId": "1039110620399008802"
+      },
+      {
+        "sourceColumnName": "reason",
+        "targetPropertyId": "2143580602824317479"
+      },
+      {
+        "sourceColumnName": "source_system",
+        "targetPropertyId": "2402592485729289845"
+      },
+      {
+        "sourceColumnName": "event_ts",
+        "targetPropertyId": "1242812698753490717"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "scm_po_event",
+      "sourceSchema": "gold"
+    }
+  }
+}

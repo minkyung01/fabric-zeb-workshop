@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "2328153270267159867",
+  "name": "POEvent_for_PurchaseOrder",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "1225374247471470529"
+  },
+  "target": {
+    "entityTypeId": "2977028692724778197"
+  },
+  "semanticEnrichment": {
+    "description": "\uC774\uBCA4\uD2B8\uAC00 \uBC14\uAFBC \uBC1C\uC8FC",
+    "customAttributes": {}
+  }
+}

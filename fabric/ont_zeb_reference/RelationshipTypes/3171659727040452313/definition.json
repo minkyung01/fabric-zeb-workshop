@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "3171659727040452313",
+  "name": "ZEBCertification_has_Grade",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "3034130129584907715"
+  },
+  "target": {
+    "entityTypeId": "4047569708162331292"
+  },
+  "semanticEnrichment": {
+    "description": "\uBC1B\uC740 ZEB \uB4F1\uAE09\uACFC \uADF8 \uB4F1\uAE09 \uAE30\uC900",
+    "customAttributes": {}
+  }
+}

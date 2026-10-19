@@ -1,0 +1,24 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "86ba8772-5ee2-54e4-ad64-f197ac40ca8b",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "use_group",
+        "targetPropertyId": "3241568107773932743"
+      },
+      {
+        "sourceColumnName": "use_family",
+        "targetPropertyId": "1206801012303034178"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "ref_building_use",
+      "sourceSchema": "gold"
+    }
+  }
+}

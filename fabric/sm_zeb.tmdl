@@ -1,0 +1,95 @@
+createOrReplace
+
+	relationship zeb_cert_region
+		fromColumn: pub_zeb_certification.sido
+		toColumn: ref_region.sido
+
+	relationship zeb_cert_grade
+		fromColumn: pub_zeb_certification.grade_code
+		toColumn: ref_zeb_grade_criteria.grade_code
+
+	relationship zeb_cert_use
+		fromColumn: pub_zeb_certification.use_group
+		toColumn: ref_building_use.use_group
+
+	relationship milestone_site
+		fromColumn: milestone_forecast.site_code
+		toColumn: site_status.site_code
+
+	relationship po_site
+		fromColumn: po_status.site_code
+		toColumn: site_status.site_code
+
+	relationship po_vendor
+		fromColumn: po_status.vendor_code
+		toColumn: scm_vendor.vendor_code
+
+	relationship po_category
+		fromColumn: po_status.category_code
+		toColumn: ref_equipment_category.category_code
+
+	ref table pub_zeb_certification
+
+		measure 'ZEB 인증 건수' = COUNTROWS(pub_zeb_certification)
+			formatString: #,0
+
+		measure '본인증 건수' = CALCULATE([ZEB 인증 건수], pub_zeb_certification[cert_stage] = "본인증")
+			formatString: #,0
+
+		measure '예비인증 건수' = CALCULATE([ZEB 인증 건수], pub_zeb_certification[cert_stage] = "예비인증")
+			formatString: #,0
+
+		measure '4등급 이상 건수' = CALCULATE([ZEB 인증 건수], KEEPFILTERS(pub_zeb_certification[grade_code] IN {"+", "1", "2", "3", "4"}))
+			formatString: #,0
+
+		measure '4등급 이상 비율' = DIVIDE([4등급 이상 건수], [ZEB 인증 건수])
+			formatString: 0.0%
+
+		measure '평균 에너지자립률' = AVERAGE(pub_zeb_certification[selfsuff_pct])
+			formatString: 0.0
+
+		measure '2025년 인증 건수' = CALCULATE([ZEB 인증 건수], pub_zeb_certification[cert_year] = 2025)
+			formatString: #,0
+
+		measure '2024년 인증 건수' = CALCULATE([ZEB 인증 건수], pub_zeb_certification[cert_year] = 2024)
+			formatString: #,0
+
+		measure '전년 대비 증가율' = DIVIDE([2025년 인증 건수] - [2024년 인증 건수], [2024년 인증 건수])
+			formatString: +0.0%;-0.0%;0.0%
+
+		measure '자립률 하한 미만 인증' = COUNTROWS(FILTER(pub_zeb_certification, NOT ISBLANK(pub_zeb_certification[selfsuff_pct]) && pub_zeb_certification[selfsuff_pct] < RELATED(ref_zeb_grade_criteria[selfsuff_min_pct])))
+			formatString: #,0
+
+	ref table site_status
+
+		measure '현장 수' = COUNTROWS(site_status)
+			formatString: #,0
+
+		measure '위험 현장' = CALCULATE([현장 수], site_status[risk_level] = "위험") + 0
+			formatString: #,0
+
+		measure '주의 현장' = CALCULATE([현장 수], site_status[risk_level] = "주의") + 0
+			formatString: #,0
+
+		measure '정상 현장' = CALCULATE([현장 수], site_status[risk_level] = "정상") + 0
+			formatString: #,0
+
+		measure '평균 공정률' = AVERAGE(site_status[progress_pct])
+			formatString: 0
+
+		measure '상태 색' = SWITCH(SELECTEDVALUE(site_status[risk_level]), "위험", "#F25022", "주의", "#FFB900", "정상", "#7FBA00", "#737373")
+
+		measure '상태 배경' = SWITCH(SELECTEDVALUE(site_status[risk_level]), "위험", "#FDDDD3", "주의", "#FFF1CC", "정상", "#E5F2CC", "#FFFFFF")
+
+	ref table po_status
+
+		measure '발주 건수' = COUNTROWS(po_status)
+			formatString: #,0
+
+		measure '설치 지연 발주' = CALCULATE(COUNTROWS(po_status), po_status[is_late_vs_deadline] = TRUE()) + 0
+			formatString: #,0
+
+	ref table milestone_forecast
+
+		measure '최대 지연 일수' = MAX(milestone_forecast[delay_days]) + 0
+			formatString: 0

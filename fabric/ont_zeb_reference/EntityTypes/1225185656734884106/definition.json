@@ -1,0 +1,146 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "1225185656734884106",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "GreenTechCertificate",
+  "entityIdParts": [
+    "4057968816536711331"
+  ],
+  "displayNamePropertyId": "4057968816536711331",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "4057968816536711331",
+      "name": "cert_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uAC74 \uC2DD\uBCC4\uC790",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1756425649601872159",
+      "name": "cert_no",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3762972278544812656",
+      "name": "tech_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAE30\uC220 \uBA85\uCE6D",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2674090847856431181",
+      "name": "class_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBD84\uB958 \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2885366277118791381",
+      "name": "class_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBD84\uB958 \uC774\uB984",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4144712315204641142",
+      "name": "category_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAD00\uB828 \uC124\uBE44 \uBD84\uC57C \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "67038950225657155",
+      "name": "applicant_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC2E0\uCCAD \uAE30\uAD00",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4097426629291196948",
+      "name": "issuing_ministry",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBC1C\uAE09 \uBD80\uCC98",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4202851716353989753",
+      "name": "cert_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uD655\uC815\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3861589936343707842",
+      "name": "expiry_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC778\uC99D \uB9CC\uB8CC\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2368747414775328156",
+      "name": "data_base_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uB370\uC774\uD130 \uAE30\uC900\uC77C",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uB179\uC0C9\uAE30\uC220",
+      "\uB179\uC0C9\uAE30\uC220\uC778\uC99D"
+    ],
+    "description": "\uB179\uC0C9\uAE30\uC220 \uC778\uC99D \uD604\uD669(\uACF5\uACF5\uB370\uC774\uD130). \uB179\uC0C9\uAE30\uC220 \uC778\uC99D\uC740 \uB9CC\uB8CC\uC77C(expiry_date)\uC774 \uAE30\uC900\uC77C(2026-09-30) \uC774\uD6C4\uC774\uBA74 \uC720\uD6A8\uD558\uB2E4.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

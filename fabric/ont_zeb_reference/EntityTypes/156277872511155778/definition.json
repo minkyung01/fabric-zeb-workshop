@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "156277872511155778",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "BuildingUse",
+  "entityIdParts": [
+    "3241568107773932743"
+  ],
+  "displayNamePropertyId": "3241568107773932743",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "3241568107773932743",
+      "name": "use_group",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uD1B5\uC77C\uD55C \uC6A9\uB3C4(\uACF5\uB3D9\uC8FC\uD0DD, \uC5C5\uBB34\uC2DC\uC124, \uAD50\uC721\uC5F0\uAD6C\uC2DC\uC124 \uB4F1)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1206801012303034178",
+      "name": "use_family",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC8FC\uAC70\uC6A9 \uB610\uB294 \uC8FC\uAC70\uC6A9 \uC774\uC678",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uAC74\uBB3C\uC6A9\uB3C4",
+      "\uC6A9\uB3C4",
+      "\uC8FC\uC6A9\uB3C4"
+    ],
+    "description": "\uAC74\uCD95\uBB3C \uC6A9\uB3C4 \uBD84\uB958. \uC8FC\uAC70\uC6A9 = \uACF5\uB3D9\uC8FC\uD0DD(\uC544\uD30C\uD2B8)\uACFC \uB2E8\uB3C5\uC8FC\uD0DD, \uADF8 \uBC16\uC758 \uC6A9\uB3C4\uB294 \uC8FC\uAC70\uC6A9 \uC774\uC678\uB2E4(ref_building_use.use_family). \uACF5\uACF5 ZEB \uC778\uC99D\uC740 residential_type(\uAE30\uAD00 \uC6D0\uBCF8 \uAD6C\uBD84: \uC8FC\uAC70\uC6A9/\uC8FC\uAC70\uC6A9 \uC774\uC678)\uB3C4 \uC788\uB2E4.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

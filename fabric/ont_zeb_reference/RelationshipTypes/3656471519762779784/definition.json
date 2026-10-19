@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "3656471519762779784",
+  "name": "ZEBCertification_has_Use",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "3034130129584907715"
+  },
+  "target": {
+    "entityTypeId": "156277872511155778"
+  },
+  "semanticEnrichment": {
+    "description": "\uC778\uC99D \uAC74\uBB3C\uC758 \uC6A9\uB3C4",
+    "customAttributes": {}
+  }
+}

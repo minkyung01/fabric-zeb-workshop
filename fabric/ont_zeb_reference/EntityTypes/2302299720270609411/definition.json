@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "2302299720270609411",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "CertMilestone",
+  "entityIdParts": [
+    "2708155855024558724"
+  ],
+  "displayNamePropertyId": "2708155855024558724",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "2708155855024558724",
+      "name": "milestone_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC77C\uC815 \uC2DD\uBCC4\uC790",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2083864047508799723",
+      "name": "site_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "PMS \uD604\uC7A5 \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "432032971726006080",
+      "name": "seq",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt",
+      "semanticEnrichment": {
+        "description": "\uC21C\uC11C(1~6)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1124193315129222471",
+      "name": "milestone_type",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC77C\uC815 \uC774\uB984",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3677788498847741747",
+      "name": "planned_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uACC4\uD68D\uC77C",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4257255420769332987",
+      "name": "actual_date",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC2E4\uC801\uC77C(\uC644\uB8CC\uD55C \uACBD\uC6B0)",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uC778\uC99D\uC77C\uC815",
+      "\uB9C8\uC77C\uC2A4\uD1A4",
+      "\uC77C\uC815"
+    ],
+    "description": "\uD604\uC7A5\uBCC4 \uC778\uC99D \uC77C\uC815 \uACC4\uD68D. \uD604\uC7A5 \uC778\uC99D \uC77C\uC815 \uC21C\uC11C: 1 \uC608\uBE44\uC778\uC99D \uCDE8\uB4DD \u2192 2 \uCC29\uACF5 \u2192 3 \uC124\uBE44 \uC124\uCE58 \uC644\uB8CC \u2192 4 \uBCF8\uC778\uC99D \uC2E0\uCCAD \u2192 5 \uBCF8\uC778\uC99D \uCDE8\uB4DD \u2192 6 \uC0AC\uC6A9\uC2B9\uC778. \uBBF8\uC785\uACE0 \uC124\uBE44 \uBC1C\uC8FC(delivered_date \uC5C6\uC74C)\uC758 \uC608\uC0C1 \uC785\uACE0\uC77C\uC774 \uB2A6\uC5B4\uC9C8 \uB54C: \uC0C8 \uC608\uC0C1 \uC785\uACE0\uC77C = \uD604\uC7AC expected_date \u002B \uC9C0\uC5F0 \uC77C\uC218. \uCD08\uACFC \uC77C\uC218 = \uC0C8 \uC608\uC0C1 \uC785\uACE0\uC77C \u2212 \uADF8 \uD604\uC7A5 \u0027\uC124\uBE44 \uC124\uCE58 \uC644\uB8CC\u0027 \uACC4\uD68D\uC77C(planned_date). \uCD08\uACFC \uC77C\uC218\uAC00 0\uBCF4\uB2E4 \uD06C\uBA74 \uC124\uBE44 \uC124\uCE58 \uC644\uB8CC\u00B7\uBCF8\uC778\uC99D \uC2E0\uCCAD\u00B7\uBCF8\uC778\uC99D \uCDE8\uB4DD\u00B7\uC0AC\uC6A9\uC2B9\uC778\uC774 \uBAA8\uB450 \uCD08\uACFC \uC77C\uC218\uB9CC\uD07C \uBC00\uB9AC\uACE0, 0 \uC774\uD558\uC774\uBA74 \uC778\uC99D \uC77C\uC815 \uC601\uD5A5\uC774 \uC5C6\uB2E4(\uB0A8\uC740 \uC77C\uC218\uAC00 \uC5EC\uC720).",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

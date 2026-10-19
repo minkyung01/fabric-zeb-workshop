@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "766aa3bf-29fa-51bf-ad81-b906222b8625",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "vendor_code",
+        "targetPropertyId": "3777443909094977776"
+      },
+      {
+        "sourceColumnName": "vendor_name",
+        "targetPropertyId": "2226006973864908451"
+      },
+      {
+        "sourceColumnName": "category_code",
+        "targetPropertyId": "3238188809848505605"
+      },
+      {
+        "sourceColumnName": "standard_lead_time_days",
+        "targetPropertyId": "4374794027966878266"
+      },
+      {
+        "sourceColumnName": "on_time_rate",
+        "targetPropertyId": "3935138794724024068"
+      },
+      {
+        "sourceColumnName": "is_alternative_pool",
+        "targetPropertyId": "1976794228771739885"
+      },
+      {
+        "sourceColumnName": "note",
+        "targetPropertyId": "9949531517370619"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "scm_vendor",
+      "sourceSchema": "gold"
+    }
+  }
+}

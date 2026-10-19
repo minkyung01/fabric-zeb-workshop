@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "2180654517303819368",
+  "name": "BIMModel_has_DesignVersion",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "1497426752075610884"
+  },
+  "target": {
+    "entityTypeId": "188466634543437314"
+  },
+  "semanticEnrichment": {
+    "description": "\uBAA8\uB378\uC758 \uC124\uACC4\uC548\uB4E4",
+    "customAttributes": {}
+  }
+}

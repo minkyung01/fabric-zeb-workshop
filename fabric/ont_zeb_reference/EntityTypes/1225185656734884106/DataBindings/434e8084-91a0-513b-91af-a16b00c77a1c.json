@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "434e8084-91a0-513b-91af-a16b00c77a1c",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "cert_id",
+        "targetPropertyId": "4057968816536711331"
+      },
+      {
+        "sourceColumnName": "cert_no",
+        "targetPropertyId": "1756425649601872159"
+      },
+      {
+        "sourceColumnName": "tech_name",
+        "targetPropertyId": "3762972278544812656"
+      },
+      {
+        "sourceColumnName": "class_code",
+        "targetPropertyId": "2674090847856431181"
+      },
+      {
+        "sourceColumnName": "class_name",
+        "targetPropertyId": "2885366277118791381"
+      },
+      {
+        "sourceColumnName": "category_code",
+        "targetPropertyId": "4144712315204641142"
+      },
+      {
+        "sourceColumnName": "applicant_name",
+        "targetPropertyId": "67038950225657155"
+      },
+      {
+        "sourceColumnName": "issuing_ministry",
+        "targetPropertyId": "4097426629291196948"
+      },
+      {
+        "sourceColumnName": "cert_date",
+        "targetPropertyId": "4202851716353989753"
+      },
+      {
+        "sourceColumnName": "expiry_date",
+        "targetPropertyId": "3861589936343707842"
+      },
+      {
+        "sourceColumnName": "data_base_date",
+        "targetPropertyId": "2368747414775328156"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pub_green_tech_certificate",
+      "sourceSchema": "gold"
+    }
+  }
+}

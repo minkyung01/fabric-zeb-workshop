@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "729375622734038872",
+  "name": "GreenTech_for_Category",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "1225185656734884106"
+  },
+  "target": {
+    "entityTypeId": "1362259218905118307"
+  },
+  "semanticEnrichment": {
+    "description": "\uB179\uC0C9\uAE30\uC220\uC774 \uC4F0\uC774\uB294 \uC124\uBE44 \uBD84\uC57C",
+    "customAttributes": {}
+  }
+}

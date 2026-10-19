@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "6dc6a1ce-2cc6-5e1d-9e79-7ca0b7aa7bd3",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "site_code",
+        "targetPropertyId": "2099791295392954062"
+      },
+      {
+        "sourceColumnName": "site_name",
+        "targetPropertyId": "1948074573955839813"
+      },
+      {
+        "sourceColumnName": "stage",
+        "targetPropertyId": "3829039473418885034"
+      },
+      {
+        "sourceColumnName": "progress_pct",
+        "targetPropertyId": "2630026488112328705"
+      },
+      {
+        "sourceColumnName": "progress_as_of",
+        "targetPropertyId": "1269042767980335638"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "{{WORKSPACE_ID}}",
+      "itemId": "{{LAKEHOUSE_ID}}",
+      "sourceTableName": "pms_site",
+      "sourceSchema": "gold"
+    }
+  }
+}

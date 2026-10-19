@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "4047569708162331292",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "ZEBGradeCriteria",
+  "entityIdParts": [
+    "4431172074520838737"
+  ],
+  "displayNamePropertyId": "4431172074520838737",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "4431172074520838737",
+      "name": "grade_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uB4F1\uAE09 \uCF54\uB4DC(\u002B, 1~5). \u002B\uAC00 \uAC00\uC7A5 \uB192\uC740 \uB4F1\uAE09",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "187334362055737653",
+      "name": "grade_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uB4F1\uAE09 \uC774\uB984(ZEB\u002B, 1\uB4F1\uAE09 \u2026 5\uB4F1\uAE09)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "3345749498380557049",
+      "name": "selfsuff_min_pct",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uC774 \uB4F1\uAE09\uC758 \uC5D0\uB108\uC9C0\uC790\uB9BD\uB960 \uD558\uD55C(%)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "440190607157019601",
+      "name": "primary_energy_limit_residential",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uC8FC\uAC70\uC6A9 1\uCC28\uC5D0\uB108\uC9C0\uC18C\uC694\uB7C9 \uAE30\uC900\uAC12(\uC774 \uAC12 \uBBF8\uB9CC)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4289715432647209072",
+      "name": "primary_energy_limit_nonresidential",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Double",
+      "semanticEnrichment": {
+        "description": "\uC8FC\uAC70\uC6A9 \uC774\uC678 1\uCC28\uC5D0\uB108\uC9C0\uC18C\uC694\uB7C9 \uAE30\uC900\uAC12(\uC774 \uAC12 \uBBF8\uB9CC)",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "1872252401100189407",
+      "name": "grade_color",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uBCF4\uACE0\uC11C \uD45C\uC2DC \uC0C9",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "ZEB\uB4F1\uAE09",
+      "\uC81C\uB85C\uC5D0\uB108\uC9C0\uB4F1\uAE09",
+      "\uC778\uC99D\uB4F1\uAE09\uAE30\uC900",
+      "\uB4F1\uAE09\uAE30\uC900"
+    ],
+    "description": "\uC81C\uB85C\uC5D0\uB108\uC9C0\uAC74\uCD95\uBB3C \uC778\uC99D \uB4F1\uAE09\uBCC4 \uAE30\uC900\uAC12(zeb.energy.or.kr \uC778\uC99D\uC81C\uB3C4 \uAE30\uC900). ZEB \uB4F1\uAE09\uC740 \u002B(ZEB\u002B)\uAC00 \uAC00\uC7A5 \uB192\uACE0 1, 2, 3, 4, 5 \uC21C\uC11C\uB85C \uB0AE\uC544\uC9C4\uB2E4. \u0027N\uB4F1\uAE09 \uC774\uC0C1\u0027\uC740 N\uB4F1\uAE09\uACFC \uADF8\uBCF4\uB2E4 \uB192\uC740 \uB4F1\uAE09\uC744 \uB73B\uD55C\uB2E4. \uC608: \u00274\uB4F1\uAE09 \uC774\uC0C1\u0027 = \u002B, 1, 2, 3, 4\uB4F1\uAE09(5\uB4F1\uAE09 \uC81C\uC678). ZEB \uC608\uC0C1 \uB4F1\uAE09 \uD310\uC815 \uC808\uCC28(\uB450 \uAE30\uC900 \uC911 \uD558\uB098\uB9CC \uCDA9\uC871\uD574\uB3C4 \uB428): (1) \uC790\uB9BD\uB960 \uB4F1\uAE09 = selfsuff_pct \u003E= selfsuff_min_pct\uB97C \uB9CC\uC871\uD558\uB294 \uB4F1\uAE09 \uC911 \uAC00\uC7A5 \uB192\uC740 \uB4F1\uAE09. (2) 1\uCC28\uC5D0\uB108\uC9C0 \uB4F1\uAE09 = primary_energy_kwh_m2y \u003C \uAE30\uC900\uAC12\uC744 \uB9CC\uC871\uD558\uB294 \uB4F1\uAE09 \uC911 \uAC00\uC7A5 \uB192\uC740 \uB4F1\uAE09(\uAE30\uC900\uAC12: \uC8FC\uAC70\uC6A9\uC774\uBA74 primary_energy_limit_residential, \uC8FC\uAC70\uC6A9 \uC774\uC678\uBA74 primary_energy_limit_nonresidential). (3) \uCD5C\uC885 \uB4F1\uAE09 = (1)\uACFC (2) \uC911 \uB354 \uB192\uC740 \uB4F1\uAE09. \uB450 \uAE30\uC900\uC744 \uBAA8\uB450 \uCDA9\uC871\uD574\uC57C \uD558\uB294 \uAC83\uC774 \uC544\uB2C8\uBBC0\uB85C, \uC790\uB9BD\uB960\uC774 \uC5B4\uB5A4 \uB4F1\uAE09\uC758 \uD558\uD55C\uBCF4\uB2E4 \uB0AE\uC544\uB3C4 1\uCC28\uC5D0\uB108\uC9C0\uC18C\uC694\uB7C9\uC774 \uADF8 \uB4F1\uAE09 \uAE30\uC900\uAC12\uBCF4\uB2E4 \uB0AE\uC73C\uBA74 \uADF8 \uB4F1\uAE09\uC744 \uBC1B\uB294\uB2E4. (4) BEMS \uB610\uB294 \uC6D0\uACA9\uAC80\uCE68 \uC124\uCE58\uB294 \uD544\uC218 \uC694\uAC74\uC774\uB2E4. \uC8FC\uAC70\uC6A9 = \uACF5\uB3D9\uC8FC\uD0DD(\uC544\uD30C\uD2B8)\uACFC \uB2E8\uB3C5\uC8FC\uD0DD, \uADF8 \uBC16\uC758 \uC6A9\uB3C4\uB294 \uC8FC\uAC70\uC6A9 \uC774\uC678\uB2E4(ref_building_use.use_family). \uACF5\uACF5 ZEB \uC778\uC99D\uC740 residential_type(\uAE30\uAD00 \uC6D0\uBCF8 \uAD6C\uBD84: \uC8FC\uAC70\uC6A9/\uC8FC\uAC70\uC6A9 \uC774\uC678)\uB3C4 \uC788\uB2E4.",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

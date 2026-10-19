@@ -1,0 +1,102 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "3488540628168866940",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "ActionLog",
+  "entityIdParts": [
+    "195448179069133964"
+  ],
+  "displayNamePropertyId": "195448179069133964",
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [
+    {
+      "id": "195448179069133964",
+      "name": "action_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC870\uCE58 \uBC88\uD638",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2643452253546851806",
+      "name": "action_ts",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime",
+      "semanticEnrichment": {
+        "description": "\uC870\uCE58 \uC2DC\uAC01",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "558984962047224053",
+      "name": "site_code",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "PMS \uD604\uC7A5 \uCF54\uB4DC",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "4042874984296351772",
+      "name": "action_type",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC870\uCE58 \uC885\uB958",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "99538220826473100",
+      "name": "detail_json",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC870\uCE58 \uB0B4\uC6A9",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "2063096256120865223",
+      "name": "approved_by",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uC2B9\uC778\uC790",
+        "customAttributes": {}
+      }
+    },
+    {
+      "id": "669771713870982739",
+      "name": "source_system",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String",
+      "semanticEnrichment": {
+        "description": "\uAE30\uB85D \uC2DC\uC2A4\uD15C",
+        "customAttributes": {}
+      }
+    }
+  ],
+  "timeseriesProperties": [],
+  "semanticEnrichment": {
+    "synonyms": [
+      "\uC870\uCE58\uAE30\uB85D",
+      "\uC870\uCE58"
+    ],
+    "description": "\uC2B9\uC778\uB41C \uC870\uCE58 \uAE30\uB85D(\uACF5\uAE09\uC0AC \uC804\uD658, \uBCF4\uC644\uC548 \uC801\uC6A9).",
+    "customAttributes": {}
+  },
+  "untypedProperties": []
+}

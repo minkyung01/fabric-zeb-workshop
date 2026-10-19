@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "932853801666935447",
+  "name": "PurchaseOrder_from_Vendor",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "2977028692724778197"
+  },
+  "target": {
+    "entityTypeId": "700397378357897743"
+  },
+  "semanticEnrichment": {
+    "description": "\uBC1C\uC8FC \uACF5\uAE09\uC0AC",
+    "customAttributes": {}
+  }
+}
