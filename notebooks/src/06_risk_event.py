@@ -9,7 +9,7 @@
 #
 # 추천안은 계산으로 정하고, 최종 결정은 담당자가 Teams에서 합니다. 이 Notebook은 설계나 발주를 바꾸지 않습니다.
 #
-# **시작 전:** 09장 2단계에서 `ZebRiskEvent` 테이블을 만들고, 6단계에서 Operations agent를 **Start**한 다음에 실행합니다.
+# **시작 전:** 10장 2단계에서 `ZebRiskEvent` 테이블을 만들고, 6단계에서 Operations agent를 **Start**한 다음에 실행합니다.
 
 # %% [parameters]
 as_of_date = "2026-09-30"
@@ -117,7 +117,7 @@ display(risk_events)
 # Operations agent는 `event_status`가 `open`으로 **바뀌는 순간** Teams로 알립니다.
 #
 # **예상 결과:** `ZEB-HS-D-20260930: ZebRiskEvent에 open 추가` 한 줄과, Eventhouse에서 다시 읽은 1행짜리 표가 나옵니다.
-# `ZebRiskEvent 테이블이 없습니다` 오류가 나면 09장 2단계에서 테이블을 먼저 만듭니다.
+# `ZebRiskEvent 테이블이 없습니다` 오류가 나면 10장 2단계에서 테이블을 먼저 만듭니다.
 
 # %%
 import pandas as pd
@@ -128,7 +128,7 @@ workspace_id = fabric.get_workspace_id()
 eventhouses = fabric.FabricRestClient().get(f"v1/workspaces/{workspace_id}/eventhouses").json()["value"]
 matches = [e for e in eventhouses if e["displayName"] == eventhouse_name]
 if len(matches) != 1:
-    raise ValueError(f"현재 작업 영역에 {eventhouse_name} Eventhouse가 정확히 1개 있어야 합니다. 09장 1단계를 확인하세요.")
+    raise ValueError(f"현재 작업 영역에 {eventhouse_name} Eventhouse가 정확히 1개 있어야 합니다. 10장 1단계를 확인하세요.")
 kusto_uri = matches[0]["properties"]["queryServiceUri"]
 headers = {"Authorization": "Bearer " + notebookutils.credentials.getToken("kusto")}
 
@@ -161,7 +161,7 @@ print event_id = {kql_text(ev.event_id)}, status_time = now(), event_status = {k
 
 if send_to_eventhouse:
     if kusto("mgmt", ".show tables | where TableName == 'ZebRiskEvent'").empty:
-        raise ValueError("ZebRiskEvent 테이블이 없습니다. 09장 2단계에서 테이블을 먼저 만드세요.")
+        raise ValueError("ZebRiskEvent 테이블이 없습니다. 10장 2단계에서 테이블을 먼저 만드세요.")
     to_send = risk_events.where("status = 'open'").collect()
     if not to_send:
         print("open 상태인 위험 이벤트가 없어 보내지 않았습니다.")

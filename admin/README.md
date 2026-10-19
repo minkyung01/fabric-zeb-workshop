@@ -14,8 +14,8 @@ Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참�
 | 실습 파일 | Notebook 7개(`notebooks/*.ipynb`), `Files/workshop`에 `fabric/sm_zeb.tmdl`, `fabric/zeb-theme.json` |
 | 네트워크 | Fabric Spark에서 `https://www.data.go.kr`로 나가는 HTTPS(02장). 막혀 있으면 아래 "공공데이터 대체 경로" |
 | Power BI | 참가자 Pro 또는 PPU 라이선스 |
-| Microsoft Teams | Teams 라이선스, 앱 **Fabric Operations Agent** 허용(09·11장) |
-| Microsoft Foundry (선택) | 10장용 프로젝트·모델 배포·Fabric IQ 인증 연결 |
+| Microsoft Teams | Teams 라이선스, 앱 **Fabric Operations Agent** 허용(10장) |
+| Microsoft Foundry (선택) | 09장용 프로젝트·모델 배포·Fabric IQ 인증 연결 |
 
 ## 1. Fabric 테넌트 설정
 
@@ -92,12 +92,12 @@ Spark에서 포털에 나갈 수 없는 환경이면 관리자가 파일을 내�
 2.  각 참가자 `lh_zeb`의 **Files**에 `public` 폴더를 만들고 4개 파일을 업로드합니다.
 3.  참가자는 02장에서 parameters 셀의 `local_folder = ""`를 `local_folder = "Files/public"`으로 바꿔 실행합니다. 나머지 단계와 결과는 같으며, 수집 기록의 원본 이름이 `Files/public/… (관리자 제공)`으로 남습니다.
 
-## 4. Microsoft Foundry (선택, 10장)
+## 4. Microsoft Foundry (선택, 09장)
 
 - 참가자별 또는 공용 Foundry 프로젝트, Agent Service와 모델을 지원하는 지역, 모델 배포와 할당량을 준비합니다.
 - 참가자에게 프로젝트의 **Foundry User**, 연결을 만들 경우 **Foundry Project Manager** 역할을 줍니다.
 - Fabric IQ 도구용 **BYO Entra 앱 또는 managed OAuth** 위임 인증 연결을 준비합니다. BYO Entra는 Power BI Service의 위임 권한 `Item.Execute.All`, `Item.Read.All`, 관리자 동의, Foundry가 제공하는 redirect URI 등록이 필요합니다([Fabric IQ 인증](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/fabric-iq#authentication-and-security)).
-- 준비가 어렵다면 10장은 건너뛰도록 안내합니다. 필수 흐름(09 → 11)에는 영향이 없습니다.
+- 준비가 어렵다면 09장은 건너뛰도록 안내합니다. 필수 흐름(08 → 10)에는 영향이 없습니다.
 
 ## 5. 사전 점검 체크리스트
 
@@ -127,7 +127,7 @@ Copilot·Ontology agent·Data agent·Operations agent·Teams 단계는 AI·UI �
 
 ## 7. 종료 후 정리
 
-1.  참가자에게 `oa_zeb` **Stop**을 확인시킵니다(12장).
+1.  참가자에게 `oa_zeb` **Stop**을 확인시킵니다(10장 13단계, 11장).
 2.  참가자 작업 영역 `zeb-pNNN`을 삭제합니다. 작업 영역을 지우면 안의 모든 항목(Lakehouse·Eventhouse·Ontology·Data agent·보고서·Operations agent)이 함께 지워집니다.
 3.  Foundry 프로젝트·리소스, 인증 연결을 정리합니다.
 4.  유료 Fabric 용량을 일시 중지하거나 삭제합니다.

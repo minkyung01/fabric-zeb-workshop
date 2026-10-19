@@ -35,12 +35,13 @@
 | 01–05 데이터 | 공공 인증 4종을 Notebook으로 내려받고 Contoso 내부 데이터를 만든 뒤 Bronze → Silver → Gold 순서로 정리합니다. | 서로 비교할 수 있게 정리된 Gold 테이블과 현장 상태(`ops`) |
 | 06–07 근거 질의 | Ontology에 업무 용어·관계·판정 규칙을 정의하고, 이 Ontology를 Data agent에 연결해 질문합니다. | 정답 Notebook과 비교해 확인한 Data agent 답변 |
 | 08 보고서 | 공공 ZEB 인증 현황 페이지를 직접 만들고, 현장 컨트롤 타워 페이지는 Copilot으로 생성합니다. | 인증 현황과 현장 위험을 보여 주는 보고서 2페이지 |
-| 09–11 제안·승인·반영 | 위험 이벤트를 Eventhouse로 보내 Operations agent의 Teams 제안을 받고, 담당자가 승인합니다. | 조치 기록, 보완안을 반영한 설계안 V4, 회복된 예상 등급, 종료된 위험 이벤트 |
-| 12 마무리 | 결과를 확인하고 에이전트를 멈춥니다. | 확인된 결과와 정리된 실행 상태 |
+| 09 근거 재검토(선택) | Foundry 에이전트에서 Fabric IQ로 Ontology에 보완안 근거를 다시 묻습니다. | Data agent와 다른 경로로 확인한 근거 |
+| 10 제안·승인·반영 | 위험 이벤트를 Eventhouse로 보내 Operations agent의 Teams 제안을 받고, 담당자가 승인합니다. | 조치 기록, 보완안을 반영한 설계안 V4, 회복된 예상 등급, 종료된 위험 이벤트 |
+| 11 마무리 | 결과를 확인하고 에이전트를 멈춥니다. | 확인된 결과와 정리된 실행 상태 |
 
 <img src="../assets/architecture.svg" width="1000" alt="전체 구성. Notebook이 공공 인증 4종과 Contoso 내부 데이터를 Lakehouse의 Bronze에 적재하고 Silver에서 정리한 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Semantic model과 Power BI, Eventhouse와 Operations agent로 이어집니다. Operations agent가 Teams로 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다." />
 
-09장에서 Teams 제안을 받아도 바로 승인하지 않습니다. 07·08장 결과나 선택 단계인 10장에서 근거를 다시 확인한 다음 **11장에서 승인**합니다.
+10장에서 Teams 제안을 받아도 바로 승인하지 않습니다. 07장 Q8, 보완안 평가 결과(`ops.option_eval`), 선택 단계인 09장의 답과 근거를 비교한 다음 **승인**합니다.
 
 ## 실습 데이터
 
@@ -64,10 +65,9 @@
 - [06. Ontology](06-ontology.md) — 45분
 - [07. Data agent](07-data-agent.md) — 30분
 - [08. Power BI](08-power-bi.md) — 45분
-- [09. Operations agent](09-operations-agent.md) — 40분
-- [10. Foundry agent (선택)](10-foundry-agent.md) — 25분
-- [11. 승인과 반영](11-approval.md) — 25분
-- [12. 마무리](12-finish.md) — 10분
+- [09. Foundry agent (선택)](09-foundry-agent.md) — 25분
+- [10. Operations agent](10-operations-agent.md) — 65분
+- [11. 마무리](11-finish.md) — 10분
 
 ## 다음 단계
 

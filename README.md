@@ -29,8 +29,8 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 
 - **Gold에는 원천에서 정리한 데이터만 두고, 예상 등급·위험 여부는 저장하지 않습니다.** 등급을 판정하는 기준은 06장에서 **Ontology의 업무 규칙**으로 정의하고, 보고서와 감시에 쓰는 계산 결과는 따로 `ops` 스키마에 저장합니다.
 - 06장에서는 **Ontology에 들어 있는 agent로 구조를 만들고**, 07장에서는 **별도로 만든 Data agent `da_zeb`에 이 Ontology를 연결해 업무 질문**을 합니다.
-- Operations agent는 Lakehouse를 직접 감시하지 않고, 09장에서 Eventhouse로 보낸 **위험 이벤트 상태**를 감시합니다.
-- 구성도의 파란 실선은 실습 흐름, 초록 선은 승인 후 반영, 점선은 선택 단계(10장 Foundry)입니다.
+- Operations agent는 Lakehouse를 직접 감시하지 않고, 10장에서 Eventhouse로 보낸 **위험 이벤트 상태**를 감시합니다.
+- 구성도의 파란 실선은 실습 흐름, 초록 선은 승인 후 반영, 점선은 선택 단계(09장 Foundry)입니다.
 
 ## 시작 전 확인
 
@@ -59,12 +59,11 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 | [06. Ontology](docs/06-ontology.md) | Ontology agent로 엔터티·관계·바인딩을 만들고 등급 판정 규칙을 넣습니다. |
 | [07. Data agent](docs/07-data-agent.md) | Ontology를 연결한 Data agent에 질문 8개를 하고 정답 Notebook과 비교합니다. |
 | [08. Power BI](docs/08-power-bi.md) | 인증 현황 페이지는 직접, 현장 컨트롤 타워는 Copilot으로 만들고 질문·인사이트를 확인합니다. |
-| [09. Operations agent](docs/09-operations-agent.md) | 위험 이벤트를 Eventhouse로 보내 Teams 제안을 받습니다. |
-| [10. Foundry agent (선택)](docs/10-foundry-agent.md) | 승인 전에 Fabric IQ로 Ontology에 근거를 다시 묻습니다. |
-| [11. 승인과 반영](docs/11-approval.md) | Teams에서 승인하고, 조치 기록·설계안 V4·등급 회복·이벤트 종료를 확인한 뒤 Stop합니다. |
-| [12. 마무리](docs/12-finish.md) | 결과를 확인하고 감시·실행을 멈춥니다. |
+| [09. Foundry agent (선택)](docs/09-foundry-agent.md) | Foundry 에이전트에서 Fabric IQ로 Ontology에 보완안 근거를 다시 묻습니다. |
+| [10. Operations agent](docs/10-operations-agent.md) | 위험 이벤트를 Eventhouse로 보내 Teams 제안을 받고, 승인한 뒤 조치 기록·설계안 V4·등급 회복·이벤트 종료를 확인하고 Stop합니다. |
+| [11. 마무리](docs/11-finish.md) | 결과를 확인하고 감시·실행이 멈췄는지 확인합니다. |
 
-**09장 Teams 제안 → (선택) 10장 근거 검토 → 11장 승인·반영·Stop** 순서를 지킵니다. AI가 만든 구조·페이지·답변은 실행할 때마다 달라질 수 있습니다. 완료 메시지만 보고 넘어가지 말고, 각 장에 적힌 데이터·필드·값과 비교합니다.
+10장에서는 **Teams 제안 → 근거 검토 → 승인 → 반영 확인 → Stop** 순서를 지킵니다. AI가 만든 구조·페이지·답변은 실행할 때마다 달라질 수 있습니다. 완료 메시지만 보고 넘어가지 말고, 각 장에 적힌 데이터·필드·값과 비교합니다.
 
 ## 실습 파일
 
@@ -72,7 +71,7 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 
 | 파일 | 위치 | 용도 |
 |---|---|---|
-| Notebook 7개 | 작업 영역 `zeb-p001` | `01`–`04` 메달리온, `05_answers` 정답 계산(07장), `06_risk_event` 위험 이벤트(09장), `nb_apply_decision` 승인 반영(11장, 직접 실행 안 함) |
+| Notebook 7개 | 작업 영역 `zeb-p001` | `01`–`04` 메달리온, `05_answers` 정답 계산(07장), `06_risk_event` 위험 이벤트(10장), `nb_apply_decision` 승인 반영(10장, 직접 실행 안 함) |
 | `sm_zeb.tmdl` | `lh_zeb` → **Files → workshop** | 08장 Semantic model의 관계·측정값 |
 | `zeb-theme.json` | `lh_zeb` → **Files → workshop** | 08장 보고서 테마 |
 
