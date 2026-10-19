@@ -48,7 +48,7 @@ Ontology는 업무 대상을 나타내는 **엔터티 타입**, 엔터티 사이
     - 공급사의 납품이 늦어지면 어느 발주·설비·현장의 인증 일정이 영향을 받는가? 대체 공급사는 있는가?
     - 위험 현장의 보완안은 무엇이고 비용·효과·준비 기간은 얼마인가?
     - 우리 현장과 같은 시도·용도의 공공 인증 사례는 어떤가? 설비 분야별 유효한 녹색기술 인증이 있는가?
-    현장에서 BIM 모델을 거쳐 인증받은 설계안과 현행 설계안까지 관계로 따라갈 수 있어야 해. 한 테이블은 엔터티 타입 하나에만 바인딩해줘.
+    현장에서 BIM 모델을 거쳐 인증받은 설계안과 현행 설계안까지 관계로 따라갈 수 있어야 해. 모든 엔터티 타입에 고유 키를 정하고(키 없는 엔터티는 Graph에 올라가지 않아), 한 테이블은 엔터티 타입 하나에만 바인딩해줘.
     gold 스키마만 사용하고 ops, bronze, silver, dbo와 Files는 쓰지 마. 이름은 영어, 설명과 동의어는 한국어로 작성해줘.
     원본 열과 실제 행으로 키·관계를 검증해줘. 필요한 데이터 읽기에 실패하면 테이블이 없다고 단정하지 말고, 조회 대상과 오류 원문, 해결하지 못한 업무 질문을 보고하고 중단해. 데이터나 연결을 추측해서 만들지 마.
     먼저 Plan에서 설계 근거, 검증 결과와 미리 보기를 보여줘. 적용은 내가 검토하고 Act에서 승인한 다음에 해.
@@ -62,7 +62,7 @@ Ontology는 업무 대상을 나타내는 **엔터티 타입**, 엔터티 사이
 
 **확인할 결과:** 답에 제안된 엔터티·관계 목록, 업무 질문별 연결 경로, 실제 행으로 검증한 근거, **검증 결과(엔터티·관계 개수와 오류 0개)**가 있습니다. 아래 참고 설계와 비교해 **빠진 업무 범위가 없는지** 확인합니다. 개수나 이름까지 같을 필요는 없습니다.
 
-특히 **현장 → BIM 모델 → 설계안** 경로가 있는지 확인합니다. 이 경로가 없으면 "D단지의 현행 설계안은?"에 답할 수 없습니다. 에이전트가 "논리 관계로만 넣었다"거나 "모델 번호는 연결하지 않았다"고 답하면 같은 Plan 대화에서 아래처럼 보완을 요청합니다. 이름은 에이전트가 제안한 이름에 맞춰 바꿉니다.
+특히 두 가지를 확인합니다. 첫째, **현장 → BIM 모델 → 설계안** 경로가 있어야 합니다(예: `PmsSite → SiteCrosswalk → BimDesignVersion`). 이 경로가 없으면 "D단지의 현행 설계안은?"에 답할 수 없습니다. 둘째, **모든 엔터티에 키**가 있어야 합니다. 키가 없는 엔터티는 Graph에 올라가지 않아 경로가 끊깁니다. 에이전트가 "논리 관계로만 넣었다", "키 없는 매핑 엔터티로 두었다", "모델 번호는 연결하지 않았다"고 답하면 같은 Plan 대화에서 아래처럼 보완을 요청합니다. 이름은 에이전트가 제안한 이름에 맞춰 바꿉니다.
 
 ``` text
 현장 교차표 엔터티를 bim_model_id 키의 BimModel로 바꾸고(gold.mdm_site_xref), BimModel → 현장(site_code), BimModel → 프로젝트(project_no), 설계안 → BimModel(gold.bim_design_version의 bim_model_id) 관계를 실제 열로 바인딩해줘. 다른 엔터티와 관계는 그대로 두고, HS-D 현장에서 현행 설계안까지 이어지는지 실제 행으로 검증해줘.
@@ -98,7 +98,7 @@ Ontology는 업무 대상을 나타내는 **엔터티 타입**, 엔터티 사이
 
 3.  "Applying ontology changes"가 끝나고 결과 답이 나올 때까지 기다립니다. 보통 2–3분 걸립니다.
 
-**확인할 결과:** 답에 적용 성공이 표시되고, 왼쪽 **Explorer**의 **Entity Types** 아래에 엔터티가, 가운데 캔버스(**Full ontology**)에 엔터티와 관계가 보입니다. 캔버스 아래 상태 표시줄의 "Visible: … of N entities | … of M relationships"에서 전체 개수를 확인합니다. 이 캔버스는 **엔터티 타입과 관계를 보여 주는 설계도**이며, 실제 데이터를 연결한 Graph가 아닙니다.
+**확인할 결과:** 답에 적용 성공이 표시되고, 왼쪽 **Explorer**의 **Entity Types** 아래에 엔터티가, 가운데 캔버스(**Full ontology**)에 엔터티와 관계가 보입니다. 캔버스 아래 상태 표시줄의 "Visible: … of N entities | … of M relationships"에서 전체 개수를 확인합니다. 이 캔버스는 **엔터티 타입과 관계를 보여 주는 설계도**이며, 실제 데이터를 연결한 Graph가 아닙니다. 작업 영역 목록에는 `ont_zeb` 아래에 `ont_zeb_eh_…`(Eventhouse, KQL Database)와 `ont_zeb_graph_…`(Graph model)이 함께 생깁니다. Ontology가 내부에서 쓰는 항목이므로 직접 고치지 않습니다.
 
 <img src="../assets/screenshots/d06-applied.png" width="1000" alt="적용 후 ont_zeb 화면. 왼쪽 Explorer의 Entity Types에 BimDesignVersion, ErpProject, BimModel, PmsSite 등이 있고, 가운데 Full ontology 캔버스에 PmsSite를 중심으로 관계가 그려져 있습니다. 오른쪽 에이전트 창에는 HS-D 현장 → BimModel(BIM-0397) → 현행 설계안(BIM-0397-V3) 검증과 적용 성공이 표시됩니다." />
 
@@ -176,7 +176,10 @@ Ontology는 업무 대상을 나타내는 **엔터티 타입**, 엔터티 사이
 
 Graph는 실제 인스턴스를 노드로, 인스턴스 사이의 연결을 에지로 저장합니다. 여러 단계에 걸친 관계를 직접 따라가 보고 싶을 때 **Materialize**해서 만듭니다. 07장 실습에는 필요하지 않습니다.
 
-1.  리본의 **Manage graph**를 누릅니다. **Choose what to project**에서 엔터티와 관계의 **Status**가 **Eligible**인지 확인합니다. **Ineligible**이나 **Not mapped**가 있으면 아래 Troubleshooting을 참고해 원본 연결을 확인합니다.
+1.  리본의 **Manage graph**를 누릅니다. "Preparing graph..." 후 **Choose what to project**에서 엔터티와 관계의 **Status**가 모두 **Eligible**인지 확인합니다. **Ineligible**이나 **Not mapped**가 있으면 아래 Troubleshooting을 참고합니다.
+
+    <img src="../assets/screenshots/d06-manage-graph.png" width="1000" alt="Configure Graph의 Choose what to project 화면. 22 entities 목록에서 BimDesignVersion, ErpProject, BimModel, PmsSite 등이 모두 Eligible이고 오른쪽 Preview에 엔터티 그래프가 보입니다. 오른쪽 아래에 Continue 버튼이 있습니다." />
+
 2.  **Continue** → **Materialize**를 누릅니다. 위쪽 탭에 `ont_zeb_graph_`로 시작하는 Graph model이 열립니다. 공공 인증 데이터가 많아서 몇 분에서 수십 분까지 걸릴 수 있습니다.
 3.  생성이 끝나면 `ont_zeb`의 **Home**에서 **Explore graph**를 눌러 `HS-D` 현장 노드에서 설계안·인증서·설비·발주로 이어지는 관계를 펼쳐 봅니다.
 
@@ -193,6 +196,7 @@ Graph를 만들어 두면, 11장에서 `04_gold_model`이 Gold를 다시 만들 
 
 - **업무 범위가 빠진 경우(예: 보완안, 공급사, 공공 인증):** 개수보다 필요한 범위가 빠졌는지가 중요합니다. 이미 적용했다면 Ontology를 지우지 말고 Plan 모드에서 `gold.sim_improvement_option, gold.scm_vendor를 다시 확인해서 해당 업무 질문을 지원할 엔터티·키·관계를 제안해줘. 기존 항목은 유지하고 중복 생성하지 마.`처럼 보완을 요청합니다.
 - 4단계에서 해당하는 엔터티가 없다는 답이 오면, 그 엔터티를 먼저 2–3단계 방식으로 추가한 뒤 규칙을 다시 넣습니다.
+- **Manage graph**에서 엔터티가 **Ineligible**이면 대개 키가 없는 엔터티입니다. 해당 엔터티의 **Configure**에서 **Entity type key**가 "Define entity type key"로 비어 있는지 확인하고, 에이전트에게 `<엔터티 이름>에 원본에서 행마다 유일한 열(또는 열 조합)로 키를 정해줘. 다른 항목은 바꾸지 마.`를 요청합니다.
 - **Manage graph**에서 관계가 **Not mapped**로 나오면 관계 설정을 열어 양쪽 엔터티의 키와 **Property**에 연결된 원본 열을 확인합니다. 관계 방향부터 바꾸지는 않습니다.
 - 적용을 요청했는데 변화가 없으면 입력 칸 아래 스위치가 **Act**인지 확인합니다.
 - 보완을 거치며 같은 연결의 관계가 두 개 생기면(예: 이전 이름의 관계와 새 관계) 그대로 두어도 답에는 영향이 없습니다. 지우려면 관계 화면 오른쪽 위 **Delete**를 누릅니다.

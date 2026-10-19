@@ -34,7 +34,7 @@
 
 실습 항목은 관리자가 한 번에 지웁니다([관리자 준비 가이드](../admin/README.md)의 "종료 후 정리"). **직접 삭제하라는 안내를 받은 경우에만**, 아래 순서로 지웁니다. 다른 참가자의 항목은 삭제하지 않습니다.
 
-1.  `oa_zeb` → `eh_zeb` → `rpt_zeb` → `sm_zeb` → `da_zeb` → `ont_zeb`. 항목의 **…** → **Delete**를 누릅니다. `ont_zeb`를 지우면 함께 만들어진 `ont_zeb_eh_…`, `ont_zeb_graph_…`(만든 경우)도 지웁니다.
+1.  `oa_zeb` → `eh_zeb` → `rpt_zeb` → `sm_zeb` → `da_zeb` → `ont_zeb`. 항목의 **…** → **Delete**를 누릅니다. `ont_zeb`를 지우면 함께 만들어진 `ont_zeb_eh_…`, `ont_zeb_graph_…`도 지웁니다.
 2.  Foundry: `fa-zeb` 에이전트를 지웁니다. 프로젝트·리소스는 관리자가 지웁니다.
 
 ## 마무리 완료 기준
