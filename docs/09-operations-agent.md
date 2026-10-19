@@ -193,13 +193,17 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 ## 7. Teams 제안 확인
 
-1.  Teams에서 **Fabric operations agent** 채팅을 엽니다. 에이전트는 약 5분마다 조회하며, 메시지 생성·전송 시간이 더해질 수 있습니다.
+1.  Teams에서 **Fabric operations agent** 채팅을 엽니다. 에이전트는 약 5분마다 조회하며, 메시지 생성·전송 시간이 더해질 수 있습니다. 이전 실습이나 다른 에이전트의 메시지가 있으면 맨 아래의 `oa_zeb` 메시지를 봅니다.
 
-    **예상 결과:** `oa_zeb`가 보낸 메시지에 위험 이벤트 `ZEB-HS-D-20260930`, 에코시티 D단지의 위험 사유, 추천 보완안 `OPT-D2`가 있고, **Recommended action**에 `ApplyZebOption`이 있습니다. 메시지 문장은 AI가 만들므로 조금 다를 수 있습니다.
+    **예상 결과:** `oa_zeb`가 보낸 카드의 제목이 규칙 이름(예: `Zeb Risk Event Open Notify And Recommend`)이고, 본문에 위험 이벤트 `ZEB-HS-D-20260930`이 `open`이 되었고 추천 보완안이 `OPT-D2`라는 내용이 있습니다. **Recommended action**에 `ApplyZebOption`과 설명이 있고, 아래에 **Proceed**, **Investigate further (preview)**, **Dismiss**, **Ask a question** 버튼이 있습니다. 메시지 문장은 AI가 만들므로 다를 수 있고, 현장 이름이나 비용이 빠질 수도 있습니다.
 
-2.  **Show details**를 눌러 근거를 확인합니다.
+    <img src="../assets/screenshots/d09-teams-message.png" width="1000" alt="Teams의 Fabric operations agent 채팅. oa_zeb의 Zeb Risk Event Open Notify And Recommend 카드에 ZEB-HS-D-20260930, OPT-D2, Recommended action ApplyZebOption과 Proceed, Investigate further, Dismiss, Ask a question 버튼이 있습니다." />
 
-    **예상 결과:** `EventStatus`는 `open`, `EventId`는 `ZEB-HS-D-20260930`, `RecommendedOptionId`는 `OPT-D2`, **Data Source**는 `eh_zeb`입니다.
+2.  카드의 **Show details**를 눌러 근거를 확인합니다.
+
+    **예상 결과:** 이벤트 ID 속성(예: `Id`)은 `ZEB-HS-D-20260930`, 상태 속성(예: `ZebEventStatusText`)은 `open`, 보완안 속성(예: `OptionId`)은 `OPT-D2`입니다. **Rule Condition**에 Playbook 규칙이, **Data Source**에 `eh_zeb`가 보입니다. 속성 이름은 5단계 Playbook의 이름을 따릅니다.
+
+    <img src="../assets/screenshots/d09-teams-details.png" width="1000" alt="Show details를 펼친 화면. Timestamp, Id ZEB-HS-D-20260930, ZebEventStatusText open, OptionId OPT-D2, Rule Condition, Data Source eh_zeb" />
 
 3.  **아직 Proceed·Confirm을 누르지 않습니다.** 승인하기 전에 근거를 검토합니다.
 
