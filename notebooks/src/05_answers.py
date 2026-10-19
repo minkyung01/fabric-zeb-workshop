@@ -189,4 +189,5 @@ answers.append(("Q8", f"{best.option_id} {best.option_name}, {best.cost_krw:,}�
 # 07장에서 Data agent의 답을 이 표와 비교합니다. 표현은 달라도 되지만 **대상·수치·결론**이 같아야 정답으로 봅니다.
 
 # %%
-display(spark.createDataFrame(answers, "question string, answer string"))
+for q, a in answers:
+    print(f"{q}  {a}")
