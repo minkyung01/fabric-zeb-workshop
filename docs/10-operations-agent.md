@@ -243,10 +243,14 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 ## 9. 실행 완료 확인
 
-1.  Fabric 왼쪽 **Monitor**에서 `nb_apply_decision`의 실행 기록을 엽니다.
-2.  상태가 **Succeeded / 성공**이 될 때까지 기다립니다. 실행 중에는 `03_silver_conform`, `04_gold_model`이 차례로 실행됩니다.
+1.  Fabric 왼쪽 **Monitor**를 엽니다. **Activity name**이 `nb_apply_decision_…`인 행을 찾습니다. **Submitted by**는 에이전트를 만든 사람입니다.
+2.  상태가 **Succeeded**가 될 때까지 기다리며 **Refresh**를 누릅니다(캡처 환경에서 약 6분). 실행 중에는 `03_silver_conform`, `04_gold_model`이 차례로 실행됩니다.
 
-**예상 결과:** `nb_apply_decision`이 **Succeeded**입니다. 실행 기록을 열면 마지막 셀에 다음과 비슷한 줄이 있습니다.
+**예상 결과:** `nb_apply_decision`이 **Succeeded**입니다. 비슷한 시각에 `ont_zeb_graph_…`(Graph model) 행이 생길 수 있으며, 상태가 **Cancelled**여도 이 장의 결과 확인에는 영향이 없습니다.
+
+<img src="../assets/screenshots/d10-monitor.png" width="1000" alt="Monitor의 Activities. nb_apply_decision 행이 Succeeded, Item type Notebook, Location zeb-p001" />
+
+실행 기록을 열면 마지막 셀에 다음과 비슷한 줄이 있습니다.
 
 ``` text
 에코시티 D단지 현장: 현행 V4(조치 반영안) 자립률 41.4% · 1차에너지 72.5 → 예상 4등급, 상태 정상
@@ -275,7 +279,7 @@ Operations agent는 `event_status`가 `open`으로 바뀔 때만 알리므로, `
 
 ## 11. Lakehouse 반영 확인
 
-SQL analytics endpoint `lh_zeb`에서 **New SQL query**로 아래 쿼리를 실행합니다. 결과가 바로 보이지 않으면 1–2분 뒤 다시 실행합니다(메타데이터 동기화 지연).
+SQL analytics endpoint `lh_zeb`를 엽니다. 먼저 도구 모음 맨 왼쪽의 **Sync metadata from the Lakehouse** 아이콘을 누릅니다. SQL analytics endpoint는 Lakehouse의 변경을 늦게 반영할 수 있어서, 누르지 않으면 승인 전 값(V3·위험, 조치 기록 0행)이 그대로 보일 수 있습니다(캡처 환경에서 15분 넘게 지연). 이어서 **New SQL query**로 아래 쿼리를 실행합니다.
 
 ``` sql
 SELECT action_id, site_code, action_type, detail_json, approved_by, source_system
@@ -292,6 +296,10 @@ FROM ops.site_status
 WHERE site_code = 'HS-D';
 ```
 
+결과 창 오른쪽 위의 **Result: 1** 드롭다운에서 쿼리 1–3의 결과를 차례로 고릅니다.
+
+<img src="../assets/screenshots/d10-sql-action.png" width="1000" alt="SQL 쿼리 3개를 실행한 화면. Result: 1에 ACT-ZEB-HS-D-20260930, HS-D, apply_options, MOD Administrator (Teams 승인), Operations agent 한 행" />
+
 **예상 결과:**
 
 - **조치 기록 1행:** `ACT-ZEB-HS-D-20260930`, `HS-D`, `apply_options`, `{"option_ids": ["OPT-D2"], "event_id": "ZEB-HS-D-20260930"}`, 승인자 `<에이전트를 만든 계정> (Teams 승인)`, 출처 `Operations agent`
@@ -302,19 +310,25 @@ WHERE site_code = 'HS-D';
 
 ## 12. 보고서와 Data agent로 다시 확인
 
-1.  `rpt_zeb`를 엽니다. 숫자가 바뀌지 않았으면 브라우저를 새로 고칩니다. 그래도 같으면 `sm_zeb`의 **Model view**에서 **Refresh → Data**를 실행한 뒤 보고서를 다시 엽니다.
+1.  `rpt_zeb`를 엽니다. Direct Lake 모델이라 보통 따로 새로 고치지 않아도 바뀐 값이 보입니다. 숫자가 그대로면 브라우저를 새로 고치고, 그래도 같으면 작업 영역 목록의 `sm_zeb` 행에서 새로 고침 아이콘(**Refresh now**)을 누른 뒤 보고서를 다시 엽니다(08장 2단계와 같은 방법).
 
-    **예상 결과:** `02 현장 컨트롤 타워`의 카드가 현장 수 `8`, 위험 현장 **`0`**, 주의 현장 `3`, 설치 지연 발주 `0`입니다. 표의 에코시티 D단지 행이 `V4`, `41.4`, `72.5`, `4등급`, **`정상`**입니다.
+    **예상 결과:** `02 현장 컨트롤 타워`의 카드가 현장 수 `8`, 위험 현장 **`0`**, 주의 현장 `3`, 설치 지연 발주 `0`입니다. 표의 에코시티 D단지 행이 `V4`, `41.40`, `72.50`, `4등급`, **`정상`**입니다.
+
+    <img src="../assets/screenshots/d10-report-after.png" width="1000" alt="승인 반영 후 02 현장 컨트롤 타워. 현장 수 8, 위험 현장 0, 주의 현장 3, 설치 지연 발주 0. 에코시티 D단지 행이 V4, 41.40, 72.50, 4등급, 정상" />
 
 2.  `da_zeb`의 **Test data agent**에서 **Clear chat** 후 `에코시티 D단지의 현행 설계안과 예상 ZEB 등급은? 예비인증 등급을 지키나?`를 묻습니다.
 
-    **예상 결과:** 현행 **V4(조치 반영안)**, 자립률 41.4%·1차에너지 72.5 → 4등급, 예비인증 4등급을 지킴. 07장 Q3을 다시 물으면 본인증 위험 현장이 **없다**고 답해야 합니다.
+    **예상 결과:** 현행 **V4(조치 반영안)**, 자립률 41.4%·1차에너지 72.5 → 4등급, 예비인증 4등급을 지킴. 07장 Q3을 다시 물으면 본인증 위험 현장이 **없다**고 답해야 합니다. 답 문장과 길이는 실행할 때마다 다릅니다(캡처 환경에서 약 1분).
+
+    <img src="../assets/screenshots/d10-data-agent-after.png" width="1000" alt="Data agent 답의 정리 부분. 현행 설계안 BIM-0397-V4 조치 반영안, 41.4%, 72.5, 최종 예상 ZEB 등급 4등급, 예비인증 4등급을 지킴" />
 
 ## 13. 감시 멈추기
 
-`oa_zeb`로 돌아가 도구 모음의 **Stop**을 누릅니다. 에이전트는 멈추기 전까지 약 5분마다 조회하며 용량을 씁니다.
+`oa_zeb`로 돌아가 도구 모음의 **Stop**을 누릅니다. **Welcome to operations agents** 창이 다시 뜨면 **X**로 닫고 누릅니다. 에이전트는 멈추기 전까지 약 5분마다 조회하며 용량을 씁니다.
 
-**예상 결과:** 도구 모음에 **Start**가 보입니다.
+**예상 결과:** 오른쪽 위에 **Agent stopped successfully**가 보이고, 도구 모음의 **Start**가 활성, **Stop**이 비활성입니다.
+
+<img src="../assets/screenshots/d10-stopped.png" width="1000" alt="oa_zeb에서 Stop을 누른 뒤 Agent stopped successfully 알림과 활성화된 Start 버튼" />
 
 ## 이 장의 완료 기준
 
