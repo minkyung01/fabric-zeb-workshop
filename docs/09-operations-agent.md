@@ -22,6 +22,8 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 **Eventhouse의 `
 
 **예상 결과:** Eventhouse가 열리고 같은 이름의 KQL 데이터베이스 `eh_zeb`가 만들어집니다(1분 이내).
 
+<img src="../assets/screenshots/d09-eventhouse.png" width="1000" alt="Eventhouse eh_zeb가 열리고 KQL 데이터베이스 eh_zeb가 보이는 화면" />
+
 ## 2. ZebRiskEvent 테이블 만들기
 
 이 테이블은 **상태 이력**입니다. 같은 `event_id`의 상태가 바뀔 때 새 행을 추가하고, 시간 열 `status_time`으로 순서를 구분합니다.
@@ -57,6 +59,8 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 **Eventhouse의 `
 
 **예상 결과:** 결과 창에 `ZebRiskEvent` 한 행이 보이고, 왼쪽 **Tables** 아래에 `ZebRiskEvent`가 생깁니다.
 
+<img src="../assets/screenshots/d09-create-table.png" width="1000" alt="Queryset에서 .create-merge table ZebRiskEvent를 실행한 결과" />
+
 ## 3. 승인 반영 Notebook 확인
 
 승인할 때 실행할 `nb_apply_decision`을 먼저 확인합니다. Operations agent가 넘기는 `event_id`, `option_id`로 위험 이벤트를 확인한 뒤 **조치 기록 → Eventhouse `approved` → Silver·Gold 재계산 → `resolved`**를 차례로 처리합니다. **지금은 열어서 확인만 하고 실행하지 않습니다.**
@@ -89,11 +93,15 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 **Eventhouse의 `
     메시지는 한국어로 씁니다.
     ```
 
-3.  **Knowledge**에서 **Add data** 옆 아래 화살표 → **Add from OneLake catalog**를 고릅니다. `eh_zeb`를 검색해 **KQL Database** `eh_zeb`를 고르고 **Add**를 누릅니다.
+3.  **Knowledge**에서 **Add data** 옆 아래 화살표 → **Add from OneLake catalog**를 고릅니다. 오른쪽 위 **Filter by keyword**에 `eh_zeb`를 입력하고, Location이 `zeb-p001`인 `eh_zeb`를 고른 뒤 **Add**를 누릅니다.
 
-    **예상 결과:** **Knowledge**에 `eh_zeb`가 **KQL Database** 형식으로 보입니다.
+    <img src="../assets/screenshots/d09-oa-add-data.png" width="800" alt="Knowledge의 Add data 옆 화살표 메뉴. Add from OneLake catalog와 Add from Variable library가 보입니다." />
 
-4.  **Actions**의 **Add action**을 누르고 **Select action type**에서 **Fabric item**을 고릅니다. **Browse**에서 `nb_apply_decision`을 고르고 **Add**를 누릅니다.
+    **예상 결과:** **Knowledge**에 `eh_zeb`가 **KQL Database** 형식으로 보이고, 위쪽 **Generate playbook**이 활성화됩니다.
+
+    <img src="../assets/screenshots/d09-oa-knowledge.png" width="800" alt="Knowledge 목록에 eh_zeb, Type KQL Database가 추가된 화면" />
+
+4.  **Actions**의 **Add action**을 누르고 **Select action type**에서 **Fabric item**을 고릅니다. **Browse**를 누르고 **Filter by keyword**에 `nb_apply_decision`을 입력해 Location이 `zeb-p001`인 항목을 고른 뒤 **Add**를 누릅니다.
 
 5.  아래와 같이 입력하고 **Next**를 누릅니다. **Parameters**의 `event_id`, `option_id`는 Notebook의 parameters 셀에서 자동으로 채워집니다. **Description**만 입력합니다.
 
@@ -104,13 +112,19 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 **Eventhouse의 `
     | `event_id`의 **Description** | `승인할 위험 이벤트의 event_id` |
     | `option_id`의 **Description** | `승인할 보완안 ID. 위험 이벤트의 recommended_option_id를 넣습니다.` |
 
+    <img src="../assets/screenshots/d09-oa-action.png" width="1000" alt="Add action의 Action details. Fabric item nb_apply_decision, Action name ApplyZebOption, Parameters event_id와 option_id에 설명이 입력된 화면" />
+
 6.  **Review and create**에서 Action type `Notebook`, Item name `nb_apply_decision`, Workspace `zeb-p001`, Parameters 2개를 확인하고 **Create**를 누릅니다.
 
     **예상 결과:** **Actions**에 `ApplyZebOption`이 **Action connected** 상태로 보입니다.
 
+    <img src="../assets/screenshots/d09-oa-actions.png" width="800" alt="Actions 목록에 ApplyZebOption이 Action connected 상태로 보이는 화면" />
+
 7.  도구 모음 왼쪽의 저장 아이콘을 누릅니다.
 
-**수신자 확인:** **Agent behavior**에서 Teams 수신자가 **본인**인지 확인하고 Fabric과 같은 계정으로 Teams에 로그인합니다. 기본 수신자는 에이전트를 만든 사람입니다. 조치는 수신자가 아니라 **에이전트 생성자의 위임된 권한**으로 실행됩니다([조치·수신자 설정](https://learn.microsoft.com/fabric/real-time-intelligence/operations-agent-actions)).
+**수신자 확인:** 도구 모음의 톱니바퀴(설정) → **Agent behavior**에서 **Run as**가 본인이고, **Message delivery**가 기본값(에이전트를 만든 사람에게 메시지와 조치 요청을 보냄)인지 확인합니다. Teams에는 Fabric과 같은 계정으로 로그인합니다. 조치는 수신자가 아니라 **에이전트 생성자의 위임된 권한**으로 실행됩니다([조치·수신자 설정](https://learn.microsoft.com/fabric/real-time-intelligence/operations-agent-actions)).
+
+<img src="../assets/screenshots/d09-oa-behavior.png" width="900" alt="oa_zeb 설정의 Agent behavior. Run as가 MOD Administrator이고 Message delivery가 기본값입니다." />
 
 ## 5. Playbook 만들기
 
@@ -118,21 +132,25 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 1.  **Agent setup**의 **Generate playbook**을 누릅니다(2–3분).
 
-    **예상 결과:** 오른쪽 **Agent playbook**의 **Business term glossary**에 Class(예: `RiskEvent`, Table `ZebRiskEvent`)와 `EventId`, `EventStatus`, `RecommendedOptionId` 같은 속성이 `ZebRiskEvent`의 열과 연결되어 있습니다.
+    **예상 결과:** 오른쪽 **Agent playbook**의 **Business term glossary**에 Class 하나(예: `ZebRiskEventItem`, Table `ZebRiskEvent`)가 있고, `Id`, `Timestamp`, `ZebEventStatusText`, `OptionId` 같은 속성이 `ZebRiskEvent`의 열(`event_id`, `status_time`, `event_status`, `recommended_option_id` 등)과 연결되어 있습니다. Class와 속성 이름은 생성할 때마다 다를 수 있습니다.
+
+    <img src="../assets/screenshots/d09-oa-playbook.png" width="1000" alt="Agent playbook의 Business term glossary. Class ZebRiskEventItem과 Id, Timestamp, SiteName 등 속성이 ZebRiskEvent 열과 연결되어 있습니다." />
 
 2.  **Agent playbook**을 아래로 내려 **Rules**의 규칙을 펼칩니다.
 
-    **확인할 기준:** KQL 쿼리가 `ZebRiskEvent`를 `status_time`으로 거르고, 객체 ID가 `event_id`에 연결되어 있어야 합니다. 조건은 `event_status`가 `open`으로 **바뀔 때**입니다(`Changes To` 또는 `Becomes`). `Is open`처럼 현재 상태를 매번 평가하는 조건이면 반복 알림이 생길 수 있습니다. 규칙 이름과 개수는 생성 결과에 따라 다릅니다.
+    **확인할 기준:** KQL 쿼리가 `ZebRiskEvent`를 `status_time`으로 거르고(`where ['status_time'] between (startTime .. endTime)`), ID 속성이 `event_id`에 연결되어 있어야 합니다. 조건은 상태 속성(`event_status`)이 `open`으로 **바뀔 때**입니다(`Changes To` 또는 `Becomes`). `Is open`처럼 현재 상태를 매번 평가하는 조건이면 반복 알림이 생길 수 있습니다. 규칙 이름과 개수는 생성 결과에 따라 다릅니다(예: `Zeb Risk Event Open Notify And Recommend` 1개).
+
+    <img src="../assets/screenshots/d09-oa-rule.png" width="1000" alt="펼친 규칙의 KQL 쿼리와 조건. ZebEventStatusText, Changes To, open" />
 
 3.  저장 아이콘을 누릅니다.
 
-**예상 결과:** 오른쪽 위에 **Configuration saved successfully**가 보이고 도구 모음의 **Start**를 누를 수 있습니다.
+**예상 결과:** 오른쪽 위에 **Configuration saved successfully**가 보이고 도구 모음의 **Start**를 누를 수 있습니다. Playbook을 만들기 전과 저장하기 전에는 **Start**가 비활성입니다.
 
 ## 6. 에이전트를 시작하고 위험 이벤트 보내기
 
-1.  도구 모음의 **Start**를 누릅니다. **Stop**을 누를 수 있게 되면 감시가 시작된 것입니다. 다음 Notebook은 **Start 뒤에** 실행합니다.
+1.  도구 모음의 **Start**를 누릅니다. **Start**가 비활성이 되고 **Stop**을 누를 수 있게 되면 감시가 시작된 것입니다(**Start**에 마우스를 올리면 `The agent is already running.`). 다음 Notebook은 **Start 뒤에** 실행합니다.
 
-2.  작업 영역에서 `06_risk_event`를 열고 위에서부터 실행합니다. 실행 시간은 약 2분입니다.
+2.  작업 영역에서 `06_risk_event`를 열고 **Run all**을 누릅니다. 세션 시작을 포함해 약 2–3분 걸립니다.
 
     1.  **1. 보완안 평가**
 
@@ -160,6 +178,8 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
     3.  **3. Eventhouse로 보내기**
 
         **예상 결과:** `ZEB-HS-D-20260930: ZebRiskEvent에 open 추가` 한 줄과, Eventhouse에서 다시 읽은 1행 표.
+
+        <img src="../assets/screenshots/d09-risk-event-sent.png" width="1000" alt="06_risk_event의 마지막 셀 출력. ZEB-HS-D-20260930: ZebRiskEvent에 open 추가와 status_time, event_id, open, HS-D, OPT-D2, 230000000 한 행" />
 
 3.  `eh_zeb_queryset`에서 아래 쿼리로 Eventhouse 쪽도 확인합니다.
 
