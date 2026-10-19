@@ -8,7 +8,7 @@
 |---|---|---|
 | 1 | 담당자가 Teams에서 **Proceed → Confirm** | Teams |
 | 2 | `bronze.pms_action_log`에 `apply_options` 조치 1행, Eventhouse에 `approved` | Lakehouse, Eventhouse |
-| 3 | `03_silver_conform`이 조치를 읽어 **설계안 V4(조치 반영안)**를 만들고 `현행`으로 바꿈 | Lakehouse |
+| 3 | `03_silver_conform`이 조치를 읽어 <b>설계안 V4(조치 반영안)</b>를 만들고 `현행`으로 바꿈 | Lakehouse |
 | 4 | `04_gold_model`이 예상 등급·현장 상태를 다시 계산 | `ops.site_status` |
 | 5 | D단지 위험이 해소되면 Eventhouse에 `resolved` | Eventhouse |
 | 6 | 보고서·Data agent에서 바뀐 결과 확인, 에이전트 Stop | Power BI, Data agent, Operations agent |

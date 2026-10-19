@@ -79,7 +79,7 @@ Teams에 도착한 `OPT-D2`를 승인하기 전에, **다른 경로로 근거를
 
 ## Troubleshooting
 
-- **Fabric IQ(OneLake 카탈로그)**가 없으면 프로젝트 지역의 도구 지원 여부와 Foundry 역할을 관리자에게 확인합니다.
+- <b>Fabric IQ(OneLake 카탈로그)</b>가 없으면 프로젝트 지역의 도구 지원 여부와 Foundry 역할을 관리자에게 확인합니다.
 - `CONSENT_REQUIRED`가 반복되면 사용자 동의 외에 관리자 동의·Ontology와 Lakehouse 읽기 권한이 있는지 확인합니다.
 - 답이 V2와 V3를 섞으면 06장 4단계의 `SiteCertificate`·`DesignVersion` 설명(인증 설계안과 `현행`)이 저장되었는지 확인하고 새 대화에서 다시 묻습니다.
 - 모델 할당량 오류가 나면 관리자가 확인한 다른 배포를 선택합니다.

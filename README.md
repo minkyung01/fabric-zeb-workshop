@@ -21,7 +21,7 @@ Contoso 건설의 에코시티 D단지는 제로에너지건축물(ZEB) **예비
 
 ## 전체 구성
 
-Notebook이 원천 데이터를 **OneLake의 Lakehouse 하나(스키마 사용)**에 적재한 뒤 `bronze` → `silver` → `gold`·`ops` 스키마 순서로 정리합니다. Ontology·Data agent, Power BI, Operations agent는 모두 이 Gold 테이블을 읽습니다.
+Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)</b>에 적재한 뒤 `bronze` → `silver` → `gold`·`ops` 스키마 순서로 정리합니다. Ontology·Data agent, Power BI, Operations agent는 모두 이 Gold 테이블을 읽습니다.
 
 <img src="assets/architecture.svg" width="1000" alt="전체 구성. Notebook이 공공 인증 4종과 Contoso 내부 데이터를 Lakehouse의 Bronze에 적재하고 Silver에서 정리한 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Semantic model과 Power BI, Eventhouse와 Operations agent로 이어집니다. Operations agent가 Teams로 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 선택입니다." />
 
