@@ -34,14 +34,18 @@
 
     - **Direct Lake semantic model name**: `sm_zeb`
     - **Workspace**: `zeb-p001`
-    - 테이블 9개를 체크합니다.
+    - 테이블 9개를 체크합니다. 같은 이름의 테이블이 `bronze`·`silver`에도 있으므로 **스키마를 확인**하고 체크합니다. 맨 위 `bronze`의 **>** 를 눌러 접어 두면 찾기 쉽습니다.
 
     | 스키마 | 테이블 |
     |---|---|
     | `gold` | `pub_zeb_certification`, `ref_region`, `ref_zeb_grade_criteria`, `ref_building_use`, `scm_vendor`, `ref_equipment_category` |
     | `ops` | `site_status`, `milestone_forecast`, `po_status` |
 
+    <img src="../assets/screenshots/d08-new-model.png" width="700" alt="New semantic model 창. 이름 sm_zeb, Workspace zeb-p001이고 gold의 pub_zeb_certification, ref_building_use, ref_equipment_category, ref_region이 체크되어 있습니다." />
+
 **예상 결과:** `sm_zeb`가 **Model view**로 열립니다. 오른쪽 **Data** 창에 테이블 9개가 있고, 오른쪽 위는 **Editing**입니다.
+
+<img src="../assets/screenshots/d08-model-created.png" width="1000" alt="sm_zeb의 Model view. 오른쪽 Data 창에 milestone_forecast부터 site_status까지 테이블 9개가 있고 오른쪽 위가 Editing입니다." />
 
 ## 2. 관계와 측정값 넣기
 
@@ -59,11 +63,17 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 3.  TMDL 편집기의 1행을 누르고 **Ctrl+V**로 붙여 넣습니다. 1행이 `createOrReplace`입니다.
 4.  편집기 위 **Apply**를 누릅니다.
 
-    **예상 결과:** **Changes applied to the model.**이 보이고 아래 **Output**에 `[success] Successfully applied TMDL script.`가 나옵니다.
+    붙여 넣은 직후 아래 **Problems**에 `Cannot find name '[ZEB 인증 건수]'` 같은 경고가 15개쯤 보입니다. 같은 스크립트 안에서 아직 만들어지지 않은 측정값을 참조해서 생기는 경고이므로 그대로 **Apply**합니다.
 
-5.  화면 아래 **Model view** 탭을 누릅니다. 리본의 **Refresh** 아래 화살표 → **Data**를 누르고 확인 창에서 **Refresh**를 누릅니다.
+    **예상 결과:** 편집기 위에 **Changes applied to the model.**이 보입니다.
+
+    <img src="../assets/screenshots/d08-tmdl-applied.png" width="1000" alt="TMDL View에서 createOrReplace 스크립트를 Apply한 뒤 편집기 위에 Changes applied to the model.이 표시된 화면" />
+
+5.  화면 아래 **Model view** 탭을 누르고, 오른쪽 아래 **Fit to page**를 눌러 전체를 봅니다.
 
 **예상 결과:** `pub_zeb_certification`이 `ref_region`·`ref_zeb_grade_criteria`·`ref_building_use`와, `milestone_forecast`·`po_status`가 `site_status`와, `po_status`가 `scm_vendor`·`ref_equipment_category`와 관계선으로 이어집니다.
+
+<img src="../assets/screenshots/d08-relationships.png" width="1000" alt="Fit to page로 본 sm_zeb Model view. 테이블 9개가 한 줄로 놓이고 테이블 사이에 관계선이 이어져 있습니다." />
 
 ## 3. 보고서 만들기와 테마 적용
 
@@ -202,7 +212,7 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 ## Troubleshooting
 
 - **Apply** 뒤 테이블이 없다는 오류가 나면 **Model view** 리본의 **Edit tables**에서 1단계의 테이블 9개가 모두 체크되어 있는지 확인합니다. Data 창의 테이블 이름이 `site_status`처럼 스키마 없이 표시되는지도 확인합니다.
-- 시각적 개체에 관계를 다시 계산해야 한다는 오류가 보이면 2단계의 **Refresh → Data**를 다시 실행하고 보고서 탭을 새로 고칩니다.
+- 시각적 개체에 관계를 다시 계산해야 한다는 오류가 보이면 작업 영역 목록에서 `sm_zeb`의 **…** → **Refresh now**를 누르고 보고서 탭을 새로 고칩니다.
 - Semantic model이 **Viewing**으로 열리면 오른쪽 위에서 **Editing**으로 바꿉니다.
 - Copilot이 비활성화되면 작업 영역의 용량이 활성 유료 F2 이상인지, Copilot 테넌트·지역 설정이 맞는지 확인합니다. 새 용량을 Copilot이 인식하는 데 최대 24시간이 걸릴 수 있습니다.
 - Copilot 표의 숫자가 합계로 보이면 `site_status의 현장별 값을 집계하지 않은 표로 다시 보여줘`라고 보완 요청합니다.
