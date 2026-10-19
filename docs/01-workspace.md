@@ -35,8 +35,8 @@
 | `03_silver_conform` | Notebook | 04 |
 | `04_gold_model` | Notebook | 05 |
 | `05_answers` | Notebook | 07 |
-| `06_risk_event` | Notebook | 09 |
-| `nb_apply_decision` | Notebook | 11 (Operations agent가 실행하므로 **직접 실행하지 않음**) |
+| `06_risk_event` | Notebook | 10 |
+| `nb_apply_decision` | Notebook | 10 (Operations agent가 실행하므로 **직접 실행하지 않음**) |
 
 **예상 결과:** Lakehouse 1개, SQL analytics endpoint 1개, Notebook 7개가 있습니다.
 

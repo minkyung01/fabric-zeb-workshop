@@ -41,6 +41,8 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 | 실습 계정·참가자 번호 | Fabric·Teams에 사용할 계정과 본인 번호(예: `p001`) |
 | 작업 영역 | 본인 작업 영역 `zeb-p001`, Lakehouse `lh_zeb`, 미리 넣어 둔 Notebook 7개와 `Files/workshop`의 파일 2개 |
 | 보고서·에이전트 사용 환경 | Power BI Pro 또는 PPU 라이선스, Copilot·Data agent·Ontology·Operations agent 테넌트 설정, Teams의 **Fabric Operations Agent** 앱 |
+| Teams 로그인 | Fabric과 **같은 계정**으로 Teams(데스크톱 또는 웹)에 로그인할 수 있는지 미리 확인(10장) |
+| (선택) Foundry | 09장을 진행할 경우 Foundry 프로젝트, 또는 프로젝트를 만들 구독·리소스 그룹·지역 |
 
 문서의 `p001`은 예시입니다. 작업 영역은 **본인 번호**를 사용합니다. `lh_zeb`, `ont_zeb`, `da_zeb` 같은 항목 이름은 본인 작업 영역 안에서 그대로 씁니다.
 
