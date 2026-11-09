@@ -73,9 +73,7 @@ Notebook 코드는 테이블을 `bronze.pub_zeb_cert`처럼 스키마.테이블 
 
 예상 결과: `01_bronze_public_ingest`에 본인 작업 영역의 `lh_zeb`가 기본 Lakehouse로 연결되어 있습니다.
 
-<img src="../assets/screenshots/d01-notebook-lakehouse.png" width="1000" alt="01_bronze_public_ingest Notebook. 왼쪽 Explorer의 Data items > OneLake 아래에 lh_zeb와 핀 아이콘이 있고, 가운데에 01. Bronze ① 공공 인증 데이터 수집 제목과 수집할 데이터 4종 표, 파라미터 셀이 보입니다. 위쪽에 이 작업 영역의 다른 사람이 Notebook에 접근할 수 있으니 실행 전에 내용을 확인하라는 안내 배너가 있습니다." />
-
-Notebook 위쪽에 "Other people in your organization may have access to notebooks…" 배너가 보일 수 있습니다. 같은 작업 영역의 다른 사람이 Notebook을 수정할 수 있으니 실행 전에 내용을 확인하라는 일반 안내이며, 실습 진행에는 영향이 없습니다.
+<img src="../assets/screenshots/d01-notebook-lakehouse.png" width="1000" alt="01_bronze_public_ingest Notebook. 왼쪽 Explorer의 Data items > OneLake 아래에 lh_zeb와 핀 아이콘이 있고, 가운데에 01. Bronze ① 공공 인증 데이터 수집 제목과 수집할 데이터 4종 표, 파라미터 셀이 보입니다." />
 
 ## 5. Notebook 실행 방법
 
