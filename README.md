@@ -2,7 +2,7 @@
 
 Contoso 건설의 에코시티 D단지는 제로에너지건축물(ZEB) 예비인증 4등급을 받았습니다. 그런데 원가 절감(VE)으로 옥상 태양광을 줄인 현행 설계로는 5등급이 예상됩니다. 이대로라면 사용승인 전 본인증을 받을 수 없습니다. 어느 현장이 위험한지, 어떤 보완안이 가장 싸고 일정 안에 끝나는지 데이터로 확인해야 합니다.
 
-이 hands-on Workshop에서는 Microsoft Fabric을 중심으로 공공 인증 데이터와 현장 데이터를 하나의 업무 모델로 연결합니다. Notebook으로 위험과 보완안을 계산하고, Ontology·보고서·에이전트로 근거를 검토한 뒤, 담당자가 Teams에서 승인한 보완안을 실습 데이터에 기록하고 재계산합니다. Foundry와 웹 대시보드는 10장에서 강사가 시연합니다.
+이 hands-on Workshop에서는 Microsoft Fabric을 중심으로 공공 인증 데이터와 현장 데이터를 하나의 업무 모델로 연결합니다. Notebook으로 위험과 보완안을 계산하고, Ontology·보고서·에이전트로 근거를 검토한 뒤, 담당자가 Teams에서 승인한 보완안을 실습 데이터에 기록하고 재계산합니다.
 
 공공·현장 데이터 연결 → 등급 위험 찾기 → 근거 질문 → Teams 제안·승인 → 보완안 반영과 재계산
 
@@ -25,14 +25,14 @@ Contoso 건설의 에코시티 D단지는 제로에너지건축물(ZEB) 예비�
 
 Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)</b>에 적재한 뒤 `bronze` → `silver` → `gold`·`ops` 순서로 정리합니다. Ontology·근거 질의는 Gold 원본을, Power BI는 Gold와 ops를 읽습니다. Operations agent는 Notebook이 명시적으로 보낸 Eventhouse 위험 이벤트를 감시합니다.
 
-<img src="assets/architecture.svg" width="1000" alt="전체 구성. Notebook이 공공 인증 4종과 Contoso 내부 데이터를 Lakehouse의 Bronze에 적재하고 Silver에서 정리한 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Semantic model과 Power BI, Eventhouse와 Operations agent로 이어집니다. Operations agent가 Teams로 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 강사 시연입니다." />
+<img src="assets/architecture.svg" width="1000" alt="전체 구성. Notebook이 공공 인증 4종과 Contoso 내부 데이터를 Lakehouse의 Bronze에 적재하고 Silver에서 정리한 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Semantic model과 Power BI, Eventhouse와 Operations agent로 이어집니다. Operations agent가 Teams로 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다." />
 
 [그림 크게 보기](assets/architecture.png)
 
 - Gold에는 원천에서 정리한 데이터만 두고, 예상 등급·위험 여부는 저장하지 않습니다. 등급을 판정하는 기준은 06장에서 Ontology의 업무 규칙으로 정의하고, 보고서와 감시에 쓰는 계산 결과는 따로 `ops` 스키마에 저장합니다.
 - 06장에서는 Ontology Agent로 구조를 만들고, 07장에서는 별도 Data agent `da_zeb` 구성과 Ontology Agent의 Plan 질의를 구분해 체험합니다. 설명·동의어의 Data agent 연계는 Preview 환경별로 확인합니다.
 - Operations agent는 Lakehouse를 직접 감시하지 않고, 09장에서 Eventhouse로 보낸 위험 이벤트 상태를 감시합니다.
-- 구성도의 파란 실선은 실습 흐름, 초록 선은 승인 후 반영, 점선은 선택 실습(08장 Power BI)과 강사 시연(Foundry)입니다.
+- 구성도의 파란 실선은 실습 흐름, 초록 선은 승인 후 반영, 점선은 선택 실습(08장 Power BI)입니다.
 
 ## 시작 전 확인
 
@@ -50,7 +50,7 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 
 ## 실습 순서
 
-각 장의 완료 기준을 확인하며 00–07 → 09 → 10(강사 시연) → 11장 순서로 진행합니다. 기본 참가자 과정은 약 4시간 10분이며, 선택 08장을 포함하면 약 4시간 40분입니다. 휴식·AI 응답 대기와 강사 시연 시간은 별도입니다([장별 일정](docs/00-scenario.md#실습-일정)).
+각 장의 완료 기준을 확인하며 00–07 → 09 → 10장 순서로 진행합니다. 기본 참가자 과정은 약 4시간 10분이며, 선택 08장을 포함하면 약 4시간 40분입니다. 휴식·AI 응답 대기는 별도입니다([장별 일정](docs/00-scenario.md#실습-일정)).
 
 | 장 | 이번 단계에서 할 일 |
 |---|---|
@@ -62,10 +62,9 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 | [05. Gold와 운영 지표](docs/05-gold.md) | Gold 테이블과 현장 상태(ops)를 만들고 D단지 위험을 확인합니다. |
 | [06. Ontology](docs/06-ontology.md) | 현장·설계안 중심의 초안을 만들고 일정·보완안·공공 사례로 보강한 뒤, 원본과 업무 규칙을 점검합니다. |
 | [07. Data agent](docs/07-data-agent.md) | Data agent를 구성하고, Ontology Agent의 Plan에서 질문 8개를 정답 Notebook과 비교합니다. |
-| [08. Power BI (선택)](docs/08-power-bi.md) | 원하는 경우 현장 컨트롤 타워 보고서를 만듭니다. 건너뛰어도 09–11장을 진행할 수 있습니다. |
+| [08. Power BI (선택)](docs/08-power-bi.md) | 원하는 경우 현장 컨트롤 타워 보고서를 만듭니다. 건너뛰어도 09–10장을 진행할 수 있습니다. |
 | [09. Operations agent](docs/09-operations-agent.md) | 위험 이벤트를 Eventhouse로 보내 Teams 제안을 받고, 승인한 뒤 조치 기록·설계안 V4·등급 회복·이벤트 종료를 확인하고 Stop합니다. |
-| [10. 강사 시연: Foundry와 웹 대시보드](docs/10-instructor-demo.md) | 강사 환경에서 보완안 근거 질의와 승인 전후 대시보드를 보여줍니다. 참가자는 별도 환경을 준비하지 않습니다. |
-| [11. 마무리](docs/11-finish.md) | 결과를 확인하고 감시·실행이 멈췄는지 확인합니다. |
+| [10. 마무리](docs/10-finish.md) | 결과를 확인하고 감시·실행이 멈췄는지 확인합니다. |
 
 09장에서는 Teams 제안 → 근거 검토 → 승인 → 반영 확인 → Stop 순서를 지킵니다. AI가 만든 구조·페이지·답변은 실행할 때마다 달라질 수 있습니다. 완료 메시지만 보고 넘어가지 말고, 각 장에 적힌 데이터·필드·값과 비교합니다.
 

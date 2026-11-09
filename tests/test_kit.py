@@ -133,7 +133,7 @@ class Docs(unittest.TestCase):
 
     def test_read_only_question_flow_matches_approval_followup(self):
         for name in ("README.md", "docs/00-scenario.md", "docs/06-ontology.md",
-                     "docs/07-data-agent.md", "docs/09-operations-agent.md", "docs/11-finish.md"):
+                     "docs/07-data-agent.md", "docs/09-operations-agent.md", "docs/10-finish.md"):
             text = (ROOT / name).read_text(encoding="utf-8")
             self.assertIn("Plan", text, name)
         questions = (ROOT / "docs" / "07-data-agent.md").read_text(encoding="utf-8")
@@ -179,7 +179,7 @@ class Docs(unittest.TestCase):
         self.assertIn("## 12. 감시 멈추기", operations)
         self.assertNotIn("## 13.", operations)
 
-    def test_power_bi_is_optional_before_instructor_demo(self):
+    def test_power_bi_is_optional_before_finish(self):
         report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
         self.assertTrue(report.startswith("# 08. Power BI (선택)"))
         questions = (ROOT / "docs" / "07-data-agent.md").read_text(encoding="utf-8")
@@ -190,11 +190,8 @@ class Docs(unittest.TestCase):
         self.assertNotIn("보고서의 위험 현장이", completion)
         self.assertIn("`ops.site_status`에서 D단지가 4등급·정상", completion)
         self.assertNotIn("읽기 전용 Plan 질의", completion)
-        finish = (ROOT / "docs" / "11-finish.md").read_text(encoding="utf-8")
+        finish = (ROOT / "docs" / "10-finish.md").read_text(encoding="utf-8")
         self.assertIn("이 장까지 완료하면 참가자 실습은 끝", finish)
-        demo = (ROOT / "docs" / "10-instructor-demo.md").read_text(encoding="utf-8")
-        self.assertIn("웹 대시보드", demo)
-        self.assertIn("로컬 웹 앱 설치·실행은 필요하지 않습니다", demo)
 
     def test_power_bi_license_activation_precedes_model_creation(self):
         report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
@@ -204,36 +201,30 @@ class Docs(unittest.TestCase):
         self.assertIn("작업 영역의 기존 유료 용량을 변경하는 단계가 아닙니다", report)
         self.assertIn("d08-lakehouse-new-model.png", report)
 
-    def test_foundry_is_instructor_demo_only(self):
-        foundry = (ROOT / "docs" / "10-instructor-demo.md").read_text(encoding="utf-8")
-        self.assertTrue(foundry.startswith("# 10. 강사 시연: Foundry와 웹 대시보드"))
-        self.assertIn("참가자는 따라 만들지 않습니다", foundry)
-        self.assertIn("승인 전 상태(D단지 V3·위험)", foundry)
-        self.assertIn("참가자 작업 영역을 시연용으로 초기화하지 않습니다", foundry)
+    def test_finish_follows_operations_without_demo_or_item_deletion(self):
+        self.assertFalse((ROOT / "docs" / "10-instructor-demo.md").exists())
+        self.assertFalse((ROOT / "docs" / "11-finish.md").exists())
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertLess(readme.index("(docs/09-operations-agent.md)"),
-                        readme.index("(docs/10-instructor-demo.md)"))
-        self.assertLess(readme.index("(docs/10-instructor-demo.md)"),
-                        readme.index("(docs/11-finish.md)"))
+                        readme.index("(docs/10-finish.md)"))
         self.assertFalse((ROOT / "docs" / "09-foundry-agent.md").exists())
         self.assertFalse((ROOT / "docs" / "10-operations-agent.md").exists())
         self.assertFalse((ROOT / "docs" / "10a-instructor-demo.md").exists())
         for chapter in ("07-data-agent.md", "08-power-bi.md"):
             text = (ROOT / "docs" / chapter).read_text(encoding="utf-8")
             self.assertIn("다음: [09. Operations agent]", text)
-        finish = (ROOT / "docs" / "11-finish.md").read_text(encoding="utf-8")
+        finish = (ROOT / "docs" / "10-finish.md").read_text(encoding="utf-8")
+        self.assertTrue(finish.startswith("# 10. 마무리"))
         self.assertNotIn("fa-zeb", finish)
-        self.assertIn("이전: [10. 강사 시연](10-instructor-demo.md)", finish)
+        self.assertNotIn("삭제", finish)
+        self.assertNotIn("Delete", finish)
+        self.assertIn("이전: [09. Operations agent](09-operations-agent.md)", finish)
         operations = (ROOT / "docs" / "09-operations-agent.md").read_text(encoding="utf-8")
-        self.assertIn("다음: [10. 강사 시연](10-instructor-demo.md)", operations)
-        self.assertIn("이전: [09. Operations agent]", foundry)
-        self.assertIn("다음: [11. 마무리]", foundry)
-        self.assertIn("## 5. 웹 대시보드 시연", foundry)
-        self.assertIn("11장 마무리 전에", foundry)
-        self.assertIn("V4", foundry)
+        self.assertIn("다음: [10. 마무리](10-finish.md)", operations)
         admin = (ROOT / "admin" / "README.md").read_text(encoding="utf-8")
-        self.assertIn("참가자별 Foundry 환경은 준비하지 않습니다", admin)
-        self.assertIn("시연 계정으로 미리 질문 1개", admin)
+        for text in (readme, operations, finish, admin):
+            self.assertNotIn("강사 시연", text)
+            self.assertNotIn("Foundry", text)
 
     def test_power_bi_prompt_limits_columns_and_specifies_layout(self):
         report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
@@ -304,7 +295,7 @@ class Docs(unittest.TestCase):
 
     def test_chapter_navigation(self):
         self.assertEqual([doc.name.split("-", 1)[0] for doc in DOCS],
-                         [f"{number:02d}" for number in range(12)])
+                         [f"{number:02d}" for number in range(11)])
         for doc in DOCS:
             lines = doc.read_text(encoding="utf-8").splitlines()
             self.assertTrue(lines[0].startswith(f"# {doc.name[:2]}."), doc.name)
@@ -404,7 +395,8 @@ class FabricAssets(unittest.TestCase):
         scene = json.loads((ROOT / "assets" / "architecture.scene.json").read_text(encoding="utf-8"))
         cards = {c["id"] for c in scene["cards"]}
         self.assertLessEqual({"source", "bronze", "silver", "gold", "ontology", "dataagent", "model", "powerbi",
-                              "eventhouse", "operations", "teams", "apply", "foundry"}, cards)
+                              "eventhouse", "operations", "teams", "apply"}, cards)
+        self.assertNotIn("foundry", cards)
 
 
 if __name__ == "__main__":
