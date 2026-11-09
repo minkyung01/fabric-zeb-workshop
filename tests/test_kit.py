@@ -1,4 +1,5 @@
 """Offline consistency checks for the workshop kit. Run: python -m unittest discover -s tests -v"""
+import base64
 import importlib.util
 import io
 import json
@@ -8,7 +9,8 @@ import sys
 import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
-from unittest.mock import patch
+from types import SimpleNamespace
+from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = sorted((ROOT / "docs").glob("*.md"))
@@ -115,6 +117,18 @@ class Docs(unittest.TestCase):
         for doc in DOCS:
             self.assertIn(f"docs/{doc.name}", readme)
 
+    def test_participant_creates_lakehouse_and_downloads_report_files(self):
+        setup = (ROOT / "docs" / "01-workspace.md").read_text(encoding="utf-8")
+        self.assertIn("## 3. Lakehouse 직접 만들기", setup)
+        self.assertIn("Lakehouse schemas / 스키마 사용을 켠 뒤 Create", setup)
+        self.assertIn("Notebook 7개 모두", setup)
+        for path in (ROOT / "README.md", ROOT / "admin" / "README.md",
+                     ROOT / "docs" / "01-workspace.md", ROOT / "docs" / "08-power-bi.md"):
+            self.assertNotIn("Files/workshop", path.read_text(encoding="utf-8"), path.name)
+        report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
+        self.assertIn("../fabric/sm_zeb.tmdl", report)
+        self.assertIn("../fabric/zeb-theme.json", report)
+
     def test_relative_links_resolve(self):
         for md in [ROOT / "README.md", *DOCS, *sorted((ROOT / "admin").glob("*.md")), ROOT / "assets" / "icon-attribution.md"]:
             text = md.read_text(encoding="utf-8")
@@ -150,6 +164,37 @@ class Provisioning(unittest.TestCase):
         self.assertEqual(self.module.participants("p011,p015-p017"),
                          ["p011", "p015", "p016", "p017"])
 
+    def test_imports_only_unbound_notebooks(self):
+        for existing_lakehouse in (False, True):
+            with self.subTest(existing_lakehouse=existing_lakehouse):
+                fab = Mock(dry_run=False)
+                items = ([{"type": "Lakehouse", "displayName": "lh_zeb", "id": "lakehouse-id"}]
+                         if existing_lakehouse else [])
+                fab.get_all.side_effect = [[{"displayName": "ws-p011", "id": "workspace-id"}], items]
+                args = SimpleNamespace(prefix="ws-", reference_ontology=False, update_notebooks=False)
+                with redirect_stdout(io.StringIO()):
+                    self.module.provision(fab, "p011", args, {})
+                self.assertEqual(fab.change.call_count, len(NOTEBOOKS))
+                for call in fab.change.call_args_list:
+                    label, method, url, body = call.args
+                    self.assertTrue(label.startswith("import notebook "))
+                    self.assertEqual(method, "POST")
+                    self.assertEqual(url, "/workspaces/workspace-id/notebooks")
+                    payload = body["definition"]["parts"][0]["payload"]
+                    imported = json.loads(base64.b64decode(payload))
+                    self.assertNotIn("dependencies", imported["metadata"])
+                    self.assertNotIn("default_lakehouse", json.dumps(imported))
+                fab.call.assert_not_called()
+
+    def test_reference_ontology_requires_participant_lakehouse(self):
+        fab = Mock(dry_run=False)
+        fab.get_all.side_effect = [[{"displayName": "ws-p011", "id": "workspace-id"}], []]
+        args = SimpleNamespace(prefix="ws-", reference_ontology=True, update_notebooks=False)
+        with redirect_stdout(io.StringIO()), self.assertRaisesRegex(RuntimeError, "participant-created lh_zeb"):
+            self.module.provision(fab, "p011", args, {})
+        fab.change.assert_not_called()
+        fab.call.assert_not_called()
+
     def test_default_workspace_prefix_and_custom_override(self):
         for extra, prefix in (([], "ws-"), (["--prefix", "custom-"], "custom-")):
             with self.subTest(prefix=prefix):
@@ -164,6 +209,8 @@ class Provisioning(unittest.TestCase):
                 self.assertIn(f"p011: {prefix}p011", output.getvalue())
                 self.assertIn(f"p012: {prefix}p012", output.getvalue())
                 self.assertNotIn("zeb-p", output.getvalue())
+                self.assertEqual(output.getvalue().count("import notebook "), 2 * len(NOTEBOOKS))
+                self.assertNotIn("create lakehouse", output.getvalue())
 
 
 class FabricAssets(unittest.TestCase):

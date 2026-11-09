@@ -34,7 +34,7 @@
 
 | 실습 | 하는 일 | 완성 결과 |
 |---|---|---|
-| 01–05 데이터 | 공공 인증 4종을 Notebook으로 내려받고 Contoso 내부 데이터를 만든 뒤 Bronze → Silver → Gold 순서로 정리합니다. | 서로 비교할 수 있게 정리된 Gold 테이블과 현장 상태(`ops`) |
+| 01–05 데이터 | Lakehouse를 직접 만들고 준비된 Notebook에 연결합니다. 공공 인증 4종을 내려받고 Contoso 내부 데이터를 만든 뒤 Bronze → Silver → Gold로 정리합니다. | 서로 비교할 수 있게 정리된 Gold 테이블과 현장 상태(`ops`) |
 | 06–07 근거 질의 | Ontology를 Agent와 단계적으로 보강하고 Data agent를 구성합니다. 기본 질문은 Ontology Agent의 Plan에서 검증합니다. | 원본·규칙·계산 근거를 정답 Notebook과 비교한 Q1–Q8 답변 |
 | 08 보고서 | 공공 ZEB 인증 현황 페이지를 직접 만들고, 현장 컨트롤 타워 페이지는 Copilot으로 생성합니다. | 인증 현황과 현장 위험을 보여 주는 보고서 2페이지 |
 | 09 근거 재검토(선택) | Foundry 에이전트에서 Fabric IQ로 Ontology에 보완안 근거를 다시 묻습니다. | 07장의 Plan 질의와 다른 실행 경로로 확인한 근거 |

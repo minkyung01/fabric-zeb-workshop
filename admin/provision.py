@@ -1,8 +1,8 @@
 """Prepare participant workspaces for the ZEB workshop (admin only).
 
-For each participant pNNN this creates (or reuses) workspace ws-pNNN on the given capacity,
-a schema-enabled Lakehouse lh_zeb, the 7 notebooks bound to that Lakehouse, and uploads
-fabric/sm_zeb.tmdl and fabric/zeb-theme.json to Files/workshop. Existing items are reused;
+For each participant pNNN this creates (or reuses) workspace ws-pNNN on the given capacity
+and imports the 7 notebooks without a Lakehouse binding. Participants create lh_zeb
+and connect their notebooks in chapter 01. Existing items are reused;
 notebooks are only overwritten with --update-notebooks.
 
 Uses the Azure CLI login (az login [--tenant ...]); no secrets are stored.
@@ -22,16 +22,13 @@ import shutil
 import subprocess
 import time
 import urllib.error
-import urllib.parse
 import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 API = "https://api.fabric.microsoft.com/v1"
-ONELAKE = "https://onelake.dfs.fabric.microsoft.com"
 NOTEBOOKS = ["01_bronze_public_ingest", "02_bronze_contoso_generate", "03_silver_conform", "04_gold_model",
              "05_answers", "06_risk_event", "nb_apply_decision"]
-FILES = ["sm_zeb.tmdl", "zeb-theme.json"]
 _tokens = {}
 
 
@@ -140,7 +137,10 @@ def provision(fab, pid, args, users):
     else:
         print("  workspace exists")
     if fab.dry_run and ws.startswith("0000"):
-        print("  [dry-run] lakehouse lh_zeb, notebooks, files" + (", reference ontology" if args.reference_ontology else ""))
+        for nb_name in NOTEBOOKS:
+            print(f"  [dry-run] import notebook {nb_name} (unbound)")
+        if args.reference_ontology:
+            print("  [dry-run] reference ontology requires participant-created lh_zeb after chapter 05")
         return
 
     if pid in users:
@@ -154,18 +154,14 @@ def provision(fab, pid, args, users):
 
     items = {(i["type"], i["displayName"]): i["id"] for i in fab.get_all(f"/workspaces/{ws}/items")}
     lh = items.get(("Lakehouse", "lh_zeb"))
-    if not lh:
-        _, created = fab.change("create lakehouse lh_zeb (schemas)", "POST", f"/workspaces/{ws}/lakehouses",
-                                {"displayName": "lh_zeb", "creationPayload": {"enableSchemas": True}})
-        lh = created["id"]
+    if args.reference_ontology and not lh:
+        raise RuntimeError("Reference ontology requires participant-created lh_zeb. Run after chapter 05.")
 
     for nb_name in NOTEBOOKS:
         exists = ("Notebook", nb_name) in items
         if exists and not args.update_notebooks:
             continue
         notebook = json.loads((ROOT / "notebooks" / f"{nb_name}.ipynb").read_text(encoding="utf-8"))
-        notebook["metadata"]["dependencies"] = {"lakehouse": {
-            "default_lakehouse": lh, "default_lakehouse_name": "lh_zeb", "default_lakehouse_workspace_id": ws}}
         payload = base64.b64encode(json.dumps(notebook, ensure_ascii=False).encode("utf-8")).decode()
         definition = {"format": "ipynb", "parts": [
             {"path": "notebook-content.ipynb", "payload": payload, "payloadType": "InlineBase64"}]}
@@ -175,21 +171,6 @@ def provision(fab, pid, args, users):
         else:
             fab.change(f"import notebook {nb_name}", "POST", f"/workspaces/{ws}/notebooks",
                        {"displayName": nb_name, "definition": definition})
-
-    storage = "https://storage.azure.com"
-    base = f"{ONELAKE}/{ws}/{lh}/Files/workshop"
-    if not fab.dry_run:
-        fab.call("PUT", base + "?resource=directory", raw=b"", resource=storage)
-        for file_name in FILES:
-            data = (ROOT / "fabric" / file_name).read_bytes()
-            url = f"{base}/{urllib.parse.quote(file_name)}"
-            for method, suffix, body, ctype in (("PUT", "?resource=file&overwrite=true", b"", "application/json"),
-                                                ("PATCH", "?action=append&position=0", data, "application/octet-stream"),
-                                                ("PATCH", f"?action=flush&position={len(data)}", b"", "application/json")):
-                status, _, payload = fab.call(method, url + suffix, raw=body, resource=storage, ctype=ctype)
-                if status >= 300:
-                    raise RuntimeError(f"upload {file_name}: {status} {payload[:300]}")
-        print(f"  upload Files/workshop/{', '.join(FILES)}")
 
     if args.reference_ontology:
         if ("Ontology", "ont_zeb") in items:

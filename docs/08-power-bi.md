@@ -17,12 +17,12 @@ Gold·ops 테이블로 모델 만들기 → 관계·측정값 적용 → 1페이
 
 - 05장까지 완료한 본인 `lh_zeb`: `gold` 22개, `ops` 3개 테이블
 - 관리자가 준비한 활성 유료 Fabric 용량, Power BI Pro 또는 PPU 라이선스, 모델·보고서 작성 권한과 Copilot 설정
-- 01장에서 내려받은 PC의 두 파일
+- 아래 링크에서 PC로 내려받은 파일 2개. GitHub 파일 화면의 Download raw file을 사용해 원래 이름과 확장자로 저장합니다. Lakehouse에 업로드할 필요는 없습니다.
 
 | 파일 | 사용할 때 |
 |---|---|
-| `sm_zeb.tmdl` | 2단계에서 관계 7개와 측정값 20개를 한 번에 적용합니다. |
-| `zeb-theme.json` | 3단계에서 보고서의 색, 글꼴, 배경, 테두리를 맞춥니다. |
+| [`sm_zeb.tmdl`](../fabric/sm_zeb.tmdl) | 2단계에서 관계 7개와 측정값 20개를 한 번에 적용합니다. |
+| [`zeb-theme.json`](../fabric/zeb-theme.json) | 3단계에서 보고서의 색, 글꼴, 배경, 테두리를 맞춥니다. |
 
 용량·지원 지역·Copilot 설정은 [관리자 준비 가이드](../admin/README.md)와 [공식 요구 사항](https://learn.microsoft.com/power-bi/create-reports/copilot-introduction#requirements-at-a-glance)을 따릅니다.
 

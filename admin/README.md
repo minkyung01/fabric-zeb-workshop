@@ -10,8 +10,8 @@ Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참�
 |---|---|
 | Microsoft Fabric 용량 | 유료 F 용량. 12명 동시 실습 기준 F64 이상 권장(Copilot은 F2 이상이면 사용 가능). Operations agent는 Trial 용량을 지원하지 않습니다. |
 | 참가자 작업 영역 | `ws-pNNN` (참가자는 Contributor 이상) |
-| Lakehouse | `lh_zeb` (schemas 켬) |
-| 실습 파일 | Notebook 7개(`notebooks/*.ipynb`), `Files/workshop`에 `fabric/sm_zeb.tmdl`, `fabric/zeb-theme.json` |
+| Lakehouse | 01장에서 참가자가 `lh_zeb`를 직접 생성(schemas 켬)하고 Notebook 7개에 기본으로 연결 |
+| 실습 파일 | 관리자는 Notebook 7개(`notebooks/*.ipynb`)만 가져옴. Power BI 파일 2개는 참가자가 08장에서 저장소에서 PC로 다운로드 |
 | 네트워크 | Fabric Spark에서 `https://www.data.go.kr`로 나가는 HTTPS(02장). 막혀 있으면 아래 "공공데이터 대체 경로" |
 | Power BI | 참가자 Pro 또는 PPU 라이선스 |
 | Microsoft Teams | Teams 라이선스, 앱 Fabric Operations Agent 허용(10장). 참가자는 Fabric과 같은 계정으로 Teams(데스크톱 또는 웹)에 로그인할 수 있어야 합니다. |
@@ -36,7 +36,7 @@ Teams 관리 센터에서 Fabric Operations Agent 앱을 참가자에게 허용�
 
 ## 2. 참가자 작업 영역 일괄 준비
 
-`admin/provision.py`가 참가자마다 작업 영역·Lakehouse·Notebook·실습 파일을 준비합니다. 이미 있는 항목은 다시 만들지 않습니다. 관리자 계정의 Azure CLI 로그인을 사용하며 비밀 값을 저장하지 않습니다.
+`admin/provision.py`가 참가자마다 작업 영역·접근 권한과 Notebook 7개를 준비합니다. Lakehouse 생성·기본 연결·파일 업로드는 하지 않습니다. 참가자가 01장에서 스키마 사용 Lakehouse를 만들고 Notebook에 연결합니다. 관리자 계정의 Azure CLI 로그인을 사용하며 비밀 값을 저장하지 않습니다.
 
 기본 접두사는 `ws-`입니다. 12명 예시는 `p011-p022`이며 실제 배정 계정의 마지막 번호에 맞춥니다. 기존 `ws-p011`이 있으면 재사용하며, 이 스크립트는 계정 생성이나 기존 작업 영역 이름 변경을 하지 않습니다. 기존 영역의 용량 할당·역할은 별도로 확인합니다. 이전 `zeb-` 이름의 영역을 자동으로 찾아 바꾸지 않습니다.
 
@@ -66,18 +66,18 @@ Teams 관리 센터에서 Fabric Operations Agent 앱을 참가자에게 허용�
     python admin/provision.py --capacity <capacity-id> --participants p011-p022 --users users.csv
     ```
 
-확인할 결과: 참가자마다 `create workspace`, `create lakehouse lh_zeb (schemas)`, `import notebook …` 7줄, `upload Files/workshop/…`이 출력됩니다. 참가자 작업 영역에 `lh_zeb`(+SQL analytics endpoint)와 Notebook 7개가 있고, Notebook의 기본 Lakehouse가 그 작업 영역의 `lh_zeb`입니다.
+확인할 결과: 새 작업 영역이면 `create workspace`가 출력되고, `import notebook …` 7줄이 출력됩니다. 참가자 작업 영역에는 Notebook 7개가 있으며 Lakehouse는 아직 연결하지 않은 상태입니다. 기존 Notebook은 `--update-notebooks` 없이 다시 가져오지 않습니다.
 
 | 옵션 | 용도 |
 |---|---|
-| `--update-notebooks` | 이미 있는 Notebook을 저장소의 최신 버전으로 덮어씁니다(참가자 실행 결과는 남지만 셀 수정은 사라짐). |
+| `--update-notebooks` | 이미 있는 Notebook 정의를 저장소의 최신 버전으로 덮어씁니다. 셀 수정·실행 출력·Lakehouse 연결이 초기화될 수 있으므로 참가자 실행 중에는 사용하지 않고, 갱신 후 기본 Lakehouse를 다시 연결합니다. |
 | `--reference-ontology` | 참고 설계 Ontology를 `ont_zeb`로 배포합니다. 06장의 Ontology agent를 쓸 수 없는 환경이나, 시간이 부족한 참가자의 대체 경로입니다. 배포하면 `ont_zeb_lh_…`, `ont_zeb_graph_…`도 자동으로 생깁니다. Gold가 있어야 인스턴스가 읽히므로 05장 이후에 실행합니다. |
 | `--role` | 참가자 권한(기본 `Contributor`) |
 | `--tenant` | 여러 테넌트에 로그인한 경우 토큰을 받을 테넌트 |
 
 `--reference-ontology`는 저장소의 REST 정의를 제출하는 비교·복구용 경로입니다. 새 Ontology 경험과 정의의 호환성은 별도 테스트 작업 영역에서 열기·키·바인딩·원본 조회로 먼저 확인합니다. 자동 마이그레이션이나 Agent 초안 생성 실습 완료로 간주하지 않습니다. 기존 참가자 Ontology는 덮어쓰지 않습니다.
 
-수동 준비: 스크립트를 쓰지 않으면 작업 영역을 만들고 용량에 할당한 뒤, New item → Lakehouse에서 `lh_zeb`를 만들 때 Lakehouse schemas를 켭니다. Import → Notebook → From this computer로 `notebooks/*.ipynb` 7개를 가져오고, 각 Notebook에서 `lh_zeb`를 기본 Lakehouse로 연결합니다. `lh_zeb`의 Files에 `workshop` 폴더를 만들고 `fabric/sm_zeb.tmdl`, `fabric/zeb-theme.json`을 업로드합니다. Notebook 이름은 파일 이름 그대로 둡니다(`nb_apply_decision`이 `03_silver_conform`·`04_gold_model`을 이름으로 실행).
+수동 준비: 작업 영역을 만들고 유료 용량과 참가자 권한을 설정한 뒤, Import → Notebook → From this computer로 [notebooks](../notebooks)의 `.ipynb` 7개만 가져옵니다. Lakehouse는 만들거나 연결하지 않습니다. Notebook 이름은 파일 이름 그대로 둡니다(`nb_apply_decision`이 `03_silver_conform`·`04_gold_model`을 이름으로 실행).
 
 Notebook은 `notebooks/src/*.py`에서 만들어집니다. 소스를 고쳤다면 `python tools/build_notebooks.py`로 `.ipynb`를 다시 만들고 `--update-notebooks`로 배포합니다.
 

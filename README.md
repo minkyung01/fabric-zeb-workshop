@@ -41,7 +41,7 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 | 참가자가 확인할 것 | 관리자에게 받을 안내 |
 |---|---|
 | 실습 계정·참가자 번호 | Fabric·Teams에 사용할 계정과 본인 번호 |
-| 작업 영역 | 본인 작업 영역, Lakehouse `lh_zeb`, 미리 넣어 둔 Notebook 7개와 `Files/workshop`의 파일 2개 |
+| 작업 영역 | 용량이 할당된 본인 작업 영역과 미리 넣어 둔 Notebook 7개. Lakehouse `lh_zeb`는 01장에서 직접 생성 |
 | 보고서·에이전트 사용 환경 | Power BI Pro 또는 PPU 라이선스, Copilot·Data agent·Ontology·Operations agent 테넌트 설정, Teams의 Fabric Operations Agent 앱 |
 | Teams 로그인 | Fabric과 같은 계정으로 Teams(데스크톱 또는 웹)에 로그인할 수 있는지 미리 확인(10장) |
 | (선택) Foundry | 09장을 진행할 경우 Foundry 프로젝트, 또는 프로젝트를 만들 구독·리소스 그룹·지역 |
@@ -55,7 +55,7 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 | 장 | 이번 단계에서 할 일 |
 |---|---|
 | [00. 시나리오와 실습 순서](docs/00-scenario.md) | 업무 상황·판단 기준과 실습 흐름을 이해합니다. |
-| [01. 작업 영역 준비](docs/01-workspace.md) | 본인 작업 영역·Lakehouse·Notebook을 확인하고 Notebook 실행 방법을 익힙니다. |
+| [01. 작업 영역 준비](docs/01-workspace.md) | 준비된 Notebook을 확인하고 스키마 사용 Lakehouse `lh_zeb`를 직접 만들어 Notebook 7개에 연결합니다. |
 | [02. Bronze ① 공공 인증 데이터](docs/02-bronze-public.md) | 공공데이터포털에서 인증 4종을 Notebook으로 내려받아 그대로 저장합니다. |
 | [03. Bronze ② Contoso 내부 데이터](docs/03-bronze-contoso.md) | ERP·PMS·BIM·SCM의 가상 데이터를 만들고 시스템별 코드 차이를 확인합니다. |
 | [04. Silver](docs/04-silver.md) | 시도·용도·등급 표기를 통일하고, 같은 건물을 묶고, 발주 이벤트를 반영합니다. |
@@ -73,13 +73,13 @@ Graph·파이프라인·Foundry를 생략해도 기본 과정은 완료됩니다
 
 ## 실습 파일
 
-관리자가 실습 전에 본인 작업 영역에 넣어 둡니다. 참가자가 GitHub에서 내려받을 필요는 없습니다.
+관리자는 Notebook 7개만 본인 작업 영역에 넣어 둡니다. 참가자는 01장에서 Lakehouse를 직접 만들고 Notebook에 연결합니다. Power BI 파일 2개는 08장에서 아래 저장소 링크로 PC에 내려받으며, Lakehouse에 업로드하지 않습니다.
 
 | 파일 | 위치 | 용도 |
 |---|---|---|
 | Notebook 7개 | 본인 작업 영역 | `01`–`04` 메달리온, `05_answers` 정답 계산(07장), `06_risk_event` 위험 이벤트(10장), `nb_apply_decision` 승인 반영(10장, 직접 실행 안 함) |
-| `sm_zeb.tmdl` | `lh_zeb` → Files → workshop | 08장 Semantic model의 관계·측정값 |
-| `zeb-theme.json` | `lh_zeb` → Files → workshop | 08장 보고서 테마 |
+| [`sm_zeb.tmdl`](fabric/sm_zeb.tmdl) | 08장에서 저장소 → PC | Semantic model의 관계·측정값 |
+| [`zeb-theme.json`](fabric/zeb-theme.json) | 08장에서 저장소 → PC | 보고서 테마 |
 
 원본은 이 저장소의 [notebooks](notebooks)와 [fabric](fabric) 폴더입니다. Notebook은 `notebooks/src`의 소스에서 만들어집니다(`python tools/build_notebooks.py`).
 
