@@ -157,7 +157,7 @@ Copilot·Ontology agent·Data agent·Operations agent·Teams 단계는 AI·UI �
 
 ## 7. 종료 후 정리
 
-1.  참가자에게 `oa_zeb` Stop을 확인시킵니다(09장 13단계, 11장).
+1.  참가자에게 `oa_zeb` Stop을 확인시킵니다(09장 12단계, 11장).
 2.  참가자 작업 영역 `ws-pNNN`을 삭제합니다. 작업 영역을 지우면 안의 모든 항목(Lakehouse·Eventhouse·Ontology·Data agent·보고서·Operations agent)이 함께 지워집니다.
 3.  강사 시연이 끝나면 시연용 Foundry 프로젝트·리소스·인증 연결과 강사 작업 영역을 정리합니다. 참가자 결과 정리와 구분합니다.
 4.  강사 시연까지 끝난 뒤 유료 Fabric 용량을 일시 중지하거나 삭제합니다.
