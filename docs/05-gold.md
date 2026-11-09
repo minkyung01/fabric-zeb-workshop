@@ -127,14 +127,19 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
 ## 4. (선택) 파이프라인으로 묶기
 
-지금까지 Notebook 4개를 하나씩 실행했습니다. 실제 운영에서는 이 순서를 Data pipeline으로 묶어 한 번에 실행합니다. 시간이 남으면 만들어 봅니다. 공공 데이터를 다시 내려받느라 약 10분 걸리므로 실행까지 하지 않아도 됩니다.
+지금까지 Notebook 4개를 하나씩 실행했습니다. 실제 운영에서는 이 순서를 Pipeline으로 묶어 한 번에 실행합니다. 시간이 남으면 만들어 봅니다. 공공 데이터를 다시 내려받느라 약 10분 걸리므로 실행까지 하지 않아도 됩니다.
 
-1.  작업 영역에서 + New item → Data pipeline을 고르고 이름 `pl_zeb_medallion`으로 만듭니다.
-2.  Pipeline activity → Notebook을 4번 추가하고, 각 활동의 Settings에서 Notebook을 `01_bronze_public_ingest` → `02_bronze_contoso_generate` → `03_silver_conform` → `04_gold_model` 순서로 고릅니다.
+1.  본인 작업 영역에서 + New item → Pipeline을 고릅니다. New Pipeline 창의 Name에 `pl_zeb_medallion`을 입력하고, Location이 본인 작업 영역인지 확인한 뒤 Create를 누릅니다.
+
+    <img src="../assets/screenshots/d05-create-pipeline.png" width="700" alt="New Pipeline 창. Name에 pl_zeb_medallion이 입력되어 있고 Location과 Create 버튼이 보입니다." />
+
+2.  위쪽 도구 모음의 Notebook을 눌러 활동 4개를 추가합니다. 각 활동을 선택하고 아래 Settings에서 본인 작업 영역의 Notebook을 `01_bronze_public_ingest` → `02_bronze_contoso_generate` → `03_silver_conform` → `04_gold_model` 순서로 고릅니다.
 3.  각 활동 오른쪽의 On success(초록 체크) 핸들을 다음 활동으로 끌어 순서대로 연결합니다.
 4.  저장합니다.
 
 확인할 결과: 활동 4개가 성공 조건으로 한 줄로 이어져 있습니다. 실행할 경우 `02_bronze_contoso_generate`가 조치 기록을 지운다는 점에 주의합니다(03장 Troubleshooting).
+
+<img src="../assets/screenshots/d05-pipeline-connected.png" width="1000" alt="pl_zeb_medallion Pipeline 편집 화면. 공공 인증 수집, 내부 데이터 생성, Silver, Gold Notebook 활동 4개가 초록색 성공 조건 화살표로 순서대로 연결되어 있습니다." />
 
 ## 이 장의 완료 기준
 
