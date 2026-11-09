@@ -76,7 +76,7 @@ class Docs(unittest.TestCase):
             for path in (reference / kind).glob("*/definition.json"):
                 name = json.loads(path.read_text(encoding="utf-8-sig"))["name"]
                 self.assertIn(name + "(", prompts, name)
-        self.assertIn("기존 이름 → 통일할 이름", text)
+        self.assertNotIn("아래 교재 이름 기준", prompts)
         self.assertIn("`grade_code` = `grade_code`", text)
 
     def test_run_all_guidance_for_participant_notebooks(self):

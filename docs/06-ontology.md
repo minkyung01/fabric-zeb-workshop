@@ -134,12 +134,6 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 | `ZEBCertification_has_Use` | ZEBCertification → BuildingUse | `use_group` = `use_group` |
 | `ZEBCertification_has_Grade` | ZEBCertification → ZEBGradeCriteria | `grade_code` = `grade_code` |
 
-이미 이전 프롬프트로 초안을 만들었다면 새 Ontology를 만들지 않습니다. 같은 Plan 대화에서 아래 요청을 먼저 보내고, 위 엔터티 이름 목록과 관계 이름·방향 목록을 함께 붙여 넣습니다.
-
-``` text
-현재 초안의 엔터티·관계 이름을 아래 교재 이름 기준으로 통일하는 변경안을 보여줘. 원본 gold 테이블 바인딩과 업무 의미로 기존 항목을 찾아 이름만 변경하고, 엔터티·관계를 중복 생성하지 마. 키·속성·데이터 바인딩과 원본 데이터는 유지해줘. 관계 방향이 기준과 다르면 이름만 바꾸지 말고 현재 연결 열과 필요한 방향 변경을 별도로 보여줘. 대응되지 않는 항목은 보고해줘. 기존 이름 → 통일할 이름 대응표를 먼저 보여주고 Plan에서 검토만 해. 적용은 내가 Act에서 승인한 뒤에 해.
-```
-
 빠진 업무 범위나 해결되지 않은 조회 오류가 있으면 적용하지 말고, 같은 Plan 대화에서 보완해 달라고 요청합니다.
 
 ## 3. 적용
@@ -255,7 +249,7 @@ Graph는 투영한 시점의 스냅샷입니다. 10장의 `04_gold_model`은 관
 
 에이전트가 "논리 관계로만 넣었다", "키 없는 매핑 엔터티로 두었다", "모델 번호는 연결하지 않았다"고 답하거나, 초안에서 현장 → BIM 모델 → 설계안 경로를 확인할 수 없을 때만 진행합니다. 정상적으로 연결되어 있다면 이 요청은 보내지 않습니다.
 
-Act로 전환하지 않고 같은 Plan 대화에서 아래처럼 보완을 요청합니다. 기존 이름이 다르면 위 이름 통일 안내를 먼저 진행합니다.
+Act로 전환하지 않고 같은 Plan 대화에서 아래처럼 보완을 요청합니다.
 
 ``` text
 현장 교차표 엔터티 BIMModel(gold.mdm_site_xref)의 고유 키를 bim_model_id로 지정하고, Site_has_BIMModel(Site → BIMModel, site_code = site_code), Project_has_BIMModel(Project → BIMModel, project_no = project_no), BIMModel_has_DesignVersion(BIMModel → DesignVersion, bim_model_id = bim_model_id)을 실제 원본 열로 바인딩하는 변경안을 보여줘. 기존 해당 항목을 수정하고 중복 생성하지 마. 다른 엔터티와 관계는 그대로 두고, HS-D 현장에서 현행 설계안까지 이어지는지 실제 행으로 검증해줘. 지금은 Plan에서 검토만 해.
