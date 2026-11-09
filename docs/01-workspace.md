@@ -36,8 +36,8 @@ Fabric 접속 → 작업 영역 유형 확인 → Notebook 7개 확인 → Lakeh
 | `03_silver_conform` | Notebook | 04 |
 | `04_gold_model` | Notebook | 05 |
 | `05_answers` | Notebook | 07 |
-| `06_risk_event` | Notebook | 10 |
-| `nb_apply_decision` | Notebook | 10 (Operations agent가 실행하므로 직접 실행하지 않음) |
+| `06_risk_event` | Notebook | 09 |
+| `nb_apply_decision` | Notebook | 09 (Operations agent가 실행하므로 직접 실행하지 않음) |
 
 예상 결과: Notebook 7개가 있습니다.
 
@@ -79,7 +79,7 @@ Notebook 코드는 테이블을 `bronze.pub_zeb_cert`처럼 스키마.테이블 
 
 다음 장부터 아래 방법으로 Notebook을 실행합니다.
 
-- 도구 모음의 Run all로 전체 셀을 실행합니다. 실행이 끝나면 각 장의 ‘셀별 결과 확인’과 셀 위 설명에 적힌 예상 결과를 비교합니다. `nb_apply_decision`은 직접 실행하지 않고 10장에서 Operations agent가 승인 후 실행합니다.
+- 도구 모음의 Run all로 전체 셀을 실행합니다. 실행이 끝나면 각 장의 ‘셀별 결과 확인’과 셀 위 설명에 적힌 예상 결과를 비교합니다. `nb_apply_decision`은 직접 실행하지 않고 09장에서 Operations agent가 승인 후 실행합니다.
 - 첫 셀을 실행하면 Spark 세션이 시작됩니다. 보통 수십 초가 걸리고, 용량 사용량이 많으면 더 오래 걸립니다.
 - `# 파라미터`로 시작하는 셀은 parameters 셀입니다. 파이프라인이나 에이전트가 Notebook을 실행할 때 값을 바꿔 넘기는 셀이며, 실습에서는 기본값을 그대로 둡니다.
 - 한 장을 마치면 도구 모음의 Stop session / 세션 중지로 Spark 세션을 멈춥니다. 다음 Notebook을 실행하면 새 세션이 시작됩니다.

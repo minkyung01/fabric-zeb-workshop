@@ -1,6 +1,6 @@
-# 10. Operations agent — 제안·승인·반영
+# 09. Operations agent — 제안·승인·반영
 
-[목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [강사 시연](10a-instructor-demo.md)
+[목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [10. 강사 시연](10-instructor-demo.md)
 
 Notebook과 에이전트로 D단지 위험과 근거를 확인했습니다. 운영에서는 사람이 직접 조회하기 전에 위험을 감지해 담당자에게 알리고, 할 일을 제안해야 합니다. 이 장에서는 Operations agent가 D단지 위험과 추천 보완안을 Teams로 제안하게 만들고(1–7단계), 담당자로서 승인한 뒤 그 결과가 데이터 전체에 어떻게 반영되는지 따라가 확인합니다(8–13단계). 선택 08장을 진행하지 않아도 됩니다. 이 장을 마치면 강사 시연을 본 뒤 11장에서 마무리합니다.
 
@@ -384,4 +384,4 @@ WHERE site_code = 'HS-D';
 
 ## 다음 단계
 
-[강사 시연: Foundry와 웹 대시보드](10a-instructor-demo.md)를 본 뒤 [11. 마무리](11-finish.md)에서 만든 결과를 확인하고 실습을 정리합니다. 시연을 생략하면 바로 11장으로 갑니다.
+[10. 강사 시연: Foundry와 웹 대시보드](10-instructor-demo.md)를 본 뒤 [11. 마무리](11-finish.md)에서 만든 결과를 확인하고 실습을 정리합니다. 시연을 생략하면 바로 11장으로 갑니다.

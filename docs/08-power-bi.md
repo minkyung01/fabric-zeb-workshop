@@ -1,10 +1,10 @@
 # 08. Power BI (선택)
 
-[목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [10. Operations agent](10-operations-agent.md)
+[목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [09. Operations agent](09-operations-agent.md)
 
-Copilot으로 현장 컨트롤 타워 보고서 한 페이지를 만들고 D단지의 등급 위험을 확인합니다. 10장에서 보완안을 승인한 뒤 같은 보고서를 다시 열어 변화를 확인합니다.
+Copilot으로 현장 컨트롤 타워 보고서 한 페이지를 만들고 D단지의 등급 위험을 확인합니다. 09장에서 보완안을 승인한 뒤 같은 보고서를 다시 열어 변화를 확인합니다.
 
-이 장은 선택입니다. 기본 과정에서는 [10. Operations agent](10-operations-agent.md)로 바로 이동합니다. 보고서 없이도 원본 SQL과 Ontology Agent의 Plan으로 승인 결과를 확인할 수 있습니다.
+이 장은 선택입니다. 기본 과정에서는 [09. Operations agent](09-operations-agent.md)로 바로 이동합니다. 보고서 없이도 원본 SQL과 Ontology Agent의 Plan으로 승인 결과를 확인할 수 있습니다.
 
 Power BI 라이선스 활성화 → 모델 만들기 → 관계·측정값 적용 → Copilot으로 현장 페이지 생성 → 저장 → D단지 위험 질문 순서로 진행합니다. 공공 인증 현황 페이지와 테마 꾸미기는 선택입니다.
 
@@ -159,7 +159,7 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 ## (선택) 공공 인증 현황
 
-시간이 남으면 공공 인증 현황 페이지를 직접 추가합니다. 기본 과정과 10장 진행에는 필요하지 않습니다.
+시간이 남으면 공공 인증 현황 페이지를 직접 추가합니다. 기본 과정과 09장 진행에는 필요하지 않습니다.
 
 <details>
 <summary>공공 인증 현황 페이지 만들기</summary>
@@ -177,7 +177,7 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 - Copilot으로 생성한 현장 컨트롤 타워의 카드 5개가 기존 측정값에 연결되어 `8`, `1`, `3`, `0`, `34`를 표시합니다.
 - 현장 표와 Copilot 답변에서 D단지의 V3·예상 5등급·예비 4등급·위험 사유를 확인했고, 인증 일정 표가 있습니다.
 
-이 보고서는 10장에서 승인을 반영한 뒤 다시 열어 D단지의 변화를 확인합니다.
+이 보고서는 09장에서 승인을 반영한 뒤 다시 열어 D단지의 변화를 확인합니다.
 
 ## Troubleshooting
 
@@ -191,4 +191,4 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 ## 다음 단계
 
-[10. Operations agent](10-operations-agent.md)에서 D단지 위험을 Eventhouse로 보내고 Teams로 보완안 제안을 받습니다. Foundry와 웹 대시보드는 10장과 11장 사이에 강사가 시연합니다.
+[09. Operations agent](09-operations-agent.md)에서 D단지 위험을 Eventhouse로 보내고 Teams로 보완안 제안을 받습니다. Foundry와 웹 대시보드는 10장에서 강사가 시연합니다.

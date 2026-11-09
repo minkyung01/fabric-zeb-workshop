@@ -9,7 +9,7 @@ Silver에서 표기와 형식을 맞췄습니다. 이제 `04_gold_model`로 보�
 | 스키마 | 저장하는 데이터 | 쓰는 곳 |
 |---|---|---|
 | `gold` (22개) | Silver에서 정리한 업무 데이터. 원천 시스템의 코드(ERP 프로젝트 번호, PMS 현장 코드, BIM 모델 번호, SCM 거래처 코드)를 그대로 쓰고, 예상 등급이나 위험 여부 같은 판정 결과는 저장하지 않습니다. | Ontology(06장)·Data agent(07장) |
-| `ops` (3개) | 판정 규칙을 적용해 계산한 운영 지표. 현장 상태, 발주 상태, 인증 일정 예측 | Operations agent(10장)·Power BI(선택 08장) |
+| `ops` (3개) | 판정 규칙을 적용해 계산한 운영 지표. 현장 상태, 발주 상태, 인증 일정 예측 | Operations agent(09장)·Power BI(선택 08장) |
 
 Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 바뀌어도 업무 데이터는 그대로이기 때문입니다. 실행되는 계산은 Notebook에 있고, 06장의 Ontology에는 같은 기준을 업무 설명으로 담습니다. 설명 자체가 계산을 실행하지는 않습니다. 07장에서는 Ontology Agent의 Plan 질의 결과를 정답 Notebook과 비교합니다.
 
@@ -149,7 +149,7 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
 - `silver.… not found` 오류가 나면 04장 Notebook을 먼저 실행합니다.
 - 6번 셀에서 그래프 관련 오류가 나도 Gold·ops 테이블은 이미 저장된 상태입니다. 06장에서 Graph를 만들기 전이라면 무시해도 됩니다.
-- 이 Notebook은 다시 실행해도 됩니다. 이 Notebook이 만드는 테이블만 덮어쓰고, 10장에서 만드는 `ops.risk_event`·`ops.option_eval`은 건드리지 않습니다.
+- 이 Notebook은 다시 실행해도 됩니다. 이 Notebook이 만드는 테이블만 덮어쓰고, 09장에서 만드는 `ops.risk_event`·`ops.option_eval`은 건드리지 않습니다.
 
 ## 다음 단계
 

@@ -58,7 +58,7 @@ class Notebooks(unittest.TestCase):
             self.assertIn(target, NOTEBOOKS)
 
     def test_eventhouse_columns_match_docs(self):
-        doc = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
+        doc = (ROOT / "docs" / "09-operations-agent.md").read_text(encoding="utf-8")
         table = re.search(r"\.create-merge table ZebRiskEvent \((.*?)\)\n", doc, re.S).group(1)
         columns = [line.strip().split(":")[0] for line in table.strip().splitlines()]
         for name in ("06_risk_event", "nb_apply_decision"):
@@ -82,7 +82,7 @@ class Docs(unittest.TestCase):
     def test_run_all_guidance_for_participant_notebooks(self):
         for chapter in ("01-workspace.md", "02-bronze-public.md", "03-bronze-contoso.md",
                         "04-silver.md", "05-gold.md", "07-data-agent.md",
-                        "10-operations-agent.md"):
+                        "09-operations-agent.md"):
             text = (ROOT / "docs" / chapter).read_text(encoding="utf-8")
             self.assertIn("Run all", text, chapter)
             self.assertNotIn("한 셀씩 실행", text, chapter)
@@ -133,14 +133,14 @@ class Docs(unittest.TestCase):
 
     def test_read_only_question_flow_matches_approval_followup(self):
         for name in ("README.md", "docs/00-scenario.md", "docs/06-ontology.md",
-                     "docs/07-data-agent.md", "docs/10-operations-agent.md", "docs/11-finish.md"):
+                     "docs/07-data-agent.md", "docs/09-operations-agent.md", "docs/11-finish.md"):
             text = (ROOT / name).read_text(encoding="utf-8")
             self.assertIn("Plan", text, name)
         questions = (ROOT / "docs" / "07-data-agent.md").read_text(encoding="utf-8")
         self.assertIn("Data agent 직접 비교는", questions)
         self.assertIn("미확인", questions)
         self.assertIn("원본 데이터·Ontology", questions)
-        approval = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
+        approval = (ROOT / "docs" / "09-operations-agent.md").read_text(encoding="utf-8")
         self.assertIn('status becomes "open"', approval)
         self.assertIn("Execute the action only after", approval)
         self.assertIn("Crosses above 0.5", approval)
@@ -174,22 +174,22 @@ class Docs(unittest.TestCase):
         self.assertNotIn("zeb-theme.json", optional)
         self.assertNotIn("Horizontal", report)
         self.assertNotIn("ZEB 인증 현황", completion)
-        operations = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
+        operations = (ROOT / "docs" / "09-operations-agent.md").read_text(encoding="utf-8")
         self.assertIn("(선택 08장 완료 시)", operations)
 
     def test_power_bi_is_optional_before_instructor_demo(self):
         report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
         self.assertTrue(report.startswith("# 08. Power BI (선택)"))
         questions = (ROOT / "docs" / "07-data-agent.md").read_text(encoding="utf-8")
-        self.assertIn("다음: [10. Operations agent]", questions)
-        operations = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
+        self.assertIn("다음: [09. Operations agent]", questions)
+        operations = (ROOT / "docs" / "09-operations-agent.md").read_text(encoding="utf-8")
         self.assertIn("08장을 건너뛰었다면 이 단계는 생략", operations)
         completion = operations.split("## 이 장의 완료 기준", 1)[1].split("## Troubleshooting", 1)[0]
         self.assertNotIn("보고서의 위험 현장이", completion)
         self.assertIn("11단계 SQL 결과로 반영을 확인", completion)
         finish = (ROOT / "docs" / "11-finish.md").read_text(encoding="utf-8")
         self.assertIn("이 장까지 완료하면 참가자 실습은 끝", finish)
-        demo = (ROOT / "docs" / "10a-instructor-demo.md").read_text(encoding="utf-8")
+        demo = (ROOT / "docs" / "10-instructor-demo.md").read_text(encoding="utf-8")
         self.assertIn("웹 대시보드", demo)
         self.assertIn("로컬 웹 앱 설치·실행은 필요하지 않습니다", demo)
 
@@ -202,26 +202,28 @@ class Docs(unittest.TestCase):
         self.assertIn("d08-lakehouse-new-model.png", report)
 
     def test_foundry_is_instructor_demo_only(self):
-        foundry = (ROOT / "docs" / "10a-instructor-demo.md").read_text(encoding="utf-8")
-        self.assertTrue(foundry.startswith("# 강사 시연: Foundry와 웹 대시보드"))
+        foundry = (ROOT / "docs" / "10-instructor-demo.md").read_text(encoding="utf-8")
+        self.assertTrue(foundry.startswith("# 10. 강사 시연: Foundry와 웹 대시보드"))
         self.assertIn("참가자는 따라 만들지 않습니다", foundry)
         self.assertIn("승인 전 상태(D단지 V3·위험)", foundry)
         self.assertIn("참가자 작업 영역을 시연용으로 초기화하지 않습니다", foundry)
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertLess(readme.index("(docs/10-operations-agent.md)"),
-                        readme.index("(docs/10a-instructor-demo.md)"))
-        self.assertLess(readme.index("(docs/10a-instructor-demo.md)"),
+        self.assertLess(readme.index("(docs/09-operations-agent.md)"),
+                        readme.index("(docs/10-instructor-demo.md)"))
+        self.assertLess(readme.index("(docs/10-instructor-demo.md)"),
                         readme.index("(docs/11-finish.md)"))
         self.assertFalse((ROOT / "docs" / "09-foundry-agent.md").exists())
+        self.assertFalse((ROOT / "docs" / "10-operations-agent.md").exists())
+        self.assertFalse((ROOT / "docs" / "10a-instructor-demo.md").exists())
         for chapter in ("07-data-agent.md", "08-power-bi.md"):
             text = (ROOT / "docs" / chapter).read_text(encoding="utf-8")
-            self.assertIn("다음: [10. Operations agent]", text)
+            self.assertIn("다음: [09. Operations agent]", text)
         finish = (ROOT / "docs" / "11-finish.md").read_text(encoding="utf-8")
         self.assertNotIn("fa-zeb", finish)
-        self.assertIn("이전: [강사 시연](10a-instructor-demo.md)", finish)
-        operations = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
-        self.assertIn("다음: [강사 시연](10a-instructor-demo.md)", operations)
-        self.assertIn("이전: [10. Operations agent]", foundry)
+        self.assertIn("이전: [10. 강사 시연](10-instructor-demo.md)", finish)
+        operations = (ROOT / "docs" / "09-operations-agent.md").read_text(encoding="utf-8")
+        self.assertIn("다음: [10. 강사 시연](10-instructor-demo.md)", operations)
+        self.assertIn("이전: [09. Operations agent]", foundry)
         self.assertIn("다음: [11. 마무리]", foundry)
         self.assertIn("## 5. 웹 대시보드 시연", foundry)
         self.assertIn("11장 마무리 전에", foundry)
@@ -275,10 +277,10 @@ class Docs(unittest.TestCase):
         self.assertIn("나머지 Notebook 6개는 해당 장에서 사용하기 전에", setup)
         self.assertIn("예상 결과: `01_bronze_public_ingest`에", setup)
         for chapter in ("03-bronze-contoso.md", "04-silver.md", "05-gold.md",
-                        "07-data-agent.md", "10-operations-agent.md"):
+                        "07-data-agent.md", "09-operations-agent.md"):
             text = (ROOT / "docs" / chapter).read_text(encoding="utf-8")
             self.assertIn("본인 `lh_zeb`를 기본 Lakehouse로 연결", text, chapter)
-        operations = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
+        operations = (ROOT / "docs" / "09-operations-agent.md").read_text(encoding="utf-8")
         self.assertIn("기본 Lakehouse로 연결한 뒤 Run all", operations)
         for path in (ROOT / "README.md", ROOT / "admin" / "README.md",
                      ROOT / "docs" / "01-workspace.md", ROOT / "docs" / "08-power-bi.md"):
@@ -298,10 +300,11 @@ class Docs(unittest.TestCase):
                 self.assertTrue(path.exists(), f"{md.name}: {link}")
 
     def test_chapter_navigation(self):
+        self.assertEqual([doc.name.split("-", 1)[0] for doc in DOCS],
+                         [f"{number:02d}" for number in range(12)])
         for doc in DOCS:
             lines = doc.read_text(encoding="utf-8").splitlines()
-            prefix = "# 강사 시연:" if doc.stem == "10a-instructor-demo" else f"# {doc.name[:2]}."
-            self.assertTrue(lines[0].startswith(prefix), doc.name)
+            self.assertTrue(lines[0].startswith(f"# {doc.name[:2]}."), doc.name)
             self.assertIn("[목차](../README.md)", lines[2], doc.name)
 
     def test_notebook_names_in_docs_exist(self):
