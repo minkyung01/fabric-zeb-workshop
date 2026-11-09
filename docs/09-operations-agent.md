@@ -296,14 +296,14 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 `nb_apply_decision` 행을 눌러 실행 상세를 엽니다. Item snapshots 탭에서 왼쪽의 `nb_apply_decision`을 선택하고 마지막 셀의 출력으로 스크롤합니다. 오른쪽 Run details의 Status가 `Success`인지, 아래 Input parameter가 승인한 `event_id`·`option_id`와 일치하는지도 확인합니다.
 
-<img src="../assets/screenshots/d10-monitor-detail.png" width="1000" alt="실행 상세의 Item snapshots에서 nb_apply_decision 마지막 셀을 확인한 화면. Run details는 Success이며 Input parameter는 ZEB-HS-D-20260930과 OPT-D2입니다. 출력에 현행 V4, 예상 4등급, 정상과 resolved 추가가 보입니다." />
-
 마지막 셀에 다음과 비슷한 줄이 있습니다.
 
 ``` text
 에코시티 D단지 현장: 현행 V4(조치 반영안) 자립률 41.4% · 1차에너지 72.5 → 예상 4등급, 상태 정상
 ZEB-HS-D-20260930: ZebRiskEvent에 resolved 추가
 ```
+
+<img src="../assets/screenshots/d10-monitor-detail.png" width="1000" alt="실행 상세의 Item snapshots에서 nb_apply_decision 마지막 셀을 확인한 화면. Run details는 Success이며 Input parameter는 ZEB-HS-D-20260930과 OPT-D2입니다. 출력에 현행 V4, 예상 4등급, 정상과 resolved 추가가 보입니다." />
 
 ## 10. Eventhouse 상태 이력 확인
 
