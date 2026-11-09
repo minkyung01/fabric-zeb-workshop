@@ -73,18 +73,22 @@ Bronze에서는 받은 값을 고치지 않습니다. 모든 값을 문자열로
     - ZEB의 `region`은 `경기` 1,897건, `경남` 870건, `경북` 828건처럼 짧은 표기입니다.
     - BF의 `sido`는 `경기도` 3,827건, `전라남도` 2,070건처럼 정식 표기입니다.
 
-    <img src="../assets/screenshots/d02-raw-values.png" width="1000" alt="5번 셀 실행 결과. 첫 표는 source_row_num 1–3의 ZEB 인증 원본 행으로 cert_stage 본인증, energy_self_sufficiency 37.23·28.67·76.09, region 대전·경남·강원, building_name 보문산 전망대 등이 문자열로 보입니다. 둘째 표는 region별 건수로 경기 1897, 경남 870, 경북 828, 강원 774, 서울 715입니다." />
+    <img src="../assets/screenshots/d02-zeb-raw-rows.png" width="1000" alt="ZEB 인증 원본 3행. energy_self_sufficiency가 37.23, 28.67, 76.09이고 region이 대전, 경남, 강원입니다. 열 이름 앞의 ABC 아이콘으로 문자열 형식을 확인할 수 있습니다." />
+
+    <img src="../assets/screenshots/d02-zeb-region-counts.png" width="1000" alt="ZEB region별 건수. 경기 1897, 경남 870, 경북 828, 강원 774, 서울 715로 시도 이름이 짧게 표기됩니다." />
+
+    <img src="../assets/screenshots/d02-bf-sido-counts.png" width="1000" alt="BF sido별 건수. 경기도 3827, 전라남도 2070, 경상북도 2062, 경상남도 1965, 서울특별시 1721로 시도 이름이 정식 표기됩니다." />
 
     기관마다 같은 시도를 다르게 쓰고, 건물 이름 뒤에 `기본 및 실시설계용역` 같은 말이 붙기도 합니다. 이대로는 기관끼리 비교하거나 연결할 수 없습니다. 그래도 Bronze에서는 고치지 않고 받은 그대로 둡니다. 표기 통일은 04장(Silver)에서 합니다.
 
 ## 3. Lakehouse에서 확인
 
-1.  Notebook 왼쪽 Explorer에서 `lh_zeb` → Tables를 펼칩니다. `dbo`만 보이면 Tables 오른쪽 …를 누르고 Refresh를 누릅니다.
+1.  본인 작업 영역에서 Lakehouse `lh_zeb`를 열고 왼쪽 Explorer의 Tables를 펼칩니다. Notebook의 Explorer에서도 확인할 수 있습니다. `dbo`만 보이면 Tables 오른쪽 …를 누르고 Refresh를 누릅니다.
 2.  새로 생긴 `bronze` 스키마를 펼칩니다.
 
 예상 결과: `bronze` 아래에 `ingest_log`, `pub_bf_cert`, `pub_green_tech_cert`, `pub_gseed_cert`, `pub_zeb_cert` 5개가 있습니다.
 
-<img src="../assets/screenshots/d02-bronze-tables.png" width="1000" alt="Notebook 왼쪽 Explorer. lh_zeb > Tables 아래에 dbo와 bronze 스키마가 있고, bronze 아래에 ingest_log, pub_bf_cert, pub_green_tech_cert, pub_gseed_cert, pub_zeb_cert 5개 테이블이 보입니다." />
+<img src="../assets/screenshots/d02-bronze-tables.png" width="1000" alt="Lakehouse lh_zeb의 Explorer. Tables 아래에 dbo와 bronze 스키마가 있고, bronze 아래에 ingest_log와 공공 인증 테이블 4개가 보입니다." />
 
 ## 이 장의 완료 기준
 
