@@ -55,7 +55,7 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 | 장 | 이번 단계에서 할 일 |
 |---|---|
 | [00. 시나리오와 실습 순서](docs/00-scenario.md) | 업무 상황·판단 기준과 실습 흐름을 이해합니다. |
-| [01. 작업 영역 준비](docs/01-workspace.md) | 준비된 Notebook을 확인하고 스키마 사용 Lakehouse `lh_zeb`를 직접 만들어 Notebook 7개에 연결합니다. |
+| [01. 작업 영역 준비](docs/01-workspace.md) | 준비된 Notebook을 확인하고 스키마 사용 Lakehouse `lh_zeb`를 직접 만들어 첫 Notebook에 연결합니다. |
 | [02. Bronze ① 공공 인증 데이터](docs/02-bronze-public.md) | 공공데이터포털에서 인증 4종을 Notebook으로 내려받아 그대로 저장합니다. |
 | [03. Bronze ② Contoso 내부 데이터](docs/03-bronze-contoso.md) | ERP·PMS·BIM·SCM의 가상 데이터를 만들고 시스템별 코드 차이를 확인합니다. |
 | [04. Silver](docs/04-silver.md) | 시도·용도·등급 표기를 통일하고, 같은 건물을 묶고, 발주 이벤트를 반영합니다. |
@@ -73,7 +73,7 @@ Graph·파이프라인·Foundry를 생략해도 기본 과정은 완료됩니다
 
 ## 실습 파일
 
-관리자는 Notebook 7개만 본인 작업 영역에 넣어 둡니다. 참가자는 01장에서 Lakehouse를 직접 만들고 Notebook에 연결합니다. Power BI 파일 2개는 08장에서 아래 저장소 링크로 PC에 내려받으며, Lakehouse에 업로드하지 않습니다.
+관리자는 Notebook 7개만 본인 작업 영역에 넣어 둡니다. 참가자는 01장에서 Lakehouse를 직접 만들고 첫 Notebook에 연결합니다. 나머지 Notebook은 해당 장에서 사용하기 전에 연결합니다. Power BI 파일 2개는 08장에서 아래 저장소 링크로 PC에 내려받으며, Lakehouse에 업로드하지 않습니다.
 
 | 파일 | 위치 | 용도 |
 |---|---|---|

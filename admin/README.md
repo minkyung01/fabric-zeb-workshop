@@ -10,7 +10,7 @@ Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참�
 |---|---|
 | Microsoft Fabric 용량 | 유료 F 용량. 12명 동시 실습 기준 F64 이상 권장(Copilot은 F2 이상이면 사용 가능). Operations agent는 Trial 용량을 지원하지 않습니다. |
 | 참가자 작업 영역 | `ws-pNNN` (참가자는 Contributor 이상) |
-| Lakehouse | 01장에서 참가자가 `lh_zeb`를 직접 생성(schemas 켬)하고 Notebook 7개에 기본으로 연결 |
+| Lakehouse | 01장에서 참가자가 `lh_zeb`를 직접 생성(schemas 켬)하고 첫 Notebook에 기본으로 연결. 나머지는 해당 장에서 사용하기 전에 연결 |
 | 실습 파일 | 관리자는 Notebook 7개(`notebooks/*.ipynb`)만 가져옴. Power BI 파일 2개는 참가자가 08장에서 저장소에서 PC로 다운로드 |
 | 네트워크 | Fabric Spark에서 `https://www.data.go.kr`로 나가는 HTTPS(02장). 막혀 있으면 아래 "공공데이터 대체 경로" |
 | Power BI | 참가자 Pro 또는 PPU 라이선스 |
@@ -36,7 +36,7 @@ Teams 관리 센터에서 Fabric Operations Agent 앱을 참가자에게 허용�
 
 ## 2. 참가자 작업 영역 일괄 준비
 
-`admin/provision.py`가 참가자마다 작업 영역·접근 권한과 Notebook 7개를 준비합니다. Lakehouse 생성·기본 연결·파일 업로드는 하지 않습니다. 참가자가 01장에서 스키마 사용 Lakehouse를 만들고 Notebook에 연결합니다. 관리자 계정의 Azure CLI 로그인을 사용하며 비밀 값을 저장하지 않습니다.
+`admin/provision.py`가 참가자마다 작업 영역·접근 권한과 Notebook 7개를 준비합니다. Lakehouse 생성·기본 연결·파일 업로드는 하지 않습니다. 참가자가 01장에서 스키마 사용 Lakehouse를 만들고 첫 Notebook에 연결하며, 나머지는 해당 장에서 사용하기 전에 연결합니다. 관리자 계정의 Azure CLI 로그인을 사용하며 비밀 값을 저장하지 않습니다.
 
 기본 접두사는 `ws-`입니다. 12명 예시는 `p011-p022`이며 실제 배정 계정의 마지막 번호에 맞춥니다. 기존 `ws-p011`이 있으면 재사용하며, 이 스크립트는 계정 생성이나 기존 작업 영역 이름 변경을 하지 않습니다. 기존 영역의 용량 할당·역할은 별도로 확인합니다. 이전 `zeb-` 이름의 영역을 자동으로 찾아 바꾸지 않습니다.
 

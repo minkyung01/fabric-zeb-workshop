@@ -79,7 +79,7 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 승인할 때(8단계) 실행될 `nb_apply_decision`을 먼저 확인합니다. Operations agent가 넘기는 `event_id`, `option_id`로 위험 이벤트를 확인한 뒤 조치 기록 → Eventhouse `approved` → Silver·Gold 재계산 → `resolved`를 차례로 처리합니다. 지금은 열어서 확인만 하고 실행하지 않습니다.
 
 1.  작업 영역에서 `nb_apply_decision`을 엽니다.
-2.  Explorer에서 기본 Lakehouse가 본인 `lh_zeb`인지 확인합니다(01장 4단계).
+2.  [01장 4단계](01-workspace.md#4-notebook의-기본-lakehouse-연결)와 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결합니다.
 3.  1. 매개 변수 셀이 parameters 셀이고 `event_id`, `option_id` 두 변수가 있는지 확인합니다.
 
 예상 결과: 기본 Lakehouse가 `lh_zeb`이고, parameters 셀에 `event_id = "ZEB-HS-D-20260930"`, `option_id = "OPT-D2"`가 있습니다. 이 값은 직접 실행할 때의 기본값이며, 에이전트는 이벤트의 값을 넘깁니다.
@@ -173,7 +173,7 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 1.  도구 모음의 Start를 누릅니다. Start가 비활성이 되고 Stop을 누를 수 있게 되면 감시가 시작된 것입니다(Start에 마우스를 올리면 `The agent is already running.`). 다음 Notebook은 Start 뒤에 실행합니다.
 
-2.  작업 영역에서 `06_risk_event`를 열고 Run all을 누릅니다. 세션 시작을 포함해 약 2–3분 걸립니다.
+2.  작업 영역에서 `06_risk_event`를 열고, [01장 4단계](01-workspace.md#4-notebook의-기본-lakehouse-연결)와 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결한 뒤 Run all을 누릅니다. 세션 시작을 포함해 약 2–3분 걸립니다.
 
     1.  1. 보완안 평가
 

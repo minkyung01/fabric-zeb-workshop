@@ -2,7 +2,7 @@
 
 [목차](../README.md) \| 이전: [00. 시나리오와 실습 순서](00-scenario.md) \| 다음: [02. Bronze ① 공공 인증 데이터](02-bronze-public.md)
 
-실습에 쓸 본인 작업 영역과 준비된 Notebook 7개를 확인하고, Lakehouse `lh_zeb`를 직접 만듭니다. 만든 Lakehouse를 Notebook 7개에 기본으로 연결하면 이 장은 끝입니다. 데이터는 다음 장부터 적재합니다.
+실습에 쓸 본인 작업 영역과 준비된 Notebook 7개를 확인하고, Lakehouse `lh_zeb`를 직접 만듭니다. 만든 Lakehouse를 `01_bronze_public_ingest`에 기본으로 연결하면 이 장은 끝입니다. 나머지 Notebook은 해당 장에서 사용하기 전에 연결합니다. 데이터는 다음 장부터 적재합니다.
 
 Fabric 접속 → 작업 영역 유형 확인 → Notebook 7개 확인 → Lakehouse 직접 생성 → Notebook의 기본 Lakehouse 연결 순서로 진행합니다.
 
@@ -69,9 +69,9 @@ Notebook 코드는 테이블을 `bronze.pub_zeb_cert`처럼 스키마.테이블 
     <img src="../assets/screenshots/d01-notebook-add-lakehouse.png" width="1000" alt="01_bronze_public_ingest Notebook의 Explorer. No data sources added 아래 Add data items 메뉴를 펼쳐 From OneLake catalog를 선택하는 화면입니다." />
 
 3.  Data items → OneLake 아래 `lh_zeb`의 …에서 Set as default lakehouse를 누르고, 이름 오른쪽에 핀 아이콘(기본 Lakehouse 표시)이 생겼는지 확인합니다. 이미 핀이 있으면 그대로 둡니다.
-4.  나머지 Notebook 6개도 같은 방법으로 확인합니다.
+4.  나머지 Notebook 6개는 해당 장에서 사용하기 전에 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결합니다. 지금은 연결하지 않습니다.
 
-예상 결과: Notebook 7개 모두 본인 작업 영역의 `lh_zeb`가 기본 Lakehouse로 연결되어 있습니다.
+예상 결과: `01_bronze_public_ingest`에 본인 작업 영역의 `lh_zeb`가 기본 Lakehouse로 연결되어 있습니다.
 
 <img src="../assets/screenshots/d01-notebook-lakehouse.png" width="1000" alt="01_bronze_public_ingest Notebook. 왼쪽 Explorer의 Data items > OneLake 아래에 lh_zeb와 핀 아이콘이 있고, 가운데에 01. Bronze ① 공공 인증 데이터 수집 제목과 수집할 데이터 4종 표, 파라미터 셀이 보입니다. 위쪽에 이 작업 영역의 다른 사람이 Notebook에 접근할 수 있으니 실행 전에 내용을 확인하라는 안내 배너가 있습니다." />
 
@@ -88,7 +88,7 @@ Notebook 위쪽에 "Other people in your organization may have access to noteboo
 
 ## 이 장의 완료 기준
 
-본인 작업 영역의 유형이 Fabric이고, 직접 만든 스키마 사용 Lakehouse `lh_zeb`와 Notebook 7개가 있습니다. Notebook 7개 모두 본인 `lh_zeb`를 기본 Lakehouse로 씁니다.
+본인 작업 영역의 유형이 Fabric이고, 직접 만든 스키마 사용 Lakehouse `lh_zeb`와 Notebook 7개가 있습니다. `01_bronze_public_ingest`에 본인 `lh_zeb`가 기본 Lakehouse로 연결되어 있습니다.
 
 ## Troubleshooting
 

@@ -21,7 +21,7 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
 
 ## 1. Notebook 열고 실행
 
-1.  작업 영역에서 `03_silver_conform`을 엽니다.
+1.  작업 영역에서 `03_silver_conform`을 열고, [01장 4단계](01-workspace.md#4-notebook의-기본-lakehouse-연결)와 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결합니다.
 2.  맨 위 셀부터 Shift+Enter로 한 셀씩 실행합니다. 약 3분 걸립니다. 이 Notebook은 실행할 때마다 `silver` 스키마를 비우고 Bronze에서 다시 만듭니다.
 
 ## 2. 셀별 결과 확인

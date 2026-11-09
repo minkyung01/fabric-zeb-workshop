@@ -121,7 +121,15 @@ class Docs(unittest.TestCase):
         setup = (ROOT / "docs" / "01-workspace.md").read_text(encoding="utf-8")
         self.assertIn("## 3. Lakehouse 직접 만들기", setup)
         self.assertIn("Lakehouse schemas / 스키마 사용을 켠 뒤 Create", setup)
-        self.assertIn("Notebook 7개 모두", setup)
+        self.assertNotIn("Notebook 7개 모두", setup)
+        self.assertIn("나머지 Notebook 6개는 해당 장에서 사용하기 전에", setup)
+        self.assertIn("예상 결과: `01_bronze_public_ingest`에", setup)
+        for chapter in ("03-bronze-contoso.md", "04-silver.md", "05-gold.md",
+                        "07-data-agent.md", "10-operations-agent.md"):
+            text = (ROOT / "docs" / chapter).read_text(encoding="utf-8")
+            self.assertIn("본인 `lh_zeb`를 기본 Lakehouse로 연결", text, chapter)
+        operations = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
+        self.assertIn("기본 Lakehouse로 연결한 뒤 Run all", operations)
         for path in (ROOT / "README.md", ROOT / "admin" / "README.md",
                      ROOT / "docs" / "01-workspace.md", ROOT / "docs" / "08-power-bi.md"):
             self.assertNotIn("Files/workshop", path.read_text(encoding="utf-8"), path.name)
