@@ -187,6 +187,14 @@ class Docs(unittest.TestCase):
         self.assertIn("강사가 웹 대시보드", finish)
         self.assertIn("로컬 앱을 설치하거나 실행할 필요가 없습니다", finish)
 
+    def test_power_bi_license_activation_precedes_model_creation(self):
+        report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
+        self.assertLess(report.index("### Semantic model을 만들기 전에: Power BI 체험판 활성화"),
+                        report.index("## 1. Semantic model 만들기"))
+        self.assertIn("이미 유효한 Pro·PPU 또는 체험판", report)
+        self.assertIn("작업 영역의 기존 유료 용량을 변경하는 단계가 아닙니다", report)
+        self.assertIn("d08-lakehouse-new-model.png", report)
+
     def test_chapters_linked_from_readme(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for doc in DOCS:

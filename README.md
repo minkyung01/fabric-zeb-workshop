@@ -43,7 +43,7 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 | 실습 계정·참가자 번호 | Fabric·Teams에 사용할 계정과 본인 번호 |
 | 작업 영역 | 용량이 할당된 본인 작업 영역과 미리 넣어 둔 Notebook 7개. Lakehouse `lh_zeb`는 01장에서 직접 생성 |
 | 에이전트 사용 환경 | Copilot·Data agent·Ontology·Operations agent 테넌트 설정, Teams의 Fabric Operations Agent 앱 |
-| (선택) Power BI | 08장을 진행할 경우 Pro 또는 PPU 라이선스, 모델·보고서 작성 권한 |
+| (선택) Power BI | 08장을 진행할 경우 Pro·PPU 또는 활성 체험판 라이선스, 모델·보고서 작성 권한 |
 | Teams 로그인 | Fabric과 같은 계정으로 Teams(데스크톱 또는 웹)에 로그인할 수 있는지 미리 확인(10장) |
 | (선택) Foundry | 09장을 진행할 경우 Foundry 프로젝트, 또는 프로젝트를 만들 구독·리소스 그룹·지역 |
 

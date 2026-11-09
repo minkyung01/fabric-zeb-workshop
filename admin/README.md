@@ -13,7 +13,7 @@ Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참�
 | Lakehouse | 01장에서 참가자가 `lh_zeb`를 직접 생성(schemas 켬)하고 첫 Notebook에 기본으로 연결. 나머지는 해당 장에서 사용하기 전에 연결 |
 | 실습 파일 | 관리자는 Notebook 7개(`notebooks/*.ipynb`)만 가져옴. Power BI 파일은 선택 08장을 진행할 때만 참가자가 저장소에서 PC로 다운로드 |
 | 네트워크 | Fabric Spark에서 `https://www.data.go.kr`로 나가는 HTTPS(02장). 막혀 있으면 아래 "공공데이터 대체 경로" |
-| Power BI (선택) | 08장을 진행할 경우 참가자 Pro 또는 PPU 라이선스 |
+| Power BI (선택) | 08장 Semantic model 생성 전에 참가자 Pro·PPU 또는 활성 체험판 라이선스 확인. 체험판 시작이 차단된 계정은 관리자가 라이선스 할당 |
 | Microsoft Teams | Teams 라이선스, 앱 Fabric Operations Agent 허용(10장). 참가자는 Fabric과 같은 계정으로 Teams(데스크톱 또는 웹)에 로그인할 수 있어야 합니다. |
 | Microsoft Foundry (선택) | 09장용 Azure 구독·리소스 그룹, 프로젝트·모델 배포, Fabric IQ 인증 연결 |
 

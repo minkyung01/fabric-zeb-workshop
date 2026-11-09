@@ -6,17 +6,27 @@ Copilot으로 현장 컨트롤 타워 보고서 한 페이지를 만들고 D단�
 
 이 장은 선택입니다. 기본 과정에서는 [10. Operations agent](10-operations-agent.md)로 바로 이동합니다. 보고서 없이도 원본 SQL과 Ontology Agent의 Plan으로 승인 결과를 확인할 수 있습니다.
 
-모델 만들기 → 관계·측정값 적용 → Copilot으로 현장 페이지 생성 → 저장 → D단지 위험 질문 순서로 진행합니다. 공공 인증 현황 페이지와 테마 꾸미기는 선택입니다.
+Power BI 라이선스 활성화 → 모델 만들기 → 관계·측정값 적용 → Copilot으로 현장 페이지 생성 → 저장 → D단지 위험 질문 순서로 진행합니다. 공공 인증 현황 페이지와 테마 꾸미기는 선택입니다.
 
 이 장의 미션: D단지 위험을 보고서에서 찾고, 해당 수치가 어떤 테이블·측정값·필터에서 나왔는지 확인합니다. Copilot은 페이지와 설명을 돕지만 계산의 정답은 아닙니다. Ontology의 규칙이 Semantic model에 자동 복사되는 것이 아니라, 이 장에서 TMDL의 관계·측정값을 따로 적용합니다.
 
 ## 시작 전 준비
 
 - 05장까지 완료한 본인 `lh_zeb`: `gold` 22개, `ops` 3개 테이블
-- 관리자가 준비한 활성 유료 Fabric 용량, Power BI Pro 또는 PPU 라이선스, 모델·보고서 작성 권한과 Copilot 설정
+- 관리자가 준비한 활성 유료 Fabric 용량, Power BI Pro·PPU 또는 활성 체험판 라이선스, 모델·보고서 작성 권한과 Copilot 설정
 - [`sm_zeb.tmdl`](../fabric/sm_zeb.tmdl)을 PC로 내려받습니다. GitHub 파일 화면의 Download raw file을 사용해 원래 이름과 확장자로 저장합니다. Lakehouse에 업로드하지 않습니다.
 
 용량·지원 지역·Copilot 설정은 [관리자 준비 가이드](../admin/README.md)와 [공식 요구 사항](https://learn.microsoft.com/power-bi/create-reports/copilot-introduction#requirements-at-a-glance)을 따릅니다.
+
+### Semantic model을 만들기 전에: Power BI 체험판 활성화
+
+실습 계정에 Power BI Pro·PPU가 없다면 먼저 Power BI 체험판(Trial) 라이선스를 활성화합니다. 이미 유효한 Pro·PPU 또는 체험판이 있으면 이 과정은 건너뜁니다.
+
+1.  Fabric 오른쪽 위 프로필 아이콘을 눌러 본인 계정의 Power BI 라이선스를 확인합니다.
+2.  무료 계정이면 계정 메뉴의 라이선스·무료 체험 안내에서 Power BI 체험판을 시작하고 활성화 절차를 마칩니다. 체험판 시작 항목이 없거나 조직 정책으로 차단되면 관리자에게 라이선스 할당을 요청합니다.
+3.  활성화된 라이선스를 확인한 뒤 페이지를 새로 고치고 아래 모델 만들기를 진행합니다.
+
+Power BI 개인 라이선스와 작업 영역의 Fabric 용량은 별개입니다. Fabric Trial 용량을 새로 시작하거나 작업 영역의 기존 유료 용량을 변경하는 단계가 아닙니다.
 
 ## 1. Semantic model 만들기
 
@@ -24,6 +34,9 @@ Copilot으로 현장 컨트롤 타워 보고서 한 페이지를 만들고 D단�
 
 1.  본인 작업 영역에서 Lakehouse `lh_zeb`를 엽니다.
 2.  리본의 New semantic model을 누릅니다.
+
+    <img src="../assets/screenshots/d08-lakehouse-new-model.png" width="1000" alt="lh_zeb Lakehouse의 Home 리본. New semantic model 버튼을 빨간 테두리로 표시했습니다." />
+
 3.  New semantic model 창에 아래와 같이 입력하고 Confirm을 누릅니다.
 
     - Direct Lake semantic model name: `sm_zeb`
@@ -35,7 +48,9 @@ Copilot으로 현장 컨트롤 타워 보고서 한 페이지를 만들고 D단�
     | `gold` | `pub_zeb_certification`, `ref_region`, `ref_zeb_grade_criteria`, `ref_building_use`, `scm_vendor`, `ref_equipment_category` |
     | `ops` | `site_status`, `milestone_forecast`, `po_status` |
 
-    <img src="../assets/screenshots/d08-new-model.png" width="700" alt="New semantic model 창. 이름 sm_zeb, Workspace zeb-p001이고 gold의 pub_zeb_certification, ref_building_use, ref_equipment_category, ref_region이 체크되어 있습니다." />
+    목록을 아래로 스크롤해 `ops`의 테이블 3개까지 모두 선택합니다. 아래 화면에는 선택 목록의 일부만 보입니다.
+
+    <img src="../assets/screenshots/d08-new-model.png" width="700" alt="New semantic model 창에 sm_zeb와 본인 작업 영역이 입력되어 있습니다. 공공 인증·기준 정보·공급사 테이블과 펼친 ops의 선택 목록 일부가 보이며, 모델 이름·작업 영역과 Confirm 버튼을 빨간 테두리로 표시했습니다." />
 
 예상 결과: `sm_zeb`가 Model view로 열립니다. 오른쪽 Data 창에 테이블 9개가 있고, 오른쪽 위는 Editing입니다.
 
