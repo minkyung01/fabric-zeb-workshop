@@ -97,12 +97,31 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 3.  보고서가 편집 보기(Editing)인지 확인하고 리본 오른쪽 Copilot을 눌러 아래 내용을 보냅니다.
 
     ``` text
-    현장 컨트롤 타워 보고서 페이지를 만들어줘. site_status 테이블을 중심으로, 위쪽에 현장 수, 위험 현장, 주의 현장, 설치 지연 발주, 평균 공정률 측정값 카드를 두고, 현장별로 site_name, stage, progress_pct, current_version_code, selfsuff_pct, primary_energy_kwh_m2y, grade_by_selfsuff, grade_by_primary_energy, forecast_zeb_label, prelim_zeb_grade, target_zeb_grade, risk_level, risk_reason을 집계하지 않은 표로 보여줘. 아래에는 milestone_forecast의 현장별 인증 일정(site_code, milestone_type, planned_date, forecast_date, delay_days, status)을 집계하지 않은 표로 넣어줘.
+    연결된 sm_zeb 모델로 '현장 컨트롤 타워' 보고서 한 페이지를 만들어줘.
+    기존 보고서 테마를 유지하고, 제목 아래에 요약 카드 한 줄, 그 아래 현장 상태 표, 맨 아래 인증 일정 표 순서로 배치해줘.
+
+    상단 요약: 기존 측정값 site_status[현장 수], site_status[위험 현장], site_status[주의 현장], po_status[설치 지연 발주], site_status[평균 공정률]을 사용해줘. 다섯 지표를 같은 크기의 카드 영역으로 한 줄에 나란히 배치하고, 제목과 값의 글자 크기도 통일해줘. 일부 카드만 크게 만들거나 남은 지표를 작은 글씨로 따로 두지 마.
+    중단 현장 상태: site_status의 site_name, current_version_code, selfsuff_pct, primary_energy_kwh_m2y, forecast_zeb_label, prelim_zeb_grade, risk_level, risk_reason만 이 순서로 넣은 표를 만들어줘. 한 행은 현장 하나이고, 숫자는 합계·평균·개수로 집계하지 마.
+    하단 인증 일정: milestone_forecast의 site_code, milestone_type, planned_date, forecast_date, delay_days, status를 이 순서로 넣은 표를 만들어줘. 한 행은 현장별 일정 하나이고, 숫자를 집계하지 마.
+
+    두 표는 좌우로 나누지 말고 각각 페이지 전체 폭을 사용해 위아래로 배치해줘. 열 너비를 조정해 현장명·예상 등급·위험 상태를 바로 읽을 수 있게 하고, 긴 risk_reason은 줄 바꿈해줘. 날짜는 yyyy-MM-dd 형식으로 표시해줘.
+    제목·카드·표가 겹치거나 페이지 밖으로 나가지 않게 해줘. 장식용 차트나 불필요한 빈 영역은 만들지 마.
+    카드와 표는 실제 모델 필드에 연결하고, 새 측정값이나 등급 판정식을 만들지 마. 데이터값을 텍스트로 직접 입력하지 마.
     ```
 
 4.  생성된 페이지 이름을 `현장 컨트롤 타워`로 바꿉니다. 별도의 새 페이지가 생겼다면 처음의 빈 페이지는 삭제합니다. 시각적 개체의 종류와 배치는 생성 결과에 따라 다릅니다.
 
-    표가 빠졌으면 같은 Copilot 창에 `처음 요청한 site_status의 현장별 표와 milestone_forecast의 현장별 인증 일정 표를 이 페이지에 추가해줘. 두 표 모두 숫자를 합계로 집계하지 마.`로 보완을 요청합니다. 배치가 겹치면 아래 Troubleshooting을 따릅니다.
+    카드 크기가 제각각이거나 현장 표가 반쪽 폭에 들어가 읽기 어렵다면 아래 보완 요청을 같은 Copilot 창에 보냅니다. 생성 결과는 매번 다르므로 요청한 배치가 실제로 반영됐는지 확인합니다.
+
+    ``` text
+    방금 만든 현장 컨트롤 타워 페이지를 수정해줘. 새 페이지를 추가하지 마.
+    요약 지표 다섯 개는 기존 측정값 연결을 유지하면서 같은 크기의 카드 영역으로 한 줄에 정렬하고 제목과 값의 글자 크기를 통일해줘.
+    현장 상태 표는 site_name, current_version_code, selfsuff_pct, primary_energy_kwh_m2y, forecast_zeb_label, prelim_zeb_grade, risk_level, risk_reason의 8개 열만 남기고 페이지 전체 폭으로 넓혀줘. risk_reason은 줄 바꿈해줘.
+    인증 일정 표는 site_code, milestone_type, planned_date, forecast_date, delay_days, status를 유지하고 현장 상태 표 아래에 전체 폭으로 배치해줘. 날짜는 yyyy-MM-dd로 표시해줘.
+    표가 빠졌으면 해당 원본 필드로 추가해줘. 두 표의 숫자를 합계로 집계하지 말고 기존 테마를 유지해줘.
+    ```
+
+    Copilot이 배치를 수정하지 못하면 개체를 직접 선택해 크기·위치를 조정합니다. 현장 표에서 불필요한 열을 빼려면 Build visual의 필드 목록에서 제거합니다. 정확한 디자인 일치보다 카드의 측정값 연결과 D단지 위험·일정을 읽을 수 있는지가 중요합니다.
 
     <img src="../assets/screenshots/d08-page2.png" width="1000" alt="Copilot으로 만든 현장 컨트롤 타워 페이지. 위쪽 카드 현장 수 8, 위험 현장 1, 주의 현장 3, 설치 지연 발주 0, 평균 공정률 34, 가운데 site_status 현장별 표, 아래 milestone_forecast 인증 일정 표가 있습니다." />
 
@@ -120,7 +139,7 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 6.  현장 표에서 `에코시티 D단지 현장`의 행을 찾습니다.
 
-    확인할 값: 현행 설계안 `V3`, 자립률 `38.2`, 1차에너지 `76`, 두 기준 등급 `5`·`5`, 예상 `5등급`, 예비 `4`, 목표 `4`, 상태 `위험`, 사유 `예상 5등급(자립률 38.2%)이 예비인증 4등급보다 낮음`. `리버뷰 B단지 현장`은 자립률 기준 `5`, 1차에너지 기준 `4`, 예상 `4등급`, `정상`입니다.
+    확인할 값: 현행 설계안 `V3`, 자립률 `38.2`, 1차에너지 `76`, 예상 `5등급`, 예비 `4`, 상태 `위험`, 사유 `예상 5등급(자립률 38.2%)이 예비인증 4등급보다 낮음`. `리버뷰 B단지 현장`은 예상 `4등급`, `정상`입니다. 두 기준별 등급 계산은 05·07장의 결과와 대조합니다.
 
 7.  인증 일정 표에 현장 코드·일정 종류·계획일·예상일·지연일이 표시되는지 확인합니다. 숫자 열이 합계(Sum)로 집계되었거나 카드가 겹치면 아래 Troubleshooting으로 보완합니다.
 

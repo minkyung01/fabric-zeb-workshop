@@ -200,6 +200,21 @@ class Docs(unittest.TestCase):
         self.assertIn("작업 영역의 기존 유료 용량을 변경하는 단계가 아닙니다", report)
         self.assertIn("d08-lakehouse-new-model.png", report)
 
+    def test_power_bi_prompt_limits_columns_and_specifies_layout(self):
+        report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
+        creation = report.split("## 3. Copilot으로 현장 컨트롤 타워 만들기", 1)[1]
+        prompt = re.findall(r"``` text\n(.*?)```", creation, re.S)[0]
+        self.assertIn("같은 크기의 카드 영역으로 한 줄", prompt)
+        self.assertIn("두 표는 좌우로 나누지 말고 각각 페이지 전체 폭", prompt)
+        self.assertIn("실제 모델 필드에 연결", prompt)
+        site_table = prompt.split("중단 현장 상태:", 1)[1].split("하단 인증 일정:", 1)[0]
+        columns = site_table.split("site_status의 ", 1)[1].split("만 이 순서로", 1)[0]
+        self.assertEqual(columns.split(", "),
+                         ["site_name", "current_version_code", "selfsuff_pct",
+                          "primary_energy_kwh_m2y", "forecast_zeb_label",
+                          "prelim_zeb_grade", "risk_level", "risk_reason"])
+        self.assertIn("새 페이지를 추가하지 마", creation)
+
     def test_chapters_linked_from_readme(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for doc in DOCS:
