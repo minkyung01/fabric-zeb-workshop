@@ -2,33 +2,23 @@
 
 [목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [09. Foundry agent (선택)](09-foundry-agent.md)
 
-공공 인증 현황과 현장 위험을 보고서로 확인합니다. 이 장의 목표는 전국 ZEB 인증 현황과 우리 현장의 예상 등급·위험을 두 페이지로 설명하는 것입니다.
+Copilot으로 현장 컨트롤 타워 보고서 한 페이지를 만들고 D단지의 등급 위험을 확인합니다. 10장에서 보완안을 승인한 뒤 같은 보고서를 다시 열어 변화를 확인합니다.
 
-Gold·ops 테이블로 모델 만들기 → 관계·측정값 적용 → 1페이지 직접 만들기 → 저장 → Copilot으로 2페이지 생성 → 질문과 인사이트 확인 순서로 진행합니다.
+모델 만들기 → 관계·측정값 적용 → Copilot으로 현장 페이지 생성 → 저장 → D단지 위험 질문 순서로 진행합니다. 공공 인증 현황 페이지와 테마 꾸미기는 선택입니다.
 
 이 장의 미션: D단지 위험을 보고서에서 찾고, 해당 수치가 어떤 테이블·측정값·필터에서 나왔는지 확인합니다. Copilot은 페이지와 설명을 돕지만 계산의 정답은 아닙니다. Ontology의 규칙이 Semantic model에 자동 복사되는 것이 아니라, 이 장에서 TMDL의 관계·측정값을 따로 적용합니다.
-
-| 페이지 | 확인할 업무 질문 |
-|---|---|
-| 01 ZEB 인증 현황 — 직접 배치 | 전국 ZEB 인증은 몇 건이고 어디에 많은가? 등급·연도·주거 구분별로 어떻게 분포하는가? 등급 기준값은 무엇인가? |
-| 02 현장 컨트롤 타워 — Copilot으로 생성 | 우리 현장 8곳의 예상 등급은 예비인증·목표 등급을 지키는가? 위험 현장과 사유는 무엇인가? 인증 일정은 계획대로인가? |
 
 ## 시작 전 준비
 
 - 05장까지 완료한 본인 `lh_zeb`: `gold` 22개, `ops` 3개 테이블
 - 관리자가 준비한 활성 유료 Fabric 용량, Power BI Pro 또는 PPU 라이선스, 모델·보고서 작성 권한과 Copilot 설정
-- 아래 링크에서 PC로 내려받은 파일 2개. GitHub 파일 화면의 Download raw file을 사용해 원래 이름과 확장자로 저장합니다. Lakehouse에 업로드할 필요는 없습니다.
-
-| 파일 | 사용할 때 |
-|---|---|
-| [`sm_zeb.tmdl`](../fabric/sm_zeb.tmdl) | 2단계에서 관계 7개와 측정값 20개를 한 번에 적용합니다. |
-| [`zeb-theme.json`](../fabric/zeb-theme.json) | 3단계에서 보고서의 색, 글꼴, 배경, 테두리를 맞춥니다. |
+- [`sm_zeb.tmdl`](../fabric/sm_zeb.tmdl)을 PC로 내려받습니다. GitHub 파일 화면의 Download raw file을 사용해 원래 이름과 확장자로 저장합니다. Lakehouse에 업로드하지 않습니다.
 
 용량·지원 지역·Copilot 설정은 [관리자 준비 가이드](../admin/README.md)와 [공식 요구 사항](https://learn.microsoft.com/power-bi/create-reports/copilot-introduction#requirements-at-a-glance)을 따릅니다.
 
 ## 1. Semantic model 만들기
 
-보고서에 사용할 테이블 9개를 선택합니다. 저장 모드는 Direct Lake로, OneLake의 Delta 테이블을 가져오기(Import) 없이 바로 읽습니다.
+제공된 TMDL과 맞도록 테이블 9개를 선택합니다. 기본 현장 페이지에 쓰지 않는 공공 인증 테이블도 포함합니다. 저장 모드는 Direct Lake로, OneLake의 Delta 테이블을 가져오기(Import) 없이 바로 읽습니다.
 
 1.  본인 작업 영역에서 Lakehouse `lh_zeb`를 엽니다.
 2.  리본의 New semantic model을 누릅니다.
@@ -51,14 +41,7 @@ Gold·ops 테이블로 모델 만들기 → 관계·측정값 적용 → 1페이
 
 ## 2. 관계와 측정값 넣기
 
-TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식입니다. 제공된 `sm_zeb.tmdl`을 적용하면 관계 7개와 측정값 20개가 만들어집니다. 측정값은 원본 데모 보고서와 같은 정의입니다.
-
-| 테이블 | 측정값 |
-|---|---|
-| `pub_zeb_certification` | `ZEB 인증 건수`, `본인증 건수`, `예비인증 건수`, `4등급 이상 건수`, `4등급 이상 비율`, `평균 에너지자립률`, `2025년 인증 건수`, `2024년 인증 건수`, `전년 대비 증가율`, `자립률 하한 미만 인증` |
-| `site_status` | `현장 수`, `위험 현장`, `주의 현장`, `정상 현장`, `평균 공정률`, `상태 색`, `상태 배경` |
-| `po_status` | `발주 건수`, `설치 지연 발주` |
-| `milestone_forecast` | `최대 지연 일수` |
+TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식입니다. 제공된 `sm_zeb.tmdl`을 적용하면 관계 7개와 측정값 20개가 만들어집니다. 직접 관계와 계산식을 하나씩 만들 필요는 없습니다.
 
 1.  화면 아래 TMDL View (Preview) 탭을 누릅니다. Edit your model with TMDL 안내가 나오면 Try it now를 누릅니다.
 2.  PC의 `sm_zeb.tmdl`을 메모장으로 열고 Ctrl+A, Ctrl+C로 전체를 복사합니다.
@@ -79,102 +62,21 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 <img src="../assets/screenshots/d08-relationships.png" width="1000" alt="Fit to page로 본 sm_zeb Model view. 테이블 9개가 한 줄로 놓이고 테이블 사이에 관계선이 이어져 있습니다." />
 
-## 3. 보고서 만들기와 테마 적용
+## 3. Copilot으로 현장 컨트롤 타워 만들기
 
 1.  리본의 New report를 누릅니다. 새 탭에 빈 보고서가 편집 화면으로 열립니다.
-2.  위쪽 View 메뉴 → Theme → Open theme format pane.을 누릅니다. 오른쪽 Theme settings → Theme의 Custom theme name 옆 … → Import를 누르고 PC의 `zeb-theme.json`을 엽니다.
 
-    <img src="../assets/screenshots/d08-theme-import.png" width="1000" alt="Visualizations 창의 Theme settings에서 Custom theme name 옆 … 메뉴를 열어 Import를 고르는 화면" />
-
-    예상 결과: Custom theme name에 `ZEB Contoso`가 표시됩니다.
-
-3.  캔버스 바깥 회색 영역을 누르고 Visualizations 창 → Format page(두 번째 아이콘) → Canvas settings에서 Size를 1280 x 720 (HD) 로 바꿉니다. 새 보고서의 기본값은 1920 x 1080이고, 이 장의 위치·크기 값은 1280 × 720을 기준으로 합니다.
-
-## 4. 1페이지: ZEB 인증 현황
-
-공공 ZEB 인증 9,760건의 분포를 카드·차트·표로 직접 배치합니다. 시각적 개체를 추가할 때는 아래 두 가지를 반복합니다.
-
-- 필드 넣기: 캔버스 바깥 회색 영역을 눌러 선택을 해제하고 Build visual에서 시각적 개체를 고른 뒤, Data 창의 필드를 Build visual의 칸(X-axis, Y-axis, Legend 등)으로 끌어 넣습니다. 같은 열 이름(`sido` 등)이 여러 테이블에 있으므로 테이블을 확인하고 끌어 넣습니다.
-- 위치·크기 맞추기: Format visual → General → Properties의 Size(Height, Width)와 Position(Horizontal, Vertical)에 안내된 값을 입력합니다.
-
-1.  아래쪽 Page 1 탭을 두 번 누르고 `01 ZEB 인증 현황`을 입력합니다.
-
-2.  제목 — 도구 모음의 Text box를 누르고 두 줄을 입력합니다. 첫 줄은 크기 `20`·굵게, 둘째 줄은 크기 `11`로 합니다.
+2.  보고서가 편집 보기(Editing)인지 확인하고 리본 오른쪽 Copilot을 눌러 아래 내용을 보냅니다.
 
     ``` text
-    제로에너지건축물(ZEB) 인증 현황
-    한국에너지공단 공공데이터 · 등급 = 에너지자립률 기준과 1차에너지소요량 기준 중 더 좋은 등급(+ BEMS 필수)
+    현장 컨트롤 타워 보고서 페이지를 만들어줘. site_status 테이블을 중심으로, 위쪽에 현장 수, 위험 현장, 주의 현장, 설치 지연 발주, 평균 공정률 측정값 카드를 두고, 현장별로 site_name, stage, progress_pct, current_version_code, selfsuff_pct, primary_energy_kwh_m2y, grade_by_selfsuff, grade_by_primary_energy, forecast_zeb_label, prelim_zeb_grade, target_zeb_grade, risk_level, risk_reason을 집계하지 않은 표로 보여줘. 아래에는 milestone_forecast의 현장별 인증 일정(site_code, milestone_type, planned_date, forecast_date, delay_days, status)을 집계하지 않은 표로 넣어줘.
     ```
 
-    위치와 크기: Height `66`, Width `1232`, Horizontal `24`, Vertical `10`
+3.  생성된 페이지 이름을 `현장 컨트롤 타워`로 바꿉니다. 별도의 새 페이지가 생겼다면 처음의 빈 페이지는 삭제합니다. 시각적 개체의 종류와 배치는 생성 결과에 따라 다릅니다.
 
-3.  카드 — Card를 고르고 `pub_zeb_certification`의 측정값 4개를 차례로 체크해 Value에 넣습니다: `ZEB 인증 건수`, `2025년 인증 건수`, `전년 대비 증가율`, `4등급 이상 비율`. 카드 하나에 값 4개가 나란히 표시됩니다.
+    표가 빠졌으면 같은 Copilot 창에 `처음 요청한 site_status의 현장별 표와 milestone_forecast의 현장별 인증 일정 표를 이 페이지에 추가해줘. 두 표 모두 숫자를 합계로 집계하지 마.`로 보완을 요청합니다. 배치가 겹치면 아래 Troubleshooting을 따릅니다.
 
-    위치와 크기: Height `92`, Width `1232`, Horizontal `24`, Vertical `84`
-
-4.  시도별 인증 — Clustered bar chart를 고릅니다.
-
-    - Y-axis: `ref_region`의 `sido`
-    - X-axis: `ZEB 인증 건수`
-    - Tooltips: `4등급 이상 건수`, `본인증 건수`
-    - 기본으로 `ZEB 인증 건수` 내림차순입니다. 다르면 차트 오른쪽 위 … → Sort axis에서 바꿉니다.
-    - 제목: Format visual → General → Title → Text에 `시도별 ZEB 인증`을 입력합니다. 표처럼 Title이 Off인 개체는 먼저 켭니다.
-    - 위치와 크기: Height `512`, Width `420`, Horizontal `24`, Vertical `192`
-
-5.  연도별 인증 — Clustered column chart를 고릅니다.
-
-    - X-axis: `pub_zeb_certification`의 `cert_year`. 날짜 계층이 생기면 `cert_year` 자체를 고릅니다.
-    - Y-axis: `ZEB 인증 건수`, Legend: `cert_stage`
-    - 제목: `연도별 인증`
-    - 위치와 크기: Height `248`, Width `392`, Horizontal `460`, Vertical `192`
-
-6.  등급 기준 — Table을 고르고 `ref_zeb_grade_criteria`의 `grade_name`, `selfsuff_min_pct`, `primary_energy_limit_residential`, `primary_energy_limit_nonresidential`을 넣습니다. 숫자 열은 Build visual의 필드 메뉴(▼)에서 Don't summarize를 고릅니다.
-
-    - 제목: `등급 기준`
-    - 위치와 크기: Height `248`, Width `388`, Horizontal `868`, Vertical `192`
-
-7.  등급별 인증 — Clustered column chart를 고릅니다.
-
-    - X-axis: `ref_zeb_grade_criteria`의 `grade_name`, Y-axis: `ZEB 인증 건수`, Legend: `cert_stage`
-    - 제목: `등급별 인증`
-    - 위치와 크기: Height `248`, Width `392`, Horizontal `460`, Vertical `456`
-
-8.  주거 구분별 등급 분포 — 100% stacked bar chart를 고릅니다.
-
-    - Y-axis: `ref_building_use`의 `use_family`, X-axis: `ZEB 인증 건수`, Legend: `ref_zeb_grade_criteria`의 `grade_name`
-    - 제목: `주거용 vs 주거용 이외 등급 분포`
-    - 위치와 크기: Height `248`, Width `388`, Horizontal `868`, Vertical `456`
-
-예상 결과: 카드에 `10K`, `3K`, `+23.0%`, `45.1%`가 보입니다. 큰 수는 자동으로 천 단위(K)로 줄여 표시되며, 실제 값은 `9,760`, `2,732`입니다(카드에 마우스를 올려 확인). 시도별 차트는 경기(1,897)가 가장 길고, 등급별 차트는 5등급(5,359)·4등급(2,697) 순으로 많습니다. 주거용은 285건, 주거용 이외는 9,475건입니다. 등급 기준 표의 4등급 행은 `40`, `70`, `90`입니다.
-
-<img src="../assets/screenshots/d08-page1.png" width="1000" alt="완성한 01 ZEB 인증 현황 페이지. 위쪽 제목, 카드 10K·3K·+23.0%·45.1%, 왼쪽 시도별 ZEB 인증 막대(경기가 가장 김), 가운데 연도별 인증과 등급별 인증 세로 막대, 오른쪽 등급 기준 표와 주거용 vs 주거용 이외 등급 분포가 있습니다." />
-
-시각적 개체를 하나씩 눌러 Build visual에 넣은 필드가 위와 같은지 확인합니다. 등급 축은 이름순이라 `ZEB+`가 맨 뒤에 올 수 있습니다. 순서는 이 장의 확인 대상이 아닙니다.
-
-## 5. 저장
-
-1.  도구 모음의 Save this report(디스크 아이콘)를 누릅니다.
-2.  본인 작업 영역을 고르고 이름 `rpt_zeb`를 입력한 뒤 Save를 누릅니다.
-
-예상 결과: Report saved 알림이 보이고 보고서가 읽기 보기로 바뀝니다. 오른쪽 위 Viewing ▾ → Editing을 눌러 편집을 이어 갑니다.
-
-## 6. Copilot으로 현장 컨트롤 타워 페이지 만들기
-
-2페이지는 직접 배치하지 않고 Copilot에게 생성하도록 요청합니다. 생성된 화면을 그대로 정답으로 받아들이지 않고, 05장의 현장 상태와 필드 연결을 확인합니다.
-
-1.  보고서가 편집 보기(Editing)인지 확인하고 리본 오른쪽 Copilot을 눌러 Copilot 창을 엽니다.
-
-2.  아래 입력 칸에 다음을 입력하고 Enter를 누릅니다.
-
-    ``` text
-    현장 컨트롤 타워 보고서 페이지를 만들어줘. site_status 테이블을 중심으로, 위쪽에 현장 수, 위험 현장, 주의 현장, 설치 지연 발주, 평균 공정률 측정값 카드를 두고, 현장별로 site_name, stage, progress_pct, current_version_code, selfsuff_pct, primary_energy_kwh_m2y, grade_by_selfsuff, grade_by_primary_energy, forecast_zeb_label, prelim_zeb_grade, target_zeb_grade, risk_level, risk_reason을 집계하지 않은 표로 보여줘. 아래에는 milestone_forecast의 현장별 인증 일정(milestone_type, planned_date, forecast_date, delay_days, status) 표를 넣어줘.
-    ```
-
-3.  생성이 끝나면 기존 `01 ZEB 인증 현황` 페이지가 유지되고 새 페이지가 추가되었는지 확인합니다. 새 페이지 이름을 `02 현장 컨트롤 타워`로 바꿉니다. 시각적 개체의 종류와 배치는 생성 결과에 따라 다릅니다.
-
-    카드만 만들고 표가 빠지는 경우가 많습니다. 그러면 같은 Copilot 창에 `이 페이지에 표 두 개를 추가해줘. 하나는 site_status의 현장별 (위 열 목록)을 집계하지 않은 표이고, 다른 하나는 milestone_forecast의 site_code, milestone_type, planned_date, forecast_date, delay_days, status 표야.`처럼 보완을 요청합니다. 개체가 겹치면 View → Selection으로 개체를 골라 Format visual → General → Properties에서 위치·크기를 조정합니다. Copilot이 만든 페이지는 1920 × 1080일 수 있습니다.
-
-    <img src="../assets/screenshots/d08-page2.png" width="1000" alt="Copilot으로 만든 02 현장 컨트롤 타워 페이지. 위쪽 카드 현장 수 8, 위험 현장 1, 주의 현장 3, 설치 지연 발주 0, 평균 공정률 34, 가운데 site_status 현장별 표, 아래 milestone_forecast 인증 일정 표가 있습니다." />
+    <img src="../assets/screenshots/d08-page2.png" width="1000" alt="Copilot으로 만든 현장 컨트롤 타워 페이지. 위쪽 카드 현장 수 8, 위험 현장 1, 주의 현장 3, 설치 지연 발주 0, 평균 공정률 34, 가운데 site_status 현장별 표, 아래 milestone_forecast 인증 일정 표가 있습니다." />
 
 4.  카드를 하나씩 선택하고 Build visual의 값이 아래 기존 측정값에 연결되어 있는지 확인합니다.
 
@@ -192,34 +94,42 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
     확인할 값: 현행 설계안 `V3`, 자립률 `38.2`, 1차에너지 `76`, 두 기준 등급 `5`·`5`, 예상 `5등급`, 예비 `4`, 목표 `4`, 상태 `위험`, 사유 `예상 5등급(자립률 38.2%)이 예비인증 4등급보다 낮음`. `리버뷰 B단지 현장`은 자립률 기준 `5`, 1차에너지 기준 `4`, 예상 `4등급`, `정상`입니다.
 
-6.  숫자 열이 합계(Sum)로 집계되었거나 카드가 겹치면 아래 Troubleshooting으로 보완합니다. Ctrl+S로 저장합니다.
+6.  인증 일정 표에 현장 코드·일정 종류·계획일·예상일·지연일이 표시되는지 확인합니다. 숫자 열이 합계(Sum)로 집계되었거나 카드가 겹치면 아래 Troubleshooting으로 보완합니다.
 
-예상 결과: 현장 8곳의 예상 등급·위험과 인증 일정을 보여 주는 2페이지가 있고, 카드 5개가 기존 측정값에 연결되어 `8`, `1`, `3`, `0`, `34`를 표시합니다.
+7.  Save this report(디스크 아이콘)를 누르고 본인 작업 영역에 `rpt_zeb`로 저장합니다. Report saved 알림을 확인합니다.
 
-## 7. Copilot에게 질문하고 인사이트 얻기
+예상 결과: `rpt_zeb`에 현장 8곳의 예상 등급·위험과 인증 일정을 보여 주는 한 페이지가 있고, 카드 5개가 기존 측정값에 연결되어 `8`, `1`, `3`, `0`, `34`를 표시합니다.
 
-답을 비교하기 쉽도록 질문을 한 번에 하나씩 합니다.
+## 4. D단지 위험을 질문으로 확인
 
-1.  `02 현장 컨트롤 타워` 페이지에서 `예비인증 등급보다 예상 등급이 낮은 현장은 어디고, 이유는 뭐야?`를 묻습니다.
+1.  저장 후 읽기 보기로 바뀌었다면 오른쪽 위 Viewing ▾ → Editing을 누릅니다. `현장 컨트롤 타워` 페이지의 Copilot에서 `예비인증 등급보다 예상 등급이 낮은 현장은 어디고, 이유는 뭐야?`를 묻습니다.
 
     예상 결과: `에코시티 D단지 현장`. 현행 V3 자립률 38.2%·1차에너지 76으로 예상 5등급, 예비인증 4등급보다 낮음. 05장·07장과 같습니다.
 
     <img src="../assets/screenshots/d08-copilot-qa.png" width="1000" alt="Copilot 창의 답. 현장명 에코시티 D단지 현장, 예비인증 등급 4등급, 예상 등급 5등급, 사유 예상 5등급(자립률 38.2%)이 예비인증 4등급보다 낮음이 표로 나옵니다." />
 
-2.  이어서 `이 보고서 페이지의 핵심 인사이트를 요약해줘`를 묻습니다.
+2.  답의 대상·수치·이유가 현장 표와 05·07장 결과에 일치하는지 확인합니다. 설명이 달라도 핵심 근거와 결론은 포함되어야 합니다. 답이 틀리거나 빠진 경우 아래 Troubleshooting으로 필드와 집계를 확인합니다.
 
-    비교할 기준: 8개 현장 중 위험 1곳(D단지, 예비 등급 미달), 주의 3곳(마포 H단지 목표 등급 미달, 세종 E학교 BF 목표 미달, 스마트오피스 C센터 BEMS 미계획), 설치 지연 발주 0건. 리버뷰 B단지는 자립률이 40% 미만이지만 1차에너지 기준으로 4등급을 유지합니다. 표현은 달라도 수치·대상이 다르면 정답으로 처리하지 않습니다.
+## (선택) 공공 인증 현황과 테마
 
-3.  `01 ZEB 인증 현황` 페이지로 가서 `자립률이 그 등급의 자립률 하한보다 낮은데도 그 등급을 받은 ZEB 인증은 몇 건이야?`를 묻습니다.
+시간이 남으면 공공 인증 현황 페이지를 직접 추가하거나 테마를 적용합니다. 기본 과정과 10장 진행에는 필요하지 않습니다.
 
-    예상 결과: `176`건(`자립률 하한 미만 인증` 측정값). 자립률이 낮아도 1차에너지소요량 기준으로 등급을 받을 수 있기 때문입니다. 리버뷰 B단지와 같은 경우가 공공 데이터에도 있다는 뜻입니다.
+<details>
+<summary>공공 인증 현황 페이지와 테마 만들기</summary>
+
+1.  보고서 편집 화면 아래의 +로 새 페이지를 추가하고 이름을 `ZEB 인증 현황`으로 바꿉니다.
+2.  Build visual에서 Card를 골라 `pub_zeb_certification`의 측정값 `ZEB 인증 건수`, `2025년 인증 건수`, `전년 대비 증가율`, `4등급 이상 비율`을 Value에 넣습니다. 확인할 값은 `9,760`, `2,732`, `+23.0%`, `45.1%`이며, 큰 수는 `10K`, `3K`로 표시될 수 있습니다.
+3.  Clustered bar chart의 Y-axis에 `ref_region[sido]`, X-axis에 `ZEB 인증 건수`를 넣습니다. 차트 오른쪽 위 … → Sort axis에서 인증 건수 내림차순으로 정렬합니다. 경기 `1,897`건이 가장 많습니다.
+4.  원하는 위치로 개체를 배치하고 Ctrl+S로 저장합니다. 정확한 위치·크기를 맞출 필요는 없습니다.
+5.  테마도 적용하려면 [`zeb-theme.json`](../fabric/zeb-theme.json)을 Download raw file로 PC에 내려받습니다. View → Theme → Open theme format pane. → Theme settings → Theme의 Custom theme name 옆 … → Import에서 파일을 엽니다.
+
+</details>
 
 ## 이 장의 완료 기준
 
 - 본인 작업 영역에 `sm_zeb`(테이블 9개·관계 7개·측정값 20개)와 저장된 `rpt_zeb`가 있습니다.
-- 직접 만든 01 ZEB 인증 현황에서 카드 `10K`(9,760), `3K`(2,732), `+23.0%`, `45.1%`와 시도·연도·등급·주거 구분 분포를 확인했습니다.
-- Copilot으로 생성한 02 현장 컨트롤 타워의 카드 5개가 기존 측정값에 연결되어 `8`, `1`, `3`, `0`, `34`를 표시하고, D단지의 위험 사유를 확인했습니다.
-- Copilot 질문·인사이트의 대상·수치가 05·07장 결과와 일치합니다.
+- Copilot으로 생성한 현장 컨트롤 타워의 카드 5개가 기존 측정값에 연결되어 `8`, `1`, `3`, `0`, `34`를 표시합니다.
+- 현장 표와 Copilot 답변에서 D단지의 V3·예상 5등급·예비 4등급·위험 사유를 확인했고, 인증 일정 표가 있습니다.
 
 이 보고서는 10장에서 승인을 반영한 뒤 다시 열어 D단지의 변화를 확인합니다.
 

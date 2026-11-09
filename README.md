@@ -16,7 +16,7 @@ Contoso 건설의 에코시티 D단지는 제로에너지건축물(ZEB) 예비�
 | Ontology | 업무 대상·관계·원본 바인딩을 연결하는 공유 업무 모델 | 빈 항목에서 Agent로 초안을 만들고, 현장·인증 설계안부터 일정·보완안·공공 사례까지 보강합니다. 사람이 Plan → 검토 → Act로 적용합니다. |
 | Graph (선택) | 실제 인스턴스의 다단계 연결 탐색 | 현장 → BIM 모델 → 설계안·인증서 경로를 탐색합니다. Ontology의 필수 저장소가 아니며 원본 변경 후 갱신 여부를 따로 확인합니다. |
 | Data agent / Ontology Agent | 업무 맥락을 사용한 읽기 전용 근거 질의 | Data agent를 생성·연결하고 지침을 입력합니다. 기본 질문 검증은 Ontology Agent의 Plan 모드에서 Q1–Q8을 정답 Notebook과 대조하고, Data agent 직접 비교는 선택으로 진행합니다. |
-| Power BI·Copilot | 계산 결과를 업무 화면으로 설명 | 공공 인증 현황은 직접, 현장 컨트롤 타워는 Copilot으로 만들어 수치·필터·근거를 점검합니다. |
+| Power BI·Copilot | 계산 결과를 업무 화면으로 설명 | Copilot으로 현장 컨트롤 타워 한 페이지를 만들고 D단지 위험을 확인합니다. 승인 후 같은 보고서에서 변화를 확인합니다. |
 | Eventhouse·Operations agent·Teams | 계산된 위험 감시와 사람의 승인 연결 | 이벤트 테이블·감시 규칙·Notebook 액션을 구성하고 제안 → 근거 검토 → 승인 → 기록·재계산 → Stop을 확인합니다. |
 
 추천안은 Notebook 계산으로 정하고, AI 답변은 그 계산 결과와 비교해 확인합니다. 최종 결정은 담당자가 합니다. 실습에서는 조치를 기록하고 데이터를 다시 계산하는 데까지만 진행하며, 실제 설계 변경이나 발주는 하지 않습니다.
@@ -50,7 +50,7 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 
 ## 실습 순서
 
-00장부터 순서대로 진행하며, 각 장의 완료 기준을 확인한 뒤 다음 장으로 넘어갑니다. 기본 과정은 00–08 → 10 → 11장이며 약 4시간 55분, 09장까지 포함하면 약 5시간 20분입니다. 휴식·AI 응답 대기는 별도입니다([장별 일정](docs/00-scenario.md#실습-일정)).
+00장부터 순서대로 진행하며, 각 장의 완료 기준을 확인한 뒤 다음 장으로 넘어갑니다. 기본 과정은 00–08 → 10 → 11장이며 약 4시간 40분, 09장까지 포함하면 약 5시간 5분입니다. 휴식·AI 응답 대기는 별도입니다([장별 일정](docs/00-scenario.md#실습-일정)).
 
 | 장 | 이번 단계에서 할 일 |
 |---|---|
@@ -62,7 +62,7 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 | [05. Gold와 운영 지표](docs/05-gold.md) | Gold 테이블과 현장 상태(ops)를 만들고 D단지 위험을 확인합니다. |
 | [06. Ontology](docs/06-ontology.md) | 현장·설계안 중심의 초안을 만들고 일정·보완안·공공 사례로 보강한 뒤, 원본과 업무 규칙을 점검합니다. |
 | [07. Data agent](docs/07-data-agent.md) | Data agent를 구성하고, Ontology Agent의 Plan에서 질문 8개를 정답 Notebook과 비교합니다. |
-| [08. Power BI](docs/08-power-bi.md) | 인증 현황 페이지는 직접, 현장 컨트롤 타워는 Copilot으로 만들고 질문·인사이트를 확인합니다. |
+| [08. Power BI](docs/08-power-bi.md) | Copilot으로 현장 컨트롤 타워 한 페이지를 만들고 D단지 위험을 확인합니다. 공공 인증 현황과 테마는 선택입니다. |
 | [09. Foundry agent (선택)](docs/09-foundry-agent.md) | Foundry 에이전트에서 Fabric IQ로 Ontology에 보완안 근거를 다시 묻습니다. |
 | [10. Operations agent](docs/10-operations-agent.md) | 위험 이벤트를 Eventhouse로 보내 Teams 제안을 받고, 승인한 뒤 조치 기록·설계안 V4·등급 회복·이벤트 종료를 확인하고 Stop합니다. |
 | [11. 마무리](docs/11-finish.md) | 결과를 확인하고 감시·실행이 멈췄는지 확인합니다. |
@@ -73,13 +73,13 @@ Graph·파이프라인·Foundry를 생략해도 기본 과정은 완료됩니다
 
 ## 실습 파일
 
-관리자는 Notebook 7개만 본인 작업 영역에 넣어 둡니다. 참가자는 01장에서 Lakehouse를 직접 만들고 첫 Notebook에 연결합니다. 나머지 Notebook은 해당 장에서 사용하기 전에 연결합니다. Power BI 파일 2개는 08장에서 아래 저장소 링크로 PC에 내려받으며, Lakehouse에 업로드하지 않습니다.
+관리자는 Notebook 7개만 본인 작업 영역에 넣어 둡니다. 참가자는 01장에서 Lakehouse를 직접 만들고 첫 Notebook에 연결합니다. 나머지 Notebook은 해당 장에서 사용하기 전에 연결합니다. Power BI 모델 파일과 선택 테마 파일은 08장에서 아래 저장소 링크로 PC에 내려받으며, Lakehouse에 업로드하지 않습니다.
 
 | 파일 | 위치 | 용도 |
 |---|---|---|
 | Notebook 7개 | 본인 작업 영역 | `01`–`04` 메달리온, `05_answers` 정답 계산(07장), `06_risk_event` 위험 이벤트(10장), `nb_apply_decision` 승인 반영(10장, 직접 실행 안 함) |
 | [`sm_zeb.tmdl`](fabric/sm_zeb.tmdl) | 08장에서 저장소 → PC | Semantic model의 관계·측정값 |
-| [`zeb-theme.json`](fabric/zeb-theme.json) | 08장에서 저장소 → PC | 보고서 테마 |
+| [`zeb-theme.json`](fabric/zeb-theme.json) | 08장 선택 실습에서 저장소 → PC | 보고서 테마 |
 
 원본은 이 저장소의 [notebooks](notebooks)와 [fabric](fabric) 폴더입니다. Notebook은 `notebooks/src`의 소스에서 만들어집니다(`python tools/build_notebooks.py`).
 
