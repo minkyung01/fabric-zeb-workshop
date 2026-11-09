@@ -2,7 +2,7 @@
 
 Contoso 건설의 에코시티 D단지는 제로에너지건축물(ZEB) **예비인증 4등급**을 받았습니다. 그런데 원가 절감(VE)으로 옥상 태양광을 줄인 현행 설계로는 **5등급**이 예상됩니다. 이대로라면 사용승인 전 본인증을 받을 수 없습니다. **어느 현장이 위험한지, 어떤 보완안이 가장 싸고 일정 안에 끝나는지** 데이터로 확인해야 합니다.
 
-이 hands-on Workshop에서는 **Microsoft Fabric만으로** 공공 인증 데이터와 현장 데이터를 연결하고, 보고서와 에이전트로 근거를 검토한 뒤, 담당자가 Teams에서 승인한 보완안을 데이터에 반영합니다.
+이 hands-on Workshop에서는 **Microsoft Fabric을 중심으로** 공공 인증 데이터와 현장 데이터를 하나의 업무 모델로 연결합니다. Notebook으로 위험과 보완안을 계산하고, Ontology·보고서·에이전트로 근거를 검토한 뒤, 담당자가 Teams에서 승인한 보완안을 **실습 데이터에 기록하고 재계산**합니다. Foundry 근거 재검토는 선택입니다.
 
 **공공·현장 데이터 연결 → 등급 위험 찾기 → 근거 질문 → Teams 제안·승인 → 보완안 반영과 재계산**
 
@@ -10,25 +10,27 @@ Contoso 건설의 에코시티 D단지는 제로에너지건축물(ZEB) **예비
 
 ## 이 실습에서 완성하는 것
 
-| 결과 | 할 수 있는 일 |
-|---|---|
-| Bronze·Silver·Gold 테이블 | 공공데이터포털의 인증 4종(ZEB·녹색건축·BF·녹색기술)을 **Notebook으로 직접 내려받고**, Contoso 내부 시스템(ERP·PMS·BIM·SCM) 데이터와 표기·형식을 맞춰 정리합니다. |
-| Ontology와 Data agent | 시스템마다 다른 코드(프로젝트 번호·현장 코드·BIM 모델 번호)와 **등급 판정 규칙**을 Ontology에 정의하고, Data agent의 답을 정답 Notebook과 비교합니다. |
-| Power BI 컨트롤 타워 2페이지 | 공공 ZEB 인증 현황은 직접 만들고, 현장 컨트롤 타워는 **Copilot으로 생성**한 뒤 Copilot에게 질문하고 인사이트를 요약받습니다. |
-| Teams 제안과 보완안 반영 | Operations agent가 D단지 위험과 **가장 싼 추천 보완안**을 Teams로 제안하고, 담당자가 승인하면 Notebook이 조치를 기록하고 **설계안·예상 등급을 다시 계산**합니다. |
+| 기능 | 업무에서 맡는 역할 | 직접 만들고 확인할 것 |
+|---|---|---|
+| **Notebook·Lakehouse** | 원본 수집·정리와 명시적인 계산 | 공공 인증 4종과 가상 ERP·PMS·BIM·SCM 데이터를 Bronze → Silver → Gold로 정리하고, 예상 등급·일정·보완안을 계산합니다. |
+| **Ontology** | 업무 대상·관계·원본 바인딩을 연결하는 공유 업무 모델 | 빈 항목에서 Agent로 초안을 만들고, 현장·인증 설계안부터 일정·보완안·공공 사례까지 보강합니다. 사람이 **Plan → 검토 → Act**로 적용합니다. |
+| **Graph (선택)** | 실제 인스턴스의 다단계 연결 탐색 | 현장 → BIM 모델 → 설계안·인증서 경로를 탐색합니다. Ontology의 필수 저장소가 아니며 원본 변경 후 갱신 여부를 따로 확인합니다. |
+| **Data agent / Ontology Agent** | 업무 맥락을 사용한 읽기 전용 근거 질의 | Data agent를 생성·연결하고 지침을 입력합니다. 기본 질문 검증은 **Ontology Agent의 Plan 모드**에서 Q1–Q8을 정답 Notebook과 대조하고, Data agent 직접 비교는 선택으로 진행합니다. |
+| **Power BI·Copilot** | 계산 결과를 업무 화면으로 설명 | 공공 인증 현황은 직접, 현장 컨트롤 타워는 Copilot으로 만들어 수치·필터·근거를 점검합니다. |
+| **Eventhouse·Operations agent·Teams** | 계산된 위험 감시와 사람의 승인 연결 | 이벤트 테이블·감시 규칙·Notebook 액션을 구성하고 **제안 → 근거 검토 → 승인 → 기록·재계산 → Stop**을 확인합니다. |
 
 추천안은 Notebook 계산으로 정하고, AI 답변은 그 계산 결과와 비교해 확인합니다. **최종 결정은 담당자가 합니다. 실습에서는 조치를 기록하고 데이터를 다시 계산하는 데까지만 진행하며, 실제 설계 변경이나 발주는 하지 않습니다.**
 
 ## 전체 구성
 
-Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)</b>에 적재한 뒤 `bronze` → `silver` → `gold`·`ops` 스키마 순서로 정리합니다. Ontology·Data agent, Power BI, Operations agent는 모두 이 Gold 테이블을 읽습니다.
+Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)</b>에 적재한 뒤 `bronze` → `silver` → `gold`·`ops` 순서로 정리합니다. Ontology·근거 질의는 Gold 원본을, Power BI는 Gold와 ops를 읽습니다. Operations agent는 Notebook이 명시적으로 보낸 Eventhouse 위험 이벤트를 감시합니다.
 
 <img src="assets/architecture.svg" width="1000" alt="전체 구성. Notebook이 공공 인증 4종과 Contoso 내부 데이터를 Lakehouse의 Bronze에 적재하고 Silver에서 정리한 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Semantic model과 Power BI, Eventhouse와 Operations agent로 이어집니다. Operations agent가 Teams로 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 선택입니다." />
 
 [그림 크게 보기](assets/architecture.png)
 
 - **Gold에는 원천에서 정리한 데이터만 두고, 예상 등급·위험 여부는 저장하지 않습니다.** 등급을 판정하는 기준은 06장에서 **Ontology의 업무 규칙**으로 정의하고, 보고서와 감시에 쓰는 계산 결과는 따로 `ops` 스키마에 저장합니다.
-- 06장에서는 **Ontology에 들어 있는 agent로 구조를 만들고**, 07장에서는 **별도로 만든 Data agent `da_zeb`에 이 Ontology를 연결해 업무 질문**을 합니다.
+- 06장에서는 **Ontology Agent로 구조를 만들고**, 07장에서는 **별도 Data agent `da_zeb` 구성**과 **Ontology Agent의 Plan 질의**를 구분해 체험합니다. 설명·동의어의 Data agent 연계는 Preview 환경별로 확인합니다.
 - Operations agent는 Lakehouse를 직접 감시하지 않고, 10장에서 Eventhouse로 보낸 **위험 이벤트 상태**를 감시합니다.
 - 구성도의 파란 실선은 실습 흐름, 초록 선은 승인 후 반영, 점선은 선택 단계(09장 Foundry)입니다.
 
@@ -38,17 +40,19 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 
 | 참가자가 확인할 것 | 관리자에게 받을 안내 |
 |---|---|
-| 실습 계정·참가자 번호 | Fabric·Teams에 사용할 계정과 본인 번호(예: `p001`) |
-| 작업 영역 | 본인 작업 영역 `zeb-p001`, Lakehouse `lh_zeb`, 미리 넣어 둔 Notebook 7개와 `Files/workshop`의 파일 2개 |
+| 실습 계정·참가자 번호 | Fabric·Teams에 사용할 계정과 본인 번호(예: `p011`) |
+| 작업 영역 | 본인 작업 영역 `ws-p011`, Lakehouse `lh_zeb`, 미리 넣어 둔 Notebook 7개와 `Files/workshop`의 파일 2개 |
 | 보고서·에이전트 사용 환경 | Power BI Pro 또는 PPU 라이선스, Copilot·Data agent·Ontology·Operations agent 테넌트 설정, Teams의 **Fabric Operations Agent** 앱 |
 | Teams 로그인 | Fabric과 **같은 계정**으로 Teams(데스크톱 또는 웹)에 로그인할 수 있는지 미리 확인(10장) |
 | (선택) Foundry | 09장을 진행할 경우 Foundry 프로젝트, 또는 프로젝트를 만들 구독·리소스 그룹·지역 |
 
-문서의 `p001`은 예시입니다. 작업 영역은 **본인 번호**를 사용합니다. `lh_zeb`, `ont_zeb`, `da_zeb` 같은 항목 이름은 본인 작업 영역 안에서 그대로 씁니다.
+실습자 계정은 **`p011`부터 시작**합니다. 본인 번호가 `p011`이면 작업 영역은 **`ws-p011`**, `p012`이면 **`ws-p012`**입니다. 로그인 주소는 관리자가 안내한 계정을 사용합니다. `lh_zeb`, `ont_zeb`, `da_zeb` 같은 항목 이름은 본인 작업 영역 안에서 그대로 씁니다.
+
+**캡처는 이전 데모 환경의 참고 화면입니다.** 화면에 `zeb-p001`·관리자 계정·다른 용량 이름이 보여도 그대로 따라 선택하지 않습니다. 실제 실습에서는 본인 `ws-pNNN`과 `p011`부터 배정된 계정을 기준으로 진행합니다.
 
 ## 실습 순서
 
-00장부터 순서대로 진행하며, 각 장의 **완료 기준**을 확인한 뒤 다음 장으로 넘어갑니다. 예상 시간은 약 **5시간 20분**이며 휴식·AI 응답 대기는 별도입니다([장별 일정](docs/00-scenario.md#실습-일정)).
+00장부터 순서대로 진행하며, 각 장의 **완료 기준**을 확인한 뒤 다음 장으로 넘어갑니다. 기본 과정은 **00–08 → 10 → 11장**이며 약 **4시간 55분**, 09장까지 포함하면 약 **5시간 20분**입니다. 휴식·AI 응답 대기는 별도입니다([장별 일정](docs/00-scenario.md#실습-일정)).
 
 | 장 | 이번 단계에서 할 일 |
 |---|---|
@@ -58,8 +62,8 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 | [03. Bronze ② Contoso 내부 데이터](docs/03-bronze-contoso.md) | ERP·PMS·BIM·SCM의 가상 데이터를 만들고 시스템별 코드 차이를 확인합니다. |
 | [04. Silver](docs/04-silver.md) | 시도·용도·등급 표기를 통일하고, 같은 건물을 묶고, 발주 이벤트를 반영합니다. |
 | [05. Gold와 운영 지표](docs/05-gold.md) | Gold 테이블과 현장 상태(ops)를 만들고 D단지 위험을 확인합니다. |
-| [06. Ontology](docs/06-ontology.md) | Ontology agent로 엔터티·관계·바인딩을 만들고 등급 판정 규칙을 넣습니다. |
-| [07. Data agent](docs/07-data-agent.md) | Ontology를 연결한 Data agent에 질문 8개를 하고 정답 Notebook과 비교합니다. |
+| [06. Ontology](docs/06-ontology.md) | 현장·설계안 중심의 초안을 만들고 일정·보완안·공공 사례로 보강한 뒤, 원본과 업무 규칙을 점검합니다. |
+| [07. Data agent](docs/07-data-agent.md) | Data agent를 구성하고, Ontology Agent의 Plan에서 질문 8개를 정답 Notebook과 비교합니다. |
 | [08. Power BI](docs/08-power-bi.md) | 인증 현황 페이지는 직접, 현장 컨트롤 타워는 Copilot으로 만들고 질문·인사이트를 확인합니다. |
 | [09. Foundry agent (선택)](docs/09-foundry-agent.md) | Foundry 에이전트에서 Fabric IQ로 Ontology에 보완안 근거를 다시 묻습니다. |
 | [10. Operations agent](docs/10-operations-agent.md) | 위험 이벤트를 Eventhouse로 보내 Teams 제안을 받고, 승인한 뒤 조치 기록·설계안 V4·등급 회복·이벤트 종료를 확인하고 Stop합니다. |
@@ -67,13 +71,15 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 
 10장에서는 **Teams 제안 → 근거 검토 → 승인 → 반영 확인 → Stop** 순서를 지킵니다. AI가 만든 구조·페이지·답변은 실행할 때마다 달라질 수 있습니다. 완료 메시지만 보고 넘어가지 말고, 각 장에 적힌 데이터·필드·값과 비교합니다.
 
+Graph·파이프라인·Foundry를 생략해도 기본 과정은 완료됩니다. 10장은 05장의 계산 결과와 07장의 근거 검토가 필요하며, **What-if 질문은 원본을 바꾸지 않습니다.** 실제 반영은 10장에서 사람이 승인한 뒤에만 수행합니다.
+
 ## 실습 파일
 
 관리자가 실습 전에 본인 작업 영역에 넣어 둡니다. 참가자가 GitHub에서 내려받을 필요는 없습니다.
 
 | 파일 | 위치 | 용도 |
 |---|---|---|
-| Notebook 7개 | 작업 영역 `zeb-p001` | `01`–`04` 메달리온, `05_answers` 정답 계산(07장), `06_risk_event` 위험 이벤트(10장), `nb_apply_decision` 승인 반영(10장, 직접 실행 안 함) |
+| Notebook 7개 | 작업 영역 `ws-p011` | `01`–`04` 메달리온, `05_answers` 정답 계산(07장), `06_risk_event` 위험 이벤트(10장), `nb_apply_decision` 승인 반영(10장, 직접 실행 안 함) |
 | `sm_zeb.tmdl` | `lh_zeb` → **Files → workshop** | 08장 Semantic model의 관계·측정값 |
 | `zeb-theme.json` | `lh_zeb` → **Files → workshop** | 08장 보고서 테마 |
 

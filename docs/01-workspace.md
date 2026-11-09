@@ -8,15 +8,17 @@
 
 ## 시작 전 준비
 
-- 관리자에게 받은 실습 계정과 참가자 번호(예: `p001`)
-- 관리자가 준비한 본인 작업 영역 `zeb-p001`(활성 유료 Fabric 용량에 할당)과 **Contributor 이상** 권한
+- 관리자에게 받은 실습 계정과 참가자 번호(예: `p011`)
+- 관리자가 준비한 본인 작업 영역 `ws-p011`(활성 유료 Fabric 용량에 할당)과 **Contributor 이상** 권한
 
-문서의 `p001`은 예시입니다. 화면에서는 **본인 번호의 작업 영역**을 선택하고, 다른 참가자의 작업 영역에서는 아무것도 실행하지 않습니다.
+실습자 계정은 **`p011`부터** 배정됩니다. `p011`의 작업 영역은 `ws-p011`, `p012`의 작업 영역은 `ws-p012`입니다. 로그인 주소는 관리자 안내를 따릅니다. 화면에서는 **본인 번호의 작업 영역**을 선택하고, 다른 참가자의 작업 영역에서는 아무것도 실행하지 않습니다.
+
+**이 장의 미션:** 이후 Notebook이 어느 Lakehouse에 쓰는지 설명할 수 있어야 합니다. 캡처의 `zeb-p001`·관리자 계정·용량 이름은 이전 데모의 예시이며, 실제 선택은 본인 `ws-pNNN` 기준입니다.
 
 ## 1. Fabric 접속과 작업 영역 유형 확인
 
 1.  브라우저에서 <https://app.fabric.microsoft.com>을 열고 실습 계정으로 로그인합니다.
-2.  왼쪽 **Workspaces / 작업 영역**을 누르고 `zeb-p001`을 엽니다.
+2.  왼쪽 **Workspaces / 작업 영역**을 누르고 `ws-p011`을 엽니다.
 3.  오른쪽 위 **Workspace settings / 작업 영역 설정**을 누르고 왼쪽 목록에서 **Workspace type / 작업 영역 유형**을 누릅니다.
 
 **예상 결과:** **Current workspace type**이 **Fabric**이고, **Details**에 관리자가 안내한 용량 이름과 SKU가 보입니다. **Trial**이나 **Pro**로 표시되면 Copilot·Operations agent 단계를 진행할 수 없으니 관리자에게 알립니다. 확인했으면 오른쪽 위 **X**로 설정 창을 닫습니다.
@@ -84,11 +86,11 @@ Notebook 위쪽에 "Other people in your organization may have access to noteboo
 
 ## 이 장의 완료 기준
 
-본인 작업 영역 `zeb-p001`의 유형이 Fabric이고, `lh_zeb`와 Notebook 7개가 있으며, Notebook 7개 모두 본인 `lh_zeb`를 기본 Lakehouse로 씁니다. PC에 `sm_zeb.tmdl`과 `zeb-theme.json`을 내려받았습니다.
+본인 작업 영역 `ws-p011`의 유형이 Fabric이고, `lh_zeb`와 Notebook 7개가 있으며, Notebook 7개 모두 본인 `lh_zeb`를 기본 Lakehouse로 씁니다. PC에 `sm_zeb.tmdl`과 `zeb-theme.json`을 내려받았습니다.
 
 ## Troubleshooting
 
-- 작업 영역 목록에 `zeb-p001`이 없으면 실습 계정으로 로그인했는지 확인하고, 그래도 없으면 관리자에게 권한을 요청합니다. 다른 계정으로 자동 로그인되어 "you don't have access to that group" 창이 뜨는 경우도 같습니다.
+- 작업 영역 목록에 `ws-p011`이 없으면 실습 계정으로 로그인했는지 확인하고, 그래도 없으면 관리자에게 권한을 요청합니다. 다른 계정으로 자동 로그인되어 "you don't have access to that group" 창이 뜨는 경우도 같습니다.
 - 작업 영역을 열었는데 "Unable to complete the action because this Fabric capacity is currently paused"가 보이면 용량이 일시 중지된 상태입니다. 관리자에게 알리고 재개될 때까지 기다립니다.
 - **Files → workshop**이 비어 있으면 관리자에게 파일 2개를 요청합니다. 이 저장소의 `fabric` 폴더에 있는 파일과 같습니다.
 - **From this computer** 가져오기가 막혀 있는 환경이면 관리자가 Notebook을 대신 넣어 줍니다([관리자 준비 가이드](../admin/README.md)).

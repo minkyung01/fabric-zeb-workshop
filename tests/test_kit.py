@@ -1,10 +1,14 @@
 """Offline consistency checks for the workshop kit. Run: python -m unittest discover -s tests -v"""
+import importlib.util
+import io
 import json
 import re
 import subprocess
 import sys
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = sorted((ROOT / "docs").glob("*.md"))
@@ -62,6 +66,35 @@ class Notebooks(unittest.TestCase):
 
 
 class Docs(unittest.TestCase):
+    def test_workshop_missions_and_participant_naming(self):
+        for doc in DOCS:
+            text = doc.read_text(encoding="utf-8")
+            self.assertTrue("미션" in text, doc.name)
+            instructions = re.sub(r"<img[^>]+>", "", text)
+            instructions = re.sub(r"캡처[^\n]+", "", instructions)
+            self.assertNotIn("zeb-p001", instructions, doc.name)
+            self.assertNotIn("ws-p001", instructions, doc.name)
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("`ws-p011`", readme)
+        self.assertIn("`p011`부터", readme)
+        admin = (ROOT / "admin" / "README.md").read_text(encoding="utf-8")
+        self.assertIn("--participants p011-p022", admin)
+
+    def test_read_only_question_flow_matches_approval_followup(self):
+        for name in ("README.md", "docs/00-scenario.md", "docs/06-ontology.md",
+                     "docs/07-data-agent.md", "docs/10-operations-agent.md", "docs/11-finish.md"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            self.assertIn("Plan", text, name)
+        questions = (ROOT / "docs" / "07-data-agent.md").read_text(encoding="utf-8")
+        self.assertIn("Data agent 직접 비교는", questions)
+        self.assertIn("미확인", questions)
+        self.assertIn("원본 데이터·Ontology", questions)
+        approval = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
+        self.assertIn('status becomes "open"', approval)
+        self.assertIn("Execute the action only after", approval)
+        self.assertIn("Crosses above 0.5", approval)
+        self.assertNotIn("기본 매개 변수로 **Run all**", approval)
+
     def test_chapters_linked_from_readme(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for doc in DOCS:
@@ -87,6 +120,35 @@ class Docs(unittest.TestCase):
         for doc in DOCS:
             for name in re.findall(r"`(\d\d_[a-z_]+|nb_[a-z_]+)`", doc.read_text(encoding="utf-8")):
                 self.assertIn(name, NOTEBOOKS, f"{doc.name}: {name}")
+
+
+class Provisioning(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        spec = importlib.util.spec_from_file_location("zeb_provision", ROOT / "admin" / "provision.py")
+        cls.module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cls.module)
+
+    def test_participant_range_starts_at_p011(self):
+        self.assertEqual(self.module.participants("p011-p022"),
+                         [f"p{n:03d}" for n in range(11, 23)])
+        self.assertEqual(self.module.participants("p011,p015-p017"),
+                         ["p011", "p015", "p016", "p017"])
+
+    def test_default_workspace_prefix_and_custom_override(self):
+        for extra, prefix in (([], "ws-"), (["--prefix", "custom-"], "custom-")):
+            with self.subTest(prefix=prefix):
+                output = io.StringIO()
+                args = ["provision.py", "--capacity", "test-capacity",
+                        "--participants", "p011-p012", "--dry-run", *extra]
+                with patch.object(sys, "argv", args), \
+                        patch.object(self.module.Fabric, "get_all", return_value=[]), \
+                        patch.object(self.module, "token", side_effect=AssertionError("No live authentication")), \
+                        redirect_stdout(output):
+                    self.module.main()
+                self.assertIn(f"p011: {prefix}p011", output.getvalue())
+                self.assertIn(f"p012: {prefix}p012", output.getvalue())
+                self.assertNotIn("zeb-p", output.getvalue())
 
 
 class FabricAssets(unittest.TestCase):

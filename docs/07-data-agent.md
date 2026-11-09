@@ -1,10 +1,20 @@
-# 07. Data agent
+# 07. Data agent — 구성 체험과 업무 질문 검증
 
 [목차](../README.md) \| 이전: [06. Ontology](06-ontology.md) \| 다음: [08. Power BI](08-power-bi.md)
 
-06장에서 만든 Ontology를 **Fabric Data agent에 연결**하고 한국어로 업무 질문을 합니다. 답이 그럴듯한지가 아니라, **질문 8개의 대상·수치·결론이 정답 Notebook과 같은지**를 확인합니다.
+06장에서 만든 업무 모델로 **공공 인증 통계·등급 위험·일정 영향·보완안**을 확인합니다. Data agent를 생성·연결하고 지침을 입력한 뒤, 기본 질문은 **Ontology Agent의 Plan 모드**에서 검증합니다. 답이 그럴듯한지가 아니라 **Q1–Q8의 대상·수치·결론과 조회 근거가 정답 Notebook과 같은지**를 확인합니다.
 
-**정답 계산 → Data agent 만들기 → Ontology 연결 → 지침 저장 → 질문과 근거 확인** 순서로 진행합니다. 06장에서 쓴 **Ontology agent는 구조를 만드는 용도**이고, 이 장의 **Data agent는 업무 질문에 답하는 용도**입니다.
+**정답 계산 → Data agent 구성·지침 저장 → Ontology Agent에 공통 규칙 전달 → Plan 질의 → Notebook 대조** 순서입니다. Ontology Agent는 구조 생성뿐 아니라 읽기 질의도 지원하며, 질의만 할 때 Act로 전환하지 않습니다.
+
+**이 장의 미션:** 같은 원본에 업무 규칙을 적용해 D단지·B단지의 차이와 보완안 추천 근거를 설명합니다. 수치가 맞는 답, 잘못된 답, 실제 조회하지 못한 답을 구분하고 What-if를 실제 변경으로 확대하지 않습니다.
+
+> **Preview 환경 안내:** 참고 교재의 점검 환경에서는 새 Ontology의 설명·동의어 등 메타데이터가 Data agent에 충분히 연계되지 않아 업무 규칙 질문에 한계가 있었습니다. 이는 모든 Data agent 조회가 불가능하다는 뜻도, 이 ZEB 환경에서 같은 문제가 확인됐다는 뜻도 아닙니다. 배포 버전·Runtime·권한에 따라 달라지므로 기본 과정은 Plan 질의로 진행하고, Data agent 직접 비교는 아래 6단계에서 선택합니다.
+
+| 실행 위치 | 이 장에서 할 일 | 변경 범위 |
+|---|---|---|
+| `da_zeb` | Ontology·원본 연결과 Agent instructions 저장 | 에이전트 설정만 변경 |
+| `ont_zeb`의 Ontology Agent **Plan** | 공통 규칙을 전달하고 Q1–Q8 질의 | 원본·Ontology 변경 없음 |
+| `05_answers` | 동일 데이터 시점의 정답 계산·대조 | 읽기 전용 |
 
 ## 시작 전 확인
 
@@ -32,14 +42,16 @@
 
 ## 2. Data agent 만들고 Ontology 연결
 
-1.  작업 영역 `zeb-p001`에서 **+ New item**을 누르고 `Data agent`로 검색해 **Data agent**를 고릅니다. 이름에 **`da_zeb`**를 입력하고 **Create**를 누릅니다. **Welcome to Data Agent** 창이 나오면 **Skip for now**를 누릅니다.
-2.  **Build your data agent** 화면에서 **Add an ontology** 카드를 누릅니다. 다른 참가자의 `ont_zeb`도 함께 보이므로, 왼쪽 **Explorer**를 펼쳐 본인 작업 영역(`zeb-p001`)을 고른 뒤 `ont_zeb`를 선택하고 **Add**를 누릅니다.
+1.  작업 영역 `ws-p011`에서 **+ New item**을 누르고 `Data agent`로 검색해 **Data agent**를 고릅니다. 이름에 **`da_zeb`**를 입력하고 **Create**를 누릅니다. **Welcome to Data Agent** 창이 나오면 **Skip for now**를 누릅니다.
+2.  **Build your data agent** 화면에서 **Add an ontology** 카드를 누릅니다. 다른 참가자의 `ont_zeb`도 함께 보이므로, 왼쪽 **Explorer**를 펼쳐 본인 작업 영역(`ws-p011`)을 고른 뒤 `ont_zeb`를 선택하고 **Add**를 누릅니다.
 
     <img src="../assets/screenshots/d07-add-ontology.png" width="1000" alt="Add an ontology 창. 왼쪽 Explorer에서 zeb-p001을 골라 ont_zeb 하나만 보이고 선택되어 있습니다." />
 
 3.  왼쪽 **Explorer → Sources**에서 `ont_zeb`를 펼칩니다.
 
 **확인할 결과:** **Entity types / 엔터티 형식** 아래에 06장에서 만든 엔터티가 있고, **Ontology data sources** 아래에 본인 `lh_zeb` → `gold`가 있습니다. Lakehouse를 **기타 데이터 원본**으로 따로 추가하지 않습니다. 한국어 UI에서는 Ontology가 **존재론**으로 표시될 수 있습니다.
+
+Ontology는 **업무 문맥**이고 실행은 바인딩된 원본에 대한 질의입니다. Graph를 별도로 연결하지 않으며, Runtime은 관리자가 사전 확인한 설정을 사용합니다. 원본이 표시되지 않거나 읽기에 실패하면 연결·바인딩·본인의 읽기 권한을 먼저 확인합니다.
 
 ## 3. 에이전트 지침 저장
 
@@ -61,10 +73,32 @@
 
  **정답 숫자를 지침에 넣어 답을 맞추지 않습니다.** 업무 규칙은 지침이 아니라 06장에서 Ontology 설명에 넣었습니다.
 
-## 4. 질문하고 정답과 비교
+## 4. Ontology Agent의 Plan에서 질문하고 정답과 비교
 
-1.  오른쪽 **Test the agent's responses** 창에 아래 질문을 **하나씩** 보냅니다. 앞 질문의 대화가 다음 답에 영향을 주지 않도록, 질문마다 창 위쪽 빗자루 모양 **Clear chat**을 누르고 새 대화에서 시작합니다.
-2.  답을 1단계의 정답과 비교합니다. 표현은 달라도 되지만 **대상·수치·결론**이 같아야 정답으로 봅니다.
+1.  본인 작업 영역의 **`ont_zeb` → Ontology Agent**를 열고 **Plan**으로 둡니다. 아래 공통 프롬프트를 대화 첫 메시지로 보냅니다. **`da_zeb`에 저장한 지침은 이 대화에 자동 적용되지 않습니다.**
+
+    ``` text
+    이 대화에서는 ont_zeb와 lh_zeb.gold를 근거로 Contoso 건설의 ZEB 인증 업무 질문을 검증합니다.
+    한국어로 간결하게 답하고, 조회만 수행하세요. 원본 데이터·Ontology·키·관계·바인딩·다른 Fabric 항목을 변경하지 마세요.
+    기준일은 2026-09-30입니다. 현장·공급사 이름은 일부 일치로 실제 대상을 찾고 ID와 근거 원본을 함께 표시하세요.
+    업무 정의·동의어·관계는 현재 Ontology와 실제 원본 열을 대조하세요. 관계 이름을 SQL 테이블명으로 가정하지 마세요.
+    공통 판정 규칙:
+    - ZEB 등급은 +, 1, 2, 3, 4, 5 순서로 높습니다. N등급 이상은 N과 더 높은 등급입니다.
+    - 현행 설계안은 version_status='현행'입니다. 자립률 >= selfsuff_min_pct를 만족하는 가장 높은 등급과, 1차에너지 < 용도별 기준값을 만족하는 가장 높은 등급 중 더 높은 등급을 최종 예상 등급으로 선택하세요.
+    - 공동주택·단독주택은 주거용입니다. 그 밖은 주거용 이외 기준을 사용하세요. 기준값은 ref_zeb_grade_criteria에서 조회하세요. BEMS 또는 원격검침은 인증 필수 요건입니다.
+    - 예비인증 설계안은 pms_certificate.design_version_id입니다. 현행 예상 등급이 예비인증 등급보다 낮으면 본인증 등급 위험입니다. 공공 데이터의 '준공 후 인증'은 cert_stage='본인증'입니다.
+    - 미입고 발주만 지연 가정에 포함하세요. 새 입고일=expected_date+질문의 지연 일수, 초과 일수=새 입고일-그 현장의 '설비 설치 완료' planned_date입니다. 양수이면 설치 완료·본인증 신청·취득·사용승인을 그 일수만큼 늦추고, 0 이하이면 일정 영향이 없습니다.
+    - 대체 공급은 같은 category_code의 is_alternative_pool=true 공급사만 검토하고, 입고일=기준일+standard_lead_time_days로 계산하세요.
+    - 보완안은 하나씩 적용합니다. 현행 selfsuff_pct+selfsuff_gain_pp, primary_energy_kwh_m2y+primary_energy_delta로 등급을 재계산하세요. 필요한 등급을 회복하고 기준일+lead_time_days가 설치 완료 계획일 이내인 안 중 비용이 가장 낮은 안을 찾으세요.
+    - 공공 사례 비교는 프로젝트의 같은 sido·use_group으로 한정하세요. 우리 현장을 공공 인증 데이터에서 찾지 마세요.
+    What-if는 조회용 가정이며 변경·승인·발주는 하지 않습니다. 답에 대상 ID·기준일·가정·핵심 값·계산·결론을 표시하세요.
+    실행한 원본 질의와 필터·조인 근거를 확인할 수 있게 하고, 실제 조회 결과와 해석을 구분하세요.
+    샘플·일부 반환만으로 전체 건수나 대상의 부재를 단정하지 마세요. 전체 집계·필터 질의를 실행할 수 없으면 미실행으로 표시하세요.
+    조회 실패는 원본·오류·미확인 질문을 보고하고 중단하세요. 미확인 결과를 0건이나 '없음'으로 바꾸지 마세요.
+    ```
+
+2.  아래 질문을 **하나씩** 보냅니다. 앞 답의 수치를 다음 답의 근거로 재사용하지 말고 실제 원본을 다시 조회하게 합니다. 새 대화로 시작하거나 페이지를 새로 고쳤다면 **공통 프롬프트부터 다시 전달**합니다.
+3.  답을 1단계 정답과 비교합니다. 표현은 달라도 되지만 **대상·수치·결론**이 같아야 정답으로 봅니다. 조회를 실행하지 못했으면 미확인으로 남기고 Notebook 결과로 검증합니다.
 
 | 번호 | 유형 | 질문 | 확인할 정답 |
 |---|---|---|---|
@@ -79,6 +113,8 @@
 
 <img src="../assets/screenshots/d07-q1.png" width="1000" alt="Test 창에 Q1을 보낸 결과. 경기 1,897건, 경남 870건, 경북 828건이라고 답하고 아래에 ont_zeb와 1 step completed가 표시됩니다." />
 
+위 캡처는 **이전 Data agent 테스트 예시**입니다. 기본 과정의 입력 위치는 `da_zeb` 테스트 창이 아니라 **`ont_zeb`의 Ontology Agent → Plan**입니다.
+
 AI의 답은 실행할 때마다 조금씩 다르고, 8문항이 모두 맞지 않을 수 있습니다. **모두 맞히는 것이 목표가 아니라**, 어떤 문항이 왜 틀렸는지 정답 Notebook과 비교해 보는 것이 이 장의 목표입니다.
 
 **눈여겨볼 문항**
@@ -89,8 +125,8 @@ AI의 답은 실행할 때마다 조금씩 다르고, 8문항이 모두 맞지 �
 
 ## 5. 조회 근거 확인
 
-1.  답 아래의 원본 표시 `ont_zeb`와 **단계 완료 / completed steps**를 펼쳐 어떤 엔터티와 테이블을 조회했는지 봅니다.
-2.  아래 조건으로 조회했는지 확인합니다. 화면에 쿼리가 다 보이지 않으면 Troubleshooting의 확인용 질문으로 다시 물어 정답 Notebook과 비교합니다.
+1.  Ontology Agent 답의 **실행 단계·질의·원본 근거**를 펼쳐 실제 조회한 테이블과 조건을 확인합니다. 응답의 기능 이름·표시는 환경에 따라 달라질 수 있습니다.
+2.  아래 조건을 실제 질의에 사용했는지 봅니다. 화면에 쿼리가 다 보이지 않으면 확인용 질문으로 다시 묻고 정답 Notebook과 대조합니다. **실행하지 않은 질의·샘플 설명만으로 전체 집계가 검증됐다고 표시하지 않습니다.**
 
 | 질문 | 확인할 조회 범위 |
 |---|---|
@@ -100,11 +136,21 @@ AI의 답은 실행할 때마다 조금씩 다르고, 8문항이 모두 맞지 �
 | Q6 | `sido = '경기'`, 4등급 이상 = `+`, `1`–`4` |
 | Q8 | D단지 보완안 6개를 **하나씩** 적용한 자립률·1차에너지와 비용 |
 
+실행 단계에 child Eventhouse나 `sql_request`가 보여도 업무 원본이 Eventhouse라고 단정하지 않습니다. 호출한 원본·SQL과 `lh_zeb.gold` 바인딩을 함께 확인합니다. Graph 질의였다면 투영 범위와 갱신 시점을 따로 확인합니다.
+
+## 6. (선택) Data agent와 직접 비교
+
+1.  `da_zeb`의 Sources에서 `ont_zeb`의 **… → Download ontology context**로 설명·동의어·키·관계·원본 매핑이 전달됐는지 확인합니다. 최근 변경이 빠졌으면 **Refresh** 후 다시 확인합니다.
+2.  **Test the agent's responses**에서 Q1–Q8을 하나씩 묻고, 질문마다 **Clear chat**으로 새 대화를 시작합니다. 지침과 공통 프롬프트에 정답 숫자를 넣지 않습니다.
+3.  **completed steps**에서 선택한 원본·생성 질의·오류를 확인하고 **같은 데이터 시점**의 Plan 답·`05_answers`와 비교합니다. 틀린 경우 문맥 누락·원본 선택·필터·계산 오류를 구분합니다.
+
+설명·동의어·규칙 활용이 확인되지 않으면 그 제약을 기록하고 기본 Plan 경로로 진행합니다. Data agent의 정답률이나 메타데이터 연계 성공은 기본 과정의 완료 조건이 아닙니다. 원본 설명·Data source instructions·Example queries 보강은 지원되는 원본을 마운트해야 하는 별도 선택 설정이며 Ontology로 역기록되지 않습니다.
+
 ## 이 장의 완료 기준
 
-`da_zeb`에 **본인 `ont_zeb`와 연결된 원본**이 보이고 지침이 저장되어 있습니다. Q1–Q8의 답을 정답 Notebook과 비교해 **맞은 문항과 틀린 문항을 구분**했고, 특히 Q2·Q3(등급 판정 규칙)이 맞았는지 확인했습니다. 틀린 답은 아래 Troubleshooting으로 원인을 찾되, **정답 숫자를 지침이나 질문에 넣어 맞추지 않습니다.**
+`da_zeb`에 **본인 `ont_zeb`와 연결된 원본**이 보이고 지침이 저장되어 있습니다. Ontology Agent의 **Plan**에서 공통 규칙을 전달하고 Q1–Q8을 정답 Notebook과 비교해 **정답·오답·미확인**을 구분했습니다. 특히 Q2·Q3의 두 기준 판정과 Q8의 등급·일정·비용 조건을 대조했습니다. 미실행 질의는 검증 완료로 표시하지 않으며 **정답 숫자를 지침이나 질문에 넣어 맞추지 않습니다.**
 
-Data agent는 데이터를 읽기만 하며, Gold나 Ontology를 바꾸거나 승인하지 않습니다.
+Data agent와 이 장의 Plan 질의는 데이터를 읽기만 합니다. Gold·Ontology 변경이나 승인은 하지 않습니다. **Q5·Q7의 지연·공급사 변경 가정은 원본에 반영하지 않습니다.**
 
 ## Troubleshooting
 
@@ -113,13 +159,16 @@ Data agent는 데이터를 읽기만 하며, Gold나 Ontology를 바꾸거나 �
 - **Q8에 OPT-D6(가장 싼 안)이나 OPT-D4라고 답하면:** `D단지 보완안 6개 각각을 현행 설계안에 하나씩 적용했을 때 자립률·1차에너지·예상 등급·비용을 표로 보여줘.`로 표를 받아 1단계 정답의 Q8 표와 비교합니다.
 - `데이터 없음`이라고 답하면 실제 조회 조건부터 확인합니다. 현장 이름이 PMS에서는 `에코시티 D단지 현장`, ERP에서는 `에코시티 D단지`로 서로 다릅니다.
 - **온톨로지 추가** 버튼이 없거나 추가가 실패하면 테넌트 AI 설정, 용량, 본인 Ontology와 원본 테이블의 읽기 권한을 확인합니다.
-- 같은 질문이라도 물을 때마다 답이 조금씩 다를 수 있습니다. 지침을 고쳤다면 **Clear chat**을 누르고 새 대화에서 다시 확인합니다.
+- Ontology Agent가 전체 질의를 실행하지 못하면 샘플에 없는 대상을 ‘없음’으로 처리하지 않습니다. 읽기 권한·바인딩·오류를 확인하고 `05_answers`로 검증합니다. 질의만 하려고 **Act로 바꾸지 않습니다.**
+- 같은 질문이라도 답이 달라질 수 있습니다. Ontology Agent를 새 대화로 시작했다면 공통 프롬프트부터 다시 전달합니다. Data agent 선택 비교에서는 지침·문맥을 갱신한 뒤 **Clear chat**을 누릅니다.
 
 ## 공식 문서
 
 - [Data agent의 지원 원본·권한·지침](https://learn.microsoft.com/fabric/data-science/concept-data-agent)
 - [원본 추가·테스트·게시 절차](https://learn.microsoft.com/fabric/data-science/data-agent-end-to-end-tutorial)
 - [Data agent 테넌트 설정](https://learn.microsoft.com/fabric/data-science/data-agent-tenant-settings)
+- [Ontology 문맥·실행 원본·문맥 다운로드·Refresh](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-ontology-sources)
+- [Ontology Agent의 질의·Plan/Act 모드](https://learn.microsoft.com/en-us/fabric/iq/ontology/how-to-use-ontology-agent)
 
 ## 다음 단계
 

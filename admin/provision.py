@@ -1,6 +1,6 @@
 """Prepare participant workspaces for the ZEB workshop (admin only).
 
-For each participant pNNN this creates (or reuses) workspace zeb-pNNN on the given capacity,
+For each participant pNNN this creates (or reuses) workspace ws-pNNN on the given capacity,
 a schema-enabled Lakehouse lh_zeb, the 7 notebooks bound to that Lakehouse, and uploads
 fabric/sm_zeb.tmdl and fabric/zeb-theme.json to Files/workshop. Existing items are reused;
 notebooks are only overwritten with --update-notebooks.
@@ -8,11 +8,11 @@ notebooks are only overwritten with --update-notebooks.
 Uses the Azure CLI login (az login [--tenant ...]); no secrets are stored.
 
 Examples
-    python admin/provision.py --capacity <capacity-id> --participants p001-p012 --users users.csv
-    python admin/provision.py --capacity <capacity-id> --participants p001 --reference-ontology
-    python admin/provision.py --capacity <capacity-id> --participants p001-p003 --dry-run
+    python admin/provision.py --capacity <capacity-id> --participants p011-p022 --users users.csv
+    python admin/provision.py --capacity <capacity-id> --participants p011 --reference-ontology
+    python admin/provision.py --capacity <capacity-id> --participants p011-p013 --dry-run
 
-users.csv (optional): participant,upn   e.g.  p001,p001@contoso.com
+users.csv (optional): participant,upn   e.g.  p011,p011@contoso.com
 """
 import argparse
 import base64
@@ -203,10 +203,10 @@ def provision(fab, pid, args, users):
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--capacity", required=True, help="Fabric capacity ID for new workspaces")
-    parser.add_argument("--participants", required=True, help="e.g. p001-p012 or p001,p005")
+    parser.add_argument("--participants", required=True, help="e.g. p011-p022 or p011,p015")
     parser.add_argument("--users", help="CSV with participant,upn to grant workspace access")
     parser.add_argument("--role", default="Contributor", choices=["Admin", "Member", "Contributor"])
-    parser.add_argument("--prefix", default="zeb-", help="workspace name prefix (default zeb-)")
+    parser.add_argument("--prefix", default="ws-", help="workspace name prefix (default ws-)")
     parser.add_argument("--tenant", help="tenant for az get-access-token")
     parser.add_argument("--update-notebooks", action="store_true", help="overwrite existing notebooks")
     parser.add_argument("--reference-ontology", action="store_true",

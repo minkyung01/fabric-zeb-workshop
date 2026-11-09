@@ -2,14 +2,14 @@
 
 [목차](../README.md)
 
-Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참가자는 보지 않아도 됩니다. 예시는 `p001` 기준이며 참가자마다 `pNNN`을 바꿔 반복합니다. 데이터 구조와 정답은 [데이터 설계](data-design.md)를 봅니다.
+Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참가자는 보지 않아도 됩니다. **실습자 계정은 `p011`부터**, Fabric 작업 영역은 **`ws-pNNN`** 형식입니다(`p011` → `ws-p011`, `p012` → `ws-p012`). 데이터 구조와 정답은 [데이터 설계](data-design.md)를 봅니다.
 
 ## 준비할 리소스
 
 | 리소스 | 값 |
 |---|---|
-| Microsoft Fabric 용량 | 유료 F 용량. 12명 동시 실습 기준 **F64 이상 권장**(Copilot은 F2 이상이면 사용 가능). Trial 용량에서는 Copilot·Operations agent가 동작하지 않을 수 있습니다. |
-| 참가자 작업 영역 | `zeb-pNNN` (참가자는 **Contributor** 이상) |
+| Microsoft Fabric 용량 | 유료 F 용량. 12명 동시 실습 기준 **F64 이상 권장**(Copilot은 F2 이상이면 사용 가능). **Operations agent는 Trial 용량을 지원하지 않습니다.** |
+| 참가자 작업 영역 | `ws-pNNN` (참가자는 **Contributor** 이상) |
 | Lakehouse | `lh_zeb` (**schemas 켬**) |
 | 실습 파일 | Notebook 7개(`notebooks/*.ipynb`), `Files/workshop`에 `fabric/sm_zeb.tmdl`, `fabric/zeb-theme.json` |
 | 네트워크 | Fabric Spark에서 `https://www.data.go.kr`로 나가는 HTTPS(02장). 막혀 있으면 아래 "공공데이터 대체 경로" |
@@ -38,6 +38,8 @@ Teams 관리 센터에서 **Fabric Operations Agent** 앱을 참가자에게 허
 
 `admin/provision.py`가 참가자마다 작업 영역·Lakehouse·Notebook·실습 파일을 준비합니다. 이미 있는 항목은 다시 만들지 않습니다. 관리자 계정의 Azure CLI 로그인을 사용하며 비밀 값을 저장하지 않습니다.
 
+기본 접두사는 **`ws-`**입니다. 12명 예시는 `p011-p022`이며 실제 배정 계정의 마지막 번호에 맞춥니다. 기존 `ws-p011`이 있으면 재사용하며, 이 스크립트는 **계정 생성이나 기존 작업 영역 이름 변경을 하지 않습니다.** 기존 영역의 용량 할당·역할은 별도로 확인합니다. 이전 `zeb-` 이름의 영역을 자동으로 찾아 바꾸지 않습니다.
+
 1.  관리자 PC에서 저장소 루트로 이동하고 Fabric 관리자(또는 용량 Contributor + 작업 영역 생성 권한) 계정으로 로그인합니다.
 
     ``` bash
@@ -48,20 +50,20 @@ Teams 관리 센터에서 **Fabric Operations Agent** 앱을 참가자에게 허
 
     ``` text
     participant,upn
-    p001,p001@contoso.com
-    p002,p002@contoso.com
+    p011,p011@contoso.com
+    p012,p012@contoso.com
     ```
 
 3.  먼저 `--dry-run`으로 만들 대상을 확인합니다.
 
     ``` bash
-    python admin/provision.py --capacity <capacity-id> --participants p001-p012 --users users.csv --dry-run
+    python admin/provision.py --capacity <capacity-id> --participants p011-p022 --users users.csv --dry-run
     ```
 
 4.  실제로 실행합니다.
 
     ``` bash
-    python admin/provision.py --capacity <capacity-id> --participants p001-p012 --users users.csv
+    python admin/provision.py --capacity <capacity-id> --participants p011-p022 --users users.csv
     ```
 
 **확인할 결과:** 참가자마다 `create workspace`, `create lakehouse lh_zeb (schemas)`, `import notebook …` 7줄, `upload Files/workshop/…`이 출력됩니다. 참가자 작업 영역에 `lh_zeb`(+SQL analytics endpoint)와 Notebook 7개가 있고, Notebook의 기본 Lakehouse가 그 작업 영역의 `lh_zeb`입니다.
@@ -72,6 +74,8 @@ Teams 관리 센터에서 **Fabric Operations Agent** 앱을 참가자에게 허
 | `--reference-ontology` | 참고 설계 Ontology를 `ont_zeb`로 배포합니다. 06장의 Ontology agent를 쓸 수 없는 환경이나, 시간이 부족한 참가자의 대체 경로입니다. 배포하면 `ont_zeb_lh_…`, `ont_zeb_graph_…`도 자동으로 생깁니다. Gold가 있어야 인스턴스가 읽히므로 **05장 이후**에 실행합니다. |
 | `--role` | 참가자 권한(기본 `Contributor`) |
 | `--tenant` | 여러 테넌트에 로그인한 경우 토큰을 받을 테넌트 |
+
+`--reference-ontology`는 저장소의 REST 정의를 제출하는 **비교·복구용 경로**입니다. 새 Ontology 경험과 정의의 호환성은 별도 테스트 작업 영역에서 열기·키·바인딩·원본 조회로 먼저 확인합니다. 자동 마이그레이션이나 Agent 초안 생성 실습 완료로 간주하지 않습니다. 기존 참가자 Ontology는 덮어쓰지 않습니다.
 
 **수동 준비:** 스크립트를 쓰지 않으면 작업 영역을 만들고 용량에 할당한 뒤, **New item → Lakehouse**에서 `lh_zeb`를 만들 때 **Lakehouse schemas**를 켭니다. **Import → Notebook → From this computer**로 `notebooks/*.ipynb` 7개를 가져오고, 각 Notebook에서 `lh_zeb`를 기본 Lakehouse로 연결합니다. `lh_zeb`의 **Files**에 `workshop` 폴더를 만들고 `fabric/sm_zeb.tmdl`, `fabric/zeb-theme.json`을 업로드합니다. Notebook 이름은 파일 이름 그대로 둡니다(`nb_apply_decision`이 `03_silver_conform`·`04_gold_model`을 이름으로 실행).
 
@@ -104,7 +108,7 @@ Spark에서 포털에 나갈 수 없는 환경이면 관리자가 파일을 내�
 
 ## 5. 사전 점검 체크리스트
 
-실습 전에 관리자가 참가자와 같은 이름 규칙의 작업 영역(예: `zeb-p001`)에서 교재대로 전체를 한 번 실행하고 아래 값을 확인합니다. 아래 값은 2026-10-18–19 점검(공공 파일 ZEB 20251231 기준)의 실제 결과입니다.
+실습 전에 관리자가 참가자와 같은 이름 규칙의 작업 영역(예: `ws-p011`)에서 교재대로 전체를 한 번 실행하고 아래 값을 확인합니다. 아래 값은 2026-10-18–19 점검(공공 파일 ZEB 20251231 기준)의 실제 결과입니다.
 
 | 장 | 확인할 값 |
 |---|---|
@@ -120,11 +124,23 @@ Spark에서 포털에 나갈 수 없는 환경이면 관리자가 파일을 내�
 
 Copilot·Ontology agent·Data agent·Operations agent·Teams 단계는 AI·UI 동작이므로 사전 점검에서 직접 확인하고, 화면이 바뀌었으면 강사 안내를 갱신합니다.
 
+**현재 교재의 질의 경로:** 07장 기본 과정은 Data agent 구성 후 **Ontology Agent의 Plan 질의**입니다. 위 2026-10-18–19 수치는 이전 점검 결과이며, 새 Plan 경로·단계적 모델 보강·영문 Operations agent 지침이 이 테넌트에서 검증됐다는 뜻이 아닙니다. 행사 전 `p011`과 같은 역할의 계정으로 원본 읽기·Plan 응답·Act 저장·Teams 승인·재계산을 리허설합니다.
+
+| 사전 확인 | 운영 시 기준 |
+|---|---|
+| Ontology 생성·검증 | 현장·설계안 초안 → 일정·보완안·공공 사례 보강. 샘플 검증과 전체 질의 미실행을 구분하고 미확인 바인딩은 적용 전 해결 |
+| Data agent Preview 문맥 | 관리자가 확인한 Runtime 사용. `Download ontology context`·`Refresh`·실행 질의로 설명·동의어·바인딩 전달을 확인. 선택 직접 비교를 기본 완료 조건으로 강제하지 않음 |
+| Graph | 생성은 선택. 원본 SQL 질의와 스냅샷 질의를 구분하고, 승인 후 새로 고침 실패·취소면 최신 데이터로 간주하지 않음 |
+| Operations agent | **지침·업무 목표는 영어**, 한국어 알림 본문은 출력 요청. 전환 조건·이벤트 ID·최신 상태·액션 매핑과 실제 첫 알림·반복 여부 확인 |
+| 승인 증빙 | Notebook의 `approved_by`는 실행 계정. 실제 Teams 승인자 증빙은 카드·Activity log·조직 감사 기록으로 확인 |
+
+공식 문서: [Ontology 문맥·다운로드·갱신](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-ontology-sources), [Operations agent 언어·실행 제약](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/operations-agent-limitations). 로컬 일관성 검사는 실제 Fabric API·AI 응답·Teams 승인 동작을 대신하지 않습니다.
+
 사전 점검에서 확인한 주의 사항:
 
 - **SQL analytics endpoint 지연:** 승인 반영 후 15분 넘게 이전 값이 보인 경우가 있었습니다. 10장 11단계처럼 **Sync metadata from the Lakehouse**를 먼저 누르도록 안내합니다.
 - **Teams 채팅:** 같은 계정으로 다른 실습의 Operations agent를 쓴 적이 있으면 **Fabric operations agent** 채팅에 예전 카드가 섞여 있습니다. 참가자에게 맨 아래 `oa_zeb` 카드를 쓰도록 안내합니다.
-- **Ontology 그래프 새로 고침:** 승인 반영 중 `ont_zeb_graph_…` 새로 고침이 Monitor에 **Cancelled**로 남을 수 있습니다. 점검에서는 Data agent 답(V4·4등급)에 영향이 없었습니다.
+- **Ontology 그래프 새로 고침:** 승인 반영 중 `ont_zeb_graph_…` 새로 고침이 Monitor에 **Cancelled**로 남을 수 있습니다. 이전 점검의 Data agent 답에는 영향이 없었지만 Graph 최신성은 보장되지 않습니다. Graph를 사용하면 갱신 성공과 실제 V4 인스턴스를 별도로 확인합니다.
 
 ## 6. 반복 실습과 초기화
 
@@ -138,6 +154,6 @@ Copilot·Ontology agent·Data agent·Operations agent·Teams 단계는 AI·UI �
 ## 7. 종료 후 정리
 
 1.  참가자에게 `oa_zeb` **Stop**을 확인시킵니다(10장 13단계, 11장).
-2.  참가자 작업 영역 `zeb-pNNN`을 삭제합니다. 작업 영역을 지우면 안의 모든 항목(Lakehouse·Eventhouse·Ontology·Data agent·보고서·Operations agent)이 함께 지워집니다.
+2.  참가자 작업 영역 `ws-pNNN`을 삭제합니다. 작업 영역을 지우면 안의 모든 항목(Lakehouse·Eventhouse·Ontology·Data agent·보고서·Operations agent)이 함께 지워집니다.
 3.  Foundry 프로젝트·리소스, 인증 연결을 정리합니다. 참가자별 리소스 그룹(예: `rg-zeb-pNNN`)을 썼다면 리소스 그룹째 삭제합니다.
 4.  유료 Fabric 용량을 일시 중지하거나 삭제합니다.

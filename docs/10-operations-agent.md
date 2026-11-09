@@ -4,6 +4,8 @@
 
 보고서와 에이전트로 D단지 위험과 근거를 확인했습니다. 운영에서는 사람이 보고서를 열기 전에 **위험을 감지해 담당자에게 알리고, 할 일을 제안**해야 합니다. 이 장에서는 **Operations agent가 D단지 위험과 추천 보완안을 Teams로 제안**하게 만들고(1–7단계), 담당자로서 **승인한 뒤 그 결과가 데이터 전체에 어떻게 반영되는지** 따라가 확인합니다(8–13단계).
 
+**이 장의 미션:** “Teams에서 접수됐다”가 아니라 **승인한 이벤트·보완안 → 실행 상태 → 조치 기록 → V4·등급 회복 → 이벤트 종료**를 같은 ID로 확인합니다. AI는 이미 계산된 추천안을 전달하고, 사람이 근거와 매개 변수를 검토한 뒤 승인합니다.
+
 | 항목 | 역할 |
 |---|---|
 | Eventhouse `eh_zeb` | 위험 이벤트의 상태가 바뀔 때마다 `ZebRiskEvent` 테이블에 한 행씩 쌓습니다(`open` → `approved` → `resolved`). |
@@ -22,13 +24,13 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 **Eventhouse의 `
 | 3 | `03_silver_conform`이 조치를 읽어 <b>설계안 V4(조치 반영안)</b>를 만들고 `현행`으로 바꿈 | Lakehouse |
 | 4 | `04_gold_model`이 예상 등급·현장 상태를 다시 계산 | `ops.site_status` |
 | 5 | D단지 위험이 해소되면 Eventhouse에 `resolved` | Eventhouse |
-| 6 | 보고서·Data agent에서 바뀐 결과 확인, 에이전트 Stop | Power BI, Data agent, Operations agent |
+| 6 | 보고서·Ontology Agent의 Plan에서 바뀐 결과 확인, 에이전트 Stop | Power BI, Ontology Agent, Operations agent |
 
 **시작 전:** 05장의 `ops.site_status`가 있어야 합니다. 작업 영역 Contributor 이상, KQL 데이터베이스·Notebook 작업 권한, Teams 라이선스와 **Fabric Operations Agent** 앱 사용 권한이 필요합니다([공식 요구 사항](https://learn.microsoft.com/fabric/real-time-intelligence/operations-agent#prerequisites)).
 
 ## 1. Eventhouse 만들기
 
-1.  작업 영역 `zeb-p001`에서 **+ New item**을 누르고 `Eventhouse`를 검색해 **Eventhouse**를 고릅니다. 한국어 UI에서는 `이벤트하우스`로 검색합니다.
+1.  작업 영역 `ws-p011`에서 **+ New item**을 누르고 `Eventhouse`를 검색해 **Eventhouse**를 고릅니다. 한국어 UI에서는 `이벤트하우스`로 검색합니다.
 2.  **Eventhouse name**에 `eh_zeb`를 입력하고 **Create**를 누릅니다.
 
 **예상 결과:** Eventhouse가 열리고 같은 이름의 KQL 데이터베이스 `eh_zeb`가 만들어집니다(1분 이내).
@@ -86,25 +88,35 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 **Eventhouse의 `
 
 1.  작업 영역에서 **+ New item** → **Operations agent**(한국어 UI: **운영 에이전트**)를 고릅니다. **Name**에 `oa_zeb`를 입력하고 **Create**를 누릅니다. **Welcome** 창은 **X**로 닫습니다.
 
-2.  **Agent instructions**에 아래 지침을 붙여 넣습니다. 감시할 열을 `ZebRiskEvent.event_status`처럼 테이블 이름과 함께 적어야 에이전트가 규칙을 만들 때 열을 찾습니다.
+2.  **Agent instructions**에 아래 **영문 지침**을 붙여 넣습니다. 현재 Operations agent의 지침·업무 목표는 영어만 지원하므로 감시 조건은 영어로 정의하고 알림 본문은 한국어로 요청합니다([언어 제약](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/operations-agent-limitations)). 감시할 열을 `ZebRiskEvent.event_status`처럼 테이블 이름과 함께 적습니다.
 
     ``` text
-    Contoso 건설의 제로에너지건축물(ZEB) 인증 위험 이벤트를 감시합니다.
+    Monitor ZEB certification risk events for Contoso Construction.
 
-    감시 대상: KQL 데이터베이스 eh_zeb의 ZebRiskEvent 테이블
-    - 위험 이벤트 ID: ZebRiskEvent.event_id
-    - 상태가 바뀐 시각: ZebRiskEvent.status_time
-    - 상태: ZebRiskEvent.event_status ("open", "approved", "resolved")
-    - 추천 보완안 ID: ZebRiskEvent.recommended_option_id
-    - 알림에 넣을 값: ZebRiskEvent.site_name, ZebRiskEvent.risk_reason, ZebRiskEvent.prelim_grade, ZebRiskEvent.forecast_grade, ZebRiskEvent.selfsuff_pct, ZebRiskEvent.recommended_option_name, ZebRiskEvent.option_cost_krw, ZebRiskEvent.expected_selfsuff_pct, ZebRiskEvent.expected_grade
+    Source: ZebRiskEvent table in the eh_zeb KQL database.
+    - Business object ID: ZebRiskEvent.event_id
+    - Status timestamp: ZebRiskEvent.status_time
+    - Status: ZebRiskEvent.event_status ("open", "approved", "resolved")
+    - Recommended option ID: ZebRiskEvent.recommended_option_id
+    - Evidence fields: ZebRiskEvent.site_name, ZebRiskEvent.risk_reason,
+      ZebRiskEvent.prelim_grade, ZebRiskEvent.forecast_grade, ZebRiskEvent.selfsuff_pct,
+      ZebRiskEvent.recommended_option_name, ZebRiskEvent.option_cost_krw,
+      ZebRiskEvent.expected_selfsuff_pct, ZebRiskEvent.expected_grade
 
-    규칙: 위험 이벤트(event_id)의 event_status가 "open"이 되면 담당자에게 Teams로 알리고 ApplyZebOption 조치를 추천합니다.
-    ApplyZebOption의 event_id에는 ZebRiskEvent.event_id를, option_id에는 ZebRiskEvent.recommended_option_id를 넣습니다.
-    메시지에는 현장, 위험 사유, 예비인증 등급과 현재 예상 등급, 추천 보완안과 비용, 적용 후 예상 자립률·등급을 포함합니다.
-    메시지는 한국어로 씁니다.
+    Evaluate the latest status per event_id by status_time.
+    When an event's status becomes "open", send a Teams notification and recommend ApplyZebOption.
+    Use a transition condition, not a repeatedly satisfied state condition.
+    Do not send another notification while the same event remains open, or when it becomes approved or resolved.
+    Map ApplyZebOption.event_id to ZebRiskEvent.event_id and ApplyZebOption.option_id to ZebRiskEvent.recommended_option_id.
+    Use the option already calculated by the Notebook; do not invent or replace it.
+    Include the site, risk reason, preliminary and forecast grades, recommended option and cost,
+    and expected self-sufficiency percentage and grade after applying the option.
+    Write the notification body in Korean. Built-in labels and buttons may remain in English.
+    Execute the action only after the recipient reviews the evidence and approves it in Teams.
+    The action records workshop data and recalculates it; it does not change real designs or place orders.
     ```
 
-3.  **Knowledge**에서 **Add data** 옆 아래 화살표 → **Add from OneLake catalog**를 고릅니다. 오른쪽 위 **Filter by keyword**에 `eh_zeb`를 입력하고, Location이 `zeb-p001`인 `eh_zeb`를 고른 뒤 **Add**를 누릅니다.
+3.  **Knowledge**에서 **Add data** 옆 아래 화살표 → **Add from OneLake catalog**를 고릅니다. 오른쪽 위 **Filter by keyword**에 `eh_zeb`를 입력하고, Location이 `ws-p011`인 `eh_zeb`를 고른 뒤 **Add**를 누릅니다.
 
     <img src="../assets/screenshots/d10-oa-add-data.png" width="800" alt="Knowledge의 Add data 옆 화살표 메뉴. Add from OneLake catalog와 Add from Variable library가 보입니다." />
 
@@ -112,20 +124,20 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 **Eventhouse의 `
 
     <img src="../assets/screenshots/d10-oa-knowledge.png" width="800" alt="Knowledge 목록에 eh_zeb, Type KQL Database가 추가된 화면" />
 
-4.  **Actions**의 **Add action**을 누르고 **Select action type**에서 **Fabric item**을 고릅니다. **Browse**를 누르고 **Filter by keyword**에 `nb_apply_decision`을 입력해 Location이 `zeb-p001`인 항목을 고른 뒤 **Add**를 누릅니다.
+4.  **Actions**의 **Add action**을 누르고 **Select action type**에서 **Fabric item**을 고릅니다. **Browse**를 누르고 **Filter by keyword**에 `nb_apply_decision`을 입력해 Location이 `ws-p011`인 항목을 고른 뒤 **Add**를 누릅니다.
 
 5.  아래와 같이 입력하고 **Next**를 누릅니다. **Parameters**의 `event_id`, `option_id`는 Notebook의 parameters 셀에서 자동으로 채워집니다. **Description**만 입력합니다.
 
     | 입력란 | 값 |
     |---|---|
     | **Action name** | `ApplyZebOption` |
-    | **Action description** | `담당자가 승인한 ZEB 등급 보완안을 반영합니다. 조치 기록을 남기고 Silver·Gold를 다시 계산해 설계안과 예상 등급을 갱신하며, ZebRiskEvent에 approved와 resolved 상태를 추가합니다. 실제 설계 변경이나 발주는 하지 않습니다.` |
-    | `event_id`의 **Description** | `승인할 위험 이벤트의 event_id` |
-    | `option_id`의 **Description** | `승인할 보완안 ID. 위험 이벤트의 recommended_option_id를 넣습니다.` |
+    | **Action description** | `After Teams approval, record the recommended ZEB improvement option and rerun Silver and Gold to update the workshop design version and forecast grade. Append approved and resolved statuses to ZebRiskEvent. Do not change real designs or place orders.` |
+    | `event_id`의 **Description** | `The approved risk event ID from ZebRiskEvent.event_id.` |
+    | `option_id`의 **Description** | `The approved option ID from ZebRiskEvent.recommended_option_id.` |
 
     <img src="../assets/screenshots/d10-oa-action.png" width="1000" alt="Add action의 Action details. Fabric item nb_apply_decision, Action name ApplyZebOption, Parameters event_id와 option_id에 설명이 입력된 화면" />
 
-6.  **Review and create**에서 Action type `Notebook`, Item name `nb_apply_decision`, Workspace `zeb-p001`, Parameters 2개를 확인하고 **Create**를 누릅니다.
+6.  **Review and create**에서 Action type `Notebook`, Item name `nb_apply_decision`, Workspace `ws-p011`, Parameters 2개를 확인하고 **Create**를 누릅니다.
 
     **예상 결과:** **Actions**에 `ApplyZebOption`이 **Action connected** 상태로 보입니다.
 
@@ -149,7 +161,7 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 2.  **Agent playbook**을 아래로 내려 **Rules**의 규칙을 펼칩니다.
 
-    **확인할 기준:** KQL 쿼리가 `ZebRiskEvent`를 `status_time`으로 거르고(`where ['status_time'] between (startTime .. endTime)`), ID 속성이 `event_id`에 연결되어 있어야 합니다. 조건은 상태 속성(`event_status`)이 `open`으로 **바뀔 때**입니다(`Changes To` 또는 `Becomes`). `Is open`처럼 현재 상태를 매번 평가하는 조건이면 반복 알림이 생길 수 있습니다. 규칙 이름과 개수는 생성 결과에 따라 다릅니다(예: `Zeb Risk Event Open Notify And Recommend` 1개).
+    **확인할 기준:** KQL 쿼리의 조회 시간은 `status_time`, 객체 ID는 `event_id`여야 하며, 같은 이벤트의 최신 상태를 평가해야 합니다(예: `arg_max(status_time, *) by event_id`). 조건은 `event_status`가 `open`으로 **바뀔 때**입니다(`Changes To` 또는 `Becomes`). 숫자 플래그 `open_flag`를 0/1로 계산하고 **Crosses above 0.5**를 쓰는 동등한 전환 조건도 가능합니다. `Is open`·`Is above`처럼 상태를 매번 평가하는 조건은 반복 알림을 만들 수 있습니다. 생성된 질의·조건·액션 매핑을 검토하고, 이후 첫 `open` 알림과 상태 유지 중 반복 여부를 실제로 확인합니다.
 
     <img src="../assets/screenshots/d10-oa-rule.png" width="1000" alt="펼친 규칙의 KQL 쿼리와 조건. ZebEventStatusText, Changes To, open" />
 
@@ -246,7 +258,7 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 1.  Fabric 왼쪽 **Monitor**를 엽니다. **Activity name**이 `nb_apply_decision_…`인 행을 찾습니다. **Submitted by**는 에이전트를 만든 사람입니다.
 2.  상태가 **Succeeded**가 될 때까지 기다리며 **Refresh**를 누릅니다(캡처 환경에서 약 6분). 실행 중에는 `03_silver_conform`, `04_gold_model`이 차례로 실행됩니다.
 
-**예상 결과:** `nb_apply_decision`이 **Succeeded**입니다. 비슷한 시각에 `ont_zeb_graph_…`(Graph model) 행이 생길 수 있으며, 상태가 **Cancelled**여도 이 장의 결과 확인에는 영향이 없습니다.
+**예상 결과:** `nb_apply_decision`이 **Succeeded**입니다. 비슷한 시각에 `ont_zeb_graph_…`의 새로 고침 기록이 생길 수 있습니다. Graph의 실패·취소와 Lakehouse 재계산 결과는 따로 확인합니다. **Graph가 최신이라고 가정하지 말고**, 10–11단계에서 원본 상태 이력·V4·등급을 확인합니다. Graph를 사용해 다시 질문할 경우에는 갱신 성공과 최신 인스턴스를 먼저 확인합니다.
 
 <img src="../assets/screenshots/d10-monitor.png" width="1000" alt="Monitor의 Activities. nb_apply_decision 행이 Succeeded, Item type Notebook, Location zeb-p001" />
 
@@ -308,7 +320,9 @@ WHERE site_code = 'HS-D';
 
 설비 계획(`gold.pms_equipment_plan`)에도 `HS-D-OPT-D2`(주차장 캐노피 태양광, 2억 3천만 원, 설계안 V4)가 추가됩니다. 이 모든 변경은 **실습 데이터 안의 기록과 재계산**이며 실제 설계 변경·발주는 아닙니다.
 
-## 12. 보고서와 Data agent로 다시 확인
+`approved_by`는 Notebook 실행 계정(에이전트 생성자의 위임된 권한)을 기록한 값입니다. 뒤의 `(Teams 승인)` 문구만으로 실제 Teams 승인자 신원이 증명되지는 않습니다. 승인 증빙은 Teams 카드·에이전트 액션 기록과 함께 확인합니다.
+
+## 12. 보고서와 읽기 전용 질의로 다시 확인
 
 1.  `rpt_zeb`를 엽니다. Direct Lake 모델이라 보통 따로 새로 고치지 않아도 바뀐 값이 보입니다. 숫자가 그대로면 브라우저를 새로 고치고, 그래도 같으면 작업 영역 목록의 `sm_zeb` 행에서 새로 고침 아이콘(**Refresh now**)을 누른 뒤 보고서를 다시 엽니다(08장 2단계와 같은 방법).
 
@@ -316,11 +330,13 @@ WHERE site_code = 'HS-D';
 
     <img src="../assets/screenshots/d10-report-after.png" width="1000" alt="승인 반영 후 02 현장 컨트롤 타워. 현장 수 8, 위험 현장 0, 주의 현장 3, 설치 지연 발주 0. 에코시티 D단지 행이 V4, 41.40, 72.50, 4등급, 정상" />
 
-2.  `da_zeb`의 **Test data agent**에서 **Clear chat** 후 `에코시티 D단지의 현행 설계안과 예상 ZEB 등급은? 예비인증 등급을 지키나?`를 묻습니다.
+2.  `ont_zeb`의 **Ontology Agent → Plan**에서 07장 공통 프롬프트를 먼저 보낸 뒤 `에코시티 D단지의 현행 설계안과 예상 ZEB 등급은? 예비인증 등급을 지키나? 현재 원본에서 다시 조회하고 근거를 보여줘.`를 묻습니다. 이전 V3 답변을 재사용하지 않습니다.
 
     **예상 결과:** 현행 **V4(조치 반영안)**, 자립률 41.4%·1차에너지 72.5 → 4등급, 예비인증 4등급을 지킴. 07장 Q3을 다시 물으면 본인증 위험 현장이 **없다**고 답해야 합니다. 답 문장과 길이는 실행할 때마다 다릅니다(캡처 환경에서 약 1분).
 
     <img src="../assets/screenshots/d10-data-agent-after.png" width="1000" alt="Data agent 답의 정리 부분. 현행 설계안 BIM-0397-V4 조치 반영안, 41.4%, 72.5, 최종 예상 ZEB 등급 4등급, 예비인증 4등급을 지킴" />
+
+    위 캡처는 이전 Data agent 답변 예시입니다. Data agent 연계를 검증한 환경에서는 `da_zeb`의 **Clear chat** 후 같은 질문을 선택적으로 비교합니다. 어느 경로든 11단계 원본과 대조하고, 조회 오류나 미확인을 ‘위험 없음’으로 바꾸지 않습니다.
 
 ## 13. 감시 멈추기
 
@@ -336,7 +352,7 @@ WHERE site_code = 'HS-D';
 - 근거를 검토한 뒤 Teams에서 `OPT-D2`를 승인했고 `nb_apply_decision`이 **Succeeded**입니다.
 - `ZebRiskEvent`에 `open` → `approved` → `resolved` 이력이 있습니다.
 - `bronze.pms_action_log`에 조치 1행, `gold.bim_design_version`에 현행 **V4**, `ops.site_status`에서 D단지가 **4등급·정상**입니다.
-- 보고서의 위험 현장이 `0`이고 Data agent가 V4 기준으로 답합니다.
+- 보고서의 위험 현장이 `0`이며, 읽기 전용 Plan 질의의 결과를 V4 원본과 대조했습니다. 에이전트가 조회하지 못한 경우는 미확인으로 기록하고 11단계 SQL 결과로 반영을 확인했습니다.
 - `oa_zeb`가 **Stop** 상태입니다.
 
 여기에 남긴 것은 **담당자의 승인과 그에 따른 데이터 재계산**입니다. 실제 설계 변경·발주를 실행한 것은 아닙니다.
@@ -351,7 +367,7 @@ WHERE site_code = 'HS-D';
 - `06_risk_event`에서 `ZebRiskEvent 테이블이 없습니다` 오류가 나면 2단계를 먼저 실행합니다. `eh_zeb Eventhouse가 정확히 1개 있어야 합니다` 오류는 1단계 이름을 확인합니다.
 - `open 상태인 위험 이벤트가 없어 보내지 않았습니다`가 나오면 이미 승인·해소된 이벤트입니다. 8–13단계를 마친 상태라면 정상입니다.
 - Teams 채팅 목록에 **Fabric operations agent**가 없으면 Teams 왼쪽 **앱**에서 `Fabric Operations Agent`를 검색해 추가합니다.
-- 10분이 지나도 메시지가 오지 않으면 에이전트가 시작 상태인지, `06_risk_event`를 **Start 뒤에** 실행했는지 확인합니다. 도구 모음의 **View activity**에서 규칙 실행 기록을 봅니다.
+- 10분이 지나도 메시지가 오지 않으면 에이전트가 시작 상태인지, `06_risk_event`를 **Start 뒤에** 실행했는지 확인합니다. **Activity log**(이전 UI의 **View activity**)에서 규칙 실행·오류 기록을 봅니다.
 - 반복 실습에서 새 알림이 필요하면 **Stop**한 뒤, 실습 전용 이력이 필요 없을 때만 `.clear table ZebRiskEvent data`로 지우고 [관리자 준비 가이드](../admin/README.md)의 초기화 순서를 따릅니다.
 - 승인 요청은 3일 안에 응답하지 않으면 만료됩니다.
 
@@ -362,7 +378,7 @@ WHERE site_code = 'HS-D';
   - `option_id=… 추천 보완안과 다릅니다`: Confirm 단계에서 값이 바뀐 경우입니다. 추천안과 다른 값은 기록하지 않습니다.
   - `상태 'resolved'에서는 승인을 반영할 수 없습니다`: 이미 반영된 이벤트입니다. 10–11단계로 결과만 확인합니다.
   - `03_silver_conform`·`04_gold_model`을 찾지 못하는 오류: Notebook 이름이 바뀌었는지 확인합니다. 두 Notebook은 같은 작업 영역에 원래 이름으로 있어야 합니다.
-- 실패 후 다시 시도할 때는 Teams의 같은 제안을 다시 승인하거나, `nb_apply_decision`을 열어 기본 매개 변수로 **Run all**합니다. 조치 기록은 같은 이벤트에 대해 한 번만 추가되므로 중복되지 않습니다.
+- 실패 후에는 **재승인 전에** 10–11단계의 상태 이력·조치 기록·현재 설계안을 읽기 전용으로 확인합니다. 실제로 승인했던 이벤트와 보완안이고 상태가 `open` 또는 `approved`인 경우에만 관리자 안내에 따라 같은 액션을 재시도합니다. **승인 증빙 없이 기본 매개 변수로 Notebook을 직접 실행하지 않습니다.** `resolved`이면 재실행하지 않고 결과만 확인합니다. 같은 이벤트의 조치 기록 중복 방지와 전체 실행 성공은 별개입니다.
 - 10단계에서 `approved`만 있고 `resolved`가 없으면 재계산 후에도 D단지가 위험인 경우입니다. 마지막 셀의 사유를 확인합니다.
 - 보고서 값이 바뀌지 않으면 Semantic model의 **Refresh → Data**를 실행합니다. Direct Lake는 새로 고침으로 최신 Delta 버전을 다시 읽습니다.
 - 실습을 처음부터 다시 하려면 `02_bronze_contoso_generate` → `03_silver_conform` → `04_gold_model` 순서로 실행합니다. 조치 기록이 지워지고 D단지가 다시 V3·위험 상태가 됩니다.

@@ -2,7 +2,9 @@
 
 [목차](../README.md) \| 이전: [08. Power BI](08-power-bi.md) \| 다음: [10. Operations agent](10-operations-agent.md)
 
-10장에서 Operations agent는 D단지에 보완안 `OPT-D2`를 추천합니다. 그 추천을 승인하기 전에 쓸 근거를 **Data agent와 다른 경로로 한 번 더 확인**합니다. Microsoft Foundry에 `fa-zeb`를 만들고 **Fabric IQ** 도구로 06장의 `ont_zeb`를 직접 연결합니다. **07장의 Data agent `da_zeb`를 경유하지 않습니다.** Foundry는 근거를 조회하는 역할이며 승인·거절은 하지 않습니다.
+10장에서 Operations agent는 D단지에 보완안 `OPT-D2`를 추천합니다. 그 추천을 승인하기 전에 쓸 근거를 **07장과 다른 실행 경로로 한 번 더 확인**합니다. Microsoft Foundry에 `fa-zeb`를 만들고 **Fabric IQ** 도구로 06장의 `ont_zeb`를 직접 연결합니다. **07장의 Data agent `da_zeb`를 경유하지 않습니다.** Foundry는 근거를 조회하는 역할이며 승인·거절은 하지 않습니다.
+
+**이 장의 미션:** 답변 문장뿐 아니라 Fabric IQ의 실제 도구 출력에서 현행 설계안·등급 기준·보완안 비용을 확인합니다. 모델과 인증 연결은 관리자 안내를 따르며, 다른 에이전트가 같은 답을 했다는 사실만으로 계산이 검증된 것은 아닙니다.
 
 **이 장은 선택입니다.** Foundry 프로젝트·모델·인증 연결이 준비되지 않았거나 시간이 부족하면 건너뛰고 [10. Operations agent](10-operations-agent.md)로 갑니다. 07장 Q8로 이미 근거를 확인했고, 10장에서도 `ops.option_eval`로 다시 확인합니다.
 
@@ -20,10 +22,10 @@
 
     | 필드 | 값 |
     |---|---|
-    | **프로젝트 이름** | `zeb-p001` |
-    | **고급 옵션** > **Foundry 리소스** | `fdy-zeb-p001` |
+    | **프로젝트 이름** | `zeb-p011` (Foundry 프로젝트 이름이며 Fabric 작업 영역 `ws-p011`과 구분) |
+    | **고급 옵션** > **Foundry 리소스** | `fdy-zeb-p011` |
     | **지역** | 관리자가 지정한 Agent Service·모델 지원 지역. 캡처 예시는 `Sweden Central` |
-    | **구독**, **리소스 그룹** | 관리자가 알려 준 값. 캡처 예시는 `rg-zeb-p001` |
+    | **구독**, **리소스 그룹** | 관리자가 알려 준 값. 캡처 예시는 `rg-zeb-p011` |
     | **Foundry에서 제공하는 모든 항목을 탐색할 수 있도록 권장 리소스를 설정합니다.** | 끔. 추적 기록용 App Insights 리소스를 만들지 않습니다. |
 
     <img src="../assets/screenshots/d09-create-project.png" width="700" alt="프로젝트 만들기 창. 프로젝트 이름 zeb-p001, Foundry 리소스 fdy-zeb-p001, 지역 Sweden Central, 리소스 그룹 rg-zeb-p001이고 권장 리소스 스위치는 꺼져 있습니다." />
@@ -54,7 +56,7 @@
 3.  **도구**의 **추가 → 도구 추가**를 누릅니다. **도구 선택** 창의 **구성됨** 탭에서 **Fabric IQ(OneLake 카탈로그)**를 고르고 **도구 추가**를 누릅니다.
 
     <img src="../assets/screenshots/d09-tool-catalog.png" width="900" alt="도구 선택 창의 구성됨 탭. 파일 검색, 코드 인터프리터, Azure AI Search, 웹 검색, Work IQ, Fabric IQ(OneLake 카탈로그) 등이 보입니다." />
-4.  **OneLake 카탈로그**가 로드되면(10–20초) **키워드로 필터링**에 `ont_zeb`를 입력하고 위치가 `zeb-p001`인 `ont_zeb`를 고른 뒤 **추가**를 누릅니다. 이름이 비슷한 다른 작업 영역의 Ontology를 고르지 않습니다.
+4.  **OneLake 카탈로그**가 로드되면(10–20초) **키워드로 필터링**에 `ont_zeb`를 입력하고 위치가 `ws-p011`인 `ont_zeb`를 고른 뒤 **추가**를 누릅니다. 이름이 비슷한 다른 작업 영역의 Ontology를 고르지 않습니다.
 
     <img src="../assets/screenshots/d09-onelake-select.png" width="900" alt="OneLake 카탈로그에서 ont_zeb로 필터링한 결과. 위치 zeb-p001인 ont_zeb와 다른 작업 영역의 비슷한 이름이 보입니다." />
 5.  연결 선택·인증 안내가 나오면 관리자가 준비한 **BYO Entra/managed OAuth** 연결을 고르고 로그인·동의합니다. 캡처 환경에서는 안내 없이 바로 추가되었고, 3단계 첫 질문도 동의 요청 없이 실행되었습니다. 환경에 따라 첫 호출에서 동의를 요구할 수 있습니다.
