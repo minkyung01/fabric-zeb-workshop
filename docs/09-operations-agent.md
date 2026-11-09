@@ -286,7 +286,7 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
     <img src="../assets/screenshots/d10-monitor-running.png" width="1000" alt="Monitor의 Job runs에서 nb_apply_decision의 Last run status가 In progress로 표시된 화면. Item type은 Notebook이며 실행 중입니다." />
 
-2.  Refresh를 누르며 Last run status가 `Succeeded`가 될 때까지 기다립니다(이번 캡처의 실행 시간은 5분 36초이며 환경에 따라 달라집니다). 실행 중에는 `03_silver_conform`, `04_gold_model`이 차례로 실행됩니다.
+2.  Refresh를 누르며 Last run status가 `Succeeded`가 될 때까지 기다립니다(이번 캡처의 실행 시간은 5분 36초이며 환경에 따라 달라집니다).
 
 예상 결과: `nb_apply_decision`이 Succeeded입니다. 비슷한 시각에 `ont_zeb_graph_…`의 새로 고침 기록이 생길 수 있습니다. Graph의 실패·취소와 Lakehouse 재계산 결과는 따로 확인합니다. Graph가 최신이라고 가정하지 말고, 10–11단계에서 원본 상태 이력·V4·등급을 확인합니다. Graph를 사용해 다시 질문할 경우에는 갱신 성공과 최신 인스턴스를 먼저 확인합니다.
 
