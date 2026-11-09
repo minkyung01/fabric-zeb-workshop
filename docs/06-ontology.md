@@ -13,19 +13,21 @@
 - 05장을 마치고 본인 `lh_zeb`의 Tables → gold에 테이블 22개가 있는지 확인합니다.
 - 작업 영역 Contributor 이상 권한과 원본 테이블 읽기 권한이 필요합니다. 관리자가 Users can create Fabric items, Users can create ontology (preview) items, Copilot·Azure OpenAI 기반 AI 기능을 허용했는지 확인합니다([Ontology 테넌트 설정](https://learn.microsoft.com/en-us/fabric/iq/ontology/overview-tenant-settings)).
 
+<img src="../assets/screenshots/d06-gold-prerequisite.png" width="1000" alt="Lakehouse lh_zeb의 Explorer에서 gold 스키마를 펼친 화면. 현장, 설계안, 인증, 공공 데이터와 기준 정보 테이블이 보입니다." />
+
 Ontology는 업무 대상을 나타내는 엔터티 타입, 엔터티 사이의 관계, 엔터티를 원본 테이블과 이어 주는 데이터 바인딩으로 구성됩니다. 예를 들어 `Site`는 엔터티 타입이고, `gold.pms_site`의 각 행(실제 현장 하나하나)은 인스턴스입니다.
 
 Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔버스는 타입과 관계의 설계도이고, Graph는 인스턴스를 투영한 별도 스냅샷입니다. 설명에 적은 규칙은 자동 실행 코드나 권한 설정이 아닙니다. 07장에서는 모델을 바꾸지 않는 Plan 질의로 근거를 확인합니다.
 
 ## 1. Ontology 만들기
 
-1.  본인 작업 영역에서 + New item을 누르고 오른쪽 위 Filter by keyword 칸에 `Ontology`를 입력한 뒤 Ontology (preview) 카드를 누릅니다.
+1.  본인 작업 영역에서 + New item을 누르고 오른쪽 위 검색 칸에 `Ontology`를 입력한 뒤 Ontology (preview) 카드를 누릅니다.
 
-    <img src="../assets/screenshots/d06-new-ontology.png" width="900" alt="New item 창의 Filter by keyword 칸에 Ontology를 입력해 Ontology (preview) 카드 하나만 보이는 화면" />
+    <img src="../assets/screenshots/d06-new-ontology.png" width="1000" alt="New item 창의 검색 칸에 onto를 입력해 Ontology (preview) 카드가 보이는 화면" />
 
 2.  Name에 `ont_zeb`를 입력하고 Location이 본인 작업 영역인지 확인한 뒤 Create를 누릅니다.
 
-    <img src="../assets/screenshots/d06-create-ontology.png" width="700" alt="New Ontology 창에 Name ont_zeb, Location zeb-p001이 입력된 화면" />
+    <img src="../assets/screenshots/d06-create-ontology.png" width="700" alt="New Ontology 창에 Name ont_zeb와 Location 작업 영역, Create 버튼이 보이는 화면" />
 
 3.  "Getting Ontology (preview) ready..."가 1분 넘게 계속되면 브라우저를 새로 고칩니다. Welcome to Ontology 창이 나오면 창 오른쪽 위 X로 닫습니다.
 
@@ -58,13 +60,15 @@ Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔�
     먼저 Plan에서 설계 근거, 검증 결과와 미리 보기를 보여줘. 적용은 내가 검토하고 Act에서 승인한 다음에 해.
     ```
 
-    <img src="../assets/screenshots/d06-agent-prompt.png" width="900" alt="Ontology Agent 창의 입력 칸에 프롬프트를 붙여 넣은 화면. 입력 칸 아래 Plan | Act 스위치와 보내기 화살표가 있습니다." />
+    <img src="../assets/screenshots/d06-agent-prompt.png" width="1000" alt="Ontology Agent의 Plan 모드에서 현장·설계안·인증 초안 프롬프트를 보낸 화면. 에이전트가 Working on it 상태로 응답을 준비하고 있습니다." />
 
     `ops` 스키마를 빼는 이유는 05장에서 본 것처럼 `ops`에는 판정 결과가 들어 있기 때문입니다. Ontology에는 업무 데이터와 판정 규칙만 두고, 결과는 질문할 때마다 규칙으로 구하게 합니다.
 
 3.  에이전트가 Lakehouse의 열과 샘플 행을 살펴보고 초안을 만들어 검증할 때까지 기다립니다. 진행 중에는 "Considering…", "Deciding…" 같은 생각 단계가 보이고, 보통 5–8분 걸립니다.
 
 확인할 결과: 제안된 엔터티·관계, 질문별 연결 경로, 확인한 원본 열·행과 검증한 범위·미실행 항목이 구분되어 있습니다. 첫 초안은 현장·설계안·인증 범위만 대조합니다. 샘플의 값이 맞는 것과 전체 데이터의 키 유일성·참조 무결성이 확인된 것은 다릅니다. ‘샘플에서 미확인’을 ‘원본에 없음’으로 바꾸지 않습니다.
+
+<img src="../assets/screenshots/d06-initial-proposal.png" width="1000" alt="현장·설계안·인증의 첫 초안 미리 보기. AI Proposal 아래 엔터티 8개와 관계가 보이고, Agent 응답에는 사용한 원본과 이번 초안에서 제외한 공급·일정·보완안·공공 사례 범위가 표시됩니다. Switch to Act + approve 버튼은 아직 누르지 않습니다." />
 
 특히 두 가지를 확인합니다. 첫째, 현장 → BIM 모델 → 설계안 경로가 있어야 합니다(예: `PmsSite → SiteCrosswalk → BimDesignVersion`). 이 경로가 없으면 "D단지의 현행 설계안은?"에 답할 수 없습니다. 둘째, 모든 엔터티에 키가 있어야 합니다. 키가 없는 엔터티는 Graph에 올라가지 않아 경로가 끊깁니다. 에이전트가 "논리 관계로만 넣었다", "키 없는 매핑 엔터티로 두었다", "모델 번호는 연결하지 않았다"고 답하면 같은 Plan 대화에서 아래처럼 보완을 요청합니다. 이름은 에이전트가 제안한 이름에 맞춰 바꿉니다.
 
