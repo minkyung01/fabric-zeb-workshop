@@ -52,9 +52,9 @@ Power BI 개인 라이선스와 작업 영역의 Fabric 용량은 별개입니�
 
     <img src="../assets/screenshots/d08-new-model.png" width="700" alt="New semantic model 창에 sm_zeb와 본인 작업 영역이 입력되어 있습니다. 공공 인증·기준 정보·공급사 테이블과 펼친 ops의 선택 목록 일부가 보이며, 모델 이름·작업 영역과 Confirm 버튼을 빨간 테두리로 표시했습니다." />
 
-예상 결과: `sm_zeb`가 Model view로 열립니다. 오른쪽 Data 창에 테이블 9개가 있고, 오른쪽 위는 Editing입니다.
+예상 결과: `sm_zeb`가 Model view로 열리고 오른쪽 위는 Editing입니다. 오른쪽 Data 창이 접혀 있으면 펼쳐 테이블 9개를 확인합니다.
 
-<img src="../assets/screenshots/d08-model-created.png" width="1000" alt="sm_zeb의 Model view. 오른쪽 Data 창에 milestone_forecast부터 site_status까지 테이블 9개가 있고 오른쪽 위가 Editing입니다." />
+<img src="../assets/screenshots/d08-model-created.png" width="1000" alt="생성 직후 sm_zeb의 Model view. 아직 관계선 없이 테이블 일부가 보이고 오른쪽 Data 창은 접혀 있습니다. 다음 단계에서 누를 아래쪽 TMDL View 탭을 빨간 테두리로 표시했습니다." />
 
 ## 2. 관계와 측정값 넣기
 
@@ -63,6 +63,9 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 1.  화면 아래 TMDL View (Preview) 탭을 누릅니다. Edit your model with TMDL 안내가 나오면 Try it now를 누릅니다.
 2.  PC의 `sm_zeb.tmdl`을 메모장으로 열고 Ctrl+A, Ctrl+C로 전체를 복사합니다.
 3.  TMDL 편집기의 1행을 누르고 Ctrl+V로 붙여 넣습니다. 1행이 `createOrReplace`입니다.
+
+    <img src="../assets/screenshots/d08-tmdl-pasted.png" width="1000" alt="TMDL View에 createOrReplace 스크립트를 붙여 넣은 적용 전 화면. 위쪽 Apply와 아래쪽 Problems 15 위치를 빨간 테두리로 표시했고, 오른쪽 Data 창에는 테이블 9개가 보입니다." />
+
 4.  편집기 위 Apply를 누릅니다.
 
     붙여 넣은 직후 아래 Problems에 `Cannot find name '[ZEB 인증 건수]'` 같은 경고가 15개쯤 보입니다. 같은 스크립트 안에서 아직 만들어지지 않은 측정값을 참조해서 생기는 경고이므로 그대로 Apply합니다.
@@ -73,7 +76,9 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 5.  화면 아래 Model view 탭을 누르고, 오른쪽 아래 Fit to page를 눌러 전체를 봅니다.
 
-6.  관계를 계산하도록 모델을 새로 고칩니다. 새 관계는 새로 고침 전까지 데이터가 없어서, 보고서에 *"…relationship … needs to be recalculated"* 오류가 납니다. 위쪽 탭에서 본인 작업 영역으로 가서 `sm_zeb` 행의 이름 오른쪽 새로 고침 아이콘(Refresh now) 을 누르고, 1분쯤 뒤 `sm_zeb` 탭으로 돌아옵니다.
+6.  관계를 계산하도록 Model view 리본의 Refresh에서 Data 새로 고침을 선택합니다. Refresh 확인 창에서 Refresh를 누르고 완료될 때까지 기다립니다. 새로 고침 중에는 모델을 보거나 편집할 수 없습니다. 이 과정을 생략하면 보고서에 *"…relationship … needs to be recalculated"* 오류가 날 수 있습니다.
+
+    <img src="../assets/screenshots/d08-model-refresh.png" width="1000" alt="모델 새로 고침 확인 창. 새로 고침 중에는 모델을 보거나 편집할 수 없다는 안내가 보이고, Refresh 버튼을 빨간 테두리로 표시했습니다." />
 
 예상 결과: `pub_zeb_certification`이 `ref_region`·`ref_zeb_grade_criteria`·`ref_building_use`와, `milestone_forecast`·`po_status`가 `site_status`와, `po_status`가 `scm_vendor`·`ref_equipment_category`와 관계선으로 이어집니다.
 
@@ -82,6 +87,8 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 ## 3. Copilot으로 현장 컨트롤 타워 만들기
 
 1.  리본의 New report를 누릅니다. 새 탭에 빈 보고서가 편집 화면으로 열립니다.
+
+    테마도 적용하려면 이 보고서 편집 화면에서 진행합니다. 아래 [(선택) 공공 인증 현황과 테마](#선택-공공-인증-현황과-테마)를 펼쳐 `zeb-theme.json` 가져오기 안내를 따릅니다. 테마는 Semantic model이 아니라 보고서에 적용하며, 공공 인증 페이지를 추가하지 않아도 사용할 수 있습니다.
 
 2.  보고서가 편집 보기(Editing)인지 확인하고 리본 오른쪽 Copilot을 눌러 아래 내용을 보냅니다.
 
@@ -153,7 +160,7 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 ## Troubleshooting
 
 - Apply 뒤 테이블이 없다는 오류가 나면 Model view 리본의 Edit tables에서 1단계의 테이블 9개가 모두 체크되어 있는지 확인합니다. Data 창의 테이블 이름이 `site_status`처럼 스키마 없이 표시되는지도 확인합니다.
-- 시각적 개체에 *Error fetching data* / *relationship … needs to be recalculated* 오류가 보이면 2단계 6번의 Refresh now를 하지 않은 것입니다. 새로 고친 뒤 보고서의 Refresh visuals를 누릅니다.
+- 시각적 개체에 *Error fetching data* / *relationship … needs to be recalculated* 오류가 보이면 2단계 6번의 모델 Data 새로 고침이 완료됐는지 확인합니다. 새로 고친 뒤 보고서의 Refresh visuals를 누릅니다.
 - 표에서 행을 누르면 그 행으로 다른 개체가 필터됩니다(카드 숫자가 바뀜). 같은 행을 한 번 더 누르면 풀립니다.
 - Semantic model이 Viewing으로 열리면 오른쪽 위에서 Editing으로 바꿉니다.
 - Copilot이 비활성화되면 작업 영역의 용량이 활성 유료 F2 이상인지, Copilot 테넌트·지역 설정이 맞는지 확인합니다. 새 용량을 Copilot이 인식하는 데 최대 24시간이 걸릴 수 있습니다.
