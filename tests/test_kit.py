@@ -68,6 +68,17 @@ class Notebooks(unittest.TestCase):
 
 
 class Docs(unittest.TestCase):
+    def test_ontology_prompt_uses_reference_names(self):
+        text = (ROOT / "docs" / "06-ontology.md").read_text(encoding="utf-8")
+        prompts = "\n".join(re.findall(r"``` text\n(.*?)```", text, re.S))
+        reference = ROOT / "fabric" / "ont_zeb_reference"
+        for kind in ("EntityTypes", "RelationshipTypes"):
+            for path in (reference / kind).glob("*/definition.json"):
+                name = json.loads(path.read_text(encoding="utf-8-sig"))["name"]
+                self.assertIn(name + "(", prompts, name)
+        self.assertIn("기존 이름 → 통일할 이름", text)
+        self.assertIn("`grade_code` = `grade_code`", text)
+
     def test_run_all_guidance_for_participant_notebooks(self):
         for chapter in ("01-workspace.md", "02-bronze-public.md", "03-bronze-contoso.md",
                         "04-silver.md", "05-gold.md", "07-data-agent.md",

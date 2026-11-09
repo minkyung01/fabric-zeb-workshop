@@ -39,7 +39,7 @@ Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔�
 
 엔터티와 관계를 하나씩 직접 만들지 않습니다. 업무 목적과 질문을 Ontology agent에게 알려 주면 에이전트가 원본 테이블을 살펴보고 설계를 제안합니다. 참가자는 그 설계로 업무 질문에 답할 수 있는지, 키와 관계가 실제 데이터와 맞는지 검토합니다.
 
-처음부터 22개 엔터티를 지정하지 않습니다. 먼저 “같은 현장이 어떤 설계안으로 인증을 받았고, 지금 설계안은 무엇인가?”를 모델링하고, 같은 Plan 대화에서 일정·보완안·공공 사례를 추가합니다. 아래 참고 설계는 보강까지 끝난 모델을 검토하는 기준입니다.
+먼저 “같은 현장이 어떤 설계안으로 인증을 받았고, 지금 설계안은 무엇인가?”를 모델링하고, 같은 Plan 대화에서 일정·보완안·공공 사례를 추가합니다. 교재와 화면을 대조하기 쉽도록 엔터티·관계 이름은 아래 기준으로 통일합니다. 이름이 같아도 키와 연결 열이 맞는지는 원본으로 확인합니다.
 
 1.  Start with Ontology agent 카드를 누릅니다. 오른쪽에 Ontology Agent 창이 열립니다. 입력 칸 아래 Plan | Act 스위치에서 Plan이 선택되어 있는지 확인합니다(처음 열면 Plan입니다). Plan은 초안을 만들고 검증만 하는 모드이고, Act는 변경을 실제로 적용하는 모드입니다.
 
@@ -48,7 +48,10 @@ Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔�
     ``` text
     lh_zeb Lakehouse의 gold 스키마를 조사해서 Contoso 건설의 제로에너지건축물(ZEB) 인증 컨트롤 타워 온톨로지를 설계해줘.
     목적은 공공 인증 데이터와 우리 현장 데이터를 연결해서, 담당자가 현장별 ZEB 예상 등급, 본인증 위험, 인증 일정, 보완안을 근거와 함께 확인할 수 있게 하는 거야.
-    첫 초안은 아래 현장·설계안·인증 질문에 필요한 엔터티, 속성, 고유 키, 관계와 데이터 바인딩만 제안하고 선택 이유를 설명해줘. 개수와 구조는 원본을 보고 판단해줘.
+    첫 초안은 아래 현장·설계안·인증 질문에 필요한 엔터티, 속성, 고유 키, 관계와 데이터 바인딩만 제안하고 선택 이유를 설명해줘.
+    엔터티 이름은 대소문자까지 다음과 같이 사용해줘(괄호는 gold 원본 테이블): Project(erp_project), Site(pms_site), BIMModel(mdm_site_xref), DesignVersion(bim_design_version), SiteCertificate(pms_certificate), CertTarget(pms_cert_target), ZEBGradeCriteria(ref_zeb_grade_criteria), BuildingUse(ref_building_use). BIMModel은 모델 번호별 교차표 엔터티이며 별도의 모델 테이블을 만들지 마.
+    관계 이름과 방향은 다음과 같이 사용해줘: Project_has_BIMModel(Project → BIMModel), Site_has_BIMModel(Site → BIMModel), BIMModel_has_DesignVersion(BIMModel → DesignVersion), Site_has_Certificate(Site → SiteCertificate), Certificate_based_on_DesignVersion(SiteCertificate → DesignVersion), Site_has_CertTarget(Site → CertTarget), Project_has_Use(Project → BuildingUse).
+    지정한 이름으로 원본 키·연결 열을 검증해줘. 매핑이 불가능하면 이름만 맞춘 가짜 연결을 만들지 말고 문제를 보고하고 중단해. 추가 엔터티·관계가 필요하면 이유와 이름을 Plan에서 제안하고 승인 전에는 추가하지 마.
     - 같은 현장의 ERP 프로젝트 번호, PMS 현장 코드, BIM 모델 번호는 무엇인가?
     - 현장의 예비인증서는 어느 설계안으로 받았고, 지금 현행 설계안은 무엇인가?
     - 현행 설계안의 에너지자립률·1차에너지소요량으로 예상 등급을 구하면 예비인증·목표 등급을 지키는가?
@@ -72,7 +75,7 @@ Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔�
 
 초안에서 확인할 항목:
 
-- 현장 → BIM 모델 → 설계안 경로가 있어야 합니다(예: `PmsSite → SiteCrosswalk → BimDesignVersion`). 이 경로로 "D단지의 현행 설계안은?"에 답할 수 있는지 원본 열과 행을 확인합니다.
+- `Site → BIMModel → DesignVersion` 경로가 있어야 합니다. 관계 이름은 `Site_has_BIMModel`, `BIMModel_has_DesignVersion`입니다. 이 경로로 "D단지의 현행 설계안은?"에 답할 수 있는지 원본 열과 행을 확인합니다.
 - 모든 엔터티에 고유 키가 있어야 합니다. 키가 없는 엔터티는 Graph에 올라가지 않아 경로가 끊깁니다.
 
 두 항목을 충족하면 다음 2-1단계로 진행합니다. 경로나 키가 빠졌다면 아래 [Troubleshooting의 초안 경로·키 보완](#초안에-현장설계안-경로나-키가-빠진-경우)을 먼저 진행합니다.
@@ -89,6 +92,15 @@ Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔�
 - 같은 건물의 ZEB·녹색건축·BF 인증과 설비 분야별 유효한 녹색기술 인증을 연결할 수 있는가?
 lh_zeb.gold의 실제 원본을 조사하고 필요한 엔터티·키·속성·관계·바인딩과 선택 이유를 제안해줘.
 기존 엔터티·키·관계·바인딩은 보존하고, 추가·수정·유지한 항목을 구분해줘. 같은 테이블을 중복 엔터티로 만들지 마.
+추가 엔터티 이름은 대소문자까지 다음과 같이 사용해줘(괄호는 gold 원본 테이블): CertMilestone(pms_cert_milestone), Equipment(pms_equipment_plan), EquipmentCategory(ref_equipment_category), PurchaseOrder(scm_purchase_order), POEvent(scm_po_event), Vendor(scm_vendor), ImprovementOption(sim_improvement_option), ActionLog(pms_action_log), ZEBCertification(pub_zeb_certification), GSEEDCertification(pub_gseed_certification), BFCertification(pub_bf_certification), CertifiedBuilding(pub_certified_building), GreenTechCertificate(pub_green_tech_certificate), Region(ref_region).
+추가 관계 이름과 방향은 다음과 같이 사용해줘:
+- Project_in_Region(Project → Region), Site_has_Milestone(Site → CertMilestone), Site_has_Equipment(Site → Equipment)
+- PurchaseOrder_for_Equipment(PurchaseOrder → Equipment), PurchaseOrder_from_Vendor(PurchaseOrder → Vendor), POEvent_for_PurchaseOrder(POEvent → PurchaseOrder)
+- Equipment_in_Category(Equipment → EquipmentCategory), Equipment_for_DesignVersion(Equipment → DesignVersion), Vendor_supplies_Category(Vendor → EquipmentCategory)
+- Option_for_Site(ImprovementOption → Site), Option_in_Category(ImprovementOption → EquipmentCategory), Action_for_Site(ActionLog → Site)
+- ZEBCertification_of_Building(ZEBCertification → CertifiedBuilding), GSEEDCertification_of_Building(GSEEDCertification → CertifiedBuilding), BFCertification_of_Building(BFCertification → CertifiedBuilding)
+- CertifiedBuilding_in_Region(CertifiedBuilding → Region), ZEBCertification_in_Region(ZEBCertification → Region), ZEBCertification_has_Use(ZEBCertification → BuildingUse), ZEBCertification_has_Grade(ZEBCertification → ZEBGradeCriteria), GreenTech_for_Category(GreenTechCertificate → EquipmentCategory)
+이름을 임의의 동의어나 다른 대소문자로 바꾸지 마. 관계의 연결 열과 키는 실제 원본으로 검증하고, 불가능한 매핑은 보고하고 중단해. 지정 목록 밖의 추가 항목이 필요하면 이유와 이름을 Plan에서 먼저 제안해줘.
 확인한 원본 열·샘플 범위와 미실행 검증을 구분해줘. 읽기 오류나 미확인 바인딩은 보고하고 중단해.
 ops·bronze·silver·dbo·Files는 제외하고, 원본 데이터와 다른 Fabric 항목은 변경하지 마.
 Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 검토한 뒤 Act에서 승인할 때만 해.
@@ -96,7 +108,7 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 
 확인할 기준: 아래 참고 범위의 업무 질문을 모두 지원하는지 확인합니다. `PurchaseOrder → Equipment`는 `wbs_element = wbs_code`, 공급사는 `vendor_code`, 보완안은 `site_code`로 연결되어야 합니다. 참조하는 키·열이 실제로 존재하는지 대조합니다. 보강 결과의 수치와 판단은 07장 정답 Notebook으로 검증합니다.
 
-아래는 이 Workshop의 원본 데모에서 쓴 <b>참고 설계(엔터티 22개·관계 27개)</b>입니다. 프롬프트에 넣어 구조를 지정하는 용도가 아니라, 에이전트의 제안을 검토할 때 비교용으로만 씁니다.
+아래는 프롬프트에서 사용하는 이름 기준(엔터티 22개·관계 27개)입니다. 개수만 맞추는 것이 아니라, 지정한 이름과 원본 바인딩이 함께 맞는지 검토합니다.
 
 | 영역 | 엔터티 타입 (gold 테이블, 키) |
 |---|---|
@@ -107,7 +119,26 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 | 공공 인증 | `ZEBCertification`, `GSEEDCertification`, `BFCertification` (각 `pub_*`, `cert_id`), `CertifiedBuilding` (`building_key`), `GreenTechCertificate` |
 | 기준 | `Region` (`ref_region`, `sido`), `BuildingUse` (`ref_building_use`, `use_group`) |
 
-핵심 관계: `Project → BIMModel`, `Site → BIMModel`, `BIMModel → DesignVersion`, `SiteCertificate → DesignVersion`(인증받은 설계안), `PurchaseOrder → Equipment`(`wbs_element` = `wbs_code`), `PurchaseOrder → Vendor`, `ImprovementOption → Site`, `ZEBCertification → Region·BuildingUse·ZEBGradeCriteria`.
+핵심 관계는 아래 이름으로 찾아 연결 열을 확인합니다.
+
+| 관계 이름 | 방향 | 원본 연결 열 |
+|---|---|---|
+| `Project_has_BIMModel` | Project → BIMModel | `project_no` = `project_no` |
+| `Site_has_BIMModel` | Site → BIMModel | `site_code` = `site_code` |
+| `BIMModel_has_DesignVersion` | BIMModel → DesignVersion | `bim_model_id` = `bim_model_id` |
+| `Certificate_based_on_DesignVersion` | SiteCertificate → DesignVersion | `design_version_id` = `version_id` |
+| `PurchaseOrder_for_Equipment` | PurchaseOrder → Equipment | `wbs_element` = `wbs_code` |
+| `PurchaseOrder_from_Vendor` | PurchaseOrder → Vendor | `vendor_code` = `vendor_code` |
+| `Option_for_Site` | ImprovementOption → Site | `site_code` = `site_code` |
+| `ZEBCertification_in_Region` | ZEBCertification → Region | `sido` = `sido` |
+| `ZEBCertification_has_Use` | ZEBCertification → BuildingUse | `use_group` = `use_group` |
+| `ZEBCertification_has_Grade` | ZEBCertification → ZEBGradeCriteria | `grade_code` = `grade_code` |
+
+이미 이전 프롬프트로 초안을 만들었다면 새 Ontology를 만들지 않습니다. 같은 Plan 대화에서 아래 요청을 먼저 보내고, 위 엔터티 이름 목록과 관계 이름·방향 목록을 함께 붙여 넣습니다.
+
+``` text
+현재 초안의 엔터티·관계 이름을 아래 교재 이름 기준으로 통일하는 변경안을 보여줘. 원본 gold 테이블 바인딩과 업무 의미로 기존 항목을 찾아 이름만 변경하고, 엔터티·관계를 중복 생성하지 마. 키·속성·데이터 바인딩과 원본 데이터는 유지해줘. 관계 방향이 기준과 다르면 이름만 바꾸지 말고 현재 연결 열과 필요한 방향 변경을 별도로 보여줘. 대응되지 않는 항목은 보고해줘. 기존 이름 → 통일할 이름 대응표를 먼저 보여주고 Plan에서 검토만 해. 적용은 내가 Act에서 승인한 뒤에 해.
+```
 
 빠진 업무 범위나 해결되지 않은 조회 오류가 있으면 적용하지 말고, 같은 Plan 대화에서 보완해 달라고 요청합니다.
 
@@ -138,7 +169,7 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 2.  아래 요청으로 설명 변경안을 검토합니다. 설명만 추가하며 이름·키·바인딩·관계는 바꾸지 않습니다.
 
     ``` text
-    아래 업무 규칙을 해당 엔터티 타입의 설명 끝에 한국어로 덧붙이는 변경안을 보여줘. 아래 이름은 참고 설계의 이름이므로, 현재 온톨로지의 업무 의미와 원본 바인딩(괄호 안 gold 테이블)으로 해당 타입을 찾아줘. 대응되는 타입이 없으면 누락을 보고하고 중단해. 이름, 키, 속성, 데이터 바인딩, 관계는 바꾸지 마. 지금은 Plan에서 검토만 하고 적용하지 마.
+    아래 업무 규칙을 지정한 엔터티 타입의 설명 끝에 한국어로 덧붙이는 변경안을 보여줘. 이름과 원본 바인딩(괄호 안 gold 테이블)이 모두 일치하는지 확인해줘. 대응되는 타입이 없거나 이름·바인딩이 다르면 차이를 보고하고 중단해. 이름, 키, 속성, 데이터 바인딩, 관계는 바꾸지 마. 지금은 Plan에서 검토만 하고 적용하지 마.
     - ZEBGradeCriteria(ref_zeb_grade_criteria): ZEB 등급은 +(ZEB+)가 가장 높고 1, 2, 3, 4, 5 순서로 낮아진다. 'N등급 이상'은 N등급과 그보다 높은 등급이다(4등급 이상 = +, 1, 2, 3, 4). 예상 등급 판정: (1) 자립률 등급 = selfsuff_pct >= selfsuff_min_pct를 만족하는 가장 높은 등급 (2) 1차에너지 등급 = primary_energy_kwh_m2y < 기준값을 만족하는 가장 높은 등급(주거용이면 primary_energy_limit_residential, 주거용 이외면 primary_energy_limit_nonresidential) (3) 최종 등급 = (1)과 (2) 중 더 높은 등급. 두 기준을 모두 충족할 필요는 없다. (4) BEMS 설치는 필수 요건이다.
     - DesignVersion(bim_design_version): version_status='현행'이 현재 설계안이다. 현장의 예상 등급은 현행 설계안의 selfsuff_pct·primary_energy_kwh_m2y에 ZEBGradeCriteria의 판정을 적용해 구한다.
     - SiteCertificate(pms_certificate): design_version_id는 인증을 받을 때 제출한 설계안이다. 예비인증을 받은 현장은 사용승인 전에 예비인증 등급 이상의 본인증을 받아야 한다. 현행 설계안의 예상 등급이 예비인증 등급보다 낮으면 본인증 위험이다. 예비인증은 설계 단계 인증, 본인증은 준공(사용승인) 무렵 인증이며 '준공 후 인증'이라고도 한다.
@@ -166,7 +197,7 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 
 1.  에이전트 창을 X로 닫습니다.
 
-2.  Explorer에서 현장 타입(이 예에서는 `PmsSite`, 즉 `gold.pms_site`에 연결된 타입)을 누르고 리본의 View Entity Type details를 누릅니다. 처음 열면 "Entity type configuration" 같은 안내 말풍선이 나오는데 X로 닫습니다.
+2.  Explorer에서 `Site`(`gold.pms_site`)를 누르고 리본의 View Entity Type details를 누릅니다. 처음 열면 "Entity type configuration" 같은 안내 말풍선이 나오는데 X로 닫습니다.
 
     확인할 결과: Configure 탭의 Entity type key가 `site_code`이고, 속성의 Data source가 `pms_site.…` 열입니다. 아래로 스크롤하면 Entity metadata의 Description 끝에 4단계에서 넣은 "업무 규칙:"이 있고(칸 안에서 스크롤), Synonyms에 `PMS 현장`, `공사 현장` 같은 한국어 동의어가 있습니다.
 
@@ -180,21 +211,21 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 
     <img src="../assets/screenshots/d06-site-instances.png" width="1000" alt="PmsSite의 Instances 탭. IC-B 리버뷰 B단지 현장부터 HS-D 에코시티 D단지 현장(시공, 72)까지 현장 8개가 보입니다." />
 
-4.  화면 위쪽 이름(`PmsSite`) 옆 ∨를 눌러 설계안 타입(`gold.bim_design_version`에 연결된 타입)으로 바꾸고 Instances를 엽니다.
+4.  화면 위쪽 이름(`Site`) 옆 ∨를 눌러 `DesignVersion`(`gold.bim_design_version`)으로 바꾸고 Instances를 엽니다.
 
     확인할 결과: 설계안 18개가 보입니다. `BIM-0397-V2`는 `예비인증 제출안`(자립률 43.5), `BIM-0397-V3`는 `VE 반영안`(자립률 38.2)입니다. 오른쪽으로 스크롤하면 `version_status`에서 V3가 `현행`인 것을 볼 수 있습니다.
 
     <img src="../assets/screenshots/d06-design-instances.png" width="1000" alt="BimDesignVersion의 Instances 탭. BIM-0397-V3 VE 반영안 38.2·76, BIM-0397-V2 예비인증 제출안 43.5·69, BIM-0397-V1 기본설계 41·74 등 설계안이 보입니다." />
 
-5.  같은 방법으로 인증서 타입(`gold.pms_certificate`)의 Configure를 열고, 오른쪽 Manage relationships를 누릅니다. 목록에서 인증서와 설계안을 잇는 관계(이 예에서는 `CertificateUsesDesignVersion`)를 누릅니다.
+5.  같은 방법으로 `SiteCertificate`(`gold.pms_certificate`)의 Configure를 열고, 오른쪽 Manage relationships를 누릅니다. 목록에서 `Certificate_based_on_DesignVersion`을 누릅니다.
 
     <img src="../assets/screenshots/d06-manage-relationships.png" width="1000" alt="PmsCertificate의 Configure 탭에서 Manage relationships를 펼친 화면. Add new relationship 아래에 CertificateIssuedForSite, CertificateUsesDesignVersion, CertificateGradeMatchesCriteria가 있습니다." />
 
-    확인할 결과: Origin entity type의 Property가 `design_version_id`, Target entity type의 Property가 `version_id`입니다. 이 관계가 있어야 "예비인증은 V2로 받았는데 지금은 V3"라는 사실을 찾아낼 수 있습니다. 관계의 방향이나 이름은 달라도 두 원본 열만 맞으면 됩니다. 확인했으면 아무것도 바꾸지 말고 오른쪽 아래 Cancel을 누릅니다.
+    확인할 결과: Origin entity type은 `SiteCertificate`, Property는 `design_version_id`이고 Target entity type은 `DesignVersion`, Property는 `version_id`입니다. 이 관계가 있어야 "예비인증은 V2로 받았는데 지금은 V3"라는 사실을 찾아낼 수 있습니다. 이름·방향·연결 열을 위 핵심 관계 표와 대조합니다. 확인했으면 아무것도 바꾸지 말고 오른쪽 아래 Cancel을 누릅니다.
 
     <img src="../assets/screenshots/d06-cert-relationship.png" width="1000" alt="CertificateUsesDesignVersion 관계 화면. Origin entity type PmsCertificate의 Property design_version_id와 Target entity type BimDesignVersion의 Property version_id가 연결되어 있습니다." />
 
-6.  같은 방법으로 BIM 모델 타입(`gold.mdm_site_xref`, 키 `bim_model_id`)의 Manage relationships에 현장(`site_code`)·프로젝트(`project_no`)·설계안(`bim_model_id`)으로 가는 관계가 있는지, `PurchaseOrder`와 설비 계획이 `wbs_element` = `wbs_code`로 연결되는지 확인합니다.
+6.  `BIMModel`(`gold.mdm_site_xref`, 키 `bim_model_id`)의 Manage relationships에서 `Site_has_BIMModel`, `Project_has_BIMModel`, `BIMModel_has_DesignVersion`을 확인합니다. `PurchaseOrder`에서는 `PurchaseOrder_for_Equipment`가 `wbs_element` = `wbs_code`로 연결되는지 확인합니다.
 
 여기까지 마쳤으면 업무 질문에 필요한 구조·키·바인딩·규칙과 실제 데이터를 모두 확인한 것입니다. 바로 07장으로 넘어가도 됩니다. Graph로 관계를 탐색해 보고 싶을 때만 6단계를 진행합니다.
 
@@ -224,10 +255,10 @@ Graph는 투영한 시점의 스냅샷입니다. 10장의 `04_gold_model`은 관
 
 에이전트가 "논리 관계로만 넣었다", "키 없는 매핑 엔터티로 두었다", "모델 번호는 연결하지 않았다"고 답하거나, 초안에서 현장 → BIM 모델 → 설계안 경로를 확인할 수 없을 때만 진행합니다. 정상적으로 연결되어 있다면 이 요청은 보내지 않습니다.
 
-Act로 전환하지 않고 같은 Plan 대화에서 아래처럼 보완을 요청합니다. 엔터티 이름은 에이전트가 제안한 이름에 맞춰 바꿉니다.
+Act로 전환하지 않고 같은 Plan 대화에서 아래처럼 보완을 요청합니다. 기존 이름이 다르면 위 이름 통일 안내를 먼저 진행합니다.
 
 ``` text
-현장 교차표 엔터티를 bim_model_id 키의 BimModel로 바꾸고(gold.mdm_site_xref), BimModel → 현장(site_code), BimModel → 프로젝트(project_no), 설계안 → BimModel(gold.bim_design_version의 bim_model_id) 관계를 실제 열로 바인딩해줘. 다른 엔터티와 관계는 그대로 두고, HS-D 현장에서 현행 설계안까지 이어지는지 실제 행으로 검증해줘.
+현장 교차표 엔터티 BIMModel(gold.mdm_site_xref)의 고유 키를 bim_model_id로 지정하고, Site_has_BIMModel(Site → BIMModel, site_code = site_code), Project_has_BIMModel(Project → BIMModel, project_no = project_no), BIMModel_has_DesignVersion(BIMModel → DesignVersion, bim_model_id = bim_model_id)을 실제 원본 열로 바인딩하는 변경안을 보여줘. 기존 해당 항목을 수정하고 중복 생성하지 마. 다른 엔터티와 관계는 그대로 두고, HS-D 현장에서 현행 설계안까지 이어지는지 실제 행으로 검증해줘. 지금은 Plan에서 검토만 해.
 ```
 
 확인할 결과: `gold.mdm_site_xref`의 `HS-D`·`BIM-0397`과 `gold.bim_design_version`의 현행 `BIM-0397-V3`를 근거로 경로가 연결되고, 해당 엔터티의 고유 키가 지정되어 있습니다. 확인했으면 2-1단계로 돌아가 업무 범위를 보강합니다.
