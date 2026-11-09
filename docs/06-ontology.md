@@ -108,6 +108,8 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 
 확인할 기준: 아래 참고 범위의 업무 질문을 모두 지원하는지 확인합니다. `PurchaseOrder → Equipment`는 `wbs_element = wbs_code`, 공급사는 `vendor_code`, 보완안은 `site_code`로 연결되어야 합니다. 참조하는 키·열이 실제로 존재하는지 대조합니다. 보강 결과의 수치와 판단은 07장 정답 Notebook으로 검증합니다.
 
+<img src="../assets/screenshots/d06-expanded-plan.png" width="700" alt="업무 범위 보강 후 Plan 응답. 기존 초안을 유지한 확장안의 원본 조사, 모델 구조, 관계, 질문별 경로와 검증 결과를 펼쳐 볼 수 있고, 아래에 Switch to Act + approve 버튼이 있습니다." />
+
 아래는 프롬프트에서 사용하는 이름 기준(엔터티 22개·관계 27개)입니다. 개수만 맞추는 것이 아니라, 지정한 이름과 원본 바인딩이 함께 맞는지 검토합니다.
 
 | 영역 | 엔터티 타입 (gold 테이블, 키) |
@@ -151,7 +153,7 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 
 확인할 결과: 답에 적용 성공이 표시되고, 왼쪽 Explorer의 Entity Types 아래에 엔터티가, 가운데 캔버스(Full ontology)에 엔터티와 관계가 보입니다. 캔버스 아래 상태 표시줄의 "Visible: … of N entities | … of M relationships"에서 전체 개수를 확인합니다. 이 캔버스는 엔터티 타입과 관계를 보여 주는 설계도이며, 실제 데이터를 연결한 Graph가 아닙니다. 작업 영역 목록에는 `ont_zeb` 아래에 `ont_zeb_eh_…`(Eventhouse, KQL Database)와 `ont_zeb_graph_…`(Graph model)이 함께 생깁니다. Ontology가 내부에서 쓰는 항목이므로 직접 고치지 않습니다.
 
-<img src="../assets/screenshots/d06-applied.png" width="1000" alt="적용 후 ont_zeb 화면. 왼쪽 Explorer의 Entity Types에 BimDesignVersion, ErpProject, BimModel, PmsSite 등이 있고, 가운데 Full ontology 캔버스에 PmsSite를 중심으로 관계가 그려져 있습니다. 오른쪽 에이전트 창에는 HS-D 현장 → BimModel(BIM-0397) → 현행 설계안(BIM-0397-V3) 검증과 적용 성공이 표시됩니다." />
+<img src="../assets/screenshots/d06-applied.png" width="1000" alt="적용 후 ont_zeb 화면. Entity Types에 통일한 이름의 엔터티가 있고 Full ontology 캔버스에 Site를 중심으로 관계가 보입니다. 하단에 전체 엔터티 22개·관계 27개가 표시되고 Agent 응답에는 적용 상태와 업무별 경로가 나옵니다." />
 
 답에 "일부만 적용됐다"고 나오는 경우: 적용되지 않은 항목과 이유를 읽습니다. 예를 들어 같은 테이블을 엔터티 두 개에 바인딩하려 하면 그 부분만 적용되지 않습니다. 에이전트가 제안한 해결 방법 중 하나를 골라 Act 모드에서 다시 요청합니다.
 
@@ -179,6 +181,8 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
     - CertTarget(pms_cert_target): 녹색건축(G-SEED) 등급은 최우수 > 우수 > 우량 > 일반, BF 등급은 최우수 > 우수 > 일반 순서다.
     ```
 
+    <img src="../assets/screenshots/d06-rules-plan.png" width="1000" alt="업무 규칙 설명 변경안의 Plan 검토 응답. 대상 엔터티 13개의 이름과 원본 바인딩이 일치하며 설명만 덧붙일 수 있고 아직 적용하지 않았다고 표시됩니다." />
+
 3.  대상 타입과 설명 변경안을 검토하고, 대응 타입 누락이 없으면 Act로 전환해 `검토한 업무 규칙 설명 변경안만 적용해줘. 이름·키·속성·바인딩·관계와 원본 데이터는 변경하지 마.`를 보냅니다. 저장된 Description에서 설명만 수정했는지 확인합니다.
 
 확인할 결과: 답에 규칙을 덧붙인 엔터티 13개가 나열되고 "누락된 대응 타입은 없습니다"처럼 누락이 없다고 나옵니다. 3단계에서 적용한 이름·키·바인딩·관계는 그대로입니다. 이 설명은 실행되는 코드가 아니라 에이전트가 참고하는 업무 설명입니다. 정확한 값은 07장의 정답 Notebook을 기준으로 확인합니다.
@@ -193,33 +197,43 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 
 2.  Explorer에서 `Site`(`gold.pms_site`)를 누르고 리본의 View Entity Type details를 누릅니다. 처음 열면 "Entity type configuration" 같은 안내 말풍선이 나오는데 X로 닫습니다.
 
-    확인할 결과: Configure 탭의 Entity type key가 `site_code`이고, 속성의 Data source가 `pms_site.…` 열입니다. 아래로 스크롤하면 Entity metadata의 Description 끝에 4단계에서 넣은 "업무 규칙:"이 있고(칸 안에서 스크롤), Synonyms에 `PMS 현장`, `공사 현장` 같은 한국어 동의어가 있습니다.
+    확인할 결과: Configure 탭의 Entity type key가 `site_code`이고, 속성의 Data source가 `pms_site.…` 열입니다. 아래로 스크롤하면 Metadata의 Description에 4단계에서 넣은 업무 규칙이 있고, Synonyms에 `PMS 현장`, `현장` 같은 한국어 동의어가 있습니다.
 
-    <img src="../assets/screenshots/d06-site-configure.png" width="1000" alt="PmsSite의 Configure 탭. Properties에 progress_pct, site_code(키), site_name, stage가 pms_site 열에 바인딩되어 있고, 오른쪽 Relationships에 PmsSite와 연결된 관계가 보입니다." />
-
-    <img src="../assets/screenshots/d06-site-metadata.png" width="1000" alt="PmsSite의 Entity metadata. Description에 'D단지 같은 이름은 일부만 일치해도 site_name이나 project_name에서 찾는다' 등 업무 규칙이 있고, Synonyms에 PMS 현장, 현장 마스터, 공사 현장, 사이트가 있습니다." />
+    <img src="../assets/screenshots/d06-site-configure.png" width="1000" alt="Site의 Configure 탭. site_code가 고유 키이고 속성은 pms_site 열에 바인딩되어 있습니다. 아래 Metadata의 Description에는 현장 코드 연결·부분 이름 검색·공공 사례 비교 규칙이 있고 Synonyms가 보입니다." />
 
 3.  위쪽 Instances 탭을 누릅니다.
 
     확인할 결과: 현장 8개가 보입니다. `HS-D`의 이름은 `에코시티 D단지 현장`, 공정률(`progress_pct`)은 `72`입니다. 에이전트가 지어낸 값이 아니라 연결된 원본 테이블에서 읽은 데이터입니다.
 
-    <img src="../assets/screenshots/d06-site-instances.png" width="1000" alt="PmsSite의 Instances 탭. IC-B 리버뷰 B단지 현장부터 HS-D 에코시티 D단지 현장(시공, 72)까지 현장 8개가 보입니다." />
+    <img src="../assets/screenshots/d06-site-instances.png" width="1000" alt="Site의 Instances 탭. 현장 8개가 보이며 HS-D 에코시티 D단지 현장의 공정률은 72이고 단계는 시공입니다." />
 
 4.  화면 위쪽 이름(`Site`) 옆 ∨를 눌러 `DesignVersion`(`gold.bim_design_version`)으로 바꾸고 Instances를 엽니다.
 
+    <img src="../assets/screenshots/d06-select-design-type.png" width="700" alt="Site 옆 엔터티 선택 목록에서 DesignVersion을 선택하는 화면" />
+
     확인할 결과: 설계안 18개가 보입니다. `BIM-0397-V2`는 `예비인증 제출안`(자립률 43.5), `BIM-0397-V3`는 `VE 반영안`(자립률 38.2)입니다. 오른쪽으로 스크롤하면 `version_status`에서 V3가 `현행`인 것을 볼 수 있습니다.
 
-    <img src="../assets/screenshots/d06-design-instances.png" width="1000" alt="BimDesignVersion의 Instances 탭. BIM-0397-V3 VE 반영안 38.2·76, BIM-0397-V2 예비인증 제출안 43.5·69, BIM-0397-V1 기본설계 41·74 등 설계안이 보입니다." />
+    <img src="../assets/screenshots/d06-design-instances.png" width="1000" alt="DesignVersion의 Instances 탭. BIM-0397-V3는 자립률 38.2·1차에너지 76·태양광 380이고 V2는 43.5·69·530, V1은 41·74·500입니다." />
 
 5.  같은 방법으로 `SiteCertificate`(`gold.pms_certificate`)의 Configure를 열고, 오른쪽 Manage relationships를 누릅니다. 목록에서 `Certificate_based_on_DesignVersion`을 누릅니다.
 
-    <img src="../assets/screenshots/d06-manage-relationships.png" width="1000" alt="PmsCertificate의 Configure 탭에서 Manage relationships를 펼친 화면. Add new relationship 아래에 CertificateIssuedForSite, CertificateUsesDesignVersion, CertificateGradeMatchesCriteria가 있습니다." />
+    <img src="../assets/screenshots/d06-manage-relationships.png" width="1000" alt="SiteCertificate의 Manage relationships 메뉴. Site_has_Certificate와 Certificate_based_on_DesignVersion이 보이며 후자를 선택합니다." />
 
     확인할 결과: Origin entity type은 `SiteCertificate`, Property는 `design_version_id`이고 Target entity type은 `DesignVersion`, Property는 `version_id`입니다. 이 관계가 있어야 "예비인증은 V2로 받았는데 지금은 V3"라는 사실을 찾아낼 수 있습니다. 이름·방향·연결 열을 위 핵심 관계 표와 대조합니다. 확인했으면 아무것도 바꾸지 말고 오른쪽 아래 Cancel을 누릅니다.
 
-    <img src="../assets/screenshots/d06-cert-relationship.png" width="1000" alt="CertificateUsesDesignVersion 관계 화면. Origin entity type PmsCertificate의 Property design_version_id와 Target entity type BimDesignVersion의 Property version_id가 연결되어 있습니다." />
+    <img src="../assets/screenshots/d06-cert-relationship.png" width="1000" alt="Certificate_based_on_DesignVersion 관계. SiteCertificate의 design_version_id와 DesignVersion의 version_id가 연결되어 있습니다." />
 
 6.  `BIMModel`(`gold.mdm_site_xref`, 키 `bim_model_id`)의 Manage relationships에서 `Site_has_BIMModel`, `Project_has_BIMModel`, `BIMModel_has_DesignVersion`을 확인합니다. `PurchaseOrder`에서는 `PurchaseOrder_for_Equipment`가 `wbs_element` = `wbs_code`로 연결되는지 확인합니다.
+
+    확인할 결과: 각 관계의 Origin·Target과 Property가 아래 화면과 같습니다. 관계마다 확인한 뒤 Cancel로 나옵니다. 이름이나 연결 열이 다르면 임의로 저장하지 말고 Plan에서 원본 매핑을 다시 검토합니다.
+
+    <img src="../assets/screenshots/d06-site-bim-relationship.png" width="1000" alt="Site_has_BIMModel 관계. Site의 site_code와 BIMModel의 site_code가 연결되어 있습니다." />
+
+    <img src="../assets/screenshots/d06-project-bim-relationship.png" width="1000" alt="Project_has_BIMModel 관계. Project의 project_no와 BIMModel의 project_no가 연결되어 있습니다." />
+
+    <img src="../assets/screenshots/d06-bim-design-relationship.png" width="1000" alt="BIMModel_has_DesignVersion 관계. BIMModel과 DesignVersion의 bim_model_id가 연결되어 있습니다." />
+
+    <img src="../assets/screenshots/d06-purchase-equipment-relationship.png" width="1000" alt="PurchaseOrder_for_Equipment 관계. PurchaseOrder의 wbs_element와 Equipment의 wbs_code가 연결되어 있습니다." />
 
 여기까지 마쳤으면 업무 질문에 필요한 구조·키·바인딩·규칙과 실제 데이터를 모두 확인한 것입니다. 바로 07장으로 넘어가도 됩니다. Graph로 관계를 탐색해 보고 싶을 때만 6단계를 진행합니다.
 
