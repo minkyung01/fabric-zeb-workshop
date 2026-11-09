@@ -185,7 +185,7 @@
           616
         ]
       ],
-      "optional": false
+      "optional": true
     },
     {
       "id": "gold-to-eventhouse",
@@ -235,7 +235,7 @@
           790
         ]
       ],
-      "optional": false
+      "optional": true
     },
     {
       "id": "eventhouse-to-operations",
@@ -1956,11 +1956,11 @@
       "width": 330,
       "height": 120,
       "angle": 0,
-      "strokeColor": "#D5DEE9",
+      "strokeColor": "#7F8DA3",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
-      "strokeWidth": 1.25,
-      "strokeStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "dashed",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
@@ -1977,8 +1977,7 @@
       "link": null,
       "locked": false,
       "customData": {
-        "radius": 14,
-        "shadow": true
+        "radius": 14
       }
     },
     {
@@ -2044,8 +2043,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Semantic model",
-      "originalText": "Semantic model",
+      "text": "Semantic model | 선택",
+      "originalText": "Semantic model | 선택",
       "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
@@ -2415,11 +2414,11 @@
       "width": 330,
       "height": 120,
       "angle": 0,
-      "strokeColor": "#D5DEE9",
+      "strokeColor": "#7F8DA3",
       "backgroundColor": "#FFFFFF",
       "fillStyle": "solid",
-      "strokeWidth": 1.25,
-      "strokeStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "dashed",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
@@ -2436,8 +2435,7 @@
       "link": null,
       "locked": false,
       "customData": {
-        "radius": 14,
-        "shadow": true
+        "radius": 14
       }
     },
     {
@@ -2503,8 +2501,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "Power BI",
-      "originalText": "Power BI",
+      "text": "Power BI | 선택",
+      "originalText": "Power BI | 선택",
       "fontSize": 22,
       "fontFamily": 2,
       "textAlign": "left",
@@ -2545,8 +2543,8 @@
       "updated": 0,
       "link": null,
       "locked": false,
-      "text": "인증 현황·컨트롤 타워",
-      "originalText": "인증 현황·컨트롤 타워",
+      "text": "현장 컨트롤 타워",
+      "originalText": "현장 컨트롤 타워",
       "fontSize": 20,
       "fontFamily": 2,
       "textAlign": "left",
@@ -3351,11 +3349,11 @@
       "width": 391.5,
       "height": 212,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#7F8DA3",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2.25,
-      "strokeStyle": "solid",
+      "strokeStyle": "dashed",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
@@ -3490,11 +3488,11 @@
       "width": 0,
       "height": 54,
       "angle": 0,
-      "strokeColor": "#0078D4",
+      "strokeColor": "#7F8DA3",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2.25,
-      "strokeStyle": "solid",
+      "strokeStyle": "dashed",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],

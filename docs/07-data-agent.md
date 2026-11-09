@@ -1,6 +1,6 @@
 # 07. Data agent — 구성 체험과 업무 질문 검증
 
-[목차](../README.md) \| 이전: [06. Ontology](06-ontology.md) \| 다음: [08. Power BI](08-power-bi.md)
+[목차](../README.md) \| 이전: [06. Ontology](06-ontology.md) \| 다음: [10. Operations agent](10-operations-agent.md)
 
 06장에서 만든 업무 모델로 공공 인증 통계·등급 위험·일정 영향·보완안을 확인합니다. Data agent를 생성·연결하고 지침을 입력한 뒤, 기본 질문은 Ontology Agent의 Plan 모드에서 검증합니다. 답이 그럴듯한지가 아니라 Q1–Q8의 대상·수치·결론과 조회 근거가 정답 Notebook과 같은지를 확인합니다.
 
@@ -207,4 +207,4 @@ Data agent와 이 장의 Plan 질의는 데이터를 읽기만 합니다. Gold·
 
 ## 다음 단계
 
-[08. Power BI](08-power-bi.md)에서 같은 데이터로 현장 컨트롤 타워 보고서를 만들고 D단지 위험을 확인합니다.
+[10. Operations agent](10-operations-agent.md)에서 D단지 위험과 추천 보완안을 Teams로 제안받고 승인합니다. 원하면 먼저 [08. Power BI (선택)](08-power-bi.md)에서 보고서를 만들거나 [09. Foundry agent (선택)](09-foundry-agent.md)에서 근거를 다시 검토할 수 있습니다. 두 장을 건너뛰어도 기본 과정은 진행할 수 있습니다.

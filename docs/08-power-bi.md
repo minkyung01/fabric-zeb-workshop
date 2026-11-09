@@ -1,8 +1,10 @@
-# 08. Power BI
+# 08. Power BI (선택)
 
 [목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [09. Foundry agent (선택)](09-foundry-agent.md)
 
 Copilot으로 현장 컨트롤 타워 보고서 한 페이지를 만들고 D단지의 등급 위험을 확인합니다. 10장에서 보완안을 승인한 뒤 같은 보고서를 다시 열어 변화를 확인합니다.
+
+이 장은 선택입니다. 기본 과정에서는 [10. Operations agent](10-operations-agent.md)로 바로 이동합니다. 보고서 없이도 원본 SQL과 Ontology Agent의 Plan으로 승인 결과를 확인할 수 있습니다.
 
 모델 만들기 → 관계·측정값 적용 → Copilot으로 현장 페이지 생성 → 저장 → D단지 위험 질문 순서로 진행합니다. 공공 인증 현황 페이지와 테마 꾸미기는 선택입니다.
 

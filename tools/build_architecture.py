@@ -278,10 +278,10 @@ def build():
     d.text(170, 447.2, "OneLake | 공통 저장소", 24, 330, weight=600, split=True)
 
     d.card("ontology", 80, 616, 330, 120, "ontology", "Ontology | 내장 agent", "업무 개념·관계·규칙")
-    d.card("model", 455, 616, 330, 120, "semantic-model", "Semantic model", "Direct Lake")
+    d.card("model", 455, 616, 330, 120, "semantic-model", "Semantic model | 선택", "Direct Lake", dashed=True)
     d.card("eventhouse", 830, 616, 330, 120, "eventhouse", "Eventhouse", "위험 이벤트 상태")
     d.card("dataagent", 80, 790, 330, 120, "data-agent", "Data agent", "업무 질문·근거 답변")
-    d.card("powerbi", 455, 790, 330, 120, "power-bi", "Power BI", "인증 현황·컨트롤 타워")
+    d.card("powerbi", 455, 790, 330, 120, "power-bi", "Power BI | 선택", "현장 컨트롤 타워", dashed=True)
     d.card("operations", 830, 790, 330, 120, "operations-agent", "Operations agent", "위험 감시·제안")
     d.card("apply", 830, 964, 330, 132, "notebook", "Notebook | 승인 반영",
            "조치 기록 → 재계산\n실제 설계·발주 변경 없음")
@@ -294,9 +294,10 @@ def build():
     d.arrow("silver-to-gold", [(859, 360), (903, 360)])
     # Gold fans out below OneLake so the right margin stays free for the approval loop.
     for route, cx in (("gold-to-ontology", 245), ("gold-to-directlake", 620), ("gold-to-eventhouse", 995)):
-        d.arrow(route, [(1011.5, 404), (1011.5, 560), (cx, 560), (cx, 616)])
+        d.arrow(route, [(1011.5, 404), (1011.5, 560), (cx, 560), (cx, 616)],
+                role="optional" if route == "gold-to-directlake" else "flow")
     d.arrow("ontology-to-dataagent", [(245, 736), (245, 790)])
-    d.arrow("model-to-powerbi", [(620, 736), (620, 790)])
+    d.arrow("model-to-powerbi", [(620, 736), (620, 790)], role="optional")
     d.arrow("eventhouse-to-operations", [(995, 736), (995, 790)])
     d.arrow("operations-to-teams", [(1160, 850), (1250, 850)])
     d.arrow("teams-to-apply", [(1405, 910), (1405, 1118), (995, 1118), (995, 1096)], role="approval")

@@ -11,9 +11,9 @@ Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참�
 | Microsoft Fabric 용량 | 유료 F 용량. 12명 동시 실습 기준 F64 이상 권장(Copilot은 F2 이상이면 사용 가능). Operations agent는 Trial 용량을 지원하지 않습니다. |
 | 참가자 작업 영역 | `ws-pNNN` (참가자는 Contributor 이상) |
 | Lakehouse | 01장에서 참가자가 `lh_zeb`를 직접 생성(schemas 켬)하고 첫 Notebook에 기본으로 연결. 나머지는 해당 장에서 사용하기 전에 연결 |
-| 실습 파일 | 관리자는 Notebook 7개(`notebooks/*.ipynb`)만 가져옴. Power BI 모델 파일은 참가자가 08장에서 저장소에서 PC로 다운로드. 테마 파일은 선택 |
+| 실습 파일 | 관리자는 Notebook 7개(`notebooks/*.ipynb`)만 가져옴. Power BI 파일은 선택 08장을 진행할 때만 참가자가 저장소에서 PC로 다운로드 |
 | 네트워크 | Fabric Spark에서 `https://www.data.go.kr`로 나가는 HTTPS(02장). 막혀 있으면 아래 "공공데이터 대체 경로" |
-| Power BI | 참가자 Pro 또는 PPU 라이선스 |
+| Power BI (선택) | 08장을 진행할 경우 참가자 Pro 또는 PPU 라이선스 |
 | Microsoft Teams | Teams 라이선스, 앱 Fabric Operations Agent 허용(10장). 참가자는 Fabric과 같은 계정으로 Teams(데스크톱 또는 웹)에 로그인할 수 있어야 합니다. |
 | Microsoft Foundry (선택) | 09장용 Azure 구독·리소스 그룹, 프로젝트·모델 배포, Fabric IQ 인증 연결 |
 
@@ -25,7 +25,7 @@ Admin portal → Tenant settings에서 참가자 보안 그룹에 아래 설정�
 |---|---|
 | Users can create Fabric items | 전체 |
 | Users can create ontology (preview) items | 06 |
-| Copilot and Azure OpenAI Service, (지역 밖 처리 필요 시) Data sent to Azure OpenAI can be processed outside your capacity's geographic region | 06–08 |
+| Copilot and Azure OpenAI Service, (지역 밖 처리 필요 시) Data sent to Azure OpenAI can be processed outside your capacity's geographic region | 06–07, 선택 08 |
 | Users can create and share Data agent item types | 07 |
 | Operations agent (preview) 관련 설정, Real-Time Intelligence 항목 생성 | 10 |
 | (선택) Users can use the Fabric MCP / Ontology MCP, Fabric IQ 관련 설정 | 09 |
@@ -104,7 +104,7 @@ Spark에서 포털에 나갈 수 없는 환경이면 관리자가 파일을 내�
 - Fabric IQ 도구용 BYO Entra 앱 또는 managed OAuth 위임 인증 연결을 준비합니다. BYO Entra는 Power BI Service의 위임 권한 `Item.Execute.All`, `Item.Read.All`, 관리자 동의, Foundry가 제공하는 redirect URI 등록이 필요합니다([Fabric IQ 인증](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/fabric-iq#authentication-and-security)).
 - 사전 점검에서 확인한 동작(2026-10-19, Sweden Central): 새 프로젝트에서 에이전트를 만들면 `gpt-5`(글로벌 표준) 배포가 자동으로 잡혔고, Fabric IQ(OneLake 카탈로그) 도구를 추가할 때와 첫 질문에서 별도의 연결 선택·동의 요청이 나오지 않았습니다. 다만 이 점검은 테넌트 관리자 계정으로 했으므로, 참가자 계정에서는 동의(`CONSENT_REQUIRED`)나 연결 선택이 나올 수 있습니다. 참가자 계정 하나로 미리 질문 1개를 실행해 확인합니다.
 - 질문 하나에 1–4분 걸립니다. 동시에 여러 참가자가 질문하면 모델 할당량(TPM)을 확인합니다.
-- 준비가 어렵다면 09장은 건너뛰도록 안내합니다. 필수 흐름(08 → 10)에는 영향이 없습니다.
+- 준비가 어렵다면 09장은 건너뛰도록 안내합니다. 08장도 선택이며, 필수 흐름(07 → 10 → 11)에는 영향이 없습니다.
 
 ## 5. 사전 점검 체크리스트
 
@@ -117,12 +117,14 @@ Spark에서 포털에 나갈 수 없는 환경이면 관리자가 파일을 내�
 | 04 | Silver 21개, `certified_building` 25,362, BF `전라북도` 1,125·`전북특별자치도` 167 → `전북` |
 | 05 | Gold 22개, ops 3개, 위험 1(HS-D)·주의 3·정상 4 |
 | 07 | `05_answers` 8개: 경기 1,897→경남 870→경북 828 / B단지 4등급 가능 / D단지 / 30건 / D단지 +3일·A단지 여유 52일 / 9건·52.2% / Alpine 11/24 / OPT-D2 2억 3천만 원 |
-| 08 | 현장 컨트롤 타워 한 페이지, 카드 8·1·3·0·34, D단지 V3·예상 5등급·예비 4등급·위험, 인증 일정 표 |
+| 08 (선택) | 진행한 경우 현장 컨트롤 타워 한 페이지, 카드 8·1·3·0·34, D단지 V3·예상 5등급·예비 4등급·위험, 인증 일정 표 |
 | 09 (선택) | `fa-zeb` 답: 예비인증 V2(4등급), 현행 V3 38.2/76 → 5등급, OPT-D2 적용 41.4/72.5 → 4등급 / OPT-D6·D5 → 5등급 |
 | 10 (제안) | `ops.option_eval` 11행, 이벤트 `ZEB-HS-D-20260930`, 추천 `OPT-D2` → 41.4%·4등급, `ZebRiskEvent` open 1행, Teams 카드 약 5분 뒤 도착 |
 | 10 (승인 후) | `nb_apply_decision` 약 5–6분, 조치 1행, 설계안 V4 현행 41.4/72.5, D단지 4등급·정상, `open → approved → resolved`, 위험 0·주의 3·정상 5 |
 
 Copilot·Ontology agent·Data agent·Operations agent·Teams 단계는 AI·UI 동작이므로 사전 점검에서 직접 확인하고, 화면이 바뀌었으면 강사 안내를 갱신합니다.
+
+참가자는 11장까지 결과 확인과 실행 중지를 마칩니다. 웹 대시보드는 이후 강사 환경에서 별도로 시연하며, 참가자 PC에 로컬 앱을 설치하거나 실행하지 않습니다. 시연 데이터는 강사 작업 영역의 데이터로 참가자 결과와 구분합니다. 강사 시연용 리소스 정리는 시연이 끝난 뒤 진행합니다.
 
 현재 교재의 질의 경로: 07장 기본 과정은 Data agent 구성 후 Ontology Agent의 Plan 질의입니다. 위 2026-10-18–19 수치는 이전 점검 결과이며, 새 Plan 경로·단계적 모델 보강·영문 Operations agent 지침이 이 테넌트에서 검증됐다는 뜻이 아닙니다. 행사 전 `p011`과 같은 역할의 계정으로 원본 읽기·Plan 응답·Act 저장·Teams 승인·재계산을 리허설합니다.
 

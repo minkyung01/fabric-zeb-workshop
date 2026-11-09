@@ -1,8 +1,8 @@
 # 10. Operations agent — 제안·승인·반영
 
-[목차](../README.md) \| 이전: [09. Foundry agent (선택)](09-foundry-agent.md) \| 다음: [11. 마무리](11-finish.md)
+[목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [11. 마무리](11-finish.md)
 
-보고서와 에이전트로 D단지 위험과 근거를 확인했습니다. 운영에서는 사람이 보고서를 열기 전에 위험을 감지해 담당자에게 알리고, 할 일을 제안해야 합니다. 이 장에서는 Operations agent가 D단지 위험과 추천 보완안을 Teams로 제안하게 만들고(1–7단계), 담당자로서 승인한 뒤 그 결과가 데이터 전체에 어떻게 반영되는지 따라가 확인합니다(8–13단계).
+Notebook과 에이전트로 D단지 위험과 근거를 확인했습니다. 운영에서는 사람이 직접 조회하기 전에 위험을 감지해 담당자에게 알리고, 할 일을 제안해야 합니다. 이 장에서는 Operations agent가 D단지 위험과 추천 보완안을 Teams로 제안하게 만들고(1–7단계), 담당자로서 승인한 뒤 그 결과가 데이터 전체에 어떻게 반영되는지 따라가 확인합니다(8–13단계). 선택 08·09장을 진행하지 않아도 됩니다.
 
 이 장의 미션: “Teams에서 접수됐다”가 아니라 승인한 이벤트·보완안 → 실행 상태 → 조치 기록 → V4·등급 회복 → 이벤트 종료를 같은 ID로 확인합니다. AI는 이미 계산된 추천안을 전달하고, 사람이 근거와 매개 변수를 검토한 뒤 승인합니다.
 
@@ -24,7 +24,7 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 | 3 | `03_silver_conform`이 조치를 읽어 <b>설계안 V4(조치 반영안)</b>를 만들고 `현행`으로 바꿈 | Lakehouse |
 | 4 | `04_gold_model`이 예상 등급·현장 상태를 다시 계산 | `ops.site_status` |
 | 5 | D단지 위험이 해소되면 Eventhouse에 `resolved` | Eventhouse |
-| 6 | 보고서·Ontology Agent의 Plan에서 바뀐 결과 확인, 에이전트 Stop | Power BI, Ontology Agent, Operations agent |
+| 6 | 원본 SQL·Ontology Agent의 Plan에서 바뀐 결과 확인, 에이전트 Stop | SQL analytics endpoint, Ontology Agent, Operations agent |
 
 시작 전: 05장의 `ops.site_status`가 있어야 합니다. 작업 영역 Contributor 이상, KQL 데이터베이스·Notebook 작업 권한, Teams 라이선스와 Fabric Operations Agent 앱 사용 권한이 필요합니다([공식 요구 사항](https://learn.microsoft.com/fabric/real-time-intelligence/operations-agent#prerequisites)).
 
@@ -322,21 +322,21 @@ WHERE site_code = 'HS-D';
 
 `approved_by`는 Notebook 실행 계정(에이전트 생성자의 위임된 권한)을 기록한 값입니다. 뒤의 `(Teams 승인)` 문구만으로 실제 Teams 승인자 신원이 증명되지는 않습니다. 승인 증빙은 Teams 카드·에이전트 액션 기록과 함께 확인합니다.
 
-## 12. 보고서와 읽기 전용 질의로 다시 확인
+## 12. 읽기 전용 질의로 다시 확인
 
-1.  `rpt_zeb`를 엽니다. Direct Lake 모델이라 보통 따로 새로 고치지 않아도 바뀐 값이 보입니다. 숫자가 그대로면 브라우저를 새로 고치고, 그래도 같으면 작업 영역 목록의 `sm_zeb` 행에서 새로 고침 아이콘(Refresh now)을 누른 뒤 보고서를 다시 엽니다(08장 2단계와 같은 방법).
-
-    예상 결과: `현장 컨트롤 타워`의 카드가 현장 수 `8`, 위험 현장 `0`, 주의 현장 `3`, 설치 지연 발주 `0`입니다. 표의 에코시티 D단지 행이 `V4`, `41.40`, `72.50`, `4등급`, `정상`입니다.
-
-    <img src="../assets/screenshots/d10-report-after.png" width="1000" alt="승인 반영 후 02 현장 컨트롤 타워. 현장 수 8, 위험 현장 0, 주의 현장 3, 설치 지연 발주 0. 에코시티 D단지 행이 V4, 41.40, 72.50, 4등급, 정상" />
-
-2.  `ont_zeb`의 Ontology Agent → Plan에서 07장 공통 프롬프트를 먼저 보낸 뒤 `에코시티 D단지의 현행 설계안과 예상 ZEB 등급은? 예비인증 등급을 지키나? 현재 원본에서 다시 조회하고 근거를 보여줘.`를 묻습니다. 이전 V3 답변을 재사용하지 않습니다.
+1.  `ont_zeb`의 Ontology Agent → Plan에서 07장 공통 프롬프트를 먼저 보낸 뒤 `에코시티 D단지의 현행 설계안과 예상 ZEB 등급은? 예비인증 등급을 지키나? 현재 원본에서 다시 조회하고 근거를 보여줘.`를 묻습니다. 이전 V3 답변을 재사용하지 않습니다.
 
     예상 결과: 현행 V4(조치 반영안), 자립률 41.4%·1차에너지 72.5 → 4등급, 예비인증 4등급을 지킴. 07장 Q3을 다시 물으면 본인증 위험 현장이 없다고 답해야 합니다. 답 문장과 길이는 실행할 때마다 다릅니다(캡처 환경에서 약 1분).
 
     <img src="../assets/screenshots/d10-data-agent-after.png" width="1000" alt="Data agent 답의 정리 부분. 현행 설계안 BIM-0397-V4 조치 반영안, 41.4%, 72.5, 최종 예상 ZEB 등급 4등급, 예비인증 4등급을 지킴" />
 
     Data agent 연계를 검증한 환경에서는 `da_zeb`의 Clear chat 후 같은 질문을 선택적으로 비교합니다. 어느 경로든 11단계 원본과 대조하고, 조회 오류나 미확인을 ‘위험 없음’으로 바꾸지 않습니다.
+
+2.  (선택 08장 완료 시) `rpt_zeb`의 `현장 컨트롤 타워`도 확인합니다. 08장을 건너뛰었다면 이 단계는 생략합니다. 숫자가 그대로면 브라우저를 새로 고치고, 그래도 같으면 작업 영역의 `sm_zeb` 행에서 Refresh now를 누른 뒤 보고서를 다시 엽니다.
+
+    예상 결과: 현장 수 `8`, 위험 현장 `0`, 주의 현장 `3`, 설치 지연 발주 `0`. D단지 행은 `V4`, `41.40`, `72.50`, `4등급`, `정상`입니다.
+
+    <img src="../assets/screenshots/d10-report-after.png" width="1000" alt="승인 반영 후 현장 컨트롤 타워. 현장 수 8, 위험 현장 0, 주의 현장 3, 설치 지연 발주 0. 에코시티 D단지 행이 V4, 41.40, 72.50, 4등급, 정상" />
 
 ## 13. 감시 멈추기
 
@@ -352,7 +352,7 @@ WHERE site_code = 'HS-D';
 - 근거를 검토한 뒤 Teams에서 `OPT-D2`를 승인했고 `nb_apply_decision`이 Succeeded입니다.
 - `ZebRiskEvent`에 `open` → `approved` → `resolved` 이력이 있습니다.
 - `bronze.pms_action_log`에 조치 1행, `gold.bim_design_version`에 현행 V4, `ops.site_status`에서 D단지가 4등급·정상입니다.
-- 보고서의 위험 현장이 `0`이며, 읽기 전용 Plan 질의의 결과를 V4 원본과 대조했습니다. 에이전트가 조회하지 못한 경우는 미확인으로 기록하고 11단계 SQL 결과로 반영을 확인했습니다.
+- 읽기 전용 Plan 질의의 결과를 V4 원본과 대조했습니다. 에이전트가 조회하지 못한 경우는 미확인으로 기록하고 11단계 SQL 결과로 반영을 확인했습니다. 보고서 확인은 선택 08장을 진행한 경우에만 합니다.
 - `oa_zeb`가 Stop 상태입니다.
 
 여기에 남긴 것은 담당자의 승인과 그에 따른 데이터 재계산입니다. 실제 설계 변경·발주를 실행한 것은 아닙니다.
@@ -380,7 +380,7 @@ WHERE site_code = 'HS-D';
   - `03_silver_conform`·`04_gold_model`을 찾지 못하는 오류: Notebook 이름이 바뀌었는지 확인합니다. 두 Notebook은 같은 작업 영역에 원래 이름으로 있어야 합니다.
 - 실패 후에는 재승인 전에 10–11단계의 상태 이력·조치 기록·현재 설계안을 읽기 전용으로 확인합니다. 실제로 승인했던 이벤트와 보완안이고 상태가 `open` 또는 `approved`인 경우에만 관리자 안내에 따라 같은 액션을 재시도합니다. 승인 증빙 없이 기본 매개 변수로 Notebook을 직접 실행하지 않습니다. `resolved`이면 재실행하지 않고 결과만 확인합니다. 같은 이벤트의 조치 기록 중복 방지와 전체 실행 성공은 별개입니다.
 - 10단계에서 `approved`만 있고 `resolved`가 없으면 재계산 후에도 D단지가 위험인 경우입니다. 마지막 셀의 사유를 확인합니다.
-- 보고서 값이 바뀌지 않으면 Semantic model의 Refresh → Data를 실행합니다. Direct Lake는 새로 고침으로 최신 Delta 버전을 다시 읽습니다.
+- 선택 08장의 보고서 값이 바뀌지 않으면 Semantic model의 Refresh → Data를 실행합니다. Direct Lake는 새로 고침으로 최신 Delta 버전을 다시 읽습니다.
 - 실습을 처음부터 다시 하려면 `02_bronze_contoso_generate` → `03_silver_conform` → `04_gold_model` 순서로 실행합니다. 조치 기록이 지워지고 D단지가 다시 V3·위험 상태가 됩니다.
 
 ## 다음 단계

@@ -1,6 +1,6 @@
 # 09. Foundry agent (선택)
 
-[목차](../README.md) \| 이전: [08. Power BI](08-power-bi.md) \| 다음: [10. Operations agent](10-operations-agent.md)
+[목차](../README.md) \| 이전: [08. Power BI (선택)](08-power-bi.md) \| 다음: [10. Operations agent](10-operations-agent.md)
 
 10장에서 Operations agent는 D단지에 보완안 `OPT-D2`를 추천합니다. 그 추천을 승인하기 전에 쓸 근거를 07장과 다른 실행 경로로 한 번 더 확인합니다. Microsoft Foundry에 `fa-zeb`를 만들고 Fabric IQ 도구로 06장의 `ont_zeb`를 직접 연결합니다. 07장의 Data agent `da_zeb`를 경유하지 않습니다. Foundry는 근거를 조회하는 역할이며 승인·거절은 하지 않습니다.
 

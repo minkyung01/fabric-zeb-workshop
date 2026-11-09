@@ -170,7 +170,22 @@ class Docs(unittest.TestCase):
         self.assertNotIn("Horizontal", report)
         self.assertNotIn("ZEB 인증 현황", completion)
         operations = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
-        self.assertIn("`현장 컨트롤 타워`의 카드", operations)
+        self.assertIn("(선택 08장 완료 시)", operations)
+
+    def test_power_bi_is_optional_before_instructor_demo(self):
+        report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
+        self.assertTrue(report.startswith("# 08. Power BI (선택)"))
+        questions = (ROOT / "docs" / "07-data-agent.md").read_text(encoding="utf-8")
+        self.assertIn("다음: [10. Operations agent]", questions)
+        operations = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
+        self.assertIn("08장을 건너뛰었다면 이 단계는 생략", operations)
+        completion = operations.split("## 이 장의 완료 기준", 1)[1].split("## Troubleshooting", 1)[0]
+        self.assertNotIn("보고서의 위험 현장이", completion)
+        self.assertIn("11단계 SQL 결과로 반영을 확인", completion)
+        finish = (ROOT / "docs" / "11-finish.md").read_text(encoding="utf-8")
+        self.assertIn("이 장까지 완료하면 참가자 실습은 끝", finish)
+        self.assertIn("강사가 웹 대시보드", finish)
+        self.assertIn("로컬 앱을 설치하거나 실행할 필요가 없습니다", finish)
 
     def test_chapters_linked_from_readme(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
