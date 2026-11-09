@@ -84,12 +84,16 @@ class Docs(unittest.TestCase):
             self.assertNotIn("zeb-p001", instructions, doc.name)
             self.assertNotIn("ws-p001", instructions, doc.name)
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("`ws-p011`", readme)
+        self.assertIn("본인 작업 영역", readme)
         admin = (ROOT / "admin" / "README.md").read_text(encoding="utf-8")
         self.assertIn("`p011`부터", admin)
         self.assertIn("--participants p011-p022", admin)
         for path in [ROOT / "README.md", *DOCS]:
-            self.assertNotIn("실습자 계정은", path.read_text(encoding="utf-8"), path.name)
+            text = path.read_text(encoding="utf-8")
+            self.assertNotIn("실습자 계정은", text, path.name)
+            instructions = re.sub(r"<img[^>]+>", "", text)
+            self.assertIsNone(re.search(r"\b(?:ws-|zeb-|fdy-zeb-|rg-zeb-)?p\d{3}\b",
+                                       instructions), path.name)
 
     def test_read_only_question_flow_matches_approval_followup(self):
         for name in ("README.md", "docs/00-scenario.md", "docs/06-ontology.md",

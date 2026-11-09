@@ -30,12 +30,12 @@ Gold·ops 테이블로 모델 만들기 → 관계·측정값 적용 → 1페이
 
 보고서에 사용할 테이블 9개를 선택합니다. 저장 모드는 Direct Lake로, OneLake의 Delta 테이블을 가져오기(Import) 없이 바로 읽습니다.
 
-1.  작업 영역 `ws-p011`에서 Lakehouse `lh_zeb`를 엽니다.
+1.  본인 작업 영역에서 Lakehouse `lh_zeb`를 엽니다.
 2.  리본의 New semantic model을 누릅니다.
 3.  New semantic model 창에 아래와 같이 입력하고 Confirm을 누릅니다.
 
     - Direct Lake semantic model name: `sm_zeb`
-    - Workspace: `ws-p011`
+    - Workspace: 본인 작업 영역
     - 테이블 9개를 체크합니다. 같은 이름의 테이블이 `bronze`·`silver`에도 있으므로 스키마를 확인하고 체크합니다. 맨 위 `bronze`의 > 를 눌러 접어 두면 찾기 쉽습니다.
 
     | 스키마 | 테이블 |
@@ -73,7 +73,7 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 5.  화면 아래 Model view 탭을 누르고, 오른쪽 아래 Fit to page를 눌러 전체를 봅니다.
 
-6.  관계를 계산하도록 모델을 새로 고칩니다. 새 관계는 새로 고침 전까지 데이터가 없어서, 보고서에 *"…relationship … needs to be recalculated"* 오류가 납니다. 위쪽 탭에서 작업 영역 `ws-p011`로 가서 `sm_zeb` 행의 이름 오른쪽 새로 고침 아이콘(Refresh now) 을 누르고, 1분쯤 뒤 `sm_zeb` 탭으로 돌아옵니다.
+6.  관계를 계산하도록 모델을 새로 고칩니다. 새 관계는 새로 고침 전까지 데이터가 없어서, 보고서에 *"…relationship … needs to be recalculated"* 오류가 납니다. 위쪽 탭에서 본인 작업 영역으로 가서 `sm_zeb` 행의 이름 오른쪽 새로 고침 아이콘(Refresh now) 을 누르고, 1분쯤 뒤 `sm_zeb` 탭으로 돌아옵니다.
 
 예상 결과: `pub_zeb_certification`이 `ref_region`·`ref_zeb_grade_criteria`·`ref_building_use`와, `milestone_forecast`·`po_status`가 `site_status`와, `po_status`가 `scm_vendor`·`ref_equipment_category`와 관계선으로 이어집니다.
 
@@ -154,7 +154,7 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 ## 5. 저장
 
 1.  도구 모음의 Save this report(디스크 아이콘)를 누릅니다.
-2.  작업 영역 `ws-p011`을 고르고 이름 `rpt_zeb`를 입력한 뒤 Save를 누릅니다.
+2.  본인 작업 영역을 고르고 이름 `rpt_zeb`를 입력한 뒤 Save를 누릅니다.
 
 예상 결과: Report saved 알림이 보이고 보고서가 읽기 보기로 바뀝니다. 오른쪽 위 Viewing ▾ → Editing을 눌러 편집을 이어 갑니다.
 

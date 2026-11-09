@@ -22,10 +22,10 @@
 
     | 필드 | 값 |
     |---|---|
-    | 프로젝트 이름 | `zeb-p011` (Foundry 프로젝트 이름이며 Fabric 작업 영역 `ws-p011`과 구분) |
-    | 고급 옵션 > Foundry 리소스 | `fdy-zeb-p011` |
+    | 프로젝트 이름 | 관리자가 안내한 본인의 Foundry 프로젝트 이름 |
+    | 고급 옵션 > Foundry 리소스 | 관리자가 안내한 본인의 Foundry 리소스 이름 |
     | 지역 | 관리자가 지정한 Agent Service·모델 지원 지역. 캡처 예시는 `Sweden Central` |
-    | 구독, 리소스 그룹 | 관리자가 알려 준 값. 캡처 예시는 `rg-zeb-p011` |
+    | 구독, 리소스 그룹 | 관리자가 안내한 본인의 구독과 리소스 그룹 |
     | Foundry에서 제공하는 모든 항목을 탐색할 수 있도록 권장 리소스를 설정합니다. | 끔. 추적 기록용 App Insights 리소스를 만들지 않습니다. |
 
     <img src="../assets/screenshots/d09-create-project.png" width="700" alt="프로젝트 만들기 창. 프로젝트 이름 zeb-p001, Foundry 리소스 fdy-zeb-p001, 지역 Sweden Central, 리소스 그룹 rg-zeb-p001이고 권장 리소스 스위치는 꺼져 있습니다." />
@@ -56,7 +56,7 @@
 3.  도구의 추가 → 도구 추가를 누릅니다. 도구 선택 창의 구성됨 탭에서 Fabric IQ(OneLake 카탈로그)를 고르고 도구 추가를 누릅니다.
 
     <img src="../assets/screenshots/d09-tool-catalog.png" width="900" alt="도구 선택 창의 구성됨 탭. 파일 검색, 코드 인터프리터, Azure AI Search, 웹 검색, Work IQ, Fabric IQ(OneLake 카탈로그) 등이 보입니다." />
-4.  OneLake 카탈로그가 로드되면(10–20초) 키워드로 필터링에 `ont_zeb`를 입력하고 위치가 `ws-p011`인 `ont_zeb`를 고른 뒤 추가를 누릅니다. 이름이 비슷한 다른 작업 영역의 Ontology를 고르지 않습니다.
+4.  OneLake 카탈로그가 로드되면(10–20초) 키워드로 필터링에 `ont_zeb`를 입력하고 위치가 본인 작업 영역인 `ont_zeb`를 고른 뒤 추가를 누릅니다. 이름이 비슷한 다른 작업 영역의 Ontology를 고르지 않습니다.
 
     <img src="../assets/screenshots/d09-onelake-select.png" width="900" alt="OneLake 카탈로그에서 ont_zeb로 필터링한 결과. 위치 zeb-p001인 ont_zeb와 다른 작업 영역의 비슷한 이름이 보입니다." />
 5.  연결 선택·인증 안내가 나오면 관리자가 준비한 BYO Entra/managed OAuth 연결을 고르고 로그인·동의합니다. 캡처 환경에서는 안내 없이 바로 추가되었고, 3단계 첫 질문도 동의 요청 없이 실행되었습니다. 환경에 따라 첫 호출에서 동의를 요구할 수 있습니다.

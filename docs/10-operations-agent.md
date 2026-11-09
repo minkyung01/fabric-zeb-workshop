@@ -30,7 +30,7 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 
 ## 1. Eventhouse 만들기
 
-1.  작업 영역 `ws-p011`에서 + New item을 누르고 `Eventhouse`를 검색해 Eventhouse를 고릅니다. 한국어 UI에서는 `이벤트하우스`로 검색합니다.
+1.  본인 작업 영역에서 + New item을 누르고 `Eventhouse`를 검색해 Eventhouse를 고릅니다. 한국어 UI에서는 `이벤트하우스`로 검색합니다.
 2.  Eventhouse name에 `eh_zeb`를 입력하고 Create를 누릅니다.
 
 예상 결과: Eventhouse가 열리고 같은 이름의 KQL 데이터베이스 `eh_zeb`가 만들어집니다(1분 이내).
@@ -116,7 +116,7 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
     The action records workshop data and recalculates it; it does not change real designs or place orders.
     ```
 
-3.  Knowledge에서 Add data 옆 아래 화살표 → Add from OneLake catalog를 고릅니다. 오른쪽 위 Filter by keyword에 `eh_zeb`를 입력하고, Location이 `ws-p011`인 `eh_zeb`를 고른 뒤 Add를 누릅니다.
+3.  Knowledge에서 Add data 옆 아래 화살표 → Add from OneLake catalog를 고릅니다. 오른쪽 위 Filter by keyword에 `eh_zeb`를 입력하고, Location이 본인 작업 영역인 `eh_zeb`를 고른 뒤 Add를 누릅니다.
 
     <img src="../assets/screenshots/d10-oa-add-data.png" width="800" alt="Knowledge의 Add data 옆 화살표 메뉴. Add from OneLake catalog와 Add from Variable library가 보입니다." />
 
@@ -124,7 +124,7 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 
     <img src="../assets/screenshots/d10-oa-knowledge.png" width="800" alt="Knowledge 목록에 eh_zeb, Type KQL Database가 추가된 화면" />
 
-4.  Actions의 Add action을 누르고 Select action type에서 Fabric item을 고릅니다. Browse를 누르고 Filter by keyword에 `nb_apply_decision`을 입력해 Location이 `ws-p011`인 항목을 고른 뒤 Add를 누릅니다.
+4.  Actions의 Add action을 누르고 Select action type에서 Fabric item을 고릅니다. Browse를 누르고 Filter by keyword에 `nb_apply_decision`을 입력해 Location이 본인 작업 영역인 항목을 고른 뒤 Add를 누릅니다.
 
 5.  아래와 같이 입력하고 Next를 누릅니다. Parameters의 `event_id`, `option_id`는 Notebook의 parameters 셀에서 자동으로 채워집니다. Description만 입력합니다.
 
@@ -137,7 +137,7 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 
     <img src="../assets/screenshots/d10-oa-action.png" width="1000" alt="Add action의 Action details. Fabric item nb_apply_decision, Action name ApplyZebOption, Parameters event_id와 option_id에 설명이 입력된 화면" />
 
-6.  Review and create에서 Action type `Notebook`, Item name `nb_apply_decision`, Workspace `ws-p011`, Parameters 2개를 확인하고 Create를 누릅니다.
+6.  Review and create에서 Action type이 `Notebook`, Item name이 `nb_apply_decision`, Workspace가 본인 작업 영역이고 Parameters가 2개인지 확인한 뒤 Create를 누릅니다.
 
     예상 결과: Actions에 `ApplyZebOption`이 Action connected 상태로 보입니다.
 

@@ -40,8 +40,8 @@ Notebook이 원천 데이터를 <b>OneLake의 Lakehouse 하나(스키마 사용)
 
 | 참가자가 확인할 것 | 관리자에게 받을 안내 |
 |---|---|
-| 실습 계정·참가자 번호 | Fabric·Teams에 사용할 계정과 본인 번호(예: `p011`) |
-| 작업 영역 | 본인 작업 영역 `ws-p011`, Lakehouse `lh_zeb`, 미리 넣어 둔 Notebook 7개와 `Files/workshop`의 파일 2개 |
+| 실습 계정·참가자 번호 | Fabric·Teams에 사용할 계정과 본인 번호 |
+| 작업 영역 | 본인 작업 영역, Lakehouse `lh_zeb`, 미리 넣어 둔 Notebook 7개와 `Files/workshop`의 파일 2개 |
 | 보고서·에이전트 사용 환경 | Power BI Pro 또는 PPU 라이선스, Copilot·Data agent·Ontology·Operations agent 테넌트 설정, Teams의 Fabric Operations Agent 앱 |
 | Teams 로그인 | Fabric과 같은 계정으로 Teams(데스크톱 또는 웹)에 로그인할 수 있는지 미리 확인(10장) |
 | (선택) Foundry | 09장을 진행할 경우 Foundry 프로젝트, 또는 프로젝트를 만들 구독·리소스 그룹·지역 |
@@ -77,7 +77,7 @@ Graph·파이프라인·Foundry를 생략해도 기본 과정은 완료됩니다
 
 | 파일 | 위치 | 용도 |
 |---|---|---|
-| Notebook 7개 | 작업 영역 `ws-p011` | `01`–`04` 메달리온, `05_answers` 정답 계산(07장), `06_risk_event` 위험 이벤트(10장), `nb_apply_decision` 승인 반영(10장, 직접 실행 안 함) |
+| Notebook 7개 | 본인 작업 영역 | `01`–`04` 메달리온, `05_answers` 정답 계산(07장), `06_risk_event` 위험 이벤트(10장), `nb_apply_decision` 승인 반영(10장, 직접 실행 안 함) |
 | `sm_zeb.tmdl` | `lh_zeb` → Files → workshop | 08장 Semantic model의 관계·측정값 |
 | `zeb-theme.json` | `lh_zeb` → Files → workshop | 08장 보고서 테마 |
 

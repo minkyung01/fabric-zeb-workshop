@@ -19,11 +19,11 @@ Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔�
 
 ## 1. Ontology 만들기
 
-1.  작업 영역 `ws-p011`에서 + New item을 누르고 오른쪽 위 Filter by keyword 칸에 `Ontology`를 입력한 뒤 Ontology (preview) 카드를 누릅니다.
+1.  본인 작업 영역에서 + New item을 누르고 오른쪽 위 Filter by keyword 칸에 `Ontology`를 입력한 뒤 Ontology (preview) 카드를 누릅니다.
 
     <img src="../assets/screenshots/d06-new-ontology.png" width="900" alt="New item 창의 Filter by keyword 칸에 Ontology를 입력해 Ontology (preview) 카드 하나만 보이는 화면" />
 
-2.  Name에 `ont_zeb`를 입력하고 Location이 `ws-p011`인지 확인한 뒤 Create를 누릅니다.
+2.  Name에 `ont_zeb`를 입력하고 Location이 본인 작업 영역인지 확인한 뒤 Create를 누릅니다.
 
     <img src="../assets/screenshots/d06-create-ontology.png" width="700" alt="New Ontology 창에 Name ont_zeb, Location zeb-p001이 입력된 화면" />
 

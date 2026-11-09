@@ -21,7 +21,7 @@ Bronze에서는 받은 값을 고치지 않습니다. 모든 값을 문자열로
 
 ## 1. Notebook 열고 실행
 
-1.  작업 영역 `ws-p011`에서 `01_bronze_public_ingest`를 엽니다.
+1.  본인 작업 영역에서 `01_bronze_public_ingest`를 엽니다.
 2.  맨 위 셀부터 Shift+Enter로 한 셀씩 실행합니다. Run all로 한 번에 실행한 뒤 결과를 확인해도 됩니다. Spark 세션 시작을 포함해 약 3–5분 걸립니다.
 
 ## 2. 셀별 결과 확인

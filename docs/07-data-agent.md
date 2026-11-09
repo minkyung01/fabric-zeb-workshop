@@ -42,8 +42,8 @@
 
 ## 2. Data agent 만들고 Ontology 연결
 
-1.  작업 영역 `ws-p011`에서 + New item을 누르고 `Data agent`로 검색해 Data agent를 고릅니다. 이름에 `da_zeb`를 입력하고 Create를 누릅니다. Welcome to Data Agent 창이 나오면 Skip for now를 누릅니다.
-2.  Build your data agent 화면에서 Add an ontology 카드를 누릅니다. 다른 참가자의 `ont_zeb`도 함께 보이므로, 왼쪽 Explorer를 펼쳐 본인 작업 영역(`ws-p011`)을 고른 뒤 `ont_zeb`를 선택하고 Add를 누릅니다.
+1.  본인 작업 영역에서 + New item을 누르고 `Data agent`로 검색해 Data agent를 고릅니다. 이름에 `da_zeb`를 입력하고 Create를 누릅니다. Welcome to Data Agent 창이 나오면 Skip for now를 누릅니다.
+2.  Build your data agent 화면에서 Add an ontology 카드를 누릅니다. 다른 참가자의 `ont_zeb`도 함께 보이므로, 왼쪽 Explorer를 펼쳐 본인 작업 영역을 고른 뒤 `ont_zeb`를 선택하고 Add를 누릅니다.
 
     <img src="../assets/screenshots/d07-add-ontology.png" width="1000" alt="Add an ontology 창. 왼쪽 Explorer에서 zeb-p001을 골라 ont_zeb 하나만 보이고 선택되어 있습니다." />
 
