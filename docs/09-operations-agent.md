@@ -230,6 +230,8 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 ## 7. Teams 제안 확인
 
+먼저 Teams(데스크톱 또는 웹)를 열고 Fabric에서 `oa_zeb`를 만든 실습 계정과 같은 계정으로 로그인합니다.
+
 1.  Teams에서 Fabric operations agent 채팅을 엽니다. 에이전트는 약 5분마다 조회하며, 메시지 생성·전송 시간이 더해질 수 있습니다. 이전 실습이나 다른 에이전트의 메시지가 있으면 맨 아래의 `oa_zeb` 메시지를 봅니다.
 
     예상 결과: `oa_zeb`가 보낸 카드의 제목이 규칙 이름(예: `Zeb Risk Event Open Notify And Recommend`)이고, 본문에 위험 이벤트 `ZEB-HS-D-20260930`이 `open`이 되었고 추천 보완안이 `OPT-D2`라는 내용이 있습니다. Recommended action에 `ApplyZebOption`과 설명이 있고, 아래에 Proceed, Investigate further (preview), Dismiss, Ask a question 버튼이 있습니다. 메시지 문장은 AI가 만들므로 다를 수 있고, 현장 이름이나 비용이 빠질 수도 있습니다.
