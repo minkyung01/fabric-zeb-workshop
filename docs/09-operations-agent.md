@@ -33,16 +33,16 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 1.  본인 작업 영역에서 + New item을 누르고 `Eventhouse`를 검색해 Eventhouse를 고릅니다. 한국어 UI에서는 `이벤트하우스`로 검색합니다.
 2.  Eventhouse name에 `eh_zeb`를 입력하고 Create를 누릅니다.
 
-예상 결과: Eventhouse가 열리고 같은 이름의 KQL 데이터베이스 `eh_zeb`가 만들어집니다(1분 이내).
+예상 결과: Eventhouse의 System overview가 열리고, 왼쪽 KQL databases 아래에 같은 이름의 `eh_zeb`가 보입니다(1분 이내). 아직 이벤트를 보내지 않았으므로 저장량 0 B와 수집 데이터 없음이 표시되어도 정상입니다.
 
-<img src="../assets/screenshots/d10-eventhouse.png" width="1000" alt="Eventhouse eh_zeb가 열리고 KQL 데이터베이스 eh_zeb가 보이는 화면" />
+<img src="../assets/screenshots/d10-eventhouse.png" width="1000" alt="Eventhouse eh_zeb의 System overview. 왼쪽 KQL databases에 eh_zeb가 있고 저장량은 0 B이며 아직 수집 데이터가 없습니다." />
 
 ## 2. ZebRiskEvent 테이블 만들기
 
 이 테이블은 상태 이력입니다. 같은 `event_id`의 상태가 바뀔 때 새 행을 추가하고, 시간 열 `status_time`으로 순서를 구분합니다.
 
 1.  KQL 데이터베이스 `eh_zeb`에 연결된 Queryset `eh_zeb_queryset`을 엽니다. 없으면 데이터베이스에서 New KQL queryset을 만들고 대상이 `eh_zeb`인지 확인합니다.
-2.  편집 창의 내용을 지우고 아래 명령을 붙여 넣은 뒤 Run을 누릅니다.
+2.  편집 창의 내용을 지우고 아래 명령 전체를 붙여 넣습니다.
 
     ``` text
     .create-merge table ZebRiskEvent (
@@ -62,6 +62,10 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
         expected_grade: string)
     ```
 
+    실행 전에는 왼쪽 Tables 아래에 No tables가 보이고, 아래 결과 영역은 비어 있습니다. 명령 전체를 붙여 넣고 Run을 누릅니다.
+
+    <img src="../assets/screenshots/d09-table-command.png" width="1000" alt="eh_zeb_queryset에 테이블 생성 명령을 붙여 넣은 실행 전 화면. 위쪽에 Run이 있고 왼쪽 Tables는 No tables, 아래 결과 영역은 비어 있습니다." />
+
     | 열 | 뜻 |
     |---|---|
     | `event_id`, `status_time`, `event_status` | 위험 이벤트 ID, 상태가 바뀐 시각, 상태(`open` 대응 전, `approved` 담당자 승인, `resolved` 위험 해소) |
@@ -70,9 +74,9 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
     | `recommended_option_id`, `recommended_option_name`, `option_cost_krw` | 추천 보완안과 비용 |
     | `expected_selfsuff_pct`, `expected_grade` | 추천 보완안을 적용했을 때의 자립률과 예상 등급 |
 
-예상 결과: 결과 창에 `ZebRiskEvent` 한 행이 보이고, 왼쪽 Tables 아래에 `ZebRiskEvent`가 생깁니다.
+예상 결과: Done이 표시되고 왼쪽 Tables 아래에 `ZebRiskEvent`가 생깁니다. 결과 창의 TableName이 `ZebRiskEvent`인 1행은 생성된 테이블의 스키마 정보이며, 위험 이벤트가 들어왔다는 뜻은 아닙니다. 실제 이벤트는 7단계에서 보냅니다.
 
-<img src="../assets/screenshots/d10-create-table.png" width="1000" alt="Queryset에서 .create-merge table ZebRiskEvent를 실행한 결과" />
+<img src="../assets/screenshots/d10-create-table.png" width="1000" alt="테이블 생성 명령 실행 후 Done과 스키마 결과 1행이 표시되고 왼쪽 Tables 아래 ZebRiskEvent가 생긴 화면" />
 
 ## 3. 승인 반영 Notebook 확인
 
@@ -82,11 +86,15 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 2.  [01장 4단계](01-workspace.md#4-notebook의-기본-lakehouse-연결)와 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결합니다.
 3.  매개 변수 셀이 parameters 셀이고 `event_id`, `option_id` 두 변수가 있는지 확인합니다.
 
-예상 결과: 기본 Lakehouse가 `lh_zeb`이고, parameters 셀에 `event_id = "ZEB-HS-D-20260930"`, `option_id = "OPT-D2"`가 있습니다. 이 값은 직접 실행할 때의 기본값이며, 에이전트는 이벤트의 값을 넘깁니다.
+예상 결과: 기본 Lakehouse가 `lh_zeb`이고, parameters 셀에 `event_id = "ZEB-HS-D-20260930"`, `option_id = "OPT-D2"`가 있습니다. 화면의 값은 초기값이며, 승인 시 에이전트가 실제 이벤트의 값을 넘깁니다. 지금은 Run all이나 셀 실행 버튼을 누르지 않습니다.
+
+<img src="../assets/screenshots/d09-approval-notebook.png" width="1000" alt="nb_apply_decision에 기본 Lakehouse lh_zeb가 연결되고 Parameters 셀에 event_id와 option_id가 있는 화면. 승인 반영 Notebook은 지금 실행하지 않습니다." />
 
 ## 4. Operations agent 만들기
 
-1.  작업 영역에서 + New item → Operations agent(한국어 UI: 운영 에이전트)를 고릅니다. Name에 `oa_zeb`를 입력하고 Create를 누릅니다. Welcome 창은 X로 닫습니다.
+1.  작업 영역에서 + New item → Operations agent(한국어 UI: 운영 에이전트)를 고릅니다. Name에 `oa_zeb`를 입력하고 Location이 본인 작업 영역인지 확인한 뒤 Create를 누릅니다. Welcome 창은 X로 닫습니다.
+
+    <img src="../assets/screenshots/d09-create-agent.png" width="700" alt="New Operations agent 창. Name은 oa_zeb, Location은 본인 작업 영역이며 Create로 생성합니다." />
 
 2.  Agent instructions에 아래 영문 지침을 붙여 넣습니다. 현재 Operations agent의 지침·업무 목표는 영어만 지원하므로 감시 조건은 영어로 정의하고 알림 본문은 한국어로 요청합니다([언어 제약](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/operations-agent-limitations)). 감시할 열을 `ZebRiskEvent.event_status`처럼 테이블 이름과 함께 적습니다.
 
@@ -117,6 +125,8 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
     ```
 
 3.  Knowledge에서 Add data 옆 아래 화살표 → Add from OneLake catalog를 고릅니다. 오른쪽 위 Filter by keyword에 `eh_zeb`를 입력하고, Location이 본인 작업 영역인 `eh_zeb`를 고른 뒤 Add를 누릅니다.
+
+    지침만 입력한 상태에서는 No knowledge source와 No playbook available이 보이고 Generate playbook이 비활성화되어 있어도 정상입니다. 아래 메뉴로 KQL 데이터베이스를 먼저 연결합니다.
 
     <img src="../assets/screenshots/d10-oa-add-data.png" width="800" alt="Knowledge의 Add data 옆 화살표 메뉴. Add from OneLake catalog와 Add from Variable library가 보입니다." />
 
