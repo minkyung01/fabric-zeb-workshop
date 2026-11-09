@@ -146,6 +146,19 @@ class Docs(unittest.TestCase):
         self.assertIn("Crosses above 0.5", approval)
         self.assertNotIn("기본 매개 변수로 Run all", approval)
 
+    def test_question_checks_are_in_answer_table(self):
+        questions = (ROOT / "docs" / "07-data-agent.md").read_text(encoding="utf-8")
+        self.assertIn("| 번호 | 유형 | 질문 | 확인할 정답 | 눈여겨볼 점 |", questions)
+        rows = [line for line in questions.splitlines()
+                if re.match(r"^\| Q[1-8] \|", line)]
+        self.assertEqual(len(rows), 8)
+        for row in rows:
+            self.assertEqual(len(row.split("|")[1:-1]), 5)
+        self.assertIn("'확인할 정답'의 대상·핵심 수치·판정 근거·결론은 답변에 포함되어야", questions)
+        self.assertNotIn("모두 맞히는 것이 목표가 아니라", questions)
+        self.assertNotIn("## 5.", questions)
+        self.assertNotIn("## 6.", questions)
+
     def test_chapters_linked_from_readme(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for doc in DOCS:
