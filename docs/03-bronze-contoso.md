@@ -25,6 +25,8 @@
 1.  작업 영역에서 `02_bronze_contoso_generate`를 열고, [01장 4단계](01-workspace.md#4-notebook의-기본-lakehouse-연결)와 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결합니다.
 2.  맨 위 셀부터 Shift+Enter로 한 셀씩 실행합니다. 약 2분 걸립니다.
 
+<img src="../assets/screenshots/d03-notebook-lakehouse.png" width="1000" alt="02_bronze_contoso_generate Notebook 시작 화면. Explorer의 OneLake 아래 lh_zeb에 기본 Lakehouse 핀 아이콘이 있고, 내부 시스템 데이터 설명과 기준일 parameters 셀이 보입니다." />
+
 ## 2. 셀별 결과 확인
 
 1.  준비
@@ -48,11 +50,15 @@
 
     예상 결과: `bronze.ref_zeb_grade_criteria 6행`, `bronze.ref_region 17행`, `bronze.ref_equipment_category 8행`
 
+    <img src="../assets/screenshots/d03-reference-saved.png" width="450" alt="기준 정보 저장 결과. bronze.ref_zeb_grade_criteria 6행, bronze.ref_region 17행, bronze.ref_equipment_category 8행이 출력됩니다." />
+
     이 표에는 기준값만 있고, 등급을 어떻게 판정하는지(두 기준 중 더 좋은 등급, BEMS 필수 등)는 없습니다. 판정 방법은 06장에서 Ontology의 업무 규칙으로 정의합니다.
 
 3.  ERP 프로젝트, PMS 현장, MDM 코드 매핑
 
     예상 결과: `bronze.erp_project 8행`, `bronze.pms_site 8행`, `bronze.mdm_site_xref 8행`
+
+    <img src="../assets/screenshots/d03-site-mapping-saved.png" width="450" alt="ERP 프로젝트, PMS 현장, MDM 코드 매핑 저장 결과. 세 테이블이 각각 8행입니다." />
 
 4.  설계안 — BIM·에너지 시뮬레이션
 
@@ -60,11 +66,15 @@
 
     예상 결과: `bronze.bim_design_version 18행`
 
+    <img src="../assets/screenshots/d03-design-saved.png" width="450" alt="설계안 저장 결과. bronze.bim_design_version 18행이 출력됩니다." />
+
 5.  인증 목표와 취득 인증서 — PMS
 
     예비인증서에는 어느 설계안으로 받았는지(`design_version_id`)가 함께 기록되어 있습니다. 세종 E학교는 ZEB·녹색건축·BF 세 가지 인증을 목표로 합니다.
 
     예상 결과: `bronze.pms_cert_target 12행`, `bronze.pms_certificate 10행`
+
+    <img src="../assets/screenshots/d03-certification-saved.png" width="450" alt="인증 목표와 인증서 저장 결과. bronze.pms_cert_target 12행, bronze.pms_certificate 10행이 출력됩니다." />
 
 6.  인증 일정 — PMS
 
@@ -72,11 +82,15 @@
 
     예상 결과: `bronze.pms_cert_milestone 48행` (현장 8개 × 일정 6단계)
 
+    <img src="../assets/screenshots/d03-milestones-saved.png" width="450" alt="인증 일정 저장 결과. bronze.pms_cert_milestone 48행이 출력됩니다." />
+
 7.  설비 계획(PMS)과 공급사·발주(SCM)
 
     발주는 WBS 코드로 설비 계획과 이어집니다(`scm_purchase_order.wbs_element` = `pms_equipment_plan.wbs_code`). Northwind 지열(`V-30452`)이 A단지와 D단지의 지열 히트펌프를 납품하고, 스마트오피스 C센터는 설비 계획에 BEMS가 빠져 있습니다.
 
     예상 결과: `bronze.pms_equipment_plan 39행`, `bronze.scm_vendor 9행`, `bronze.scm_purchase_order 25행`, `bronze.scm_po_event 1행`
+
+    <img src="../assets/screenshots/d03-equipment-purchasing-saved.png" width="450" alt="설비와 구매 데이터 저장 결과. 설비 계획 39행, 공급사 9행, 발주 25행, 발주 이벤트 1행이 출력됩니다." />
 
 8.  등급 보완안 — 에너지 컨설팅 시뮬레이션 결과, 조치 기록
 
@@ -94,6 +108,8 @@
     `pms_action_log`(조치 기록)는 처음에는 비어 있습니다. 10장에서 담당자가 Teams에서 보완안을 승인하면 이 테이블에 기록이 추가됩니다.
 
     예상 결과: `bronze.sim_improvement_option 12행`, `bronze.pms_action_log 0행`
+
+    <img src="../assets/screenshots/d03-options-actions-saved.png" width="450" alt="보완안과 조치 기록 저장 결과. bronze.sim_improvement_option 12행, bronze.pms_action_log 0행이 출력됩니다." />
 
 9.  Bronze 테이블 확인
 
