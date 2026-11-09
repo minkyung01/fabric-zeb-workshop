@@ -39,7 +39,7 @@ Fabric 접속 → 작업 영역 유형 확인 → Notebook 7개 확인 → Lakeh
 | `06_risk_event` | Notebook | 10 |
 | `nb_apply_decision` | Notebook | 10 (Operations agent가 실행하므로 직접 실행하지 않음) |
 
-예상 결과: Notebook 7개가 있습니다. 아직 `lh_zeb`나 SQL analytics endpoint가 없어도 정상입니다.
+예상 결과: Notebook 7개가 있습니다.
 
 Notebook이 없다면 관리자에게 준비를 요청합니다. 원본은 [notebooks 폴더의 `.ipynb` 파일 7개](../notebooks)에 있습니다. Notebook 이름은 파일 이름 그대로 둡니다. `nb_apply_decision`이 `03_silver_conform`과 `04_gold_model`을 이름으로 찾아 실행하기 때문입니다.
 
