@@ -225,13 +225,15 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 
     확인할 결과: 각 관계의 Origin·Target과 Property가 아래 화면과 같습니다. 관계마다 확인한 뒤 Cancel로 나옵니다. 이름이나 연결 열이 다르면 임의로 저장하지 말고 Plan에서 원본 매핑을 다시 검토합니다.
 
-    <img src="../assets/screenshots/d06-site-bim-relationship.png" width="1000" alt="Site_has_BIMModel 관계. Site의 site_code와 BIMModel의 site_code가 연결되어 있습니다." />
+    | Site → BIMModel | Project → BIMModel |
+    |---|---|
+    | [<img src="../assets/screenshots/d06-site-bim-relationship.png" width="450" alt="Site_has_BIMModel 관계. Site의 site_code와 BIMModel의 site_code가 연결되어 있습니다." />](../assets/screenshots/d06-site-bim-relationship.png) | [<img src="../assets/screenshots/d06-project-bim-relationship.png" width="450" alt="Project_has_BIMModel 관계. Project의 project_no와 BIMModel의 project_no가 연결되어 있습니다." />](../assets/screenshots/d06-project-bim-relationship.png) |
 
-    <img src="../assets/screenshots/d06-project-bim-relationship.png" width="1000" alt="Project_has_BIMModel 관계. Project의 project_no와 BIMModel의 project_no가 연결되어 있습니다." />
+    | BIMModel → DesignVersion | PurchaseOrder → Equipment |
+    |---|---|
+    | [<img src="../assets/screenshots/d06-bim-design-relationship.png" width="450" alt="BIMModel_has_DesignVersion 관계. BIMModel과 DesignVersion의 bim_model_id가 연결되어 있습니다." />](../assets/screenshots/d06-bim-design-relationship.png) | [<img src="../assets/screenshots/d06-purchase-equipment-relationship.png" width="450" alt="PurchaseOrder_for_Equipment 관계. PurchaseOrder의 wbs_element와 Equipment의 wbs_code가 연결되어 있습니다." />](../assets/screenshots/d06-purchase-equipment-relationship.png) |
 
-    <img src="../assets/screenshots/d06-bim-design-relationship.png" width="1000" alt="BIMModel_has_DesignVersion 관계. BIMModel과 DesignVersion의 bim_model_id가 연결되어 있습니다." />
-
-    <img src="../assets/screenshots/d06-purchase-equipment-relationship.png" width="1000" alt="PurchaseOrder_for_Equipment 관계. PurchaseOrder의 wbs_element와 Equipment의 wbs_code가 연결되어 있습니다." />
+    관계 화면은 이미지를 누르면 크게 볼 수 있습니다.
 
 여기까지 마쳤으면 업무 질문에 필요한 구조·키·바인딩·규칙과 실제 데이터를 모두 확인한 것입니다. 바로 07장으로 넘어가도 됩니다. Graph로 관계를 탐색해 보고 싶을 때만 6단계를 진행합니다.
 

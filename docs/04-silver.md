@@ -101,9 +101,11 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
     - `시도를 정하지 못한 원천 값`: 1행. 원천 값이 비어 있는 1건뿐이고, 나머지 표기는 모두 시도로 바뀌었습니다.
     - BF 인증에서 `전북`으로 바뀐 원천 표기: 2행. `전라북도` 1,125건, `전북특별자치도` 167건
 
-    <img src="../assets/screenshots/d04-unmapped-sido.png" width="1000" alt="시도를 정하지 못한 원천 값 확인 결과. sido_raw가 빈 값인 한 행이고 count는 1입니다." />
+    | 시도를 정하지 못한 원천 값 | 전북으로 통일한 원천 표기 |
+    |---|---|
+    | [<img src="../assets/screenshots/d04-unmapped-sido.png" width="450" alt="시도를 정하지 못한 원천 값 확인 결과. sido_raw가 빈 값인 한 행이고 count는 1입니다." />](../assets/screenshots/d04-unmapped-sido.png) | [<img src="../assets/screenshots/d04-jeonbuk-aliases.png" width="450" alt="BF 인증의 전북 표기 통일 확인 결과. 전라북도 1125건과 전북특별자치도 167건이 표시됩니다." />](../assets/screenshots/d04-jeonbuk-aliases.png) |
 
-    <img src="../assets/screenshots/d04-jeonbuk-aliases.png" width="1000" alt="BF 인증의 전북 표기 통일 확인 결과. 전라북도 1125건과 전북특별자치도 167건이 표시됩니다." />
+    비교 화면은 이미지를 누르면 크게 볼 수 있습니다.
 
 ## 3. SQL analytics endpoint로 확인
 
