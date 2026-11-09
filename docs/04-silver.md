@@ -42,6 +42,8 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
 
     예상 결과: `silver.ref_zeb_grade_criteria 6행`, `silver.ref_region 17행`, `silver.ref_equipment_category 8행`
 
+    <img src="../assets/screenshots/d04-reference-saved.png" width="450" alt="공통 기준 정보 저장 결과. silver.ref_zeb_grade_criteria 6행, silver.ref_region 17행, silver.ref_equipment_category 8행이 출력됩니다." />
+
 3.  공공 인증 데이터
 
     인증 4종을 같은 규칙으로 정리합니다. 인증마다 `cert_id`(예: `ZEB-00001`)와, 같은 건물을 묶는 `building_key`(`시도|정리한 건물명`)가 붙습니다. 02장에서 본 `둔내 생활문화센터 기본 및 실시설계용역`은 `강원|둔내생활문화센터`가 됩니다.
@@ -55,13 +57,15 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
     silver.green_tech_certificate             1,905행
     ```
 
-    <img src="../assets/screenshots/d04-public-silver.png" width="1000" alt="2번 셀 실행 결과. silver.zeb_certification 9,760행, silver.gseed_certification 5,104행, silver.bf_certification 22,184행, silver.green_tech_certificate 1,905행이 출력되어 있습니다." />
+    <img src="../assets/screenshots/d04-public-silver.png" width="450" alt="공공 인증 정제 결과. silver.zeb_certification 9,760행, silver.gseed_certification 5,104행, silver.bf_certification 22,184행, silver.green_tech_certificate 1,905행이 출력되어 있습니다." />
 
 4.  같은 건물 연결 — 인증 건물
 
     한 건물이 ZEB·녹색건축·BF 인증을 각각 받으면 기관마다 따로 기록됩니다. 시도와 정리한 건물명이 같으면 같은 건물로 봅니다. 건물 이름·시도·용도는 ZEB → 녹색건축 → BF 순서로 찾고, 인증마다 가장 최근 기록(본인증 우선)의 값을 씁니다.
 
     예상 결과: `silver.certified_building 25,362행`. 한 건물이 받은 여러 인증이 한 행으로 묶이므로 세 인증의 건수를 더한 값보다 적습니다.
+
+    <img src="../assets/screenshots/d04-buildings-saved.png" width="450" alt="같은 건물 연결 결과. silver.certified_building 25,362행이 출력됩니다." />
 
 5.  Contoso 내부 데이터 — 이벤트와 승인된 조치를 반영한 현재 상태
 
@@ -70,6 +74,8 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
 
     예상 결과: 내부 테이블 13개가 만들어집니다. `silver.bim_design_version 18행`, `silver.pms_equipment_plan 39행`, `silver.scm_purchase_order 25행`, `silver.pms_action_log 0행` 등 모두 Bronze와 행 수가 같습니다.
 
+    <img src="../assets/screenshots/d04-contoso-saved.png" width="450" alt="Contoso 내부 데이터 정제 결과. Silver 테이블 13개의 행 수가 출력되며, 설계안 18행, 설비 계획 39행, 발주 25행, 조치 기록 0행입니다." />
+
 6.  정제 결과 확인
 
     예상 결과: 두 표가 나옵니다.
@@ -77,7 +83,9 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
     - `시도를 정하지 못한 원천 값`: 1행. 원천 값이 비어 있는 1건뿐이고, 나머지 표기는 모두 시도로 바뀌었습니다.
     - BF 인증에서 `전북`으로 바뀐 원천 표기: 2행. `전라북도` 1,125건, `전북특별자치도` 167건
 
-    <img src="../assets/screenshots/d04-sido-check.png" width="1000" alt="5번 셀 실행 결과. 첫 표는 sido_raw가 빈 값인 1행(count 1)이고, 둘째 표는 전라북도 1125, 전북특별자치도 167입니다." />
+    <img src="../assets/screenshots/d04-unmapped-sido.png" width="1000" alt="시도를 정하지 못한 원천 값 확인 결과. sido_raw가 빈 값인 한 행이고 count는 1입니다." />
+
+    <img src="../assets/screenshots/d04-jeonbuk-aliases.png" width="1000" alt="BF 인증의 전북 표기 통일 확인 결과. 전라북도 1125건과 전북특별자치도 167건이 표시됩니다." />
 
 ## 3. SQL analytics endpoint로 확인
 
