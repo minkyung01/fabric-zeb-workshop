@@ -197,21 +197,21 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 
     확인할 결과: Configure 탭의 Entity type key가 `site_code`이고, 속성의 Data source가 `pms_site.…` 열입니다. 아래로 스크롤하면 Metadata의 Description에 4단계에서 넣은 업무 규칙이 있고, Synonyms에 `PMS 현장`, `현장` 같은 한국어 동의어가 있습니다.
 
-    <img src="../assets/screenshots/d06-site-configure.png" width="1000" alt="Site의 Configure 탭. site_code가 고유 키이고 속성은 pms_site 열에 바인딩되어 있습니다. 아래 Metadata의 Description에는 현장 코드 연결·부분 이름 검색·공공 사례 비교 규칙이 있고 Synonyms가 보입니다." />
-
 3.  위쪽 Instances 탭을 누릅니다.
 
     확인할 결과: 현장 8개가 보입니다. `HS-D`의 이름은 `에코시티 D단지 현장`, 공정률(`progress_pct`)은 `72`입니다. 에이전트가 지어낸 값이 아니라 연결된 원본 테이블에서 읽은 데이터입니다.
 
-    <img src="../assets/screenshots/d06-site-instances.png" width="1000" alt="Site의 Instances 탭. 현장 8개가 보이며 HS-D 에코시티 D단지 현장의 공정률은 72이고 단계는 시공입니다." />
+    | Site 설정 — Configure | 현장 데이터 — Instances |
+    |---|---|
+    | [<img src="../assets/screenshots/d06-site-configure.png" width="400" alt="Site의 Configure 탭. site_code가 고유 키이고 속성은 pms_site 열에 바인딩되어 있습니다. 아래 Metadata의 Description에는 현장 코드 연결·부분 이름 검색·공공 사례 비교 규칙이 있고 Synonyms가 보입니다." />](../assets/screenshots/d06-site-configure.png) | [<img src="../assets/screenshots/d06-site-instances.png" width="400" alt="Site의 Instances 탭. 현장 8개가 보이며 HS-D 에코시티 D단지 현장의 공정률은 72이고 단계는 시공입니다." />](../assets/screenshots/d06-site-instances.png) |
 
 4.  화면 위쪽 이름(`Site`) 옆 ∨를 눌러 `DesignVersion`(`gold.bim_design_version`)으로 바꾸고 Instances를 엽니다.
 
-    <img src="../assets/screenshots/d06-select-design-type.png" width="700" alt="Site 옆 엔터티 선택 목록에서 DesignVersion을 선택하는 화면" />
-
     확인할 결과: 설계안 18개가 보입니다. `BIM-0397-V2`는 `예비인증 제출안`(자립률 43.5), `BIM-0397-V3`는 `VE 반영안`(자립률 38.2)입니다. 오른쪽으로 스크롤하면 `version_status`에서 V3가 `현행`인 것을 볼 수 있습니다.
 
-    <img src="../assets/screenshots/d06-design-instances.png" width="1000" alt="DesignVersion의 Instances 탭. BIM-0397-V3는 자립률 38.2·1차에너지 76·태양광 380이고 V2는 43.5·69·530, V1은 41·74·500입니다." />
+    | DesignVersion 선택 | 설계안 데이터 — Instances |
+    |---|---|
+    | [<img src="../assets/screenshots/d06-select-design-type.png" width="400" alt="Site 옆 엔터티 선택 목록에서 DesignVersion을 선택하는 화면" />](../assets/screenshots/d06-select-design-type.png) | [<img src="../assets/screenshots/d06-design-instances.png" width="400" alt="DesignVersion의 Instances 탭. BIM-0397-V3는 자립률 38.2·1차에너지 76·태양광 380이고 V2는 43.5·69·530, V1은 41·74·500입니다." />](../assets/screenshots/d06-design-instances.png) |
 
 5.  같은 방법으로 `SiteCertificate`(`gold.pms_certificate`)의 Configure를 열고, 오른쪽 Manage relationships를 누릅니다. 목록에서 `Certificate_based_on_DesignVersion`을 누릅니다.
 
@@ -219,19 +219,19 @@ Plan에서 전체 변경안과 질문별 경로를 보여줘. 적용은 내가 �
 
     확인할 결과: Origin entity type은 `SiteCertificate`, Property는 `design_version_id`이고 Target entity type은 `DesignVersion`, Property는 `version_id`입니다. 이 관계가 있어야 "예비인증은 V2로 받았는데 지금은 V3"라는 사실을 찾아낼 수 있습니다. 이름·방향·연결 열을 위 핵심 관계 표와 대조합니다. 확인했으면 아무것도 바꾸지 말고 오른쪽 아래 Cancel을 누릅니다.
 
-    <img src="../assets/screenshots/d06-cert-relationship.png" width="1000" alt="Certificate_based_on_DesignVersion 관계. SiteCertificate의 design_version_id와 DesignVersion의 version_id가 연결되어 있습니다." />
+    인증서와 설계안의 연결은 아래 관계 화면의 `SiteCertificate → DesignVersion`을 참고합니다.
 
 6.  `BIMModel`(`gold.mdm_site_xref`, 키 `bim_model_id`)의 Manage relationships에서 `Site_has_BIMModel`, `Project_has_BIMModel`, `BIMModel_has_DesignVersion`을 확인합니다. `PurchaseOrder`에서는 `PurchaseOrder_for_Equipment`가 `wbs_element` = `wbs_code`로 연결되는지 확인합니다.
 
     확인할 결과: 각 관계의 Origin·Target과 Property가 아래 화면과 같습니다. 관계마다 확인한 뒤 Cancel로 나옵니다. 이름이나 연결 열이 다르면 임의로 저장하지 말고 Plan에서 원본 매핑을 다시 검토합니다.
 
-    | Site → BIMModel | Project → BIMModel |
-    |---|---|
-    | [<img src="../assets/screenshots/d06-site-bim-relationship.png" width="450" alt="Site_has_BIMModel 관계. Site의 site_code와 BIMModel의 site_code가 연결되어 있습니다." />](../assets/screenshots/d06-site-bim-relationship.png) | [<img src="../assets/screenshots/d06-project-bim-relationship.png" width="450" alt="Project_has_BIMModel 관계. Project의 project_no와 BIMModel의 project_no가 연결되어 있습니다." />](../assets/screenshots/d06-project-bim-relationship.png) |
+    | Site → BIMModel | Project → BIMModel | BIMModel → DesignVersion |
+    |---|---|---|
+    | [<img src="../assets/screenshots/d06-site-bim-relationship.png" width="250" alt="Site_has_BIMModel 관계. Site의 site_code와 BIMModel의 site_code가 연결되어 있습니다." />](../assets/screenshots/d06-site-bim-relationship.png) | [<img src="../assets/screenshots/d06-project-bim-relationship.png" width="250" alt="Project_has_BIMModel 관계. Project의 project_no와 BIMModel의 project_no가 연결되어 있습니다." />](../assets/screenshots/d06-project-bim-relationship.png) | [<img src="../assets/screenshots/d06-bim-design-relationship.png" width="250" alt="BIMModel_has_DesignVersion 관계. BIMModel과 DesignVersion의 bim_model_id가 연결되어 있습니다." />](../assets/screenshots/d06-bim-design-relationship.png) |
 
-    | BIMModel → DesignVersion | PurchaseOrder → Equipment |
+    | SiteCertificate → DesignVersion | PurchaseOrder → Equipment |
     |---|---|
-    | [<img src="../assets/screenshots/d06-bim-design-relationship.png" width="450" alt="BIMModel_has_DesignVersion 관계. BIMModel과 DesignVersion의 bim_model_id가 연결되어 있습니다." />](../assets/screenshots/d06-bim-design-relationship.png) | [<img src="../assets/screenshots/d06-purchase-equipment-relationship.png" width="450" alt="PurchaseOrder_for_Equipment 관계. PurchaseOrder의 wbs_element와 Equipment의 wbs_code가 연결되어 있습니다." />](../assets/screenshots/d06-purchase-equipment-relationship.png) |
+    | [<img src="../assets/screenshots/d06-cert-relationship.png" width="400" alt="Certificate_based_on_DesignVersion 관계. SiteCertificate의 design_version_id와 DesignVersion의 version_id가 연결되어 있습니다." />](../assets/screenshots/d06-cert-relationship.png) | [<img src="../assets/screenshots/d06-purchase-equipment-relationship.png" width="400" alt="PurchaseOrder_for_Equipment 관계. PurchaseOrder의 wbs_element와 Equipment의 wbs_code가 연결되어 있습니다." />](../assets/screenshots/d06-purchase-equipment-relationship.png) |
 
     관계 화면은 이미지를 누르면 크게 볼 수 있습니다.
 
@@ -243,15 +243,15 @@ Graph는 실제 인스턴스를 노드로, 인스턴스 사이의 연결을 에�
 
 1.  리본의 Manage graph를 누릅니다. "Preparing graph..." 후 Choose what to project에서 엔터티와 관계의 Status가 모두 Eligible인지 확인합니다. Ineligible이나 Not mapped가 있으면 아래 Troubleshooting을 참고합니다.
 
-    <img src="../assets/screenshots/d06-open-manage-graph.png" width="1000" alt="ont_zeb의 Home 리본에서 Manage graph 버튼을 빨간 테두리로 표시한 화면. 가운데 Full ontology는 타입과 관계의 설계도입니다." />
-
     목록을 아래로 스크롤해 나머지 엔터티도 확인하고, 엔터티 왼쪽의 >를 펼쳐 관계의 상태도 확인합니다. 위쪽 Graph not materialized는 아직 Graph를 생성하지 않았다는 뜻입니다. 오른쪽 Preview도 실제 인스턴스가 아니라 투영할 구조를 보여 줍니다.
-
-    <img src="../assets/screenshots/d06-manage-graph.png" width="1000" alt="Choose what to project 화면. Project, Site, BIMModel 등 엔터티의 Status Eligible 열과 오른쪽 아래 Continue 버튼을 빨간 테두리로 표시했습니다. 위쪽에는 Graph not materialized가 보입니다." />
 
 2.  선택한 엔터티·관계를 확인했으면 오른쪽 아래 Continue를 누릅니다. Projection summary에서 선택한 범위와 Preview를 한 번 더 확인합니다.
 
-    <img src="../assets/screenshots/d06-graph-projection-summary.png" width="1000" alt="Projection summary 화면. 선택한 엔터티 목록과 구조 Preview가 있고 오른쪽 아래 Materialize 버튼을 빨간 테두리로 표시했습니다. 아직 생성 완료 화면은 아닙니다." />
+    | Manage graph 열기 | Eligible 확인 → Continue | 범위 확인 → Materialize |
+    |---|---|---|
+    | [<img src="../assets/screenshots/d06-open-manage-graph.png" width="250" alt="ont_zeb의 Home 리본에서 Manage graph 버튼을 빨간 테두리로 표시한 화면. 가운데 Full ontology는 타입과 관계의 설계도입니다." />](../assets/screenshots/d06-open-manage-graph.png) | [<img src="../assets/screenshots/d06-manage-graph.png" width="250" alt="Choose what to project 화면. Project, Site, BIMModel 등 엔터티의 Status Eligible 열과 오른쪽 아래 Continue 버튼을 빨간 테두리로 표시했습니다. 위쪽에는 Graph not materialized가 보입니다." />](../assets/screenshots/d06-manage-graph.png) | [<img src="../assets/screenshots/d06-graph-projection-summary.png" width="250" alt="Projection summary 화면. 선택한 엔터티 목록과 구조 Preview가 있고 오른쪽 아래 Materialize 버튼을 빨간 테두리로 표시했습니다. 아직 생성 완료 화면은 아닙니다." />](../assets/screenshots/d06-graph-projection-summary.png) |
+
+    이미지를 누르면 각 화면을 크게 볼 수 있습니다.
 
 3.  Materialize를 누릅니다. 위쪽 탭에 `ont_zeb_graph_`로 시작하는 Graph model이 열립니다. 공공 인증 데이터가 많아서 몇 분에서 수십 분까지 걸릴 수 있습니다. 버튼을 누른 것만으로 완료된 것은 아니므로 생성 상태를 확인하고 기다립니다.
 4.  생성이 끝나면 `ont_zeb`의 Home에서 Explore graph를 눌러 `HS-D` 현장 노드에서 설계안·인증서·설비·발주로 이어지는 관계를 펼쳐 봅니다.

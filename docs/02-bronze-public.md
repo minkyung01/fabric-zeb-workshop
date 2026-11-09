@@ -75,11 +75,9 @@ Bronze에서는 받은 값을 고치지 않습니다. 모든 값을 문자열로
 
     <img src="../assets/screenshots/d02-zeb-raw-rows.png" width="1000" alt="ZEB 인증 원본 3행. energy_self_sufficiency가 37.23, 28.67, 76.09이고 region이 대전, 경남, 강원입니다. 열 이름 앞의 ABC 아이콘으로 문자열 형식을 확인할 수 있습니다." />
 
-    | ZEB 시도별 건수 — 짧은 표기 | BF 시도별 건수 — 정식 표기 |
-    |---|---|
-    | [<img src="../assets/screenshots/d02-zeb-region-counts.png" width="450" alt="ZEB region별 건수. 경기 1897, 경남 870, 경북 828, 강원 774, 서울 715로 시도 이름이 짧게 표기됩니다." />](../assets/screenshots/d02-zeb-region-counts.png) | [<img src="../assets/screenshots/d02-bf-sido-counts.png" width="450" alt="BF sido별 건수. 경기도 3827, 전라남도 2070, 경상북도 2062, 경상남도 1965, 서울특별시 1721로 시도 이름이 정식 표기됩니다." />](../assets/screenshots/d02-bf-sido-counts.png) |
+    <img src="../assets/screenshots/d02-zeb-region-counts.png" width="1000" alt="ZEB region별 건수. 경기 1897, 경남 870, 경북 828, 강원 774, 서울 715로 시도 이름이 짧게 표기됩니다." />
 
-    비교 화면은 이미지를 누르면 크게 볼 수 있습니다.
+    <img src="../assets/screenshots/d02-bf-sido-counts.png" width="1000" alt="BF sido별 건수. 경기도 3827, 전라남도 2070, 경상북도 2062, 경상남도 1965, 서울특별시 1721로 시도 이름이 정식 표기됩니다." />
 
     기관마다 같은 시도를 다르게 쓰고, 건물 이름 뒤에 `기본 및 실시설계용역` 같은 말이 붙기도 합니다. 이대로는 기관끼리 비교하거나 연결할 수 없습니다. 그래도 Bronze에서는 고치지 않고 받은 그대로 둡니다. 표기 통일은 04장(Silver)에서 합니다.
 

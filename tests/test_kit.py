@@ -177,6 +177,18 @@ class Docs(unittest.TestCase):
         self.assertIn(".create-merge table ZebRiskEvent", operations)
         self.assertIn("d10-create-table.png", operations)
 
+    def test_horizontal_screenshot_rows_have_bounded_width(self):
+        sizes = []
+        for doc in DOCS:
+            for line in doc.read_text(encoding="utf-8").splitlines():
+                images = re.findall(r'<img\b[^>]+width="(\d+)"[^>]*>', line)
+                if len(images) > 1:
+                    self.assertIn(len(images), (2, 3), doc.name)
+                    self.assertLessEqual(sum(map(int, images)), 800, doc.name)
+                    sizes.append(len(images))
+        self.assertIn(2, sizes)
+        self.assertIn(3, sizes)
+
     def test_power_bi_focuses_on_site_control_tower(self):
         report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
         main, optional = report.split("## (선택) 공공 인증 현황", 1)
