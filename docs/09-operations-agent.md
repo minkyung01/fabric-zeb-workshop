@@ -292,7 +292,11 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 <img src="../assets/screenshots/d10-monitor.png" width="1000" alt="Monitor의 Job runs에서 nb_apply_decision이 Succeeded로 표시된 화면. Average duration은 5분 36초, Success rate는 100%이며 별도 Graph model 행도 보입니다." />
 
-실행 기록을 열면 마지막 셀에 다음과 비슷한 줄이 있습니다.
+`nb_apply_decision` 행을 눌러 실행 상세를 엽니다. Item snapshots 탭에서 왼쪽의 `nb_apply_decision`을 선택하고 마지막 셀의 출력으로 스크롤합니다. 오른쪽 Run details의 Status가 `Success`인지, 아래 Input parameter가 승인한 `event_id`·`option_id`와 일치하는지도 확인합니다.
+
+<img src="../assets/screenshots/d10-monitor-detail.png" width="1000" alt="실행 상세의 Item snapshots에서 nb_apply_decision 마지막 셀을 확인한 화면. Run details는 Success이며 Input parameter는 ZEB-HS-D-20260930과 OPT-D2입니다. 출력에 현행 V4, 예상 4등급, 정상과 resolved 추가가 보입니다." />
+
+마지막 셀에 다음과 비슷한 줄이 있습니다.
 
 ``` text
 에코시티 D단지 현장: 현행 V4(조치 반영안) 자립률 41.4% · 1차에너지 72.5 → 예상 4등급, 상태 정상
@@ -310,6 +314,8 @@ ZebRiskEvent
 ```
 
 예상 결과: 같은 `ZEB-HS-D-20260930`의 3행이 시간 순서로 있습니다.
+
+<img src="../assets/screenshots/d10-event-status-history.png" width="1000" alt="eh_zeb_queryset의 ZebRiskEvent 조회 결과 3행. 같은 이벤트의 open, approved, resolved가 시간 순서로 표시되고 resolved 행은 4등급, 자립률 41.4, 추천안 OPT-D2입니다." />
 
 | event_status | forecast_grade | selfsuff_pct | 뜻 |
 |---|---|---|---|
@@ -338,15 +344,25 @@ FROM ops.site_status
 WHERE site_code = 'HS-D';
 ```
 
-결과 창 오른쪽 위의 Result: 1 드롭다운에서 쿼리 1–3의 결과를 차례로 고릅니다.
+결과 창 오른쪽 위의 Result 드롭다운에서 쿼리 1–3의 결과를 차례로 고릅니다.
 
-<img src="../assets/screenshots/d10-sql-action.png" width="1000" alt="SQL 쿼리 3개를 실행한 화면. Result: 1에 ACT-ZEB-HS-D-20260930, HS-D, apply_options, MOD Administrator (Teams 승인), Operations agent 한 행" />
+Result: 1 — 조치 기록을 확인합니다.
 
-예상 결과:
+<img src="../assets/screenshots/d10-sql-action.png" width="1000" alt="SQL 쿼리 3개를 실행한 화면. Result: 1에 ACT-ZEB-HS-D-20260930, HS-D, apply_options, p031 (Teams 승인), Operations agent가 한 행으로 표시됩니다." />
 
-- 조치 기록 1행: `ACT-ZEB-HS-D-20260930`, `HS-D`, `apply_options`, `{"option_ids": ["OPT-D2"], "event_id": "ZEB-HS-D-20260930"}`, 승인자 `<에이전트를 만든 계정> (Teams 승인)`, 출처 `Operations agent`
-- 설계안 4행: V1·V2·V3는 `이전`, 새 V4 `조치 반영안`은 자립률 `41.4`, 1차에너지 `72.5`, 변경 내용 `보완안 적용: 주차장 캐노피 태양광(+90kW)`, 상태 `현행`. 기존 V3는 지워지지 않고 `이전`으로 남습니다.
-- 현장 상태: 현행 `V4`, 예상 4등급, 등급 근거 `에너지자립률`, 등급 위험 `정상`, 상태 `정상`
+예상 결과: 조치 기록 1행입니다. `ACT-ZEB-HS-D-20260930`, `HS-D`, `apply_options`, `{"option_ids": ["OPT-D2"], "event_id": "ZEB-HS-D-20260930"}`, 승인자 `<에이전트를 만든 계정> (Teams 승인)`, 출처 `Operations agent`를 확인합니다. 긴 `detail_json` 값은 셀을 펼쳐 확인합니다.
+
+Result: 2 — 설계안 이력을 확인합니다.
+
+<img src="../assets/screenshots/d10-sql-versions.png" width="1000" alt="Result: 2의 설계안 4행. V1·V2·V3는 이전이며 V4 조치 반영안은 자립률 41.4, 1차에너지 72.5, 상태 현행입니다." />
+
+예상 결과: 설계안 4행입니다. V1·V2·V3는 `이전`, 새 V4 `조치 반영안`은 자립률 `41.4`, 1차에너지 `72.5`, 변경 내용 `보완안 적용: 주차장 캐노피 태양광(+90kW)`, 상태 `현행`입니다. 기존 V3는 지워지지 않고 `이전`으로 남습니다. V4의 `version_date`는 조치를 반영한 날짜입니다.
+
+Result: 3 — D단지의 현재 상태를 확인합니다.
+
+<img src="../assets/screenshots/d10-sql-site-status.png" width="1000" alt="Result: 3에 에코시티 D단지 현장이 한 행으로 표시됩니다. 현행 V4, 자립률 41.4, 1차에너지 72.5, 예상 4등급, 등급 근거 에너지자립률, 등급 위험과 상태는 정상입니다." />
+
+예상 결과: 현행 `V4`, 자립률 `41.4`, 1차에너지 `72.5`, 예상 4등급, 등급 근거 `에너지자립률`, 등급 위험 `정상`, 상태 `정상`입니다.
 
 설비 계획(`gold.pms_equipment_plan`)에도 `HS-D-OPT-D2`(주차장 캐노피 태양광, 2억 3천만 원, 설계안 V4)가 추가됩니다. 이 모든 변경은 실습 데이터 안의 기록과 재계산이며 실제 설계 변경·발주는 아닙니다.
 
