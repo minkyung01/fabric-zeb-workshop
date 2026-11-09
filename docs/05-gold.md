@@ -17,10 +17,14 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
 시작 전: 04장을 마쳐 `silver` 스키마에 테이블 21개가 있어야 합니다.
 
+<img src="../assets/screenshots/d05-silver-prerequisite.png" width="1000" alt="Gold 실행 전 Lakehouse lh_zeb의 Explorer. silver 스키마 아래 정제된 공공 인증과 Contoso 내부 테이블이 보입니다." />
+
 ## 1. Notebook 열고 실행
 
 1.  작업 영역에서 `04_gold_model`을 열고, [01장 4단계](01-workspace.md#4-notebook의-기본-lakehouse-연결)와 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결합니다.
 2.  도구 모음의 Run all을 누릅니다. 약 4분 걸립니다. 실행이 끝나면 아래 셀별 결과를 확인합니다.
+
+<img src="../assets/screenshots/d05-notebook-lakehouse.png" width="1000" alt="04_gold_model Notebook 시작 화면. Explorer에서 lh_zeb가 기본 Lakehouse로 연결되어 있고, Gold와 ops 테이블 설명 및 parameters 셀이 보입니다." />
 
 ## 2. 셀별 결과 확인
 
@@ -36,15 +40,21 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
     예상 결과: `gold.ref_region 17행`, `gold.ref_building_use 14행`, `gold.ref_zeb_grade_criteria 6행`, `gold.ref_equipment_category 8행`
 
+    <img src="../assets/screenshots/d05-reference-saved.png" width="450" alt="Gold 기준 정보 저장 결과. 시도 17행, 용도 14행, ZEB 등급 기준 6행, 설비 분야 8행이 출력됩니다." />
+
 3.  공공 인증
 
     Silver의 공공 인증 테이블을 옮기면서 원천 시도 표기 열(`sido_raw`)만 뺍니다. 테이블 이름 앞의 `pub_`는 공공 데이터라는 뜻입니다.
 
     예상 결과: 5줄이 출력됩니다. `gold.pub_zeb_certification 9,760행`, `gold.pub_certified_building 25,362행` 등입니다.
 
+    <img src="../assets/screenshots/d05-public-saved.png" width="450" alt="Gold 공공 인증 저장 결과. 인증 건물 25,362행, ZEB 9,760행, 녹색건축 5,104행, BF 22,184행, 녹색기술 1,905행이 출력됩니다." />
+
 4.  Contoso 내부 — 시스템별 업무 데이터
 
     예상 결과: 13줄이 출력됩니다. `gold.erp_project 8행`부터 `gold.pms_action_log 0행`까지입니다.
+
+    <img src="../assets/screenshots/d05-contoso-saved.png" width="450" alt="Gold Contoso 내부 테이블 13개의 저장 결과. ERP 프로젝트 8행, 설계안 18행, 발주 25행, 조치 기록 0행 등이 출력됩니다." />
 
 5.  운영 모니터링(`ops`) — 보고서용 계산 결과
 
@@ -63,6 +73,8 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
     예상 결과: `ops.po_status 25행`, `ops.milestone_forecast 48행`, `ops.site_status 8행`
 
+    <img src="../assets/screenshots/d05-ops-saved.png" width="450" alt="운영 지표 저장 결과. ops.po_status 25행, ops.milestone_forecast 48행, ops.site_status 8행이 출력됩니다." />
+
 6.  결과 확인
 
     예상 결과: 첫 번째 표에 현장 8곳이 위험한 순서대로 나옵니다.
@@ -80,13 +92,17 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
     두 번째 표에는 `gold` 스키마의 테이블 22개가 나옵니다.
 
-    <img src="../assets/screenshots/d05-site-status.png" width="1000" alt="5번 셀 실행 결과. 첫 표(9 columns, 8 rows)에 에코시티 D단지 38.2·76.0·5등급·두 기준 동일·예비 4·목표 4·위험, 마포 H단지·세종 E학교·스마트오피스 C센터는 주의, 리버뷰 B단지는 39.0·65.0·4등급·1차에너지소요량·정상입니다. 둘째 표는 3 columns, 22 rows의 gold 테이블 목록입니다." />
+    <img src="../assets/screenshots/d05-site-status.png" width="1000" alt="현장 상태 확인 결과 8행. 에코시티 D단지는 38.2·76.0·5등급·위험, 마포 H단지·세종 E학교·스마트오피스 C센터는 주의, 리버뷰 B단지는 39.0·65.0·4등급·1차에너지소요량·정상입니다." />
+
+    <img src="../assets/screenshots/d05-gold-tables.png" width="1000" alt="Gold 테이블 목록 확인 결과. 표 오른쪽 위에 3 columns, 22 rows가 표시됩니다." />
 
 7.  온톨로지 그래프 새로 고침
 
     Gold를 다시 만들었을 때 온톨로지 그래프가 있으면 함께 새로 고칩니다. 지금은 Ontology가 없으므로 건너뜁니다.
 
     예상 결과: `온톨로지 그래프가 없어 새로 고침을 건너뜁니다.`
+
+    <img src="../assets/screenshots/d05-graph-refresh-skipped.png" width="1000" alt="온톨로지 그래프 새로 고침 셀 실행 결과. 온톨로지 그래프가 없어 새로 고침을 건너뜁니다라는 메시지가 출력됩니다." />
 
 ## 3. 결과 읽기
 
