@@ -126,11 +126,11 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 
 3.  Knowledge에서 Add data 옆 아래 화살표 → Add from OneLake catalog를 고릅니다. 오른쪽 위 Filter by keyword에 `eh_zeb`를 입력하고, Location이 본인 작업 영역인 `eh_zeb`를 고른 뒤 Add를 누릅니다.
 
-    지침만 입력한 상태에서는 No knowledge source와 No playbook available이 보이고 Generate playbook이 비활성화되어 있어도 정상입니다. 아래 메뉴로 KQL 데이터베이스를 먼저 연결합니다.
+    아래 메뉴로 KQL 데이터베이스를 연결합니다.
 
     <img src="../assets/screenshots/d10-oa-add-data.png" width="800" alt="Knowledge의 Add data 옆 화살표 메뉴. Add from OneLake catalog와 Add from Variable library가 보입니다." />
 
-    예상 결과: Knowledge에 `eh_zeb`가 KQL Database 형식으로 보이고, 위쪽 Generate playbook이 활성화됩니다.
+    예상 결과: Knowledge에 `eh_zeb`가 KQL Database 형식으로 보입니다. 이어서 Actions에 승인 반영 Notebook을 연결합니다.
 
     <img src="../assets/screenshots/d10-oa-knowledge.png" width="800" alt="Knowledge 목록에 eh_zeb, Type KQL Database가 추가된 화면" />
 
