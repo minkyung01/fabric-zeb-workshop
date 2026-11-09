@@ -336,7 +336,7 @@ WHERE site_code = 'HS-D';
 
     <img src="../assets/screenshots/d10-data-agent-after.png" width="1000" alt="Data agent 답의 정리 부분. 현행 설계안 BIM-0397-V4 조치 반영안, 41.4%, 72.5, 최종 예상 ZEB 등급 4등급, 예비인증 4등급을 지킴" />
 
-    위 캡처는 이전 Data agent 답변 예시입니다. Data agent 연계를 검증한 환경에서는 `da_zeb`의 Clear chat 후 같은 질문을 선택적으로 비교합니다. 어느 경로든 11단계 원본과 대조하고, 조회 오류나 미확인을 ‘위험 없음’으로 바꾸지 않습니다.
+    Data agent 연계를 검증한 환경에서는 `da_zeb`의 Clear chat 후 같은 질문을 선택적으로 비교합니다. 어느 경로든 11단계 원본과 대조하고, 조회 오류나 미확인을 ‘위험 없음’으로 바꾸지 않습니다.
 
 ## 13. 감시 멈추기
 

@@ -113,7 +113,7 @@ Ontology는 업무 문맥이고 실행은 바인딩된 원본에 대한 질의�
 
 <img src="../assets/screenshots/d07-q1.png" width="1000" alt="Test 창에 Q1을 보낸 결과. 경기 1,897건, 경남 870건, 경북 828건이라고 답하고 아래에 ont_zeb와 1 step completed가 표시됩니다." />
 
-위 캡처는 이전 Data agent 테스트 예시입니다. 기본 과정의 입력 위치는 `da_zeb` 테스트 창이 아니라 `ont_zeb`의 Ontology Agent → Plan입니다.
+기본 과정의 입력 위치는 `da_zeb` 테스트 창이 아니라 `ont_zeb`의 Ontology Agent → Plan입니다.
 
 AI의 답은 실행할 때마다 조금씩 다르고, 8문항이 모두 맞지 않을 수 있습니다. 모두 맞히는 것이 목표가 아니라, 어떤 문항이 왜 틀렸는지 정답 Notebook과 비교해 보는 것이 이 장의 목표입니다.
 
