@@ -161,12 +161,17 @@ class Docs(unittest.TestCase):
 
     def test_power_bi_focuses_on_site_control_tower(self):
         report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
-        main, optional = report.split("## (선택) 공공 인증 현황과 테마", 1)
+        main, optional = report.split("## (선택) 공공 인증 현황", 1)
         completion = optional.split("## 이 장의 완료 기준", 1)[1]
         self.assertIn("보고서 한 페이지", main)
         self.assertIn("## 3. Copilot으로 현장 컨트롤 타워 만들기", main)
         self.assertIn("## 4. D단지 위험을 질문으로 확인", main)
         self.assertIn("`rpt_zeb`로 저장", main)
+        creation = main.split("## 3. Copilot으로 현장 컨트롤 타워 만들기", 1)[1]
+        self.assertIn("2.  (선택) 보고서 테마를 적용합니다", creation)
+        self.assertIn("../fabric/zeb-theme.json", creation)
+        self.assertIn("Custom theme name 옆 … → Import", creation)
+        self.assertNotIn("zeb-theme.json", optional)
         self.assertNotIn("Horizontal", report)
         self.assertNotIn("ZEB 인증 현황", completion)
         operations = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")

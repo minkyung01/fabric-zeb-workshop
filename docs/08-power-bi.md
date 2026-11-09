@@ -88,21 +88,25 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 1.  리본의 New report를 누릅니다. 새 탭에 빈 보고서가 편집 화면으로 열립니다.
 
-    테마도 적용하려면 이 보고서 편집 화면에서 진행합니다. 아래 [(선택) 공공 인증 현황과 테마](#선택-공공-인증-현황과-테마)를 펼쳐 `zeb-theme.json` 가져오기 안내를 따릅니다. 테마는 Semantic model이 아니라 보고서에 적용하며, 공공 인증 페이지를 추가하지 않아도 사용할 수 있습니다.
+2.  (선택) 보고서 테마를 적용합니다. [`zeb-theme.json`](../fabric/zeb-theme.json)을 GitHub의 Download raw file로 PC에 내려받습니다. 보고서 편집 화면에서 View → Theme → Open theme format pane.을 누르고, 오른쪽 Theme settings → Theme의 Custom theme name 옆 … → Import에서 내려받은 파일을 엽니다.
 
-2.  보고서가 편집 보기(Editing)인지 확인하고 리본 오른쪽 Copilot을 눌러 아래 내용을 보냅니다.
+    테마는 Semantic model이 아니라 보고서에 적용합니다. 색·글꼴 등 서식을 맞추는 선택 단계이므로 건너뛰어도 아래 실습에는 영향이 없습니다.
+
+    <img src="../assets/screenshots/d08-theme-import.png" width="1000" alt="보고서 편집 화면의 Theme settings. Custom theme name 옆 … 메뉴에서 Import를 선택하는 위치를 빨간 테두리로 표시했습니다." />
+
+3.  보고서가 편집 보기(Editing)인지 확인하고 리본 오른쪽 Copilot을 눌러 아래 내용을 보냅니다.
 
     ``` text
     현장 컨트롤 타워 보고서 페이지를 만들어줘. site_status 테이블을 중심으로, 위쪽에 현장 수, 위험 현장, 주의 현장, 설치 지연 발주, 평균 공정률 측정값 카드를 두고, 현장별로 site_name, stage, progress_pct, current_version_code, selfsuff_pct, primary_energy_kwh_m2y, grade_by_selfsuff, grade_by_primary_energy, forecast_zeb_label, prelim_zeb_grade, target_zeb_grade, risk_level, risk_reason을 집계하지 않은 표로 보여줘. 아래에는 milestone_forecast의 현장별 인증 일정(site_code, milestone_type, planned_date, forecast_date, delay_days, status)을 집계하지 않은 표로 넣어줘.
     ```
 
-3.  생성된 페이지 이름을 `현장 컨트롤 타워`로 바꿉니다. 별도의 새 페이지가 생겼다면 처음의 빈 페이지는 삭제합니다. 시각적 개체의 종류와 배치는 생성 결과에 따라 다릅니다.
+4.  생성된 페이지 이름을 `현장 컨트롤 타워`로 바꿉니다. 별도의 새 페이지가 생겼다면 처음의 빈 페이지는 삭제합니다. 시각적 개체의 종류와 배치는 생성 결과에 따라 다릅니다.
 
     표가 빠졌으면 같은 Copilot 창에 `처음 요청한 site_status의 현장별 표와 milestone_forecast의 현장별 인증 일정 표를 이 페이지에 추가해줘. 두 표 모두 숫자를 합계로 집계하지 마.`로 보완을 요청합니다. 배치가 겹치면 아래 Troubleshooting을 따릅니다.
 
     <img src="../assets/screenshots/d08-page2.png" width="1000" alt="Copilot으로 만든 현장 컨트롤 타워 페이지. 위쪽 카드 현장 수 8, 위험 현장 1, 주의 현장 3, 설치 지연 발주 0, 평균 공정률 34, 가운데 site_status 현장별 표, 아래 milestone_forecast 인증 일정 표가 있습니다." />
 
-4.  카드를 하나씩 선택하고 Build visual의 값이 아래 기존 측정값에 연결되어 있는지 확인합니다.
+5.  카드를 하나씩 선택하고 Build visual의 값이 아래 기존 측정값에 연결되어 있는지 확인합니다.
 
     | 카드 | 사용할 측정값 | 확인할 값 |
     |---|---|---|
@@ -114,13 +118,13 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
     `Count of site_code` 같은 자동 집계가 아니라 기존 측정값이어야 합니다. 맞는 숫자가 보이는 것만으로 연결을 확인한 것으로 간주하지 않습니다.
 
-5.  현장 표에서 `에코시티 D단지 현장`의 행을 찾습니다.
+6.  현장 표에서 `에코시티 D단지 현장`의 행을 찾습니다.
 
     확인할 값: 현행 설계안 `V3`, 자립률 `38.2`, 1차에너지 `76`, 두 기준 등급 `5`·`5`, 예상 `5등급`, 예비 `4`, 목표 `4`, 상태 `위험`, 사유 `예상 5등급(자립률 38.2%)이 예비인증 4등급보다 낮음`. `리버뷰 B단지 현장`은 자립률 기준 `5`, 1차에너지 기준 `4`, 예상 `4등급`, `정상`입니다.
 
-6.  인증 일정 표에 현장 코드·일정 종류·계획일·예상일·지연일이 표시되는지 확인합니다. 숫자 열이 합계(Sum)로 집계되었거나 카드가 겹치면 아래 Troubleshooting으로 보완합니다.
+7.  인증 일정 표에 현장 코드·일정 종류·계획일·예상일·지연일이 표시되는지 확인합니다. 숫자 열이 합계(Sum)로 집계되었거나 카드가 겹치면 아래 Troubleshooting으로 보완합니다.
 
-7.  Save this report(디스크 아이콘)를 누르고 본인 작업 영역에 `rpt_zeb`로 저장합니다. Report saved 알림을 확인합니다.
+8.  Save this report(디스크 아이콘)를 누르고 본인 작업 영역에 `rpt_zeb`로 저장합니다. Report saved 알림을 확인합니다.
 
 예상 결과: `rpt_zeb`에 현장 8곳의 예상 등급·위험과 인증 일정을 보여 주는 한 페이지가 있고, 카드 5개가 기존 측정값에 연결되어 `8`, `1`, `3`, `0`, `34`를 표시합니다.
 
@@ -134,18 +138,17 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 2.  답의 대상·수치·이유가 현장 표와 05·07장 결과에 일치하는지 확인합니다. 설명이 달라도 핵심 근거와 결론은 포함되어야 합니다. 답이 틀리거나 빠진 경우 아래 Troubleshooting으로 필드와 집계를 확인합니다.
 
-## (선택) 공공 인증 현황과 테마
+## (선택) 공공 인증 현황
 
-시간이 남으면 공공 인증 현황 페이지를 직접 추가하거나 테마를 적용합니다. 기본 과정과 10장 진행에는 필요하지 않습니다.
+시간이 남으면 공공 인증 현황 페이지를 직접 추가합니다. 기본 과정과 10장 진행에는 필요하지 않습니다.
 
 <details>
-<summary>공공 인증 현황 페이지와 테마 만들기</summary>
+<summary>공공 인증 현황 페이지 만들기</summary>
 
 1.  보고서 편집 화면 아래의 +로 새 페이지를 추가하고 이름을 `ZEB 인증 현황`으로 바꿉니다.
 2.  Build visual에서 Card를 골라 `pub_zeb_certification`의 측정값 `ZEB 인증 건수`, `2025년 인증 건수`, `전년 대비 증가율`, `4등급 이상 비율`을 Value에 넣습니다. 확인할 값은 `9,760`, `2,732`, `+23.0%`, `45.1%`이며, 큰 수는 `10K`, `3K`로 표시될 수 있습니다.
 3.  Clustered bar chart의 Y-axis에 `ref_region[sido]`, X-axis에 `ZEB 인증 건수`를 넣습니다. 차트 오른쪽 위 … → Sort axis에서 인증 건수 내림차순으로 정렬합니다. 경기 `1,897`건이 가장 많습니다.
 4.  원하는 위치로 개체를 배치하고 Ctrl+S로 저장합니다. 정확한 위치·크기를 맞출 필요는 없습니다.
-5.  테마도 적용하려면 [`zeb-theme.json`](../fabric/zeb-theme.json)을 Download raw file로 PC에 내려받습니다. View → Theme → Open theme format pane. → Theme settings → Theme의 Custom theme name 옆 … → Import에서 파일을 엽니다.
 
 </details>
 
