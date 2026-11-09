@@ -286,7 +286,7 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
     <img src="../assets/screenshots/d10-monitor-running.png" width="1000" alt="Monitor의 Job runs에서 nb_apply_decision의 Last run status가 In progress로 표시된 화면. Item type은 Notebook이며 실행 중입니다." />
 
-2.  Refresh를 누르며 Last run status가 `Succeeded`가 될 때까지 기다립니다(이번 캡처의 실행 시간은 5분 36초이며 환경에 따라 달라집니다).
+2.  Refresh를 누르며 Last run status가 `Succeeded`가 될 때까지 기다립니다.
 
 예상 결과: `nb_apply_decision`이 Succeeded입니다. 비슷한 시각에 `ont_zeb_graph_…`의 새로 고침 기록이 생길 수 있습니다. Graph의 실패·취소와 Lakehouse 재계산 결과는 따로 확인합니다. Graph가 최신이라고 가정하지 말고, 10–11단계에서 원본 상태 이력·V4·등급을 확인합니다. Graph를 사용해 다시 질문할 경우에는 갱신 성공과 최신 인스턴스를 먼저 확인합니다.
 
@@ -327,7 +327,7 @@ Operations agent는 `event_status`가 `open`으로 바뀔 때만 알리므로, `
 
 ## 11. Lakehouse 반영 확인
 
-SQL analytics endpoint `lh_zeb`를 엽니다. 먼저 도구 모음 맨 왼쪽의 Sync metadata from the Lakehouse 아이콘을 누릅니다. SQL analytics endpoint는 Lakehouse의 변경을 늦게 반영할 수 있어서, 누르지 않으면 승인 전 값(V3·위험, 조치 기록 0행)이 그대로 보일 수 있습니다(캡처 환경에서 15분 넘게 지연). 이어서 New SQL query로 아래 쿼리를 실행합니다.
+SQL analytics endpoint `lh_zeb`를 엽니다. 먼저 도구 모음 맨 왼쪽의 Sync metadata from the Lakehouse 아이콘을 누릅니다. SQL analytics endpoint는 Lakehouse의 변경을 늦게 반영할 수 있어서, 누르지 않으면 승인 전 값(V3·위험, 조치 기록 0행)이 그대로 보일 수 있습니다. 이어서 New SQL query로 아래 쿼리를 실행합니다.
 
 ``` sql
 SELECT action_id, site_code, action_type, detail_json, approved_by, source_system
@@ -372,7 +372,7 @@ Result: 3 — D단지의 현재 상태를 확인합니다.
 
 1.  `ont_zeb`의 Ontology Agent → Plan에서 07장 공통 프롬프트를 먼저 보낸 뒤 `에코시티 D단지의 현행 설계안과 예상 ZEB 등급은? 예비인증 등급을 지키나? 현재 원본에서 다시 조회하고 근거를 보여줘.`를 묻습니다. 이전 V3 답변을 재사용하지 않습니다.
 
-    예상 결과: 현행 V4(조치 반영안), 자립률 41.4%·1차에너지 72.5 → 4등급, 예비인증 4등급을 지킴. 07장 Q3을 다시 물으면 본인증 위험 현장이 없다고 답해야 합니다. 답 문장과 길이는 실행할 때마다 다릅니다(캡처 환경에서 약 1분).
+    예상 결과: 현행 V4(조치 반영안), 자립률 41.4%·1차에너지 72.5 → 4등급, 예비인증 4등급을 지킴. 07장 Q3을 다시 물으면 본인증 위험 현장이 없다고 답해야 합니다. 답 문장과 길이는 실행할 때마다 다릅니다.
 
     <img src="../assets/screenshots/d10-data-agent-after.png" width="1000" alt="Data agent 답의 정리 부분. 현행 설계안 BIM-0397-V4 조치 반영안, 41.4%, 72.5, 최종 예상 ZEB 등급 4등급, 예비인증 4등급을 지킴" />
 
