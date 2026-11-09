@@ -4,15 +4,13 @@
 
 06장에서 만든 업무 모델로 공공 인증 통계·등급 위험·일정 영향·보완안을 확인합니다. Data agent를 생성·연결하고 지침을 입력한 뒤, 기본 질문은 Ontology Agent의 Plan 모드에서 검증합니다. 답이 그럴듯한지가 아니라 Q1–Q8의 대상·수치·결론과 조회 근거가 정답 Notebook과 같은지를 확인합니다.
 
-정답 계산 → Data agent 구성·지침 저장 → Ontology Agent에 공통 규칙 전달 → Plan 질의 → Notebook 대조 순서입니다. Ontology Agent는 구조 생성뿐 아니라 읽기 질의도 지원하며, 질의만 할 때 Act로 전환하지 않습니다.
+정답 계산 → Data agent 구성·지침 저장 → Ontology Agent에 공통 규칙 전달 → Plan 질의 → Notebook 대조 순서입니다. Ontology가 아직 Preview 단계여서 Data agent와의 연계에 제약이 있으므로 기본 실습은 Plan 모드로 진행합니다. 원하면 두 에이전트에 같은 질문을 보내 답을 비교해도 됩니다.
 
 이 장의 미션: 같은 원본에 업무 규칙을 적용해 D단지·B단지의 차이와 보완안 추천 근거를 설명합니다. 수치가 맞는 답, 잘못된 답, 실제 조회하지 못한 답을 구분하고 What-if를 실제 변경으로 확대하지 않습니다.
 
-> Preview 환경 안내: 참고 교재의 점검 환경에서는 새 Ontology의 설명·동의어 등 메타데이터가 Data agent에 충분히 연계되지 않아 업무 규칙 질문에 한계가 있었습니다. 이는 모든 Data agent 조회가 불가능하다는 뜻도, 이 ZEB 환경에서 같은 문제가 확인됐다는 뜻도 아닙니다. 배포 버전·Runtime·권한에 따라 달라지므로 기본 과정은 Plan 질의로 진행하고, Data agent 직접 비교는 아래 6단계에서 선택합니다.
-
 | 실행 위치 | 이 장에서 할 일 | 변경 범위 |
 |---|---|---|
-| `da_zeb` | Ontology·원본 연결과 Agent instructions 저장 | 에이전트 설정만 변경 |
+| `da_zeb` | Ontology·원본 연결과 Agent instructions 저장, 선택적으로 Q1–Q8 비교 | 에이전트 설정만 변경, 질의는 읽기 전용 |
 | `ont_zeb`의 Ontology Agent Plan | 공통 규칙을 전달하고 Q1–Q8 질의 | 원본·Ontology 변경 없음 |
 | `05_answers` | 동일 데이터 시점의 정답 계산·대조 | 읽기 전용 |
 
@@ -129,9 +127,15 @@ Ontology는 업무 문맥이고 실행은 바인딩된 원본에 대한 질의�
 
 확인할 결과: 지침이 글머리표 6줄로 보이고 기본 안내 문장은 남아 있지 않습니다.
 
-<img src="../assets/screenshots/d07-instructions.png" width="1000" alt="Agent instructions에 한국어로 답한다, 기준일 2026-09-30 등 지침 6줄이 글머리표로 저장된 화면" />
+<img src="../assets/screenshots/d07-instructions.png" width="1000" alt="da_zeb의 Agent instructions에 지침 6줄이 저장된 화면. 한국어 답변, 기준일, 실제 조회, 업무 규칙 참조와 변경 금지 지침을 빨간 테두리로 표시했습니다." />
 
- 정답 숫자를 지침에 넣어 답을 맞추지 않습니다. 업무 규칙은 지침이 아니라 06장에서 Ontology 설명에 넣었습니다.
+정답 숫자를 지침에 넣어 답을 맞추지 않습니다. 업무 규칙은 지침이 아니라 06장에서 Ontology 설명에 넣었습니다.
+
+### 다음 단계: Ontology Agent에서 질문하기
+
+Data agent의 연결과 지침 저장을 마쳤습니다. 다만 현재 Ontology는 Preview 단계로, Data agent와의 호환성이 아직 완전하지 않아 Ontology에 저장한 설명·관계·업무 규칙이 답변에 충분히 반영되지 않을 수 있습니다. 그래서 다음 단계에서는 `ont_zeb`의 Ontology Agent로 이동해 공통 규칙을 직접 전달하고 Plan 모드에서 질문합니다. Plan은 설계 검토뿐 아니라 데이터 조회에도 사용할 수 있으며, 이번에는 조회만 하므로 Act로 전환하지 않습니다.
+
+원하면 Q1–Q8을 Data agent와 Ontology Agent의 Plan 모드에 모두 질문해도 됩니다. 같은 질문에 두 에이전트가 어떤 근거와 규칙을 사용해 답하는지 정답 Notebook과 비교해 보세요. 이후 호환성이 개선되었을 때 같은 질문을 다시 해 보면, Ontology의 업무 문맥이 더 잘 반영되면서 답변 품질이 어떻게 달라지는지도 확인할 수 있습니다. Data agent 직접 비교는 6단계에서 진행합니다.
 
 ## 4. Ontology Agent의 Plan에서 질문하고 정답과 비교
 
@@ -171,10 +175,6 @@ Ontology는 업무 문맥이고 실행은 바인딩된 원본에 대한 질의�
 | Q7 | What-if | Northwind의 납품이 21일 늦어질 때, 에코시티 D단지의 지열 히트펌프를 다른 업체로 바꾸면 인증 일정을 지킬 수 있어? | 지킬 수 있음. 대체 공급이 가능한 Alpine 지열(표준 납기 55일)로 바꾸면 11/24에 입고되어 설치 완료 계획일(11/30)보다 6일 여유 |
 | Q8 | What-if | 에코시티 D단지가 VE 설계는 그대로 두고 보완안을 하나만 추가해서 예비인증 등급을 지키려면, 가장 싼 보완안은 뭐고 비용은 얼마야? | OPT-D2 주차장 캐노피 태양광, 2억 3천만 원. 적용하면 자립률 41.4%로 4등급. 더 싼 D6·D5는 하나만 적용하면 5등급 |
 
-<img src="../assets/screenshots/d07-q1.png" width="1000" alt="Test 창에 Q1을 보낸 결과. 경기 1,897건, 경남 870건, 경북 828건이라고 답하고 아래에 ont_zeb와 1 step completed가 표시됩니다." />
-
-기본 과정의 입력 위치는 `da_zeb` 테스트 창이 아니라 `ont_zeb`의 Ontology Agent → Plan입니다.
-
 AI의 답은 실행할 때마다 조금씩 다르고, 8문항이 모두 맞지 않을 수 있습니다. 모두 맞히는 것이 목표가 아니라, 어떤 문항이 왜 틀렸는지 정답 Notebook과 비교해 보는 것이 이 장의 목표입니다.
 
 눈여겨볼 문항
@@ -200,11 +200,15 @@ AI의 답은 실행할 때마다 조금씩 다르고, 8문항이 모두 맞지 �
 
 ## 6. (선택) Data agent와 직접 비교
 
+4단계와 같은 질문을 `da_zeb`에도 보내 두 에이전트의 답을 나란히 비교합니다. 특히 Q2·Q3의 등급 판정, Q5의 일정 영향, Q8의 보완안 선택에서 Ontology의 업무 규칙을 반영했는지 확인해 보세요.
+
 1.  `da_zeb`의 Sources에서 `ont_zeb`의 … → Download ontology context로 설명·동의어·키·관계·원본 매핑이 전달됐는지 확인합니다. 최근 변경이 빠졌으면 Refresh 후 다시 확인합니다.
 2.  Test the agent's responses에서 Q1–Q8을 하나씩 묻고, 질문마다 Clear chat으로 새 대화를 시작합니다. 지침과 공통 프롬프트에 정답 숫자를 넣지 않습니다.
 3.  completed steps에서 선택한 원본·생성 질의·오류를 확인하고 같은 데이터 시점의 Plan 답·`05_answers`와 비교합니다. 틀린 경우 문맥 누락·원본 선택·필터·계산 오류를 구분합니다.
 
-설명·동의어·규칙 활용이 확인되지 않으면 그 제약을 기록하고 기본 Plan 경로로 진행합니다. Data agent의 정답률이나 메타데이터 연계 성공은 기본 과정의 완료 조건이 아닙니다. 원본 설명·Data source instructions·Example queries 보강은 지원되는 원본을 마운트해야 하는 별도 선택 설정이며 Ontology로 역기록되지 않습니다.
+<img src="../assets/screenshots/d07-q1.png" width="1000" alt="선택 비교의 Data agent Test 창에서 Q1을 보낸 결과. 경기 1,897건, 경남 870건, 경북 828건이라고 답하고 아래에 ont_zeb와 1 step completed가 표시됩니다." />
+
+Data agent가 설명·동의어·규칙을 활용하지 못한 문항은 Plan 답·Notebook 결과와 어떤 차이가 있는지 기록합니다. 두 에이전트가 모두 정답을 맞혀야 실습이 완료되는 것은 아닙니다. 같은 데이터와 질문으로 비교한 결과를 남겨 두면, 이후 연계가 개선됐을 때 업무 규칙 반영 여부와 답변 품질의 변화를 확인하는 기준으로 사용할 수 있습니다.
 
 ## 이 장의 완료 기준
 
