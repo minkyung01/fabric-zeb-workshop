@@ -248,6 +248,8 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
     이미 실행한 `06_risk_event`를 열고 첫 번째 결과인 `ops.option_eval`에서 D단지(`HS-D`) 행을 봅니다. Notebook을 다시 실행하거나 새 질문을 보낼 필요는 없습니다. Teams 카드의 추천안 `OPT-D2`를 아래 값과 대조합니다.
 
+    <img src="../assets/screenshots/d09-option-eval-review.png" width="1000" alt="06_risk_event의 ops.option_eval 결과 11행에서 OPT-D2 행을 선택한 화면. cost_krw 230000000, expected_grade 4등급, required_grade 4등급, ready_date 2026-11-14, feasible true, cost_rank 1입니다." />
+
     | 확인할 것 | OPT-D2에서 볼 값 |
     |---|---|
     | 예비인증 등급을 회복하는가? | `expected_grade` = `4등급`, `required_grade` = `4등급` |
@@ -265,27 +267,30 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 2.  Proceed를 누릅니다.
 3.  Confirm details for ApplyZebOption에서 값을 확인합니다.
 
+    <img src="../assets/screenshots/d10-confirm.png" width="650" alt="Confirm details for ApplyZebOption 카드. event_id ZEB-HS-D-20260930, option_id OPT-D2와 한국어 매개 변수 설명, Confirm과 Cancel 버튼이 보입니다." />
+
     | 매개 변수 | 확인할 값 |
     |---|---|
     | `event_id` | `ZEB-HS-D-20260930` |
     | `option_id` | `OPT-D2` |
 
-    <img src="../assets/screenshots/d10-confirm.png" width="1000" alt="Proceed 뒤 나온 Confirm details for ApplyZebOption 카드. event_id ZEB-HS-D-20260930, option_id OPT-D2와 Confirm, Cancel 버튼" />
-
 4.  값이 맞으면 Confirm을 누릅니다. 다르면 Cancel을 누르고 6단계의 이벤트를 다시 확인합니다.
 
 예상 결과: 카드에 You selected: Confirm이 보이고, 이어서 `oa_zeb`의 Action submitted 메시지(`ApplyZebOption has been submitted using the provided parameters.`)가 옵니다. 접수 메시지가 완료를 뜻하지는 않습니다. Notebook이 Silver·Gold를 다시 계산하는 데 약 5–8분 걸립니다.
 
-<img src="../assets/screenshots/d10-submitted.png" width="1000" alt="Confirm을 누른 뒤 Action submitted 메시지. ApplyZebOption has been submitted using the provided parameters." />
+<img src="../assets/screenshots/d10-submitted.png" width="650" alt="Teams에서 You selected: Proceed와 You selected: Confirm이 표시되고, 이어서 Action submitted 메시지가 온 화면. ApplyZebOption 실행 요청이 제출되었으며 Notebook 완료 여부는 아직 확인하지 않은 상태입니다." />
 
 ## 9. 실행 완료 확인
 
-1.  Fabric 왼쪽 Monitor를 엽니다. Activity name이 `nb_apply_decision_…`인 행을 찾습니다. Submitted by는 에이전트를 만든 사람입니다.
-2.  상태가 Succeeded가 될 때까지 기다리며 Refresh를 누릅니다(캡처 환경에서 약 6분). 실행 중에는 `03_silver_conform`, `04_gold_model`이 차례로 실행됩니다.
+1.  Fabric 왼쪽 Monitor를 열고 Job runs에서 Item name이 `nb_apply_decision`, Item type이 `Notebook`인 행을 찾습니다. Workspace가 본인의 `ws-pNNN`인지도 확인합니다. Last run status가 `In progress`이면 실행 중이므로 Teams에서 다시 승인하거나 Notebook을 직접 실행하지 않습니다.
+
+    <img src="../assets/screenshots/d10-monitor-running.png" width="1000" alt="Monitor의 Job runs에서 nb_apply_decision의 Last run status가 In progress로 표시된 화면. Item type은 Notebook이며 실행 중입니다." />
+
+2.  Refresh를 누르며 Last run status가 `Succeeded`가 될 때까지 기다립니다(이번 캡처의 실행 시간은 5분 36초이며 환경에 따라 달라집니다). 실행 중에는 `03_silver_conform`, `04_gold_model`이 차례로 실행됩니다.
 
 예상 결과: `nb_apply_decision`이 Succeeded입니다. 비슷한 시각에 `ont_zeb_graph_…`의 새로 고침 기록이 생길 수 있습니다. Graph의 실패·취소와 Lakehouse 재계산 결과는 따로 확인합니다. Graph가 최신이라고 가정하지 말고, 10–11단계에서 원본 상태 이력·V4·등급을 확인합니다. Graph를 사용해 다시 질문할 경우에는 갱신 성공과 최신 인스턴스를 먼저 확인합니다.
 
-<img src="../assets/screenshots/d10-monitor.png" width="1000" alt="Monitor의 Activities. nb_apply_decision 행이 Succeeded, Item type Notebook, Location zeb-p001" />
+<img src="../assets/screenshots/d10-monitor.png" width="1000" alt="Monitor의 Job runs에서 nb_apply_decision이 Succeeded로 표시된 화면. Average duration은 5분 36초, Success rate는 100%이며 별도 Graph model 행도 보입니다." />
 
 실행 기록을 열면 마지막 셀에 다음과 비슷한 줄이 있습니다.
 
@@ -404,7 +409,7 @@ WHERE site_code = 'HS-D';
   - `상태 'resolved'에서는 승인을 반영할 수 없습니다`: 이미 반영된 이벤트입니다. 10–11단계로 결과만 확인합니다.
   - `03_silver_conform`·`04_gold_model`을 찾지 못하는 오류: Notebook 이름이 바뀌었는지 확인합니다. 두 Notebook은 같은 작업 영역에 원래 이름으로 있어야 합니다.
 - 실패 후에는 재승인 전에 10–11단계의 상태 이력·조치 기록·현재 설계안을 읽기 전용으로 확인합니다. 실제로 승인했던 이벤트와 보완안이고 상태가 `open` 또는 `approved`인 경우에만 관리자 안내에 따라 같은 액션을 재시도합니다. 승인 증빙 없이 기본 매개 변수로 Notebook을 직접 실행하지 않습니다. `resolved`이면 재실행하지 않고 결과만 확인합니다. 같은 이벤트의 조치 기록 중복 방지와 전체 실행 성공은 별개입니다.
-- 10단계에서 `approved`만 있고 `resolved`가 없으면 재계산 후에도 D단지가 위험인 경우입니다. 마지막 셀의 사유를 확인합니다.
+- 10단계에서 `approved`만 있고 `resolved`가 없으면 먼저 Monitor에서 실행이 끝났는지 확인합니다. 아직 `In progress`이면 기다립니다. `Succeeded`인데도 `resolved`가 없으면 재계산 후에도 D단지가 위험인지 마지막 셀의 사유를 확인합니다.
 - 선택 08장의 보고서 값이 바뀌지 않으면 Semantic model의 Refresh → Data를 실행합니다. Direct Lake는 새로 고침으로 최신 Delta 버전을 다시 읽습니다.
 - 실습을 처음부터 다시 하려면 `02_bronze_contoso_generate` → `03_silver_conform` → `04_gold_model` 순서로 실행합니다. 조치 기록이 지워지고 D단지가 다시 V3·위험 상태가 됩니다.
 
