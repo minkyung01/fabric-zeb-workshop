@@ -15,7 +15,7 @@ Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참�
 | 네트워크 | Fabric Spark에서 `https://www.data.go.kr`로 나가는 HTTPS(02장). 막혀 있으면 아래 "공공데이터 대체 경로" |
 | Power BI (선택) | 08장 Semantic model 생성 전에 참가자 Pro·PPU 또는 활성 체험판 라이선스 확인. 체험판 시작이 차단된 계정은 관리자가 라이선스 할당 |
 | Microsoft Teams | Teams 라이선스, 앱 Fabric Operations Agent 허용(10장). 참가자는 Fabric과 같은 계정으로 Teams(데스크톱 또는 웹)에 로그인할 수 있어야 합니다. |
-| Microsoft Foundry (강사 시연 전용) | 11장 이후 09장 시연용 Azure 구독·리소스 그룹, 프로젝트·모델 배포, Fabric IQ 인증 연결. 참가자별 준비 불필요 |
+| Microsoft Foundry (강사 시연 전용) | 10장과 11장 사이 시연용 Azure 구독·리소스 그룹, 프로젝트·모델 배포, Fabric IQ 인증 연결. 참가자별 준비 불필요 |
 
 ## 1. Fabric 테넌트 설정
 
@@ -28,7 +28,7 @@ Admin portal → Tenant settings에서 참가자 보안 그룹에 아래 설정�
 | Copilot and Azure OpenAI Service, (지역 밖 처리 필요 시) Data sent to Azure OpenAI can be processed outside your capacity's geographic region | 06–07, 선택 08 |
 | Users can create and share Data agent item types | 07 |
 | Operations agent (preview) 관련 설정, Real-Time Intelligence 항목 생성 | 10 |
-| (강사 시연) Users can use the Fabric MCP / Ontology MCP, Fabric IQ 관련 설정 | 09, 강사 시연 계정에 허용 |
+| (강사 시연) Users can use the Fabric MCP / Ontology MCP, Fabric IQ 관련 설정 | Foundry 시연, 강사 시연 계정에 허용 |
 
 공식 문서: [Ontology 테넌트 설정](https://learn.microsoft.com/en-us/fabric/iq/ontology/overview-tenant-settings), [Data agent 테넌트 설정](https://learn.microsoft.com/fabric/data-science/data-agent-tenant-settings), [Copilot 요구 사항](https://learn.microsoft.com/fabric/fundamentals/copilot-fabric-overview#available-regions), [Operations agent 요구 사항](https://learn.microsoft.com/fabric/real-time-intelligence/operations-agent#prerequisites).
 
@@ -96,16 +96,17 @@ Spark에서 포털에 나갈 수 없는 환경이면 관리자가 파일을 내�
 2.  각 참가자 `lh_zeb`의 Files에 `public` 폴더를 만들고 4개 파일을 업로드합니다.
 3.  참가자는 02장에서 parameters 셀의 `local_folder = ""`를 `local_folder = "Files/public"`으로 바꿔 실행합니다. 나머지 단계와 결과는 같으며, 수집 기록의 원본 이름이 `Files/public/… (관리자 제공)`으로 남습니다.
 
-## 4. Microsoft Foundry (강사 시연, 09장)
+## 4. 강사 시연 준비
 
-- 참가자별 Foundry 환경은 준비하지 않습니다. 11장 이후 강사만 09장을 시연합니다.
+- 참가자별 Foundry 환경은 준비하지 않습니다. 10장 완료 후, 11장 마무리 전에 [강사 시연: Foundry와 웹 대시보드](../docs/10a-instructor-demo.md)를 진행합니다.
 - 강사용 Foundry 프로젝트, Agent Service와 모델을 지원하는 지역, 모델 배포와 할당량을 준비합니다. 강사가 프로젝트를 만들 경우 사용할 구독·기존 리소스 그룹과 리소스 생성 권한(Contributor 이상)을 확인합니다.
 - 시연 계정에 프로젝트의 Foundry User, 연결을 만들 경우 Foundry Project Manager 역할을 줍니다.
-- 별도 강사 작업 영역에 05–07장을 마친 승인 전 데이터(D단지 V3·위험)와 `ont_zeb`를 준비합니다. 09장의 V3·보완안 비교 정답을 확인할 수 있도록 참가자의 승인 후 V4 데이터와 분리하고 참가자 작업 영역은 초기화하지 않습니다.
+- 별도 강사 작업 영역에 05–07장을 마친 승인 전 데이터(D단지 V3·위험)와 `ont_zeb`를 준비합니다. Foundry 시연의 V3·보완안 비교 정답을 확인할 수 있도록 참가자의 승인 후 V4 데이터와 분리하고 참가자 작업 영역은 초기화하지 않습니다.
 - Fabric IQ 도구용 BYO Entra 앱 또는 managed OAuth 위임 인증 연결을 준비합니다. BYO Entra는 Power BI Service의 위임 권한 `Item.Execute.All`, `Item.Read.All`, 관리자 동의, Foundry가 제공하는 redirect URI 등록이 필요합니다([Fabric IQ 인증](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/fabric-iq#authentication-and-security)).
 - 사전 점검에서 확인한 동작(2026-10-19, Sweden Central): 새 프로젝트에서 에이전트를 만들면 `gpt-5`(글로벌 표준) 배포가 자동으로 잡혔고, Fabric IQ(OneLake 카탈로그) 도구를 추가할 때와 첫 질문에서 별도의 연결 선택·동의 요청이 나오지 않았습니다. 이 점검은 테넌트 관리자 계정으로 했으므로 실제 시연 계정에서는 동의(`CONSENT_REQUIRED`)나 연결 선택이 나올 수 있습니다. 시연 계정으로 미리 질문 1개와 실제 도구 출력을 확인합니다.
 - 질문 하나에 1–4분 걸립니다. 모델 할당량(TPM)과 시연 시간을 확인합니다.
 - 준비가 어렵다면 Foundry 시연을 생략합니다. 참가자 필수 흐름(07 → 10 → 11)에는 영향이 없습니다.
+- 웹 대시보드 앱과 강사 데이터 연결은 별도로 준비합니다. 상세 시연 순서와 승인 전후 비교 값은 강사 시연 문서를 따릅니다. 참가자 PC에는 앱을 설치하거나 실행하지 않습니다.
 
 ## 5. 사전 점검 체크리스트
 
@@ -119,13 +120,13 @@ Spark에서 포털에 나갈 수 없는 환경이면 관리자가 파일을 내�
 | 05 | Gold 22개, ops 3개, 위험 1(HS-D)·주의 3·정상 4 |
 | 07 | `05_answers` 8개: 경기 1,897→경남 870→경북 828 / B단지 4등급 가능 / D단지 / 30건 / D단지 +3일·A단지 여유 52일 / 9건·52.2% / Alpine 11/24 / OPT-D2 2억 3천만 원 |
 | 08 (선택) | 진행한 경우 현장 컨트롤 타워 한 페이지, 카드 8·1·3·0·34, D단지 V3·예상 5등급·예비 4등급·위험, 인증 일정 표 |
-| 09 (강사 시연, 별도 승인 전 데이터) | `fa-zeb` 답: 예비인증 V2(4등급), 현행 V3 38.2/76 → 5등급, OPT-D2 적용 41.4/72.5 → 4등급 / OPT-D6·D5 → 5등급 |
+| Foundry 강사 시연 (별도 승인 전 데이터) | `fa-zeb` 답: 예비인증 V2(4등급), 현행 V3 38.2/76 → 5등급, OPT-D2 적용 41.4/72.5 → 4등급 / OPT-D6·D5 → 5등급 |
 | 10 (제안) | `ops.option_eval` 11행, 이벤트 `ZEB-HS-D-20260930`, 추천 `OPT-D2` → 41.4%·4등급, `ZebRiskEvent` open 1행, Teams 카드 약 5분 뒤 도착 |
 | 10 (승인 후) | `nb_apply_decision` 약 5–6분, 조치 1행, 설계안 V4 현행 41.4/72.5, D단지 4등급·정상, `open → approved → resolved`, 위험 0·주의 3·정상 5 |
 
 Copilot·Ontology agent·Data agent·Operations agent·Teams 단계는 AI·UI 동작이므로 사전 점검에서 직접 확인하고, 화면이 바뀌었으면 강사 안내를 갱신합니다.
 
-참가자는 11장까지 결과 확인과 실행 중지를 마칩니다. Foundry와 웹 대시보드는 이후 강사 환경에서 별도로 시연합니다. 참가자에게 Foundry용 Azure 리소스·권한·인증 연결을 배포하거나 PC에 로컬 앱을 설치·실행하게 하지 않습니다. 시연 데이터는 강사 작업 영역의 데이터로 참가자 결과와 구분합니다. 강사 시연용 리소스 정리는 시연이 끝난 뒤 진행합니다.
+10장 완료 후 강사 환경에서 Foundry와 웹 대시보드를 시연하고, 11장에서 참가자 결과와 실행 중지를 최종 확인합니다. 참가자에게 Foundry용 Azure 리소스·권한·인증 연결을 배포하거나 PC에 로컬 앱을 설치·실행하게 하지 않습니다. 시연 데이터는 강사 작업 영역의 데이터로 참가자 결과와 구분합니다. 강사 시연용 리소스 정리는 시연이 끝난 뒤 진행합니다.
 
 현재 교재의 질의 경로: 07장 기본 과정은 Data agent 구성 후 Ontology Agent의 Plan 질의입니다. 위 2026-10-18–19 수치는 이전 점검 결과이며, 새 Plan 경로·단계적 모델 보강·영문 Operations agent 지침이 이 테넌트에서 검증됐다는 뜻이 아닙니다. 행사 전 `p011`과 같은 역할의 계정으로 원본 읽기·Plan 응답·Act 저장·Teams 승인·재계산을 리허설합니다.
 

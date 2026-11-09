@@ -207,4 +207,4 @@ Data agent와 이 장의 Plan 질의는 데이터를 읽기만 합니다. Gold·
 
 ## 다음 단계
 
-[10. Operations agent](10-operations-agent.md)에서 D단지 위험과 추천 보완안을 Teams로 제안받고 승인합니다. 원하면 먼저 [08. Power BI (선택)](08-power-bi.md)에서 보고서를 만들 수 있습니다. 09장 Foundry는 참가자 실습이 아니라 11장 이후 강사 시연으로 진행합니다.
+[10. Operations agent](10-operations-agent.md)에서 D단지 위험과 추천 보완안을 Teams로 제안받고 승인합니다. 원하면 먼저 [08. Power BI (선택)](08-power-bi.md)에서 보고서를 만들 수 있습니다. Foundry와 웹 대시보드는 10장과 11장 사이에 강사가 시연합니다.

@@ -38,13 +38,14 @@
 | 06–07 근거 질의 | Ontology를 Agent와 단계적으로 보강하고 Data agent를 구성합니다. 기본 질문은 Ontology Agent의 Plan에서 검증합니다. | 원본·규칙·계산 근거를 정답 Notebook과 비교한 Q1–Q8 답변 |
 | 08 보고서(선택) | 원하는 경우 Copilot으로 현장 컨트롤 타워를 만듭니다. 기본 과정에서는 건너뜁니다. | 승인 전후 등급·위험·일정을 확인할 보고서 한 페이지 |
 | 10 제안·승인·반영 | 위험 이벤트를 Eventhouse로 보내 Operations agent의 Teams 제안을 받고, 담당자가 승인합니다. | 조치 기록, 보완안을 반영한 설계안 V4, 회복된 예상 등급, 종료된 위험 이벤트 |
+| 강사 시연 | 강사 환경에서 Foundry 근거 질의와 웹 대시보드를 보여줍니다. | 실제 도구 출력과 승인 전후 변화 비교 |
 | 11 마무리 | 결과를 확인하고 에이전트를 멈춥니다. | 확인된 결과와 정리된 실행 상태 |
 
 <img src="../assets/architecture.svg" width="1000" alt="전체 구성. Notebook이 공공 인증 4종과 Contoso 내부 데이터를 Lakehouse의 Bronze에 적재하고 Silver에서 정리한 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Semantic model과 Power BI, Eventhouse와 Operations agent로 이어집니다. Operations agent가 Teams로 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다." />
 
 10장에서 Teams 제안을 받아도 바로 승인하지 않습니다. 07장 Q8과 보완안 평가 결과(`ops.option_eval`)의 답과 근거를 비교한 다음 승인합니다.
 
-읽기와 변경을 구분합니다. 06장의 Act는 Ontology 모델만 변경하고, 07·09장의 질문과 What-if는 데이터를 읽기만 합니다. 10장의 승인 액션만 보완안을 기록하고 Silver·Gold·ops를 재계산합니다. Ontology 설명에 규칙을 적는 것만으로 등급 계산이나 발주가 자동 실행되지는 않습니다.
+읽기와 변경을 구분합니다. 06장의 Act는 Ontology 모델만 변경하고, 07장과 강사 Foundry 시연의 질문·What-if는 데이터를 읽기만 합니다. 10장의 승인 액션만 보완안을 기록하고 Silver·Gold·ops를 재계산합니다. Ontology 설명에 규칙을 적는 것만으로 등급 계산이나 발주가 자동 실행되지는 않습니다.
 
 ## 실습 데이터
 
@@ -57,7 +58,7 @@
 
 ## 실습 일정
 
-기본 과정은 00–07 → 10 → 11장, 약 4시간 10분입니다. 아래 시간의 합계는 선택 08장을 포함해 약 4시간 40분입니다. 05장의 파이프라인과 06장의 Graph도 선택이며 휴식·AI 응답 대기는 별도입니다.
+진행 순서는 00–07 → 10 → 강사 시연 → 11장입니다. 기본 참가자 과정은 약 4시간 10분이며, 아래 시간의 합계는 선택 08장을 포함해 약 4시간 40분입니다. 05장의 파이프라인과 06장의 Graph도 선택이며 휴식·AI 응답 대기·강사 시연 시간은 별도입니다.
 
 - 00\. 시나리오와 실습 순서 — 15분 (이 문서)
 - [01. 작업 영역 준비](01-workspace.md) — 15분
@@ -69,9 +70,10 @@
 - [07. Data agent](07-data-agent.md) — 30분
 - [08. Power BI (선택)](08-power-bi.md) — 30분
 - [10. Operations agent](10-operations-agent.md) — 65분
+- [강사 시연: Foundry와 웹 대시보드](10a-instructor-demo.md) — 참가자 실습 시간과 별도
 - [11. 마무리](11-finish.md) — 10분
 
-11장 완료 후 강사가 [09. Foundry agent (강사 시연)](09-foundry-agent.md)와 웹 대시보드를 보여줍니다(위 실습 시간과 별도). 참가자는 Foundry용 Azure 리소스·권한·인증을 준비하거나 로컬 앱을 설치·실행하지 않습니다.
+강사 시연은 10장 완료 후, 11장 마무리 전에 진행합니다. 참가자는 Foundry용 Azure 리소스·권한·인증을 준비하거나 로컬 앱을 설치·실행하지 않습니다.
 
 ## 다음 단계
 

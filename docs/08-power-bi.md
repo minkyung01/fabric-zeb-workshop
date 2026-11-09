@@ -191,4 +191,4 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 ## 다음 단계
 
-[10. Operations agent](10-operations-agent.md)에서 D단지 위험을 Eventhouse로 보내고 Teams로 보완안 제안을 받습니다. 09장 Foundry는 11장 이후 강사 시연으로 진행합니다.
+[10. Operations agent](10-operations-agent.md)에서 D단지 위험을 Eventhouse로 보내고 Teams로 보완안 제안을 받습니다. Foundry와 웹 대시보드는 10장과 11장 사이에 강사가 시연합니다.

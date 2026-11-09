@@ -189,8 +189,9 @@ class Docs(unittest.TestCase):
         self.assertIn("11단계 SQL 결과로 반영을 확인", completion)
         finish = (ROOT / "docs" / "11-finish.md").read_text(encoding="utf-8")
         self.assertIn("이 장까지 완료하면 참가자 실습은 끝", finish)
-        self.assertIn("강사가 웹 대시보드", finish)
-        self.assertIn("로컬 앱을 설치하거나 실행할 필요가 없습니다", finish)
+        demo = (ROOT / "docs" / "10a-instructor-demo.md").read_text(encoding="utf-8")
+        self.assertIn("웹 대시보드", demo)
+        self.assertIn("로컬 웹 앱 설치·실행은 필요하지 않습니다", demo)
 
     def test_power_bi_license_activation_precedes_model_creation(self):
         report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
@@ -201,22 +202,30 @@ class Docs(unittest.TestCase):
         self.assertIn("d08-lakehouse-new-model.png", report)
 
     def test_foundry_is_instructor_demo_only(self):
-        foundry = (ROOT / "docs" / "09-foundry-agent.md").read_text(encoding="utf-8")
-        self.assertTrue(foundry.startswith("# 09. Foundry agent (강사 시연)"))
+        foundry = (ROOT / "docs" / "10a-instructor-demo.md").read_text(encoding="utf-8")
+        self.assertTrue(foundry.startswith("# 강사 시연: Foundry와 웹 대시보드"))
         self.assertIn("참가자는 따라 만들지 않습니다", foundry)
         self.assertIn("승인 전 상태(D단지 V3·위험)", foundry)
         self.assertIn("참가자 작업 영역을 시연용으로 초기화하지 않습니다", foundry)
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        participant, demo = readme.split("### 실습 종료 후 강사 시연", 1)
-        self.assertNotIn("docs/09-foundry-agent.md", participant)
-        self.assertIn("docs/09-foundry-agent.md", demo)
+        self.assertLess(readme.index("(docs/10-operations-agent.md)"),
+                        readme.index("(docs/10a-instructor-demo.md)"))
+        self.assertLess(readme.index("(docs/10a-instructor-demo.md)"),
+                        readme.index("(docs/11-finish.md)"))
+        self.assertFalse((ROOT / "docs" / "09-foundry-agent.md").exists())
         for chapter in ("07-data-agent.md", "08-power-bi.md"):
             text = (ROOT / "docs" / chapter).read_text(encoding="utf-8")
             self.assertIn("다음: [10. Operations agent]", text)
         finish = (ROOT / "docs" / "11-finish.md").read_text(encoding="utf-8")
-        participant, demo = finish.split("## 다음 단계", 1)
-        self.assertNotIn("fa-zeb", participant)
-        self.assertIn("09-foundry-agent.md", demo)
+        self.assertNotIn("fa-zeb", finish)
+        self.assertIn("이전: [강사 시연](10a-instructor-demo.md)", finish)
+        operations = (ROOT / "docs" / "10-operations-agent.md").read_text(encoding="utf-8")
+        self.assertIn("다음: [강사 시연](10a-instructor-demo.md)", operations)
+        self.assertIn("이전: [10. Operations agent]", foundry)
+        self.assertIn("다음: [11. 마무리]", foundry)
+        self.assertIn("## 5. 웹 대시보드 시연", foundry)
+        self.assertIn("11장 마무리 전에", foundry)
+        self.assertIn("V4", foundry)
         admin = (ROOT / "admin" / "README.md").read_text(encoding="utf-8")
         self.assertIn("참가자별 Foundry 환경은 준비하지 않습니다", admin)
         self.assertIn("시연 계정으로 미리 질문 1개", admin)
@@ -291,7 +300,8 @@ class Docs(unittest.TestCase):
     def test_chapter_navigation(self):
         for doc in DOCS:
             lines = doc.read_text(encoding="utf-8").splitlines()
-            self.assertTrue(lines[0].startswith(f"# {doc.name[:2]}."), doc.name)
+            prefix = "# 강사 시연:" if doc.stem == "10a-instructor-demo" else f"# {doc.name[:2]}."
+            self.assertTrue(lines[0].startswith(prefix), doc.name)
             self.assertIn("[목차](../README.md)", lines[2], doc.name)
 
     def test_notebook_names_in_docs_exist(self):
