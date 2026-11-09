@@ -155,10 +155,6 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 
 7.  도구 모음 왼쪽의 저장 아이콘을 누릅니다.
 
-수신자 확인: 도구 모음의 톱니바퀴(설정) → Agent behavior에서 Run as가 본인이고, Message delivery가 기본값(에이전트를 만든 사람에게 메시지와 조치 요청을 보냄)인지 확인합니다. Teams에는 Fabric과 같은 계정으로 로그인합니다. 조치는 수신자가 아니라 에이전트 생성자의 위임된 권한으로 실행됩니다([조치·수신자 설정](https://learn.microsoft.com/fabric/real-time-intelligence/operations-agent-actions)).
-
-<img src="../assets/screenshots/d10-oa-behavior.png" width="900" alt="oa_zeb 설정의 Agent behavior. Run as가 MOD Administrator이고 Message delivery가 기본값입니다." />
-
 ## 5. Playbook 만들기
 
 Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 규칙입니다.
