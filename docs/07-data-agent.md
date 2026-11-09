@@ -96,13 +96,20 @@
 ## 2. Data agent 만들고 Ontology 연결
 
 1.  본인 작업 영역에서 + New item을 누르고 `Data agent`로 검색해 Data agent를 고릅니다. 이름에 `da_zeb`를 입력하고 Create를 누릅니다. Welcome to Data Agent 창이 나오면 Skip for now를 누릅니다.
-2.  Build your data agent 화면에서 Add an ontology 카드를 누릅니다. 다른 참가자의 `ont_zeb`도 함께 보이므로, 왼쪽 Explorer를 펼쳐 본인 작업 영역을 고른 뒤 `ont_zeb`를 선택하고 Add를 누릅니다.
 
-    <img src="../assets/screenshots/d07-add-ontology.png" width="1000" alt="Add an ontology 창. 왼쪽 Explorer에서 zeb-p001을 골라 ont_zeb 하나만 보이고 선택되어 있습니다." />
+    <img src="../assets/screenshots/d07-create-agent.png" width="450" alt="Create data agent 창에 da_zeb가 입력되어 있고 Create 버튼이 보입니다." />
 
-3.  왼쪽 Explorer → Sources에서 `ont_zeb`를 펼칩니다.
+2.  Build your data agent 화면에서 Add an ontology 카드를 누릅니다. 목록에서 `ont_zeb`를 선택하고 Add를 누릅니다.
 
-확인할 결과: Entity types / 엔터티 형식 아래에 06장에서 만든 엔터티가 있고, Ontology data sources 아래에 본인 `lh_zeb` → `gold`가 있습니다. Lakehouse를 기타 데이터 원본으로 따로 추가하지 않습니다. 한국어 UI에서는 Ontology가 존재론으로 표시될 수 있습니다.
+    <img src="../assets/screenshots/d07-add-ontology.png" width="1000" alt="Add an ontology 창에 ont_zeb 한 항목이 보입니다. 선택할 항목의 이름과 형식을 빨간 테두리로 표시했습니다." />
+
+3.  왼쪽 Explorer → Sources에서 `ont_zeb` → Entity types를 펼쳐 06장에서 만든 `BIMModel`, `DesignVersion`, `Site` 등의 엔터티가 있는지 확인합니다.
+
+    <img src="../assets/screenshots/d07-entity-types.png" width="1000" alt="da_zeb의 Sources에서 ont_zeb의 Entity types를 펼친 화면. Entity types 제목을 빨간 테두리로 표시했고 아래에 통일한 이름의 엔터티들이 보입니다." />
+
+4.  Entity types를 접고 Ontology data sources를 펼칩니다. `lh_zeb` → Schemas → `gold` → Tables 아래에 원본 테이블이 있는지 확인합니다. Lakehouse를 기타 데이터 원본으로 따로 추가하지 않습니다.
+
+    <img src="../assets/screenshots/d07-ontology-sources.png" width="1000" alt="Ontology data sources 아래 lh_zeb, Schemas, gold, Tables로 이어지는 경로를 빨간 테두리로 표시했습니다. 아래에 bim_design_version, erp_project 등 Gold 원본 테이블이 보입니다." />
 
 Ontology는 업무 문맥이고 실행은 바인딩된 원본에 대한 질의입니다. Graph를 별도로 연결하지 않으며, Runtime은 관리자가 사전 확인한 설정을 사용합니다. 원본이 표시되지 않거나 읽기에 실패하면 연결·바인딩·본인의 읽기 권한을 먼저 확인합니다.
 
