@@ -23,7 +23,7 @@ Fabric 접속 → 작업 영역 유형 확인 → Notebook 7개 확인 → Lakeh
 
 예상 결과: Current workspace type이 Fabric이고, Details에 관리자가 안내한 용량 이름과 SKU가 보입니다. Trial이나 Pro로 표시되면 Copilot·Operations agent 단계를 진행할 수 없으니 관리자에게 알립니다. 확인했으면 오른쪽 위 X로 설정 창을 닫습니다.
 
-<img src="../assets/screenshots/d01-workspace-type.png" width="1000" alt="Workspace settings의 Workspace type 화면. Current workspace type은 Fabric이고 Details에 용량 fabriczebsea02, SKU F16, Region Southeast Asia가 보입니다." />
+<img src="../assets/screenshots/d01-workspace-type.png" width="1000" alt="Workspace settings의 Workspace type 화면. Current workspace type이 Fabric이고 Details에 할당된 용량, SKU F16, Region Korea Central이 표시됩니다." />
 
 ## 2. 작업 영역 항목 확인
 
@@ -48,9 +48,14 @@ Notebook이 없다면 관리자에게 준비를 요청합니다. 원본은 [note
 1.  본인 작업 영역에서 + New item을 누르고 `Lakehouse`로 검색해 Lakehouse를 선택합니다.
 2.  Name에 `lh_zeb`를 입력하고 Location이 본인 작업 영역인지 확인합니다.
 3.  Lakehouse schemas / 스키마 사용을 켠 뒤 Create를 누릅니다. 기본으로 켜져 있어도 그대로 유지합니다.
+
+    <img src="../assets/screenshots/d01-create-lakehouse.png" width="700" alt="New Lakehouse 창. Name에 lh_zeb가 입력되어 있고 Location에서 작업 영역을 선택하며 Lakehouse schemas가 체크된 상태로 Create 버튼이 보입니다." />
+
 4.  생성된 `lh_zeb`를 열고 왼쪽 Explorer의 Tables 아래에 `dbo` 스키마가 있는지 확인합니다. `bronze`·`silver`·`gold`·`ops` 스키마는 이후 Notebook이 만듭니다.
 
 예상 결과: 본인 작업 영역에 Lakehouse `lh_zeb`와 같은 이름의 SQL analytics endpoint가 생깁니다. Tables에는 아직 실습 데이터가 없고 Files도 비어 있습니다. 파일 업로드는 필요하지 않습니다.
+
+<img src="../assets/screenshots/d01-lakehouse-created.png" width="1000" alt="생성 직후 lh_zeb 화면. Explorer에 Tables 아래 dbo 스키마와 Files가 있으며, 위쪽에 SQL analytics endpoint 생성 중 안내가 표시됩니다." />
 
 이미 `lh_zeb`가 있으면 새로 만들거나 삭제하지 말고 본인 작업 영역의 스키마 사용 Lakehouse인지 확인합니다. 기존 실습 데이터가 있다면 관리자에게 초기 상태를 확인한 뒤 진행합니다.
 
@@ -60,6 +65,9 @@ Notebook 코드는 테이블을 `bronze.pub_zeb_cert`처럼 스키마.테이블 
 
 1.  작업 영역으로 돌아가 `01_bronze_public_ingest`를 엽니다. Copilot 소개 창이 뜨면 Skip for now를 누릅니다.
 2.  왼쪽 Explorer의 Add data items → From OneLake catalog에서 본인 작업 영역의 Lakehouse 아이콘 `lh_zeb`를 체크하고 Add를 누릅니다. 같은 이름의 SQL analytics endpoint를 고르지 않습니다. 이미 연결되어 있다면 중복으로 추가하지 않습니다.
+
+    <img src="../assets/screenshots/d01-notebook-add-lakehouse.png" width="1000" alt="01_bronze_public_ingest Notebook의 Explorer. No data sources added 아래 Add data items 메뉴를 펼쳐 From OneLake catalog를 선택하는 화면입니다." />
+
 3.  Data items → OneLake 아래 `lh_zeb`의 …에서 Set as default lakehouse를 누르고, 이름 오른쪽에 핀 아이콘(기본 Lakehouse 표시)이 생겼는지 확인합니다. 이미 핀이 있으면 그대로 둡니다.
 4.  나머지 Notebook 6개도 같은 방법으로 확인합니다.
 
