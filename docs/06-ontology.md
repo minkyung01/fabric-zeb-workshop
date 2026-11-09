@@ -70,13 +70,12 @@ Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔�
 
 <img src="../assets/screenshots/d06-initial-proposal.png" width="1000" alt="현장·설계안·인증의 첫 초안 미리 보기. AI Proposal 아래 엔터티 8개와 관계가 보이고, Agent 응답에는 사용한 원본과 이번 초안에서 제외한 공급·일정·보완안·공공 사례 범위가 표시됩니다. Switch to Act + approve 버튼은 아직 누르지 않습니다." />
 
-특히 두 가지를 확인합니다. 첫째, 현장 → BIM 모델 → 설계안 경로가 있어야 합니다(예: `PmsSite → SiteCrosswalk → BimDesignVersion`). 이 경로가 없으면 "D단지의 현행 설계안은?"에 답할 수 없습니다. 둘째, 모든 엔터티에 키가 있어야 합니다. 키가 없는 엔터티는 Graph에 올라가지 않아 경로가 끊깁니다. 에이전트가 "논리 관계로만 넣었다", "키 없는 매핑 엔터티로 두었다", "모델 번호는 연결하지 않았다"고 답하면 같은 Plan 대화에서 아래처럼 보완을 요청합니다. 이름은 에이전트가 제안한 이름에 맞춰 바꿉니다.
+초안에서 확인할 항목:
 
-``` text
-현장 교차표 엔터티를 bim_model_id 키의 BimModel로 바꾸고(gold.mdm_site_xref), BimModel → 현장(site_code), BimModel → 프로젝트(project_no), 설계안 → BimModel(gold.bim_design_version의 bim_model_id) 관계를 실제 열로 바인딩해줘. 다른 엔터티와 관계는 그대로 두고, HS-D 현장에서 현행 설계안까지 이어지는지 실제 행으로 검증해줘.
-```
+- 현장 → BIM 모델 → 설계안 경로가 있어야 합니다(예: `PmsSite → SiteCrosswalk → BimDesignVersion`). 이 경로로 "D단지의 현행 설계안은?"에 답할 수 있는지 원본 열과 행을 확인합니다.
+- 모든 엔터티에 고유 키가 있어야 합니다. 키가 없는 엔터티는 Graph에 올라가지 않아 경로가 끊깁니다.
 
-<img src="../assets/screenshots/d06-plan-review.png" width="900" alt="Plan 대화의 보완 결과. gold.mdm_site_xref의 HS-D 행(CT-24-0189, BIM-0397)과 gold.bim_design_version의 BIM-0397-V3(현행)를 근거로 'HS-D 현장 → BIM-0397 모델 → BIM-0397의 현행 설계안(V3)' 경로가 실제 데이터와 맞는다고 답한 화면" />
+두 항목을 충족하면 다음 2-1단계로 진행합니다. 경로나 키가 빠졌다면 아래 [Troubleshooting의 초안 경로·키 보완](#초안에-현장설계안-경로나-키가-빠진-경우)을 먼저 진행합니다.
 
 ### 2-1. 같은 Plan 대화에서 업무 범위 보강
 
@@ -220,6 +219,22 @@ Graph는 투영한 시점의 스냅샷입니다. 10장의 `04_gold_model`은 관
 - 현장 8개, 설계안 18개(D단지는 V3가 현행)의 실제 데이터와, 인증서와 설계안의 관계를 확인했습니다.
 
 ## Troubleshooting
+
+### 초안에 현장·설계안 경로나 키가 빠진 경우
+
+에이전트가 "논리 관계로만 넣었다", "키 없는 매핑 엔터티로 두었다", "모델 번호는 연결하지 않았다"고 답하거나, 초안에서 현장 → BIM 모델 → 설계안 경로를 확인할 수 없을 때만 진행합니다. 정상적으로 연결되어 있다면 이 요청은 보내지 않습니다.
+
+Act로 전환하지 않고 같은 Plan 대화에서 아래처럼 보완을 요청합니다. 엔터티 이름은 에이전트가 제안한 이름에 맞춰 바꿉니다.
+
+``` text
+현장 교차표 엔터티를 bim_model_id 키의 BimModel로 바꾸고(gold.mdm_site_xref), BimModel → 현장(site_code), BimModel → 프로젝트(project_no), 설계안 → BimModel(gold.bim_design_version의 bim_model_id) 관계를 실제 열로 바인딩해줘. 다른 엔터티와 관계는 그대로 두고, HS-D 현장에서 현행 설계안까지 이어지는지 실제 행으로 검증해줘.
+```
+
+확인할 결과: `gold.mdm_site_xref`의 `HS-D`·`BIM-0397`과 `gold.bim_design_version`의 현행 `BIM-0397-V3`를 근거로 경로가 연결되고, 해당 엔터티의 고유 키가 지정되어 있습니다. 확인했으면 2-1단계로 돌아가 업무 범위를 보강합니다.
+
+<img src="../assets/screenshots/d06-plan-review.png" width="900" alt="Plan 대화의 보완 결과. gold.mdm_site_xref의 HS-D 행(CT-24-0189, BIM-0397)과 gold.bim_design_version의 BIM-0397-V3(현행)를 근거로 'HS-D 현장 → BIM-0397 모델 → BIM-0397의 현행 설계안(V3)' 경로가 실제 데이터와 맞는다고 답한 화면" />
+
+### 기타 문제
 
 - 업무 범위가 빠진 경우(예: 보완안, 공급사, 공공 인증): 개수보다 필요한 범위가 빠졌는지가 중요합니다. 이미 적용했다면 Ontology를 지우지 말고 Plan 모드에서 `gold.sim_improvement_option, gold.scm_vendor를 다시 확인해서 해당 업무 질문을 지원할 엔터티·키·관계를 제안해줘. 기존 항목은 유지하고 중복 생성하지 마.`처럼 보완을 요청합니다.
 - 4단계에서 해당하는 엔터티가 없다는 답이 오면, 그 엔터티를 먼저 2–3단계 방식으로 추가한 뒤 규칙을 다시 넣습니다.
