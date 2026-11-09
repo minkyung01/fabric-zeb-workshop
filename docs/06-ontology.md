@@ -243,10 +243,18 @@ Graph는 실제 인스턴스를 노드로, 인스턴스 사이의 연결을 에�
 
 1.  리본의 Manage graph를 누릅니다. "Preparing graph..." 후 Choose what to project에서 엔터티와 관계의 Status가 모두 Eligible인지 확인합니다. Ineligible이나 Not mapped가 있으면 아래 Troubleshooting을 참고합니다.
 
-    <img src="../assets/screenshots/d06-manage-graph.png" width="1000" alt="Configure Graph의 Choose what to project 화면. 22 entities 목록에서 BimDesignVersion, ErpProject, BimModel, PmsSite 등이 모두 Eligible이고 오른쪽 Preview에 엔터티 그래프가 보입니다. 오른쪽 아래에 Continue 버튼이 있습니다." />
+    <img src="../assets/screenshots/d06-open-manage-graph.png" width="1000" alt="ont_zeb의 Home 리본에서 Manage graph 버튼을 빨간 테두리로 표시한 화면. 가운데 Full ontology는 타입과 관계의 설계도입니다." />
 
-2.  Continue → Materialize를 누릅니다. 위쪽 탭에 `ont_zeb_graph_`로 시작하는 Graph model이 열립니다. 공공 인증 데이터가 많아서 몇 분에서 수십 분까지 걸릴 수 있습니다.
-3.  생성이 끝나면 `ont_zeb`의 Home에서 Explore graph를 눌러 `HS-D` 현장 노드에서 설계안·인증서·설비·발주로 이어지는 관계를 펼쳐 봅니다.
+    목록을 아래로 스크롤해 나머지 엔터티도 확인하고, 엔터티 왼쪽의 >를 펼쳐 관계의 상태도 확인합니다. 위쪽 Graph not materialized는 아직 Graph를 생성하지 않았다는 뜻입니다. 오른쪽 Preview도 실제 인스턴스가 아니라 투영할 구조를 보여 줍니다.
+
+    <img src="../assets/screenshots/d06-manage-graph.png" width="1000" alt="Choose what to project 화면. Project, Site, BIMModel 등 엔터티의 Status Eligible 열과 오른쪽 아래 Continue 버튼을 빨간 테두리로 표시했습니다. 위쪽에는 Graph not materialized가 보입니다." />
+
+2.  선택한 엔터티·관계를 확인했으면 오른쪽 아래 Continue를 누릅니다. Projection summary에서 선택한 범위와 Preview를 한 번 더 확인합니다.
+
+    <img src="../assets/screenshots/d06-graph-projection-summary.png" width="1000" alt="Projection summary 화면. 선택한 엔터티 목록과 구조 Preview가 있고 오른쪽 아래 Materialize 버튼을 빨간 테두리로 표시했습니다. 아직 생성 완료 화면은 아닙니다." />
+
+3.  Materialize를 누릅니다. 위쪽 탭에 `ont_zeb_graph_`로 시작하는 Graph model이 열립니다. 공공 인증 데이터가 많아서 몇 분에서 수십 분까지 걸릴 수 있습니다. 버튼을 누른 것만으로 완료된 것은 아니므로 생성 상태를 확인하고 기다립니다.
+4.  생성이 끝나면 `ont_zeb`의 Home에서 Explore graph를 눌러 `HS-D` 현장 노드에서 설계안·인증서·설비·발주로 이어지는 관계를 펼쳐 봅니다.
 
 Graph는 투영한 시점의 스냅샷입니다. 10장의 `04_gold_model`은 관련 Graph의 새로 고침을 요청하지만 완료를 보장하지는 않습니다. 최신 Graph가 필요하면 실행 상태와 실제 V4 데이터를 확인하고, 실패·취소됐으면 Graph 항목에서 다시 새로 고칩니다. 원본 SQL 조회와 Graph 조회를 구분합니다.
 
