@@ -68,6 +68,21 @@ class Notebooks(unittest.TestCase):
 
 
 class Docs(unittest.TestCase):
+    def test_run_all_guidance_for_participant_notebooks(self):
+        for chapter in ("01-workspace.md", "02-bronze-public.md", "03-bronze-contoso.md",
+                        "04-silver.md", "05-gold.md", "07-data-agent.md",
+                        "10-operations-agent.md"):
+            text = (ROOT / "docs" / chapter).read_text(encoding="utf-8")
+            self.assertIn("Run all", text, chapter)
+            self.assertNotIn("한 셀씩 실행", text, chapter)
+        for name in NOTEBOOKS:
+            if name == "nb_apply_decision":
+                continue
+            markdown = "\n".join("".join(cell["source"]) for cell in notebook(name)["cells"]
+                                 if cell["cell_type"] == "markdown")
+            self.assertIn("Run all", markdown, name)
+            self.assertNotIn("한 셀씩 실행", markdown, name)
+
     def test_no_duplicate_list_numbers(self):
         for path in [ROOT / "README.md", *DOCS, *sorted((ROOT / "admin").glob("*.md"))]:
             text = path.read_text(encoding="utf-8")

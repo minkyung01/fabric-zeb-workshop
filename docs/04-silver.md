@@ -22,7 +22,7 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
 ## 1. Notebook 열고 실행
 
 1.  작업 영역에서 `03_silver_conform`을 열고, [01장 4단계](01-workspace.md#4-notebook의-기본-lakehouse-연결)와 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결합니다.
-2.  맨 위 셀부터 Shift+Enter로 한 셀씩 실행합니다. 약 3분 걸립니다. 이 Notebook은 실행할 때마다 `silver` 스키마를 비우고 Bronze에서 다시 만듭니다.
+2.  도구 모음의 Run all을 누릅니다. 약 3분 걸립니다. 실행이 끝나면 아래 셀별 결과를 확인합니다. 이 Notebook은 실행할 때마다 `silver` 스키마를 비우고 Bronze에서 다시 만듭니다.
 
 <img src="../assets/screenshots/d04-notebook-lakehouse.png" width="1000" alt="03_silver_conform Notebook 시작 화면. Explorer의 OneLake 아래 lh_zeb에 기본 Lakehouse 핀 아이콘이 있고, 표기와 형식을 맞추는 규칙 표와 기준일 parameters 셀, 준비 단계가 보입니다." />
 
