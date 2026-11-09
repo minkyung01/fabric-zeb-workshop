@@ -219,7 +219,7 @@ class Diagram:
         return "\n".join([
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">',
             '<title id="title">건설 ZEB 인증 컨트롤 타워 | Microsoft Fabric</title>',
-            '<desc id="desc">Notebook이 공공 인증 4종과 Contoso 내부 데이터를 OneLake의 schema-enabled Lakehouse에 Bronze로 적재하고, Silver에서 표기를 맞춘 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Direct Lake 모델과 Power BI, Eventhouse 위험 이벤트와 Operations agent로 이어집니다. Operations agent가 Teams로 보완안을 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 선택입니다.</desc>',
+            '<desc id="desc">Notebook이 공공 인증 4종과 Contoso 내부 데이터를 OneLake의 schema-enabled Lakehouse에 Bronze로 적재하고, Silver에서 표기를 맞춘 뒤 Gold 업무 데이터와 ops 운영 지표를 만듭니다. Gold는 Ontology와 Data agent, Direct Lake 모델과 Power BI, Eventhouse 위험 이벤트와 Operations agent로 이어집니다. Operations agent가 Teams로 보완안을 제안하고 담당자가 승인하면 Notebook이 조치를 기록하고 Silver·Gold를 다시 계산합니다. Foundry 근거 재검토는 실습 종료 후 별도 환경의 강사 시연입니다.</desc>',
             f'<rect width="{WIDTH}" height="{HEIGHT}" fill="white"/>',
             "<defs>", *defs, "</defs>", *body, "</svg>"]) + "\n"
 
@@ -285,7 +285,7 @@ def build():
     d.card("operations", 830, 790, 330, 120, "operations-agent", "Operations agent", "위험 감시·제안")
     d.card("apply", 830, 964, 330, 132, "notebook", "Notebook | 승인 반영",
            "조치 기록 → 재계산\n실제 설계·발주 변경 없음")
-    d.card("foundry", 1250, 226, 310, 128, "foundry", "Foundry | 선택", "승인 전 근거 재검토", dashed=True)
+    d.card("foundry", 1250, 226, 310, 128, "foundry", "Foundry | 강사 시연", "별도 환경 · 근거 질의", dashed=True)
     d.card("teams", 1250, 790, 310, 120, "teams", "Teams", "제안·담당자 승인",
            accent=("#F4FAF4", "#8CC08C"))
 
@@ -308,7 +308,7 @@ def build():
     d.label(1100, 588, "명시적 전송", 105, SOFT_BLUE)
     d.label(1180, 536, "조치 기록 → 재계산", 175, GREEN)
     d.label(1310, 1118, "Teams 승인", 100, GREEN)
-    d.label(1405, 572, "선택 검토", 85, MUTED)
+    d.label(1405, 572, "강사 시연", 85, MUTED)
     d.save()
     print(f"Built Korean architecture SVG + Excalidraw + shared scene ({WIDTH}×{HEIGHT}).")
 

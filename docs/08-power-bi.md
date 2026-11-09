@@ -1,6 +1,6 @@
 # 08. Power BI (선택)
 
-[목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [09. Foundry agent (선택)](09-foundry-agent.md)
+[목차](../README.md) \| 이전: [07. Data agent](07-data-agent.md) \| 다음: [10. Operations agent](10-operations-agent.md)
 
 Copilot으로 현장 컨트롤 타워 보고서 한 페이지를 만들고 D단지의 등급 위험을 확인합니다. 10장에서 보완안을 승인한 뒤 같은 보고서를 다시 열어 변화를 확인합니다.
 
@@ -191,4 +191,4 @@ TMDL(Tabular Model Definition Language)은 모델 구성을 글로 적는 형식
 
 ## 다음 단계
 
-선택: [09. Foundry agent](09-foundry-agent.md)에서 Ontology에 보완안 근거를 다시 묻습니다. 건너뛰면 [10. Operations agent](10-operations-agent.md)에서 D단지 위험을 Eventhouse로 보내고 Teams로 보완안 제안을 받습니다.
+[10. Operations agent](10-operations-agent.md)에서 D단지 위험을 Eventhouse로 보내고 Teams로 보완안 제안을 받습니다. 09장 Foundry는 11장 이후 강사 시연으로 진행합니다.

@@ -200,6 +200,27 @@ class Docs(unittest.TestCase):
         self.assertIn("작업 영역의 기존 유료 용량을 변경하는 단계가 아닙니다", report)
         self.assertIn("d08-lakehouse-new-model.png", report)
 
+    def test_foundry_is_instructor_demo_only(self):
+        foundry = (ROOT / "docs" / "09-foundry-agent.md").read_text(encoding="utf-8")
+        self.assertTrue(foundry.startswith("# 09. Foundry agent (강사 시연)"))
+        self.assertIn("참가자는 따라 만들지 않습니다", foundry)
+        self.assertIn("승인 전 상태(D단지 V3·위험)", foundry)
+        self.assertIn("참가자 작업 영역을 시연용으로 초기화하지 않습니다", foundry)
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        participant, demo = readme.split("### 실습 종료 후 강사 시연", 1)
+        self.assertNotIn("docs/09-foundry-agent.md", participant)
+        self.assertIn("docs/09-foundry-agent.md", demo)
+        for chapter in ("07-data-agent.md", "08-power-bi.md"):
+            text = (ROOT / "docs" / chapter).read_text(encoding="utf-8")
+            self.assertIn("다음: [10. Operations agent]", text)
+        finish = (ROOT / "docs" / "11-finish.md").read_text(encoding="utf-8")
+        participant, demo = finish.split("## 다음 단계", 1)
+        self.assertNotIn("fa-zeb", participant)
+        self.assertIn("09-foundry-agent.md", demo)
+        admin = (ROOT / "admin" / "README.md").read_text(encoding="utf-8")
+        self.assertIn("참가자별 Foundry 환경은 준비하지 않습니다", admin)
+        self.assertIn("시연 계정으로 미리 질문 1개", admin)
+
     def test_power_bi_prompt_limits_columns_and_specifies_layout(self):
         report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
         creation = report.split("## 3. Copilot으로 현장 컨트롤 타워 만들기", 1)[1]
