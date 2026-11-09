@@ -68,6 +68,14 @@ class Notebooks(unittest.TestCase):
 
 
 class Docs(unittest.TestCase):
+    def test_no_duplicate_list_numbers(self):
+        for path in [ROOT / "README.md", *DOCS, *sorted((ROOT / "admin").glob("*.md"))]:
+            text = path.read_text(encoding="utf-8")
+            self.assertIsNone(
+                re.search(r"^\s*\d+\.\s+(?:\d+|[ivxlcdm]+)\.\s", text, re.M | re.I),
+                path.name,
+            )
+
     def test_no_visible_bold_markers(self):
         marker = "*" * 2
         for path in ROOT.rglob("*.md"):

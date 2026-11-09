@@ -27,13 +27,13 @@
 
 ## 2. 셀별 결과 확인
 
-1.  0. 준비
+1.  준비
 
     기준일 `as_of_date = "2026-09-30"`과 테이블 저장 함수 `save`를 정합니다. 저장할 때 출처(`_source`)와 생성 시각(`_generated_at`)을 붙입니다.
 
     예상 결과: 결과 없이 끝납니다.
 
-2.  1. 기준 정보 — 인증 등급 기준값, 시도, 설비 분야
+2.  기준 정보 — 인증 등급 기준값, 시도, 설비 분야
 
     ZEB 등급마다 에너지자립률 하한과 1차에너지소요량 기준값(주거용/주거용 이외)이 정해져 있습니다. 시도 표에는 `경기도|경기|김포|…`처럼 원천마다 다르게 쓰는 표기를 별칭(`aliases`)으로 함께 적어 둡니다.
 
@@ -50,35 +50,35 @@
 
     이 표에는 기준값만 있고, 등급을 어떻게 판정하는지(두 기준 중 더 좋은 등급, BEMS 필수 등)는 없습니다. 판정 방법은 06장에서 Ontology의 업무 규칙으로 정의합니다.
 
-3.  2. ERP 프로젝트, PMS 현장, MDM 코드 매핑
+3.  ERP 프로젝트, PMS 현장, MDM 코드 매핑
 
     예상 결과: `bronze.erp_project 8행`, `bronze.pms_site 8행`, `bronze.mdm_site_xref 8행`
 
-4.  3. 설계안 — BIM·에너지 시뮬레이션
+4.  설계안 — BIM·에너지 시뮬레이션
 
     현장마다 가장 최근 설계안이 `현행`이고, 나머지는 `이전`입니다.
 
     예상 결과: `bronze.bim_design_version 18행`
 
-5.  4. 인증 목표와 취득 인증서 — PMS
+5.  인증 목표와 취득 인증서 — PMS
 
     예비인증서에는 어느 설계안으로 받았는지(`design_version_id`)가 함께 기록되어 있습니다. 세종 E학교는 ZEB·녹색건축·BF 세 가지 인증을 목표로 합니다.
 
     예상 결과: `bronze.pms_cert_target 12행`, `bronze.pms_certificate 10행`
 
-6.  5. 인증 일정 — PMS
+6.  인증 일정 — PMS
 
     모든 현장의 일정을 같은 기준으로 세웁니다. 준공(사용승인) 121일 전에 설비 설치 완료, 75일 전에 본인증 신청, 30일 전에 본인증 취득입니다. 기준일 전에 끝난 일정에는 실적일이 들어 있습니다.
 
     예상 결과: `bronze.pms_cert_milestone 48행` (현장 8개 × 일정 6단계)
 
-7.  6. 설비 계획(PMS)과 공급사·발주(SCM)
+7.  설비 계획(PMS)과 공급사·발주(SCM)
 
     발주는 WBS 코드로 설비 계획과 이어집니다(`scm_purchase_order.wbs_element` = `pms_equipment_plan.wbs_code`). Northwind 지열(`V-30452`)이 A단지와 D단지의 지열 히트펌프를 납품하고, 스마트오피스 C센터는 설비 계획에 BEMS가 빠져 있습니다.
 
     예상 결과: `bronze.pms_equipment_plan 39행`, `bronze.scm_vendor 9행`, `bronze.scm_purchase_order 25행`, `bronze.scm_po_event 1행`
 
-8.  7. 등급 보완안 — 에너지 컨설팅 시뮬레이션 결과, 조치 기록
+8.  등급 보완안 — 에너지 컨설팅 시뮬레이션 결과, 조치 기록
 
     보완안마다 적용했을 때 에너지자립률이 몇 %p 오르는지(`selfsuff_gain_pp`), 1차에너지소요량이 얼마나 줄어드는지(`primary_energy_delta`), 비용과 준비 기간이 들어 있습니다. D단지의 보완안은 6개입니다.
 
@@ -95,13 +95,13 @@
 
     예상 결과: `bronze.sim_improvement_option 12행`, `bronze.pms_action_log 0행`
 
-9.  8. Bronze 테이블 확인
+9.  Bronze 테이블 확인
 
     예상 결과: `bronze` 스키마에 테이블 21개(공공 4개 + 수집 기록 1개 + Contoso 내부 16개)가 있습니다. 표 오른쪽 위에 `3 columns, 21 rows`가 보입니다.
 
     <img src="../assets/screenshots/d03-bronze-tables.png" width="1000" alt="8번 셀 실행 결과. SHOW TABLES IN bronze 결과 표 오른쪽 위에 3 columns, 21 rows가 표시되고, tableName 열에 bim_design_version, erp_project, ingest_log, mdm_site_xref, pms_action_log 등이 보입니다." />
 
-10. 9. 같은 현장, 시스템마다 다른 코드
+10. 같은 현장, 시스템마다 다른 코드
 
     예상 결과: 3행이 나옵니다. 같은 현장(`CT-24-0189` = `HS-D` = `BIM-0397`)의 설계안 V1·V2·V3입니다.
 

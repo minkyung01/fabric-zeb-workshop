@@ -24,29 +24,29 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
 ## 2. 셀별 결과 확인
 
-1.  0. 준비
+1.  준비
 
     `gold`·`ops` 스키마를 만들고, Power BI가 빠르게 읽을 수 있도록 V-Order 저장 방식을 켭니다(Direct Lake 권장 설정).
 
     예상 결과: 결과 없이 끝납니다.
 
-2.  1. 기준 정보
+2.  기준 정보
 
     등급별 보고서 색(`grade_color`)과 용도별 주거 구분(`use_family`: 주거용/주거용 이외)을 추가합니다. 1차에너지 기준값이 주거 구분에 따라 다르기 때문입니다.
 
     예상 결과: `gold.ref_region 17행`, `gold.ref_building_use 14행`, `gold.ref_zeb_grade_criteria 6행`, `gold.ref_equipment_category 8행`
 
-3.  2. 공공 인증
+3.  공공 인증
 
     Silver의 공공 인증 테이블을 옮기면서 원천 시도 표기 열(`sido_raw`)만 뺍니다. 테이블 이름 앞의 `pub_`는 공공 데이터라는 뜻입니다.
 
     예상 결과: 5줄이 출력됩니다. `gold.pub_zeb_certification 9,760행`, `gold.pub_certified_building 25,362행` 등입니다.
 
-4.  3. Contoso 내부 — 시스템별 업무 데이터
+4.  Contoso 내부 — 시스템별 업무 데이터
 
     예상 결과: 13줄이 출력됩니다. `gold.erp_project 8행`부터 `gold.pms_action_log 0행`까지입니다.
 
-5.  4. 운영 모니터링(`ops`) — 보고서용 계산 결과
+5.  운영 모니터링(`ops`) — 보고서용 계산 결과
 
     06장에서 Ontology에 넣을 규칙과 같은 기준으로 현재 상태를 계산합니다.
 
@@ -63,7 +63,7 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
     예상 결과: `ops.po_status 25행`, `ops.milestone_forecast 48행`, `ops.site_status 8행`
 
-6.  5. 결과 확인
+6.  결과 확인
 
     예상 결과: 첫 번째 표에 현장 8곳이 위험한 순서대로 나옵니다.
 
@@ -82,7 +82,7 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
     <img src="../assets/screenshots/d05-site-status.png" width="1000" alt="5번 셀 실행 결과. 첫 표(9 columns, 8 rows)에 에코시티 D단지 38.2·76.0·5등급·두 기준 동일·예비 4·목표 4·위험, 마포 H단지·세종 E학교·스마트오피스 C센터는 주의, 리버뷰 B단지는 39.0·65.0·4등급·1차에너지소요량·정상입니다. 둘째 표는 3 columns, 22 rows의 gold 테이블 목록입니다." />
 
-7.  6. 온톨로지 그래프 새로 고침
+7.  온톨로지 그래프 새로 고침
 
     Gold를 다시 만들었을 때 온톨로지 그래프가 있으면 함께 새로 고칩니다. 지금은 Ontology가 없으므로 건너뜁니다.
 

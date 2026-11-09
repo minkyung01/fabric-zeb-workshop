@@ -80,7 +80,7 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 
 1.  작업 영역에서 `nb_apply_decision`을 엽니다.
 2.  [01장 4단계](01-workspace.md#4-notebook의-기본-lakehouse-연결)와 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결합니다.
-3.  1. 매개 변수 셀이 parameters 셀이고 `event_id`, `option_id` 두 변수가 있는지 확인합니다.
+3.  매개 변수 셀이 parameters 셀이고 `event_id`, `option_id` 두 변수가 있는지 확인합니다.
 
 예상 결과: 기본 Lakehouse가 `lh_zeb`이고, parameters 셀에 `event_id = "ZEB-HS-D-20260930"`, `option_id = "OPT-D2"`가 있습니다. 이 값은 직접 실행할 때의 기본값이며, 에이전트는 이벤트의 값을 넘깁니다.
 
@@ -175,7 +175,7 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 2.  작업 영역에서 `06_risk_event`를 열고, [01장 4단계](01-workspace.md#4-notebook의-기본-lakehouse-연결)와 같은 방법으로 본인 `lh_zeb`를 기본 Lakehouse로 연결한 뒤 Run all을 누릅니다. 세션 시작을 포함해 약 2–3분 걸립니다.
 
-    1.  1. 보완안 평가
+    1.  보완안 평가
 
         위험·주의 현장 중 보완안이 있는 D단지·H단지의 보완안을 하나씩 현행 설계안에 더해 예상 등급을 다시 계산합니다. 필요 등급(예비인증이 있으면 예비 등급, 없으면 목표 등급)을 회복하고(`meets_grade`), 기준일부터 준비 기간이 설비 설치 완료 계획일 안에 끝나는(`meets_schedule`) 안이 `feasible`입니다.
 
@@ -192,13 +192,13 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
         H단지는 `OPT-H3`(지열 히트펌프 도입)만 목표 4등급을 회복합니다. D단지의 설치 완료 계획일은 `2026-11-30`이며, OPT-D3는 등급도 회복하지 못하고 준비도 늦습니다.
 
-    2.  2. 위험 이벤트와 추천 보완안
+    2.  위험 이벤트와 추천 보완안
 
         현장 상태가 위험이고 예상 등급이 예비인증 등급보다 낮은 현장마다 이벤트 1건을 만들고, 순위 1 보완안을 추천합니다.
 
         예상 결과: 1행. `ZEB-HS-D-20260930`, 에코시티 D단지 현장, 예비 `4` → 예상 `5등급`, 추천 `OPT-D2` 주차장 캐노피 태양광(+90kW), `230,000,000`원, 적용 후 자립률 `41.4` → `4등급`, 상태 `open`
 
-    3.  3. Eventhouse로 보내기
+    3.  Eventhouse로 보내기
 
         예상 결과: `ZEB-HS-D-20260930: ZebRiskEvent에 open 추가` 한 줄과, Eventhouse에서 다시 읽은 1행 표.
 
