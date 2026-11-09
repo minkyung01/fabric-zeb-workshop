@@ -136,14 +136,14 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 
 4.  Actions의 Add action을 누르고 Select action type에서 Fabric item을 고릅니다. Browse를 누르고 Filter by keyword에 `nb_apply_decision`을 입력해 Location이 본인 작업 영역인 항목을 고른 뒤 Add를 누릅니다.
 
-5.  아래와 같이 입력하고 Next를 누릅니다. Parameters의 `event_id`, `option_id`는 Notebook의 parameters 셀에서 자동으로 채워집니다. Description만 입력합니다.
+5.  아래와 같이 입력하고 Next를 누릅니다. Action name은 영어로, Action description과 매개 변수 Description은 한국어로 입력합니다. Parameters의 `event_id`, `option_id`는 Notebook의 parameters 셀에서 자동으로 채워지므로 이름은 바꾸지 않고 Description만 입력합니다.
 
     | 입력란 | 값 |
     |---|---|
     | Action name | `ApplyZebOption` |
-    | Action description | `After Teams approval, record the recommended ZEB improvement option and rerun Silver and Gold to update the workshop design version and forecast grade. Append approved and resolved statuses to ZebRiskEvent. Do not change real designs or place orders.` |
-    | `event_id`의 Description | `The approved risk event ID from ZebRiskEvent.event_id.` |
-    | `option_id`의 Description | `The approved option ID from ZebRiskEvent.recommended_option_id.` |
+    | Action description | `담당자가 Teams에서 승인한 뒤 추천 ZEB 보완안을 조치 기록에 저장하고 Silver·Gold Notebook을 다시 실행해 실습 데이터의 설계안과 예상 등급을 갱신합니다. ZebRiskEvent에 approved(승인) 상태를 추가하고, 재계산 후 위험이 해소되면 resolved(해소) 상태를 추가합니다. 실제 설계 변경이나 발주는 하지 않습니다.` |
+    | `event_id`의 Description | `담당자가 승인한 위험 이벤트 ID입니다. ZebRiskEvent.event_id 값을 전달합니다.` |
+    | `option_id`의 Description | `담당자가 승인한 추천 보완안 ID입니다. ZebRiskEvent.recommended_option_id 값을 전달합니다.` |
 
     <img src="../assets/screenshots/d10-oa-action.png" width="1000" alt="Add action의 Action details. Fabric item nb_apply_decision, Action name ApplyZebOption, Parameters event_id와 option_id에 설명이 입력된 화면" />
 
