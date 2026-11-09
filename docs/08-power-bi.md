@@ -45,8 +45,8 @@ Power BI 개인 라이선스와 작업 영역의 Fabric 용량은 별개입니�
 
     | 스키마 | 테이블 |
     |---|---|
-    | `gold` | `pub_zeb_certification`, `ref_region`, `ref_zeb_grade_criteria`, `ref_building_use`, `scm_vendor`, `ref_equipment_category` |
-    | `ops` | `site_status`, `milestone_forecast`, `po_status` |
+    | `gold` | `pub_zeb_certification`, `ref_building_use`, `ref_equipment_category`, `ref_region`, `ref_zeb_grade_criteria`, `scm_vendor` |
+    | `ops` | `milestone_forecast`, `po_status`, `site_status` |
 
     목록을 아래로 스크롤해 `ops`의 테이블 3개까지 모두 선택합니다. 아래 화면에는 선택 목록의 일부만 보입니다.
 
