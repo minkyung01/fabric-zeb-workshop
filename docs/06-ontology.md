@@ -71,7 +71,7 @@ Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔�
 
 확인할 결과: 제안된 엔터티·관계, 질문별 연결 경로, 확인한 원본 열·행과 검증한 범위·미실행 항목이 구분되어 있습니다. 첫 초안은 현장·설계안·인증 범위만 대조합니다. 샘플의 값이 맞는 것과 전체 데이터의 키 유일성·참조 무결성이 확인된 것은 다릅니다. ‘샘플에서 미확인’을 ‘원본에 없음’으로 바꾸지 않습니다.
 
-<img src="../assets/screenshots/d06-initial-proposal.png" width="1000" alt="현장·설계안·인증의 첫 초안 미리 보기. AI Proposal 아래 엔터티 8개와 관계가 보이고, Agent 응답에는 사용한 원본과 이번 초안에서 제외한 공급·일정·보완안·공공 사례 범위가 표시됩니다. Switch to Act + approve 버튼은 아직 누르지 않습니다." />
+<img src="../assets/screenshots/d06-initial-proposal.png" width="1000" alt="이름 기준을 적용한 첫 Plan 초안 미리 보기. AI Proposal에 Project, Site, BIMModel, DesignVersion, SiteCertificate, CertTarget, ZEBGradeCriteria, BuildingUse가 있고 Site_has_BIMModel, BIMModel_has_DesignVersion, Certificate_based_on_DesignVersion 관계가 보입니다. Agent 응답에는 검증 결과와 미실행 항목을 펼치는 목록이 있으며 아직 승인 전입니다." />
 
 초안에서 확인할 항목:
 
