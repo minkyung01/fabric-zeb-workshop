@@ -74,7 +74,7 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
     | `recommended_option_id`, `recommended_option_name`, `option_cost_krw` | 추천 보완안과 비용 |
     | `expected_selfsuff_pct`, `expected_grade` | 추천 보완안을 적용했을 때의 자립률과 예상 등급 |
 
-예상 결과: Done이 표시되고 왼쪽 Tables 아래에 `ZebRiskEvent`가 생깁니다. 결과 창의 TableName이 `ZebRiskEvent`인 1행은 생성된 테이블의 스키마 정보이며, 위험 이벤트가 들어왔다는 뜻은 아닙니다. 실제 이벤트는 7단계에서 보냅니다.
+예상 결과: Done이 표시되고 왼쪽 Tables 아래에 `ZebRiskEvent`가 생깁니다. 결과 창의 TableName이 `ZebRiskEvent`인 1행은 생성된 테이블의 스키마 정보이며, 위험 이벤트가 들어왔다는 뜻은 아닙니다. 실제 이벤트는 6단계에서 보냅니다.
 
 <img src="../assets/screenshots/d10-create-table.png" width="1000" alt="테이블 생성 명령 실행 후 Done과 스키마 결과 1행이 표시되고 왼쪽 Tables 아래 ZebRiskEvent가 생긴 화면" />
 
@@ -161,15 +161,17 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 1.  Agent setup의 Generate playbook을 누릅니다(2–3분).
 
-    예상 결과: 오른쪽 Agent playbook의 Business term glossary에 Class 하나(예: `ZebRiskEventItem`, Table `ZebRiskEvent`)가 있고, `Id`, `Timestamp`, `ZebEventStatusText`, `OptionId` 같은 속성이 `ZebRiskEvent`의 열(`event_id`, `status_time`, `event_status`, `recommended_option_id` 등)과 연결되어 있습니다. Class와 속성 이름은 생성할 때마다 다를 수 있습니다.
+    예상 결과: 오른쪽 Agent playbook의 Business term glossary에 Class 하나(캡처: `ZebRiskEventLatestStatus`, Table `ZebRiskEvent`)가 있고, `Id`, `Timestamp`, `EventStatusText`, `RecommendedOptionId` 같은 속성이 `ZebRiskEvent`의 열(`event_id`, `status_time`, `event_status`, `recommended_option_id` 등)과 연결되어 있습니다. 캡처의 Class는 `summarize arg_max(status_time, *) by event_id`로 이벤트별 최신 상태 한 행을 사용합니다. Class와 속성 이름은 생성할 때마다 다를 수 있습니다.
 
-    <img src="../assets/screenshots/d10-oa-playbook.png" width="1000" alt="Agent playbook의 Business term glossary. Class ZebRiskEventItem과 Id, Timestamp, SiteName 등 속성이 ZebRiskEvent 열과 연결되어 있습니다." />
+    <img src="../assets/screenshots/d10-oa-playbook.png" width="1000" alt="Business term glossary의 ZebRiskEventLatestStatus. 이벤트별 최신 상태 집계와 Id, Timestamp, EventStatusText, RecommendedOptionId의 원본 열 연결이 보입니다." />
 
 2.  Agent playbook을 아래로 내려 Rules의 규칙을 펼칩니다.
 
     확인할 기준: KQL 쿼리의 조회 시간은 `status_time`, 객체 ID는 `event_id`여야 하며, 같은 이벤트의 최신 상태를 평가해야 합니다(예: `arg_max(status_time, *) by event_id`). 조건은 `event_status`가 `open`으로 바뀔 때입니다(`Changes To` 또는 `Becomes`). 숫자 플래그 `open_flag`를 0/1로 계산하고 Crosses above 0.5를 쓰는 동등한 전환 조건도 가능합니다. `Is open`·`Is above`처럼 상태를 매번 평가하는 조건은 반복 알림을 만들 수 있습니다. 생성된 질의·조건·액션 매핑을 검토하고, 이후 첫 `open` 알림과 상태 유지 중 반복 여부를 실제로 확인합니다.
 
-    <img src="../assets/screenshots/d10-oa-rule.png" width="1000" alt="펼친 규칙의 KQL 쿼리와 조건. ZebEventStatusText, Changes To, open" />
+    캡처의 `Zeb Event Status Opens` 규칙은 `status_time`으로 조회 구간을 제한한 뒤 `event_id`별 최신 행을 고릅니다. 아래 조건은 `EventStatusText` → `Changes To` → `open`입니다. 규칙 설명에는 Teams 알림과 담당자가 승인할 `ApplyZebOption` 제안이 있습니다.
+
+    <img src="../assets/screenshots/d10-oa-rule.png" width="1000" alt="Zeb Event Status Opens 규칙. KQL은 status_time 구간에서 event_id별 arg_max로 최신 상태를 고르고 조건은 EventStatusText, Changes To, open입니다." />
 
 3.  저장 아이콘을 누릅니다.
 
@@ -186,6 +188,8 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
         위험·주의 현장 중 보완안이 있는 D단지·H단지의 보완안을 하나씩 현행 설계안에 더해 예상 등급을 다시 계산합니다. 필요 등급(예비인증이 있으면 예비 등급, 없으면 목표 등급)을 회복하고(`meets_grade`), 기준일부터 준비 기간이 설비 설치 완료 계획일 안에 끝나는(`meets_schedule`) 안이 `feasible`입니다.
 
         예상 결과: `ops.option_eval 11행`과 표.
+
+        <img src="../assets/screenshots/d09-option-eval.png" width="1000" alt="ops.option_eval 11행. D단지의 OPT-D2는 2억 3천만 원, 41.4%, 72.5, 4등급, feasible true, 순위 1입니다." />
 
         | 현장 | 보완안 | 비용(원) | 적용 후 자립률 | 1차에너지 | 예상 등급 | 준비 완료 | feasible | 순위 |
         |---|---|---|---|---|---|---|---|---|
@@ -204,6 +208,8 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
         예상 결과: 1행. `ZEB-HS-D-20260930`, 에코시티 D단지 현장, 예비 `4` → 예상 `5등급`, 추천 `OPT-D2` 주차장 캐노피 태양광(+90kW), `230,000,000`원, 적용 후 자립률 `41.4` → `4등급`, 상태 `open`
 
+        <img src="../assets/screenshots/d09-risk-event.png" width="1000" alt="위험 이벤트 1행. ZEB-HS-D-20260930, HS-D, 예비 4등급, 예상 5등급, 자립률 38.2%, 1차에너지 76.0, 추천 OPT-D2가 보입니다." />
+
     3.  Eventhouse로 보내기
 
         예상 결과: `ZEB-HS-D-20260930: ZebRiskEvent에 open 추가` 한 줄과, Eventhouse에서 다시 읽은 1행 표.
@@ -219,6 +225,8 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
     ```
 
 예상 결과: 1행. `ZEB-HS-D-20260930`, `open`, `에코시티 D단지 현장`, `OPT-D2`, `230000000`, `4등급`
+
+<img src="../assets/screenshots/d09-eventhouse-open.png" width="1000" alt="eh_zeb_queryset에서 ZebRiskEvent를 조회한 결과. open 이벤트 1행과 추천 OPT-D2, 비용 230,000,000원, 적용 후 4등급이 보입니다." />
 
 ## 7. Teams 제안 확인
 
