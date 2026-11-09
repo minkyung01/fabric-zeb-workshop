@@ -38,23 +38,48 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
     등급별 보고서 색(`grade_color`)과 용도별 주거 구분(`use_family`: 주거용/주거용 이외)을 추가합니다. 1차에너지 기준값이 주거 구분에 따라 다르기 때문입니다.
 
-    예상 결과: `gold.ref_region 17행`, `gold.ref_building_use 14행`, `gold.ref_zeb_grade_criteria 6행`, `gold.ref_equipment_category 8행`
+    예상 결과:
 
-    <img src="../assets/screenshots/d05-reference-saved.png" width="450" alt="Gold 기준 정보 저장 결과. 시도 17행, 용도 14행, ZEB 등급 기준 6행, 설비 분야 8행이 출력됩니다." />
+    ``` text
+    gold.ref_region                 17행
+    gold.ref_building_use           14행
+    gold.ref_zeb_grade_criteria      6행
+    gold.ref_equipment_category     8행
+    ```
 
 3.  공공 인증
 
     Silver의 공공 인증 테이블을 옮기면서 원천 시도 표기 열(`sido_raw`)만 뺍니다. 테이블 이름 앞의 `pub_`는 공공 데이터라는 뜻입니다.
 
-    예상 결과: 5줄이 출력됩니다. `gold.pub_zeb_certification 9,760행`, `gold.pub_certified_building 25,362행` 등입니다.
+    예상 결과: 5줄이 출력됩니다.
 
-    <img src="../assets/screenshots/d05-public-saved.png" width="450" alt="Gold 공공 인증 저장 결과. 인증 건물 25,362행, ZEB 9,760행, 녹색건축 5,104행, BF 22,184행, 녹색기술 1,905행이 출력됩니다." />
+    ``` text
+    gold.pub_certified_building       25,362행
+    gold.pub_zeb_certification         9,760행
+    gold.pub_gseed_certification       5,104행
+    gold.pub_bf_certification         22,184행
+    gold.pub_green_tech_certificate    1,905행
+    ```
 
 4.  Contoso 내부 — 시스템별 업무 데이터
 
-    예상 결과: 13줄이 출력됩니다. `gold.erp_project 8행`부터 `gold.pms_action_log 0행`까지입니다.
+    예상 결과: 13줄이 출력됩니다.
 
-    <img src="../assets/screenshots/d05-contoso-saved.png" width="450" alt="Gold Contoso 내부 테이블 13개의 저장 결과. ERP 프로젝트 8행, 설계안 18행, 발주 25행, 조치 기록 0행 등이 출력됩니다." />
+    ``` text
+    gold.erp_project                 8행
+    gold.pms_site                    8행
+    gold.mdm_site_xref               8행
+    gold.bim_design_version         18행
+    gold.pms_certificate            10행
+    gold.pms_cert_target            12행
+    gold.pms_cert_milestone          48행
+    gold.pms_equipment_plan         39행
+    gold.scm_vendor                  9행
+    gold.scm_purchase_order         25행
+    gold.scm_po_event                1행
+    gold.sim_improvement_option     12행
+    gold.pms_action_log              0행
+    ```
 
 5.  운영 모니터링(`ops`) — 보고서용 계산 결과
 
@@ -71,9 +96,13 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
     | 주의 | 예상 등급이 목표 등급보다 낮음, BEMS 미계획, 추가 인증(녹색건축·BF) 목표 미달 |
     | 정상 | 위 조건에 해당하지 않음 |
 
-    예상 결과: `ops.po_status 25행`, `ops.milestone_forecast 48행`, `ops.site_status 8행`
+    예상 결과:
 
-    <img src="../assets/screenshots/d05-ops-saved.png" width="450" alt="운영 지표 저장 결과. ops.po_status 25행, ops.milestone_forecast 48행, ops.site_status 8행이 출력됩니다." />
+    ``` text
+    ops.po_status              25행
+    ops.milestone_forecast     48행
+    ops.site_status             8행
+    ```
 
 6.  결과 확인
 
@@ -100,9 +129,11 @@ Gold에 판정 결과를 미리 넣어 두지 않는 이유는 판정 규칙이 
 
     Gold를 다시 만들었을 때 온톨로지 그래프가 있으면 함께 새로 고칩니다. 지금은 Ontology가 없으므로 건너뜁니다.
 
-    예상 결과: `온톨로지 그래프가 없어 새로 고침을 건너뜁니다.`
+    예상 결과:
 
-    <img src="../assets/screenshots/d05-graph-refresh-skipped.png" width="1000" alt="온톨로지 그래프 새로 고침 셀 실행 결과. 온톨로지 그래프가 없어 새로 고침을 건너뜁니다라는 메시지가 출력됩니다." />
+    ``` text
+    온톨로지 그래프가 없어 새로 고침을 건너뜁니다.
+    ```
 
 ## 3. 결과 읽기
 

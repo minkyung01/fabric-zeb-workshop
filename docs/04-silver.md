@@ -40,9 +40,13 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
     - 건물명 키: 괄호 안 내용, 기호, `신축공사`·`실시설계용역` 같은 말을 지워서 기관마다 조금씩 다른 건물명이 같은 키가 되게 합니다.
     - 용도: 원천 용도를 실습에서 쓰는 용도 그룹(`use_group`)으로 바꿉니다. 목록에 없는 용도는 `기타`로 둡니다.
 
-    예상 결과: `silver.ref_zeb_grade_criteria 6행`, `silver.ref_region 17행`, `silver.ref_equipment_category 8행`
+    예상 결과:
 
-    <img src="../assets/screenshots/d04-reference-saved.png" width="450" alt="공통 기준 정보 저장 결과. silver.ref_zeb_grade_criteria 6행, silver.ref_region 17행, silver.ref_equipment_category 8행이 출력됩니다." />
+    ``` text
+    silver.ref_zeb_grade_criteria       6행
+    silver.ref_region                 17행
+    silver.ref_equipment_category      8행
+    ```
 
 3.  공공 인증 데이터
 
@@ -57,24 +61,38 @@ Silver에서는 값을 정리하고 표기를 맞추고 이벤트를 반영하�
     silver.green_tech_certificate             1,905행
     ```
 
-    <img src="../assets/screenshots/d04-public-silver.png" width="450" alt="공공 인증 정제 결과. silver.zeb_certification 9,760행, silver.gseed_certification 5,104행, silver.bf_certification 22,184행, silver.green_tech_certificate 1,905행이 출력되어 있습니다." />
-
 4.  같은 건물 연결 — 인증 건물
 
     한 건물이 ZEB·녹색건축·BF 인증을 각각 받으면 기관마다 따로 기록됩니다. 시도와 정리한 건물명이 같으면 같은 건물로 봅니다. 건물 이름·시도·용도는 ZEB → 녹색건축 → BF 순서로 찾고, 인증마다 가장 최근 기록(본인증 우선)의 값을 씁니다.
 
-    예상 결과: `silver.certified_building 25,362행`. 한 건물이 받은 여러 인증이 한 행으로 묶이므로 세 인증의 건수를 더한 값보다 적습니다.
+    예상 결과: 한 건물이 받은 여러 인증이 한 행으로 묶이므로 세 인증의 건수를 더한 값보다 적습니다.
 
-    <img src="../assets/screenshots/d04-buildings-saved.png" width="450" alt="같은 건물 연결 결과. silver.certified_building 25,362행이 출력됩니다." />
+    ``` text
+    silver.certified_building    25,362행
+    ```
 
 5.  Contoso 내부 데이터 — 이벤트와 승인된 조치를 반영한 현재 상태
 
     - 발주 이벤트: 납기 변경 이벤트가 있으면 `expected_date`를 새 날짜로 바꾸고, 원래 날짜는 `original_expected_date`에 남깁니다. 리버뷰 B단지 창호(`IC-B-ENV`)의 예상 입고일이 `2027-04-15`에서 `2027-04-20`으로 바뀝니다.
     - 승인된 보완안: `pms_action_log`에 `apply_options` 기록이 있으면, 현재 설계안에 보완안 효과를 더한 <b>새 설계안(조치 반영안)</b>을 만들어 `현행`으로 바꾸고, 보완안 설비도 설비 계획에 추가합니다. 지금은 조치 기록이 없어서 새 설계안이 생기지 않습니다. 09장에서 승인한 뒤에 이 셀이 V4를 만듭니다.
 
-    예상 결과: 내부 테이블 13개가 만들어집니다. `silver.bim_design_version 18행`, `silver.pms_equipment_plan 39행`, `silver.scm_purchase_order 25행`, `silver.pms_action_log 0행` 등 모두 Bronze와 행 수가 같습니다.
+    예상 결과: 내부 테이블 13개가 만들어지고 모두 Bronze와 행 수가 같습니다.
 
-    <img src="../assets/screenshots/d04-contoso-saved.png" width="450" alt="Contoso 내부 데이터 정제 결과. Silver 테이블 13개의 행 수가 출력되며, 설계안 18행, 설비 계획 39행, 발주 25행, 조치 기록 0행입니다." />
+    ``` text
+    silver.erp_project                 8행
+    silver.pms_site                    8행
+    silver.mdm_site_xref               8행
+    silver.pms_action_log              0행
+    silver.bim_design_version         18행
+    silver.pms_equipment_plan         39행
+    silver.scm_vendor                  9행
+    silver.scm_po_event                1행
+    silver.scm_purchase_order         25행
+    silver.pms_cert_target            12행
+    silver.pms_certificate            10행
+    silver.pms_cert_milestone          48행
+    silver.sim_improvement_option     12행
+    ```
 
 6.  정제 결과 확인
 

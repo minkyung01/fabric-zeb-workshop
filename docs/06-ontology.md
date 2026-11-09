@@ -63,8 +63,6 @@ Graph 없이도 Lakehouse에 직접 바인딩할 수 있습니다. Ontology 캔�
     먼저 Plan에서 설계 근거, 검증 결과와 미리 보기를 보여줘. 적용은 내가 검토하고 Act에서 승인한 다음에 해.
     ```
 
-    <img src="../assets/screenshots/d06-agent-prompt.png" width="1000" alt="Ontology Agent의 Plan 모드에서 현장·설계안·인증 초안 프롬프트를 보낸 화면. 에이전트가 Working on it 상태로 응답을 준비하고 있습니다." />
-
     `ops` 스키마를 빼는 이유는 05장에서 본 것처럼 `ops`에는 판정 결과가 들어 있기 때문입니다. Ontology에는 업무 데이터와 판정 규칙만 두고, 결과는 질문할 때마다 규칙으로 구하게 합니다.
 
 3.  에이전트가 Lakehouse의 열과 샘플 행을 살펴보고 초안을 만들어 검증할 때까지 기다립니다. 진행 중에는 "Considering…", "Deciding…" 같은 생각 단계가 보이고, 보통 5–8분 걸립니다.

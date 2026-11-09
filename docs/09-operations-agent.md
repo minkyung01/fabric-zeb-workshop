@@ -64,8 +64,6 @@ Operations agent가 감시하는 것은 Lakehouse가 아니라 Eventhouse의 `Ze
 
     실행 전에는 왼쪽 Tables 아래에 No tables가 보이고, 아래 결과 영역은 비어 있습니다. 명령 전체를 붙여 넣고 Run을 누릅니다.
 
-    <img src="../assets/screenshots/d09-table-command.png" width="1000" alt="eh_zeb_queryset에 테이블 생성 명령을 붙여 넣은 실행 전 화면. 위쪽에 Run이 있고 왼쪽 Tables는 No tables, 아래 결과 영역은 비어 있습니다." />
-
     | 열 | 뜻 |
     |---|---|
     | `event_id`, `status_time`, `event_status` | 위험 이벤트 ID, 상태가 바뀐 시각, 상태(`open` 대응 전, `approved` 담당자 승인, `resolved` 위험 해소) |

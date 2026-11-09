@@ -32,7 +32,9 @@ Bronze에서는 받은 값을 고치지 않습니다. 모든 값을 문자열로
 
     예상 결과: `batch_id: …` 한 줄이 출력됩니다. 이번 적재를 구분하는 ID입니다.
 
-    <img src="../assets/screenshots/d02-collection-definition.png" width="1000" alt="1번 셀 실행 결과. 공공 인증 데이터 4종의 Bronze 테이블과 열 이름을 정의하고 bronze 스키마를 생성한 뒤, 아래에 batch_id 한 줄이 출력되어 있습니다." />
+    ``` text
+    batch_id: …
+    ```
 
 2.  공공데이터포털 다운로드 함수
 
@@ -52,8 +54,6 @@ Bronze에서는 받은 값을 고치지 않습니다. 모든 값을 문자열로
     OK  bronze.pub_bf_cert            22,184행  ← 한국장애인고용공단_장애물 없는 생활환경(Barrier Free) 인증 시설 정보_20260630
     OK  bronze.pub_green_tech_cert     1,905행  ← 한국산업기술진흥원_녹색기술인증현황_20260626
     ```
-
-    <img src="../assets/screenshots/d02-bronze-saved.png" width="1000" alt="3번 셀 실행 결과. OK bronze.pub_zeb_cert 9,760행, OK bronze.pub_gseed_cert 5,104행, OK bronze.pub_bf_cert 22,184행, OK bronze.pub_green_tech_cert 1,905행이 각각 내려받은 파일 이름과 함께 출력되어 있습니다." />
 
     `[주의] … 새 열` 줄이 보이면 포털 파일에 열이 새로 추가된 것입니다. 새 열은 `extra_1` 같은 이름으로 저장되며 실습에는 영향이 없습니다.
 

@@ -159,6 +159,24 @@ class Docs(unittest.TestCase):
         self.assertNotIn("## 5.", questions)
         self.assertNotIn("## 6.", questions)
 
+    def test_text_outputs_use_code_blocks_without_duplicate_screenshots(self):
+        examples = {
+            "02-bronze-public.md": ("d02-bronze-saved.png", "OK  bronze.pub_zeb_cert"),
+            "03-bronze-contoso.md": ("d03-reference-saved.png", "bronze.ref_zeb_grade_criteria"),
+            "04-silver.md": ("d04-public-silver.png", "silver.zeb_certification"),
+            "05-gold.md": ("d05-ops-saved.png", "ops.po_status"),
+            "07-data-agent.md": ("d07-notebook-q4.png", "본인증 공동주택: 30건"),
+        }
+        for name, (screenshot, output) in examples.items():
+            text = (ROOT / "docs" / name).read_text(encoding="utf-8")
+            self.assertNotIn(screenshot, text, name)
+            blocks = re.findall(r"``` text\n(.*?)```", text, re.S)
+            self.assertTrue(any(output in block for block in blocks), name)
+        operations = (ROOT / "docs" / "09-operations-agent.md").read_text(encoding="utf-8")
+        self.assertNotIn("d09-table-command.png", operations)
+        self.assertIn(".create-merge table ZebRiskEvent", operations)
+        self.assertIn("d10-create-table.png", operations)
+
     def test_power_bi_focuses_on_site_control_tower(self):
         report = (ROOT / "docs" / "08-power-bi.md").read_text(encoding="utf-8")
         main, optional = report.split("## (선택) 공공 인증 현황", 1)
