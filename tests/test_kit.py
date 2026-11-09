@@ -213,7 +213,24 @@ class Docs(unittest.TestCase):
                          ["site_name", "current_version_code", "selfsuff_pct",
                           "primary_energy_kwh_m2y", "forecast_zeb_label",
                           "prelim_zeb_grade", "risk_level", "risk_reason"])
-        self.assertIn("새 페이지를 추가하지 마", creation)
+        prompts = re.findall(r"``` text\n(.*?)```", creation.split("## 4.", 1)[0], re.S)
+        self.assertEqual(len(prompts), 1)
+        self.assertNotIn("개체를 직접 선택해 크기·위치를 조정", creation)
+        self.assertNotIn("d08-page2.png", creation)
+        boxes = [tuple(map(int, match)) for match in
+                 re.findall(r"X=(\d+), Y=(\d+), 너비=(\d+), 높이=(\d+)", prompt)]
+        self.assertEqual(len(boxes), 8)
+        for index, (x, y, width, height) in enumerate(boxes):
+            self.assertGreater(width, 0)
+            self.assertGreater(height, 0)
+            self.assertTrue(0 <= x < x + width <= 1280)
+            self.assertTrue(0 <= y < y + height <= 720)
+            for other_x, other_y, other_width, other_height in boxes[index + 1:]:
+                self.assertTrue(x + width <= other_x or other_x + other_width <= x
+                                or y + height <= other_y or other_y + other_height <= y)
+        cards = boxes[1:6]
+        self.assertEqual({(y, width, height) for _, y, width, height in cards},
+                         {(76, 236, 100)})
 
     def test_chapters_linked_from_readme(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
