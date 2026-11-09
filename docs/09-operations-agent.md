@@ -234,15 +234,15 @@ Playbook은 Operations agent가 지침과 데이터를 읽고 만드는 감시 �
 
 1.  Teams에서 Fabric operations agent 채팅을 엽니다. 에이전트는 약 5분마다 조회하며, 메시지 생성·전송 시간이 더해질 수 있습니다. 이전 실습이나 다른 에이전트의 메시지가 있으면 맨 아래의 `oa_zeb` 메시지를 봅니다.
 
-    예상 결과: `oa_zeb`가 보낸 카드의 제목이 규칙 이름(예: `Zeb Risk Event Open Notify And Recommend`)이고, 본문에 위험 이벤트 `ZEB-HS-D-20260930`이 `open`이 되었고 추천 보완안이 `OPT-D2`라는 내용이 있습니다. Recommended action에 `ApplyZebOption`과 설명이 있고, 아래에 Proceed, Investigate further (preview), Dismiss, Ask a question 버튼이 있습니다. 메시지 문장은 AI가 만들므로 다를 수 있고, 현장 이름이나 비용이 빠질 수도 있습니다.
+    예상 결과: `oa_zeb`가 보낸 카드의 제목이 규칙 이름(캡처: `Zeb Event Status Opens`)이고, 본문에 위험 이벤트 `ZEB-HS-D-20260930`이 `open`이 되었고 추천 보완안이 `OPT-D2`라는 내용이 있습니다. Recommended action에 `ApplyZebOption`과 한국어로 입력한 설명이 있고, 아래에 Proceed, Investigate further (preview), Dismiss, Ask a question 버튼이 있습니다. 메시지 문장은 AI가 만들므로 다를 수 있고, 현장 이름이나 비용이 빠질 수도 있습니다.
 
-    <img src="../assets/screenshots/d10-teams-message.png" width="1000" alt="Teams의 Fabric operations agent 채팅. oa_zeb의 Zeb Risk Event Open Notify And Recommend 카드에 ZEB-HS-D-20260930, OPT-D2, Recommended action ApplyZebOption과 Proceed, Investigate further, Dismiss, Ask a question 버튼이 있습니다." />
+    <img src="../assets/screenshots/d10-teams-message.png" width="800" alt="Teams의 Fabric operations agent 채팅. oa_zeb의 Zeb Event Status Opens 카드에 위험 이벤트와 OPT-D2, ApplyZebOption의 한국어 설명, Show details와 승인 관련 버튼이 있습니다." />
 
 2.  카드의 Show details를 눌러 근거를 확인합니다.
 
-    예상 결과: 이벤트 ID 속성(예: `Id`)은 `ZEB-HS-D-20260930`, 상태 속성(예: `ZebEventStatusText`)은 `open`, 보완안 속성(예: `OptionId`)은 `OPT-D2`입니다. Rule Condition에 Playbook 규칙이, Data Source에 `eh_zeb`가 보입니다. 속성 이름은 5단계 Playbook의 이름을 따릅니다.
+    예상 결과: 이벤트 ID 속성(캡처: `Id`·`EventId`)은 `ZEB-HS-D-20260930`, 상태 속성(캡처: `EventStatusText`)은 `open`, 보완안 속성(캡처: `RecommendedOptionId`)은 `OPT-D2`입니다. Rule Condition에 이벤트별 최신 상태가 `open`으로 바뀔 때 알리고 승인 가능한 `ApplyZebOption`을 제안하는 규칙이, Data Source에 `eh_zeb`가 보입니다. 속성 이름은 5단계 Playbook의 이름을 따릅니다.
 
-    <img src="../assets/screenshots/d10-teams-details.png" width="1000" alt="Show details를 펼친 화면. Timestamp, Id ZEB-HS-D-20260930, ZebEventStatusText open, OptionId OPT-D2, Rule Condition, Data Source eh_zeb" />
+    <img src="../assets/screenshots/d10-teams-details.png" width="650" alt="Show details를 펼친 화면. Id와 EventId는 ZEB-HS-D-20260930, EventStatusText는 open, RecommendedOptionId는 OPT-D2이며 Rule Condition과 Data Source eh_zeb가 보입니다." />
 
 3.  바로 Proceed를 누르지 않고 근거를 먼저 검토합니다.
 
