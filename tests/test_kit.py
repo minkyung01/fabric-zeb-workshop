@@ -66,6 +66,15 @@ class Notebooks(unittest.TestCase):
 
 
 class Docs(unittest.TestCase):
+    def test_no_visible_bold_markers(self):
+        marker = "*" * 2
+        for path in ROOT.rglob("*.md"):
+            self.assertNotIn(marker, path.read_text(encoding="utf-8"), str(path.relative_to(ROOT)))
+        for name in NOTEBOOKS:
+            for cell in notebook(name)["cells"]:
+                if cell["cell_type"] == "markdown":
+                    self.assertNotIn(marker, "".join(cell["source"]), name)
+
     def test_workshop_missions_and_participant_naming(self):
         for doc in DOCS:
             text = doc.read_text(encoding="utf-8")
@@ -93,7 +102,7 @@ class Docs(unittest.TestCase):
         self.assertIn('status becomes "open"', approval)
         self.assertIn("Execute the action only after", approval)
         self.assertIn("Crosses above 0.5", approval)
-        self.assertNotIn("기본 매개 변수로 **Run all**", approval)
+        self.assertNotIn("기본 매개 변수로 Run all", approval)
 
     def test_chapters_linked_from_readme(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")

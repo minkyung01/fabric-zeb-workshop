@@ -1,10 +1,10 @@
 # %% [markdown]
 # # 02. Bronze ② Contoso 건설 내부 시스템 데이터 만들기
 # 
-# Contoso 건설의 **가상** 내부 시스템 데이터를 만듭니다. 회사·현장·공급사·사람 이름과 수치는 모두 실습용으로 만든 값입니다.
-# 값이 고정되어 있어 몇 번을 실행해도 결과가 같고, 다시 실행하면 **실습을 처음 시작할 때의 상태로 돌아갑니다.**
+# Contoso 건설의 가상 내부 시스템 데이터를 만듭니다. 회사·현장·공급사·사람 이름과 수치는 모두 실습용으로 만든 값입니다.
+# 값이 고정되어 있어 몇 번을 실행해도 결과가 같고, 다시 실행하면 실습을 처음 시작할 때의 상태로 돌아갑니다.
 # 
-# 실제 건설사처럼 **시스템마다 코드 체계가 다릅니다.** 같은 현장이라도 ERP는 프로젝트 번호, 공사관리(PMS)는 현장 코드,
+# 실제 건설사처럼 시스템마다 코드 체계가 다릅니다. 같은 현장이라도 ERP는 프로젝트 번호, 공사관리(PMS)는 현장 코드,
 # BIM·에너지 시뮬레이션은 모델 번호를 쓰며, 세 코드의 대응 관계는 기준정보(MDM) 매핑표에 있습니다.
 # 
 # | 원천 시스템(가상) | Bronze 테이블 | 키 | 내용 |
@@ -17,8 +17,8 @@
 # | 에너지 컨설팅 | `sim_improvement_option` | 보완안 번호 | 등급 보완안 시뮬레이션 결과 |
 # | 기준 정보 | `ref_zeb_grade_criteria`, `ref_region`, `ref_equipment_category` | — | 인증 등급 기준, 시도, 설비 분야 |
 # 
-# `ref_zeb_grade_criteria`는 제로에너지건축물 인증시스템(zeb.energy.or.kr)의 **인증 등급 기준값**입니다.
-# 등급을 어떻게 판정하는지(두 기준 중 더 좋은 등급, BEMS 필수 등)는 이 테이블에 없고, 06장에서 **온톨로지의 업무 규칙**으로 정의합니다.
+# `ref_zeb_grade_criteria`는 제로에너지건축물 인증시스템(zeb.energy.or.kr)의 인증 등급 기준값입니다.
+# 등급을 어떻게 판정하는지(두 기준 중 더 좋은 등급, BEMS 필수 등)는 이 테이블에 없고, 06장에서 온톨로지의 업무 규칙으로 정의합니다.
 #
 # 맨 위 셀부터 한 셀씩 실행합니다. 전체 실행에 약 2분 걸립니다.
 
@@ -30,7 +30,7 @@ as_of_date = "2026-09-30"
 #
 # 기준일(`as_of_date`)과 테이블 저장 함수 `save`를 정합니다. 저장할 때 출처(`_source`)와 생성 시각(`_generated_at`)을 함께 기록합니다.
 #
-# **예상 결과:** 결과 없이 끝납니다.
+# 예상 결과: 결과 없이 끝납니다.
 
 # %%
 from datetime import date, timedelta
@@ -51,10 +51,10 @@ def save(rows, table, ddl, source=SOURCE):
 # %% [markdown]
 # ## 1. 기준 정보 — 인증 등급 기준값, 시도, 설비 분야
 #
-# ZEB 등급은 `+`(ZEB+)가 가장 높고 1 → 5등급 순서로 낮아집니다. 등급마다 **에너지자립률 하한**과 **1차에너지소요량 기준값**(주거용/주거용 이외)이 있습니다.
+# ZEB 등급은 `+`(ZEB+)가 가장 높고 1 → 5등급 순서로 낮아집니다. 등급마다 에너지자립률 하한과 1차에너지소요량 기준값(주거용/주거용 이외)이 있습니다.
 # 시도 표에는 원천마다 다르게 쓰는 표기(`경기도`, `경기`, `서울시` …)를 하나로 맞출 때 쓸 별칭(`aliases`)을 함께 적어 둡니다.
 #
-# **예상 결과:** `bronze.ref_zeb_grade_criteria 6행`, `bronze.ref_region 17행`, `bronze.ref_equipment_category 8행`
+# 예상 결과: `bronze.ref_zeb_grade_criteria 6행`, `bronze.ref_region 17행`, `bronze.ref_equipment_category 8행`
 
 # %%
 # 제로에너지건축물 인증 등급 기준값 (에너지자립률 하한 %, 1차에너지소요량 상한 kWh/㎡·년 — 주거용/주거용 이외)
@@ -109,7 +109,7 @@ save(categories, "bronze.ref_equipment_category", "category_code string, categor
 # 원천 시스템마다 시도 표기가 다르므로(`경기도`, `경기`, `경기 `, `서울시`, `전북특별자치도` 등) Silver에서 하나로 맞춥니다.
 # 같은 현장도 ERP는 `CT-24-0189`, PMS는 `HS-D`, BIM은 `BIM-0397`로 부르고, MDM 매핑표가 이 세 코드를 연결합니다.
 #
-# **예상 결과:** `bronze.erp_project 8행`, `bronze.pms_site 8행`, `bronze.mdm_site_xref 8행`
+# 예상 결과: `bronze.erp_project 8행`, `bronze.pms_site 8행`, `bronze.mdm_site_xref 8행`
 
 # %%
 # ERP: 프로젝트 번호, 이름, 시도(원천 표기), 시군구, 주용도, 세대수, 연면적, 발주처 구분, 착공일, 준공 예정일, PM, 인센티브
@@ -154,11 +154,11 @@ START = {SITE_OF[r[0]]: r[8] for r in erp}
 # %% [markdown]
 # ## 3. 설계안 — BIM·에너지 시뮬레이션
 # 
-# D단지는 예비인증(4등급, 설계안 V2: 자립률 43.5%)을 받은 뒤 **원가 절감(VE)으로 옥상 태양광을 줄여** V3에서 자립률이 38.2%로 낮아졌습니다.
+# D단지는 예비인증(4등급, 설계안 V2: 자립률 43.5%)을 받은 뒤 원가 절감(VE)으로 옥상 태양광을 줄여 V3에서 자립률이 38.2%로 낮아졌습니다.
 # B단지는 자립률이 40% 미만이지만 1차에너지소요량이 낮습니다.
 # 현장마다 가장 최근 설계안이 `현행`이고, 나머지는 `이전`입니다.
 #
-# **예상 결과:** `bronze.bim_design_version 18행`
+# 예상 결과: `bronze.bim_design_version 18행`
 
 # %%
 # (현장, 설계안 번호, 이름, 날짜, 에너지자립률 %, 1차에너지소요량 kWh/㎡·년, 태양광 kW, 지열 kW, 변경 내용)
@@ -195,10 +195,10 @@ CURRENT_VERSION = {s: f"{BIM_OF[s]}-V{latest_no[s]}" for s in latest_no}
 # %% [markdown]
 # ## 4. 인증 목표와 취득 인증서 — PMS
 # 
-# 예비인증서에는 **어느 설계안으로 받았는지**(`design_version_id`)가 함께 기록됩니다.
-# 세종 E학교는 ZEB·녹색건축·BF **세 가지 인증**을 목표로 합니다.
+# 예비인증서에는 어느 설계안으로 받았는지(`design_version_id`)가 함께 기록됩니다.
+# 세종 E학교는 ZEB·녹색건축·BF 세 가지 인증을 목표로 합니다.
 #
-# **예상 결과:** `bronze.pms_cert_target 12행`, `bronze.pms_certificate 10행`
+# 예상 결과: `bronze.pms_cert_target 12행`, `bronze.pms_certificate 10행`
 
 # %%
 cert_targets = [
@@ -232,7 +232,7 @@ PRELIM_DATE = {s: d(dt) for _, s, t, _, _, dt, _, _ in certificates if t == "ZEB
 # 
 # 설비 설치를 마쳐야 본인증을 신청할 수 있습니다. 일정 계획은 현장마다 같은 기준(준공 121일 전 설비 설치 완료, 75일 전 본인증 신청, 30일 전 본인증 취득)으로 세웁니다.
 #
-# **예상 결과:** `bronze.pms_cert_milestone 48행` (현장 8개 × 일정 6단계)
+# 예상 결과: `bronze.pms_cert_milestone 48행` (현장 8개 × 일정 6단계)
 
 # %%
 milestones = []
@@ -255,11 +255,11 @@ save(milestones, "bronze.pms_cert_milestone",
 # %% [markdown]
 # ## 6. 설비 계획(PMS)과 공급사·발주(SCM)
 # 
-# 발주는 **WBS 코드**(`wbs_element`)로 PMS 설비 계획과 이어집니다. **Northwind 지열**이 A단지와 D단지의 지열 히트펌프를 납품합니다.
+# 발주는 WBS 코드(`wbs_element`)로 PMS 설비 계획과 이어집니다. Northwind 지열이 A단지와 D단지의 지열 히트펌프를 납품합니다.
 # 스마트오피스 C센터는 설비 계획에 BEMS가 빠져 있습니다(실습을 위해 일부러 넣은 상황).
 # 리버뷰 B단지 창호 발주 1건에는 납기 변경 이벤트(+5일)가 있으며, 이 이벤트는 Silver에서 반영합니다.
 #
-# **예상 결과:** `bronze.pms_equipment_plan 39행`, `bronze.scm_vendor 9행`, `bronze.scm_purchase_order 25행`, `bronze.scm_po_event 1행`
+# 예상 결과: `bronze.pms_equipment_plan 39행`, `bronze.scm_vendor 9행`, `bronze.scm_purchase_order 25행`, `bronze.scm_po_event 1행`
 
 # %%
 # (현장, [(분야, 설비명, 용량, 단위, 자립률 기여 %p, 예산)])
@@ -349,13 +349,13 @@ save(po_events, "bronze.scm_po_event",
 # %% [markdown]
 # ## 7. 등급 보완안 — 에너지 컨설팅 시뮬레이션 결과, 조치 기록
 #
-# 보완안마다 적용했을 때 **에너지자립률이 몇 %p 오르는지(`selfsuff_gain_pp`), 1차에너지소요량이 얼마나 줄어드는지(`primary_energy_delta`)**,
+# 보완안마다 적용했을 때 에너지자립률이 몇 %p 오르는지(`selfsuff_gain_pp`), 1차에너지소요량이 얼마나 줄어드는지(`primary_energy_delta`),
 # 비용과 준비 기간이 얼마인지 들어 있습니다. D단지 6개, H단지 5개, C센터 1개입니다.
 #
-# `pms_action_log`(조치 기록)는 **처음에는 비어 있습니다.** 10장에서 담당자가 Teams에서 보완안을 승인하면 이 테이블에 기록이 추가되고,
-# Silver가 그 기록을 읽어 새 설계안을 만듭니다. 이 Notebook을 다시 실행하면 조치 기록도 지워져 **실습 처음 상태로 돌아갑니다.**
+# `pms_action_log`(조치 기록)는 처음에는 비어 있습니다. 10장에서 담당자가 Teams에서 보완안을 승인하면 이 테이블에 기록이 추가되고,
+# Silver가 그 기록을 읽어 새 설계안을 만듭니다. 이 Notebook을 다시 실행하면 조치 기록도 지워져 실습 처음 상태로 돌아갑니다.
 #
-# **예상 결과:** `bronze.sim_improvement_option 12행`, `bronze.pms_action_log 0행`
+# 예상 결과: `bronze.sim_improvement_option 12행`, `bronze.pms_action_log 0행`
 
 # %%
 options = [
@@ -383,7 +383,7 @@ save([], "bronze.pms_action_log",
 # %% [markdown]
 # ## 8. Bronze 테이블 확인
 #
-# **예상 결과:** 01·02 Notebook이 만든 Bronze 테이블 **21개**가 보입니다(공공 4개 + 수집 기록 1개 + Contoso 내부 16개).
+# 예상 결과: 01·02 Notebook이 만든 Bronze 테이블 21개가 보입니다(공공 4개 + 수집 기록 1개 + Contoso 내부 16개).
 
 # %%
 display(spark.sql("SHOW TABLES IN bronze"))
@@ -392,10 +392,10 @@ display(spark.sql("SHOW TABLES IN bronze"))
 # ## 9. 같은 현장, 시스템마다 다른 코드
 #
 # 에코시티 D단지의 데이터를 시스템별로 찾아 봅니다. MDM 매핑표가 ERP 프로젝트 번호·PMS 현장 코드·BIM 모델 번호를 연결하고,
-# 예비인증서에는 **어느 설계안으로 받았는지**(`design_version_id`)가 기록되어 있습니다.
+# 예비인증서에는 어느 설계안으로 받았는지(`design_version_id`)가 기록되어 있습니다.
 #
-# **예상 결과:** 3행이 나옵니다. 같은 현장(`CT-24-0189` = `HS-D` = `BIM-0397`)의 설계안 V1·V2·V3입니다.
-# 예비인증서 `ZEB-P-2024-0831`(4등급)은 **V2**(자립률 43.5%)로 받았지만, 현재 설계안(`현행`)은 VE 반영안 **V3**(자립률 38.2%)입니다.
+# 예상 결과: 3행이 나옵니다. 같은 현장(`CT-24-0189` = `HS-D` = `BIM-0397`)의 설계안 V1·V2·V3입니다.
+# 예비인증서 `ZEB-P-2024-0831`(4등급)은 V2(자립률 43.5%)로 받았지만, 현재 설계안(`현행`)은 VE 반영안 V3(자립률 38.2%)입니다.
 
 # %%
 display(spark.sql("""

@@ -2,24 +2,24 @@
 
 [목차](../README.md)
 
-Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참가자는 보지 않아도 됩니다. **실습자 계정은 `p011`부터**, Fabric 작업 영역은 **`ws-pNNN`** 형식입니다(`p011` → `ws-p011`, `p012` → `ws-p012`). 데이터 구조와 정답은 [데이터 설계](data-design.md)를 봅니다.
+Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참가자는 보지 않아도 됩니다. 실습자 계정은 `p011`부터, Fabric 작업 영역은 `ws-pNNN` 형식입니다(`p011` → `ws-p011`, `p012` → `ws-p012`). 데이터 구조와 정답은 [데이터 설계](data-design.md)를 봅니다.
 
 ## 준비할 리소스
 
 | 리소스 | 값 |
 |---|---|
-| Microsoft Fabric 용량 | 유료 F 용량. 12명 동시 실습 기준 **F64 이상 권장**(Copilot은 F2 이상이면 사용 가능). **Operations agent는 Trial 용량을 지원하지 않습니다.** |
-| 참가자 작업 영역 | `ws-pNNN` (참가자는 **Contributor** 이상) |
-| Lakehouse | `lh_zeb` (**schemas 켬**) |
+| Microsoft Fabric 용량 | 유료 F 용량. 12명 동시 실습 기준 F64 이상 권장(Copilot은 F2 이상이면 사용 가능). Operations agent는 Trial 용량을 지원하지 않습니다. |
+| 참가자 작업 영역 | `ws-pNNN` (참가자는 Contributor 이상) |
+| Lakehouse | `lh_zeb` (schemas 켬) |
 | 실습 파일 | Notebook 7개(`notebooks/*.ipynb`), `Files/workshop`에 `fabric/sm_zeb.tmdl`, `fabric/zeb-theme.json` |
 | 네트워크 | Fabric Spark에서 `https://www.data.go.kr`로 나가는 HTTPS(02장). 막혀 있으면 아래 "공공데이터 대체 경로" |
 | Power BI | 참가자 Pro 또는 PPU 라이선스 |
-| Microsoft Teams | Teams 라이선스, 앱 **Fabric Operations Agent** 허용(10장). 참가자는 Fabric과 **같은 계정**으로 Teams(데스크톱 또는 웹)에 로그인할 수 있어야 합니다. |
+| Microsoft Teams | Teams 라이선스, 앱 Fabric Operations Agent 허용(10장). 참가자는 Fabric과 같은 계정으로 Teams(데스크톱 또는 웹)에 로그인할 수 있어야 합니다. |
 | Microsoft Foundry (선택) | 09장용 Azure 구독·리소스 그룹, 프로젝트·모델 배포, Fabric IQ 인증 연결 |
 
 ## 1. Fabric 테넌트 설정
 
-**Admin portal → Tenant settings**에서 참가자 보안 그룹에 아래 설정을 허용합니다. 설정 반영에 최대 1시간 걸릴 수 있습니다.
+Admin portal → Tenant settings에서 참가자 보안 그룹에 아래 설정을 허용합니다. 설정 반영에 최대 1시간 걸릴 수 있습니다.
 
 | 설정 | 쓰는 장 |
 |---|---|
@@ -32,13 +32,13 @@ Workshop 환경을 준비하고 정리하는 관리자용 문서입니다. 참�
 
 공식 문서: [Ontology 테넌트 설정](https://learn.microsoft.com/en-us/fabric/iq/ontology/overview-tenant-settings), [Data agent 테넌트 설정](https://learn.microsoft.com/fabric/data-science/data-agent-tenant-settings), [Copilot 요구 사항](https://learn.microsoft.com/fabric/fundamentals/copilot-fabric-overview#available-regions), [Operations agent 요구 사항](https://learn.microsoft.com/fabric/real-time-intelligence/operations-agent#prerequisites).
 
-Teams 관리 센터에서 **Fabric Operations Agent** 앱을 참가자에게 허용합니다.
+Teams 관리 센터에서 Fabric Operations Agent 앱을 참가자에게 허용합니다.
 
 ## 2. 참가자 작업 영역 일괄 준비
 
 `admin/provision.py`가 참가자마다 작업 영역·Lakehouse·Notebook·실습 파일을 준비합니다. 이미 있는 항목은 다시 만들지 않습니다. 관리자 계정의 Azure CLI 로그인을 사용하며 비밀 값을 저장하지 않습니다.
 
-기본 접두사는 **`ws-`**입니다. 12명 예시는 `p011-p022`이며 실제 배정 계정의 마지막 번호에 맞춥니다. 기존 `ws-p011`이 있으면 재사용하며, 이 스크립트는 **계정 생성이나 기존 작업 영역 이름 변경을 하지 않습니다.** 기존 영역의 용량 할당·역할은 별도로 확인합니다. 이전 `zeb-` 이름의 영역을 자동으로 찾아 바꾸지 않습니다.
+기본 접두사는 `ws-`입니다. 12명 예시는 `p011-p022`이며 실제 배정 계정의 마지막 번호에 맞춥니다. 기존 `ws-p011`이 있으면 재사용하며, 이 스크립트는 계정 생성이나 기존 작업 영역 이름 변경을 하지 않습니다. 기존 영역의 용량 할당·역할은 별도로 확인합니다. 이전 `zeb-` 이름의 영역을 자동으로 찾아 바꾸지 않습니다.
 
 1.  관리자 PC에서 저장소 루트로 이동하고 Fabric 관리자(또는 용량 Contributor + 작업 영역 생성 권한) 계정으로 로그인합니다.
 
@@ -66,24 +66,24 @@ Teams 관리 센터에서 **Fabric Operations Agent** 앱을 참가자에게 허
     python admin/provision.py --capacity <capacity-id> --participants p011-p022 --users users.csv
     ```
 
-**확인할 결과:** 참가자마다 `create workspace`, `create lakehouse lh_zeb (schemas)`, `import notebook …` 7줄, `upload Files/workshop/…`이 출력됩니다. 참가자 작업 영역에 `lh_zeb`(+SQL analytics endpoint)와 Notebook 7개가 있고, Notebook의 기본 Lakehouse가 그 작업 영역의 `lh_zeb`입니다.
+확인할 결과: 참가자마다 `create workspace`, `create lakehouse lh_zeb (schemas)`, `import notebook …` 7줄, `upload Files/workshop/…`이 출력됩니다. 참가자 작업 영역에 `lh_zeb`(+SQL analytics endpoint)와 Notebook 7개가 있고, Notebook의 기본 Lakehouse가 그 작업 영역의 `lh_zeb`입니다.
 
 | 옵션 | 용도 |
 |---|---|
 | `--update-notebooks` | 이미 있는 Notebook을 저장소의 최신 버전으로 덮어씁니다(참가자 실행 결과는 남지만 셀 수정은 사라짐). |
-| `--reference-ontology` | 참고 설계 Ontology를 `ont_zeb`로 배포합니다. 06장의 Ontology agent를 쓸 수 없는 환경이나, 시간이 부족한 참가자의 대체 경로입니다. 배포하면 `ont_zeb_lh_…`, `ont_zeb_graph_…`도 자동으로 생깁니다. Gold가 있어야 인스턴스가 읽히므로 **05장 이후**에 실행합니다. |
+| `--reference-ontology` | 참고 설계 Ontology를 `ont_zeb`로 배포합니다. 06장의 Ontology agent를 쓸 수 없는 환경이나, 시간이 부족한 참가자의 대체 경로입니다. 배포하면 `ont_zeb_lh_…`, `ont_zeb_graph_…`도 자동으로 생깁니다. Gold가 있어야 인스턴스가 읽히므로 05장 이후에 실행합니다. |
 | `--role` | 참가자 권한(기본 `Contributor`) |
 | `--tenant` | 여러 테넌트에 로그인한 경우 토큰을 받을 테넌트 |
 
-`--reference-ontology`는 저장소의 REST 정의를 제출하는 **비교·복구용 경로**입니다. 새 Ontology 경험과 정의의 호환성은 별도 테스트 작업 영역에서 열기·키·바인딩·원본 조회로 먼저 확인합니다. 자동 마이그레이션이나 Agent 초안 생성 실습 완료로 간주하지 않습니다. 기존 참가자 Ontology는 덮어쓰지 않습니다.
+`--reference-ontology`는 저장소의 REST 정의를 제출하는 비교·복구용 경로입니다. 새 Ontology 경험과 정의의 호환성은 별도 테스트 작업 영역에서 열기·키·바인딩·원본 조회로 먼저 확인합니다. 자동 마이그레이션이나 Agent 초안 생성 실습 완료로 간주하지 않습니다. 기존 참가자 Ontology는 덮어쓰지 않습니다.
 
-**수동 준비:** 스크립트를 쓰지 않으면 작업 영역을 만들고 용량에 할당한 뒤, **New item → Lakehouse**에서 `lh_zeb`를 만들 때 **Lakehouse schemas**를 켭니다. **Import → Notebook → From this computer**로 `notebooks/*.ipynb` 7개를 가져오고, 각 Notebook에서 `lh_zeb`를 기본 Lakehouse로 연결합니다. `lh_zeb`의 **Files**에 `workshop` 폴더를 만들고 `fabric/sm_zeb.tmdl`, `fabric/zeb-theme.json`을 업로드합니다. Notebook 이름은 파일 이름 그대로 둡니다(`nb_apply_decision`이 `03_silver_conform`·`04_gold_model`을 이름으로 실행).
+수동 준비: 스크립트를 쓰지 않으면 작업 영역을 만들고 용량에 할당한 뒤, New item → Lakehouse에서 `lh_zeb`를 만들 때 Lakehouse schemas를 켭니다. Import → Notebook → From this computer로 `notebooks/*.ipynb` 7개를 가져오고, 각 Notebook에서 `lh_zeb`를 기본 Lakehouse로 연결합니다. `lh_zeb`의 Files에 `workshop` 폴더를 만들고 `fabric/sm_zeb.tmdl`, `fabric/zeb-theme.json`을 업로드합니다. Notebook 이름은 파일 이름 그대로 둡니다(`nb_apply_decision`이 `03_silver_conform`·`04_gold_model`을 이름으로 실행).
 
 Notebook은 `notebooks/src/*.py`에서 만들어집니다. 소스를 고쳤다면 `python tools/build_notebooks.py`로 `.ipynb`를 다시 만들고 `--update-notebooks`로 배포합니다.
 
 ## 3. 공공데이터 다운로드
 
-02장의 `01_bronze_public_ingest`는 공공데이터포털에서 **로그인·인증키 없이** 파일을 내려받습니다(이용허락범위 제한 없음 데이터). 실습 전에 관리자 점검용 작업 영역에서 한 번 실행해 4종 모두 `OK`인지 확인합니다.
+02장의 `01_bronze_public_ingest`는 공공데이터포털에서 로그인·인증키 없이 파일을 내려받습니다(이용허락범위 제한 없음 데이터). 실습 전에 관리자 점검용 작업 영역에서 한 번 실행해 4종 모두 `OK`인지 확인합니다.
 
 - 여러 참가자가 동시에 내려받으면 포털의 다운로드 횟수 제한(`needCaptcha`)에 걸릴 수 있습니다. 참가자를 2–3개 조로 나눠 1–2분 간격으로 시작하게 하면 안전합니다. 제한에 걸린 참가자는 1–2분 뒤 3번 셀부터 다시 실행합니다.
 - 포털이 파일을 갱신하면 행 수와 공공 통계 정답(07장 Q1·Q4·Q6, 08장 카드)이 바뀝니다. 실습 기준 파일은 ZEB `20251231` 9,760행입니다. 정답 Notebook `05_answers`는 항상 현재 데이터로 다시 계산하므로, 바뀐 경우 사전 점검에서 새 값을 확인해 강사 안내에 반영합니다.
@@ -93,16 +93,16 @@ Notebook은 `notebooks/src/*.py`에서 만들어집니다. 소스를 고쳤다�
 Spark에서 포털에 나갈 수 없는 환경이면 관리자가 파일을 내려받아 제공합니다.
 
 1.  공공데이터포털에서 4종의 CSV를 내려받아 이름을 데이터 ID로 바꿉니다: `15085042.csv`, `15003214.csv`, `15014781.csv`, `15054156.csv`.
-2.  각 참가자 `lh_zeb`의 **Files**에 `public` 폴더를 만들고 4개 파일을 업로드합니다.
+2.  각 참가자 `lh_zeb`의 Files에 `public` 폴더를 만들고 4개 파일을 업로드합니다.
 3.  참가자는 02장에서 parameters 셀의 `local_folder = ""`를 `local_folder = "Files/public"`으로 바꿔 실행합니다. 나머지 단계와 결과는 같으며, 수집 기록의 원본 이름이 `Files/public/… (관리자 제공)`으로 남습니다.
 
 ## 4. Microsoft Foundry (선택, 09장)
 
 - 참가자별 또는 공용 Foundry 프로젝트, Agent Service와 모델을 지원하는 지역, 모델 배포와 할당량을 준비합니다.
-- 참가자가 09장 1단계에서 **프로젝트를 직접 만드는 경우**, 쓸 **구독과 리소스 그룹**(예: `rg-zeb-pNNN`)과 지역을 미리 정해 알려 주고, 그 리소스 그룹에 리소스를 만들 권한(Contributor 이상)을 줍니다. 리소스 그룹은 프로젝트 만들기 창에서 새로 만들 수 없고 기존 그룹을 골라야 합니다.
-- 참가자에게 프로젝트의 **Foundry User**, 연결을 만들 경우 **Foundry Project Manager** 역할을 줍니다.
-- Fabric IQ 도구용 **BYO Entra 앱 또는 managed OAuth** 위임 인증 연결을 준비합니다. BYO Entra는 Power BI Service의 위임 권한 `Item.Execute.All`, `Item.Read.All`, 관리자 동의, Foundry가 제공하는 redirect URI 등록이 필요합니다([Fabric IQ 인증](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/fabric-iq#authentication-and-security)).
-- 사전 점검에서 확인한 동작(2026-10-19, Sweden Central): 새 프로젝트에서 에이전트를 만들면 `gpt-5`(글로벌 표준) 배포가 자동으로 잡혔고, **Fabric IQ(OneLake 카탈로그)** 도구를 추가할 때와 첫 질문에서 별도의 연결 선택·동의 요청이 나오지 않았습니다. 다만 이 점검은 테넌트 관리자 계정으로 했으므로, 참가자 계정에서는 동의(`CONSENT_REQUIRED`)나 연결 선택이 나올 수 있습니다. **참가자 계정 하나로 미리 질문 1개를 실행**해 확인합니다.
+- 참가자가 09장 1단계에서 프로젝트를 직접 만드는 경우, 쓸 구독과 리소스 그룹(예: `rg-zeb-pNNN`)과 지역을 미리 정해 알려 주고, 그 리소스 그룹에 리소스를 만들 권한(Contributor 이상)을 줍니다. 리소스 그룹은 프로젝트 만들기 창에서 새로 만들 수 없고 기존 그룹을 골라야 합니다.
+- 참가자에게 프로젝트의 Foundry User, 연결을 만들 경우 Foundry Project Manager 역할을 줍니다.
+- Fabric IQ 도구용 BYO Entra 앱 또는 managed OAuth 위임 인증 연결을 준비합니다. BYO Entra는 Power BI Service의 위임 권한 `Item.Execute.All`, `Item.Read.All`, 관리자 동의, Foundry가 제공하는 redirect URI 등록이 필요합니다([Fabric IQ 인증](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/fabric-iq#authentication-and-security)).
+- 사전 점검에서 확인한 동작(2026-10-19, Sweden Central): 새 프로젝트에서 에이전트를 만들면 `gpt-5`(글로벌 표준) 배포가 자동으로 잡혔고, Fabric IQ(OneLake 카탈로그) 도구를 추가할 때와 첫 질문에서 별도의 연결 선택·동의 요청이 나오지 않았습니다. 다만 이 점검은 테넌트 관리자 계정으로 했으므로, 참가자 계정에서는 동의(`CONSENT_REQUIRED`)나 연결 선택이 나올 수 있습니다. 참가자 계정 하나로 미리 질문 1개를 실행해 확인합니다.
 - 질문 하나에 1–4분 걸립니다. 동시에 여러 참가자가 질문하면 모델 할당량(TPM)을 확인합니다.
 - 준비가 어렵다면 09장은 건너뛰도록 안내합니다. 필수 흐름(08 → 10)에는 영향이 없습니다.
 
@@ -124,36 +124,36 @@ Spark에서 포털에 나갈 수 없는 환경이면 관리자가 파일을 내�
 
 Copilot·Ontology agent·Data agent·Operations agent·Teams 단계는 AI·UI 동작이므로 사전 점검에서 직접 확인하고, 화면이 바뀌었으면 강사 안내를 갱신합니다.
 
-**현재 교재의 질의 경로:** 07장 기본 과정은 Data agent 구성 후 **Ontology Agent의 Plan 질의**입니다. 위 2026-10-18–19 수치는 이전 점검 결과이며, 새 Plan 경로·단계적 모델 보강·영문 Operations agent 지침이 이 테넌트에서 검증됐다는 뜻이 아닙니다. 행사 전 `p011`과 같은 역할의 계정으로 원본 읽기·Plan 응답·Act 저장·Teams 승인·재계산을 리허설합니다.
+현재 교재의 질의 경로: 07장 기본 과정은 Data agent 구성 후 Ontology Agent의 Plan 질의입니다. 위 2026-10-18–19 수치는 이전 점검 결과이며, 새 Plan 경로·단계적 모델 보강·영문 Operations agent 지침이 이 테넌트에서 검증됐다는 뜻이 아닙니다. 행사 전 `p011`과 같은 역할의 계정으로 원본 읽기·Plan 응답·Act 저장·Teams 승인·재계산을 리허설합니다.
 
 | 사전 확인 | 운영 시 기준 |
 |---|---|
 | Ontology 생성·검증 | 현장·설계안 초안 → 일정·보완안·공공 사례 보강. 샘플 검증과 전체 질의 미실행을 구분하고 미확인 바인딩은 적용 전 해결 |
 | Data agent Preview 문맥 | 관리자가 확인한 Runtime 사용. `Download ontology context`·`Refresh`·실행 질의로 설명·동의어·바인딩 전달을 확인. 선택 직접 비교를 기본 완료 조건으로 강제하지 않음 |
 | Graph | 생성은 선택. 원본 SQL 질의와 스냅샷 질의를 구분하고, 승인 후 새로 고침 실패·취소면 최신 데이터로 간주하지 않음 |
-| Operations agent | **지침·업무 목표는 영어**, 한국어 알림 본문은 출력 요청. 전환 조건·이벤트 ID·최신 상태·액션 매핑과 실제 첫 알림·반복 여부 확인 |
+| Operations agent | 지침·업무 목표는 영어, 한국어 알림 본문은 출력 요청. 전환 조건·이벤트 ID·최신 상태·액션 매핑과 실제 첫 알림·반복 여부 확인 |
 | 승인 증빙 | Notebook의 `approved_by`는 실행 계정. 실제 Teams 승인자 증빙은 카드·Activity log·조직 감사 기록으로 확인 |
 
 공식 문서: [Ontology 문맥·다운로드·갱신](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-ontology-sources), [Operations agent 언어·실행 제약](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/operations-agent-limitations). 로컬 일관성 검사는 실제 Fabric API·AI 응답·Teams 승인 동작을 대신하지 않습니다.
 
 사전 점검에서 확인한 주의 사항:
 
-- **SQL analytics endpoint 지연:** 승인 반영 후 15분 넘게 이전 값이 보인 경우가 있었습니다. 10장 11단계처럼 **Sync metadata from the Lakehouse**를 먼저 누르도록 안내합니다.
-- **Teams 채팅:** 같은 계정으로 다른 실습의 Operations agent를 쓴 적이 있으면 **Fabric operations agent** 채팅에 예전 카드가 섞여 있습니다. 참가자에게 맨 아래 `oa_zeb` 카드를 쓰도록 안내합니다.
-- **Ontology 그래프 새로 고침:** 승인 반영 중 `ont_zeb_graph_…` 새로 고침이 Monitor에 **Cancelled**로 남을 수 있습니다. 이전 점검의 Data agent 답에는 영향이 없었지만 Graph 최신성은 보장되지 않습니다. Graph를 사용하면 갱신 성공과 실제 V4 인스턴스를 별도로 확인합니다.
+- SQL analytics endpoint 지연: 승인 반영 후 15분 넘게 이전 값이 보인 경우가 있었습니다. 10장 11단계처럼 Sync metadata from the Lakehouse를 먼저 누르도록 안내합니다.
+- Teams 채팅: 같은 계정으로 다른 실습의 Operations agent를 쓴 적이 있으면 Fabric operations agent 채팅에 예전 카드가 섞여 있습니다. 참가자에게 맨 아래 `oa_zeb` 카드를 쓰도록 안내합니다.
+- Ontology 그래프 새로 고침: 승인 반영 중 `ont_zeb_graph_…` 새로 고침이 Monitor에 Cancelled로 남을 수 있습니다. 이전 점검의 Data agent 답에는 영향이 없었지만 Graph 최신성은 보장되지 않습니다. Graph를 사용하면 갱신 성공과 실제 V4 인스턴스를 별도로 확인합니다.
 
 ## 6. 반복 실습과 초기화
 
 같은 작업 영역에서 처음부터 다시 하려면:
 
-1.  `oa_zeb`를 **Stop**합니다.
+1.  `oa_zeb`를 Stop합니다.
 2.  `02_bronze_contoso_generate` → `03_silver_conform` → `04_gold_model`을 실행합니다. 조치 기록이 지워지고 D단지가 V3·위험으로 돌아갑니다(공공 데이터는 다시 내려받을 필요 없음).
 3.  필요하면 `eh_zeb_queryset`에서 `.clear table ZebRiskEvent data`로 상태 이력을 지웁니다(지우지 않아도 `resolved` 다음의 새 `open`은 다시 알림을 만듭니다).
-4.  `oa_zeb`를 **Start**하고 `06_risk_event`를 실행합니다.
+4.  `oa_zeb`를 Start하고 `06_risk_event`를 실행합니다.
 
 ## 7. 종료 후 정리
 
-1.  참가자에게 `oa_zeb` **Stop**을 확인시킵니다(10장 13단계, 11장).
+1.  참가자에게 `oa_zeb` Stop을 확인시킵니다(10장 13단계, 11장).
 2.  참가자 작업 영역 `ws-pNNN`을 삭제합니다. 작업 영역을 지우면 안의 모든 항목(Lakehouse·Eventhouse·Ontology·Data agent·보고서·Operations agent)이 함께 지워집니다.
 3.  Foundry 프로젝트·리소스, 인증 연결을 정리합니다. 참가자별 리소스 그룹(예: `rg-zeb-pNNN`)을 썼다면 리소스 그룹째 삭제합니다.
 4.  유료 Fabric 용량을 일시 중지하거나 삭제합니다.

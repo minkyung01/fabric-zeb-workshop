@@ -2,7 +2,7 @@
 
 [전체 구성](../README.md#전체-구성)
 
-이 구성도는 [MS_WS_ChipBalance](https://github.com/SookBongnaver/MS_WS_ChipBalance)의 표현 방식(공식 제품 아이콘, 제품 경계, 정제·근거·사람 승인 흐름)을 따라 **건설 ZEB 업무의 Fabric 전용 경로**로 작성했습니다.
+이 구성도는 [MS_WS_ChipBalance](https://github.com/SookBongnaver/MS_WS_ChipBalance)의 표현 방식(공식 제품 아이콘, 제품 경계, 정제·근거·사람 승인 흐름)을 따라 건설 ZEB 업무의 Fabric 전용 경로로 작성했습니다.
 
 아이콘은 각 제품을 설명하는 아키텍처 문서 용도로 공식 배포 원본을 그대로 사용합니다. 색상·비율·방향을 변경하지 않았으며, 아이콘·제품 상표의 권리는 Microsoft에 있습니다. 아래 공식 페이지의 사용 조건을 따릅니다.
 

@@ -2,7 +2,7 @@
 
 [목차](../README.md) \| [관리자 준비 가이드](README.md)
 
-실습 데이터의 계층·테이블·판정 규칙·정답을 정리한 문서입니다. 모든 테이블은 참가자 작업 영역의 schema-enabled Lakehouse `lh_zeb` 하나에 있습니다. `bronze`·`silver`·`gold`·`ops`는 스키마로 나눈 **논리적 계층**이며, 스키마 이름만으로 권한·보존 경계가 생기지는 않습니다. 운영에서는 계층별 Lakehouse·작업 영역과 권한을 따로 설계합니다.
+실습 데이터의 계층·테이블·판정 규칙·정답을 정리한 문서입니다. 모든 테이블은 참가자 작업 영역의 schema-enabled Lakehouse `lh_zeb` 하나에 있습니다. `bronze`·`silver`·`gold`·`ops`는 스키마로 나눈 논리적 계층이며, 스키마 이름만으로 권한·보존 경계가 생기지는 않습니다. 운영에서는 계층별 Lakehouse·작업 영역과 권한을 따로 설계합니다.
 
 ## 계층과 책임
 
@@ -10,7 +10,7 @@
 |---|---|---|---|
 | `bronze` | `01_bronze_public_ingest`, `02_bronze_contoso_generate`, `nb_apply_decision`(조치 기록 추가) | 원천 그대로. 공공은 문자열·영문 열 이름, 출처 열(`source_row_num`, `_source_dataset_id`, `_batch_id`, `_ingested_at`) | 21 |
 | `silver` | `03_silver_conform` | 정제·표기 통일·같은 건물 연결·이벤트와 승인된 조치 반영. 업무 판단 없음. 실행마다 전체 재생성 | 21 |
-| `gold` | `04_gold_model` | Silver에서 정리한 **업무 데이터**. 원천 시스템 코드 유지. 판단 결과 없음 | 22 |
+| `gold` | `04_gold_model` | Silver에서 정리한 업무 데이터. 원천 시스템 코드 유지. 판단 결과 없음 | 22 |
 | `ops` | `04_gold_model`, `06_risk_event`, `nb_apply_decision` | 판정 규칙을 적용한 운영 지표·위험 이벤트(보고서·Operations agent 전용) | 5 |
 
 판단 결과를 Gold에 넣지 않고 업무 데이터와 계산 결과를 분리하는 것이 이 설계의 핵심입니다. 실행되는 판정은 Notebook에 구현하며, Ontology 설명(06장)에 같은 규칙을 담아 근거 질의의 맥락으로 공유합니다. 설명 자체가 자동 실행되는 것은 아닙니다. `ops`는 계산 결과를 보고서와 위험 이벤트 전송에 쓰는 별도 계층입니다. 07장 기본 과정은 Ontology Agent의 Plan에서 질의하고 정답 Notebook과 대조하며, Data agent 직접 비교는 Preview 문맥 연계를 확인한 경우에 선택합니다.
@@ -39,7 +39,7 @@
 | HS-A 에코시티 A단지 | CT-24-0231 | BIM-0412 | 공동주택 | 경기 | 시공 58 | V2 | 44.0 | 66 | 4 | 4 | 정상 |
 | IC-B 리버뷰 B단지 | CT-25-0107 | BIM-0518 | 공동주택 | 인천 | 시공 41 | V2 | 39.0 | 65 | 4 | 4 | 정상(1차에너지로 4등급) |
 | SN-C 스마트오피스 C센터 | CT-26-0044 | BIM-0633 | 업무시설 | 경기 | 설계 0 | V2 | 63.0 | 82 | – | 3 | 주의(BEMS 미계획) |
-| **HS-D 에코시티 D단지** | CT-24-0189 | BIM-0397 | 공동주택 | 경기 | 시공 72 | **V3 VE 반영안** | **38.2** | **76** | **4** | 4 | **위험(예상 5등급)** |
+| HS-D 에코시티 D단지 | CT-24-0189 | BIM-0397 | 공동주택 | 경기 | 시공 72 | V3 VE 반영안 | 38.2 | 76 | 4 | 4 | 위험(예상 5등급) |
 | SJ-E 세종 E학교 | CT-26-0052 | BIM-0641 | 교육연구시설 | 세종 | 설계 0 | V2 | 64.2 | 52 | 3 | 3 | 주의(BF 목표 미달) |
 | BS-F 해운대 F청사 | CT-25-0078 | BIM-0455 | 업무시설 | 부산 | 시공 63 | V2 | 82.5 | 8 | 2 | 2 | 정상 |
 | JJ-G 전주 G도서관 | CT-25-0133 | BIM-0529 | 문화 및 집회시설 | 전북 | 시공 35 | V2 | 61.0 | 55 | 3 | 3 | 정상 |
@@ -79,7 +79,7 @@ Ontology(06장 4단계)와 `04_gold_model`·`05_answers`·`06_risk_event`가 같
 | `ops.option_eval` | 현장·보완안별 적용 후 자립률·1차에너지·예상 등급, 필요 등급, 준비 완료일, 설치 완료 계획일, `feasible`, `cost_rank` |
 | `ops.risk_event` | `event_id = ZEB-<현장>-<기준일>`, 현장·사유·예비/예상 등급, 추천 보완안(`cost_rank = 1`)·비용·적용 후 자립률·등급, `status`(`open` → `approved` → `resolved`) |
 | Eventhouse `eh_zeb.ZebRiskEvent` | 상태 이력(append only). 열: `event_id, status_time, event_status, site_code, site_name, risk_reason, prelim_grade, forecast_grade, selfsuff_pct, recommended_option_id, recommended_option_name, option_cost_krw, expected_selfsuff_pct, expected_grade` |
-| Operations agent 규칙 | `event_status`가 `open`으로 **바뀔 때** Teams 알림 + `ApplyZebOption(event_id, option_id)` 추천 |
+| Operations agent 규칙 | `event_status`가 `open`으로 바뀔 때 Teams 알림 + `ApplyZebOption(event_id, option_id)` 추천 |
 | `nb_apply_decision` | 매개 변수 `event_id`, `option_id`. 추천안과 다르거나 `feasible`이 아니면 거부. `bronze.pms_action_log`에 `ACT-<event_id>` 1행(`apply_options`, `{"option_ids": [...], "event_id": ...}`, 이벤트당 한 번), Eventhouse `approved` → `03_silver_conform`·`04_gold_model` 실행(`wait_for_graph = False`) → 위험 해소 시 `resolved` |
 | 반영 결과 | Silver가 조치를 읽어 `BIM-0397-V4 조치 반영안`(41.4 / 72.5)을 만들고 `현행`으로, 설비 `HS-D-OPT-D2` 추가 → D단지 4등급·정상 |
 
@@ -106,7 +106,7 @@ Eventhouse와 Delta는 하나의 트랜잭션이 아닙니다. Notebook이 중�
 |---|---|---|---|---|---|
 | OPT-D6 | 50,000,000 | 39.1 / 74.2 | 5등급 | 10-20 | – |
 | OPT-D5 | 60,000,000 | 39.2 / 74.0 | 5등급 | 10-30 | – |
-| **OPT-D2** | **230,000,000** | **41.4 / 72.5** | **4등급** | 11-14 | **1순위** |
+| OPT-D2 | 230,000,000 | 41.4 / 72.5 | 4등급 | 11-14 | 1순위 |
 | OPT-D3 | 280,000,000 | 39.6 / 74.5 | 5등급 | 12-14 | – |
 | OPT-D4 | 340,000,000 | 40.3 / 72.0 | 4등급 | 11-19 | 2순위 |
 | OPT-D1 | 420,000,000 | 43.5 / 70.0 | 4등급 | 11-29 | 3순위 |
